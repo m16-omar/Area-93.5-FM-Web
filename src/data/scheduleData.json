@@ -1,0 +1,190 @@
+{
+  "days": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"],
+  "shows": {
+    "MONDAY": [
+      {
+        "id": "m1",
+        "title": "Morning Vibe Blast",
+        "time": "06:00 am - 10:00 am",
+        "category": "Interviews",
+        "dj": "Jordan Carter",
+        "image": "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "m2",
+        "title": "Urban Beats & Rhythms",
+        "time": "10:00 am - 02:00 pm",
+        "category": "Music",
+        "dj": "Elena Vance",
+        "image": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "m3",
+        "title": "Sunset Chillout Sessions",
+        "time": "02:00 pm - 06:00 pm",
+        "category": "Trends",
+        "dj": "Marcus Sterling",
+        "image": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "m4",
+        "title": "Night Owl Electronic",
+        "time": "06:00 pm - 12:00 am",
+        "category": "Club",
+        "dj": "DJ Neon Nova",
+        "image": "https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      }
+    ],
+    "TUESDAY": [
+      {
+        "id": "t1",
+        "title": "Pop Culture Replay",
+        "time": "12:00 am - 03:30 am",
+        "category": "Trends",
+        "dj": "Sarah Jenkins",
+        "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "t2",
+        "title": "Pop Pulse Morning",
+        "time": "03:30 am - 08:00 am",
+        "category": "Interviews",
+        "dj": "Maya Lin",
+        "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "t3",
+        "title": "The Sound Session",
+        "time": "08:00 am - 12:00 pm",
+        "category": "Trends",
+        "dj": "Alex Turner",
+        "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "t4",
+        "title": "Hitmakers Live",
+        "time": "12:00 pm - 03:00 pm",
+        "category": "Interviews",
+        "dj": "Jordan Carter",
+        "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": true
+      },
+      {
+        "id": "t5",
+        "title": "Top 10 Countdown",
+        "time": "03:00 pm - 09:00 pm",
+        "category": "Music",
+        "dj": "Lucas Ruiz",
+        "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "t6",
+        "title": "Vibe Check Late Night",
+        "time": "09:00 pm - 12:00 am",
+        "category": "Trends",
+        "dj": "Chloe Grace",
+        "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      }
+    ],
+    "WEDNESDAY": [
+      {
+        "id": "w1",
+        "title": "Midweek Acoustic",
+        "time": "08:00 am - 12:00 pm",
+        "category": "Live",
+        "dj": "Samie Bower",
+        "image": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "w2",
+        "title": "Indie Discoveries",
+        "time": "12:00 pm - 04:00 pm",
+        "category": "Releases",
+        "dj": "Leslie Hunt",
+        "image": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "w3",
+        "title": "Club Horizon",
+        "time": "04:00 pm - 10:00 pm",
+        "category": "Trends",
+        "dj": "Tom Orlando",
+        "image": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      }
+    ],
+    "THURSDAY": [
+      {
+        "id": "th1",
+        "title": "Retro Rewind 90s",
+        "time": "09:00 am - 01:00 pm",
+        "category": "Classic",
+        "dj": "David Miller",
+        "image": "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "th2",
+        "title": "Future Bass Weekly",
+        "time": "01:00 pm - 06:00 pm",
+        "category": "Music",
+        "dj": "ASHWYN",
+        "image": "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      }
+    ],
+    "FRIDAY": [
+      {
+        "id": "f1",
+        "title": "Friday Party Starter",
+        "time": "12:00 am - 04:30 am",
+        "category": "Club",
+        "dj": "DJ Pulse",
+        "image": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "f2",
+        "title": "Global Top 40",
+        "time": "04:30 pm - 09:00 pm",
+        "category": "Charts",
+        "dj": "Lilac Frog",
+        "image": "https://images.unsplash.com/photo-1487180144351-b8472da7d491?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      }
+    ],
+    "SATURDAY": [
+      {
+        "id": "s1",
+        "title": "Weekend Dance Anthems",
+        "time": "02:00 pm - 08:00 pm",
+        "category": "Dance",
+        "dj": "Vector & Vibe",
+        "image": "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      }
+    ],
+    "SUNDAY": [
+      {
+        "id": "su1",
+        "title": "Sunday Chill Out",
+        "time": "05:00 pm - 09:30 pm",
+        "category": "Relax",
+        "dj": "Jordan Carter",
+        "image": "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      }
+    ]
+  }
+}

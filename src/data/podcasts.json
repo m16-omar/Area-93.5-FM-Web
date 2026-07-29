@@ -1,0 +1,50 @@
+[
+  {
+    "id": "p1",
+    "number": "#10",
+    "title": "Top 10 Countdown #10",
+    "category": "CHARTS",
+    "date": "March 10, 2025",
+    "duration": "55 min",
+    "description": "Join Jordan Carter for the ultimate breakdown of this week's top 10 commercial hits, viral releases, and artist spotlights.",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3",
+    "host": "Jordan Carter"
+  },
+  {
+    "id": "p2",
+    "number": "#09",
+    "title": "Urban Beats & Rhythms Vol. 9",
+    "category": "URBAN",
+    "date": "March 8, 2025",
+    "duration": "62 min",
+    "description": "Exploring deep grooves, underground afrobeat tracks, and synthetic basslines with special guest producer DJ Vance.",
+    "image": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=800&q=80",
+    "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3",
+    "host": "Elena Vance"
+  },
+  {
+    "id": "p3",
+    "number": "#08",
+    "title": "Sunset Chillout Sessions Ep. 8",
+    "category": "CHILL",
+    "date": "March 5, 2025",
+    "duration": "48 min",
+    "description": "Smooth ambient soundscapes and relaxing acoustic melodies for your late afternoon unwind.",
+    "image": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80",
+    "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3",
+    "host": "Marcus Sterling"
+  },
+  {
+    "id": "p4",
+    "number": "#07",
+    "title": "Electronic Underground #7",
+    "category": "CLUB",
+    "date": "March 1, 2025",
+    "duration": "75 min",
+    "description": "Heavy techno, synthwave, and future house tracks mixed live in studio by DJ Neon Nova.",
+    "image": "https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?auto=format&fit=crop&w=800&q=80",
+    "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3",
+    "host": "DJ Neon Nova"
+  }
+]

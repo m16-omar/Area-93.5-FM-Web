@@ -1,0 +1,17 @@
+{
+  "address": {
+    "title": "BROADCAST STUDIO",
+    "street": "108 Music Frequency Avenue, Suite 400",
+    "city": "Metro City, NY 10001",
+    "country": "United States"
+  },
+  "contacts": [
+    { "type": "Studio Hotline", "value": "+1 (523) 456-403", "icon": "phone" },
+    { "type": "General Inquiries", "value": "info@area-fm.xyz", "icon": "mail" },
+    { "type": "Advertising & Sales", "value": "ads@area-fm.xyz", "icon": "briefcase" }
+  ],
+  "hours": [
+    { "day": "Monday - Friday", "time": "08:00 AM - 08:00 PM" },
+    { "day": "Saturday - Sunday", "time": "10:00 AM - 06:00 PM" }
+  ]
+}

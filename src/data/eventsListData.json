@@ -1,0 +1,45 @@
+[
+  {
+    "id": "ev1",
+    "title": "Listener’s Choice Awards 2025",
+    "dateDay": "20",
+    "dateMonth": "MAR",
+    "year": "2025",
+    "time": "08:00 PM - 02:00 AM",
+    "badge": "AWARDS",
+    "venue": "PLACE 108 STAGE",
+    "location": "Central Arena, Metro City",
+    "artists": ["Jordan Carter", "Fresh Body Shop", "Lady Gaga"],
+    "image": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80",
+    "featured": true,
+    "countdown": { "days": 14, "hours": 8, "minutes": 42, "seconds": 15 }
+  },
+  {
+    "id": "ev2",
+    "title": "The Buzz Hour Electro Fest",
+    "dateDay": "03",
+    "dateMonth": "APR",
+    "year": "2025",
+    "time": "09:00 PM - 04:00 AM",
+    "badge": "FESTIVAL",
+    "venue": "MAIN ELECTRONIC DOME",
+    "location": "Harbor Park",
+    "artists": ["DJ Neon Nova", "ASHWYN", "Lilac Frog"],
+    "image": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80",
+    "featured": false
+  },
+  {
+    "id": "ev3",
+    "title": "Vibe Makers Live Concert",
+    "dateDay": "25",
+    "dateMonth": "MAY",
+    "year": "2025",
+    "time": "06:00 PM - 11:00 PM",
+    "badge": "LIVE MUSIC",
+    "venue": "SKYLINE AMPHITHEATER",
+    "location": "Downtown Bay",
+    "artists": ["Samie Bower", "Leslie Hunt", "Tom Orlando"],
+    "image": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80",
+    "featured": false
+  }
+]

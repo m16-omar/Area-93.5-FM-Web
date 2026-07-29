@@ -1,0 +1,211 @@
+.onAirSection {
+  position: relative;
+  background: var(--gradient-hero);
+  padding: 100px 48px;
+  overflow: hidden;
+}
+
+.watermarkRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin-bottom: 60px;
+}
+
+.logoWatermark {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(3rem, 7vw, 5rem);
+  letter-spacing: -0.04em;
+  color: #000000;
+}
+
+.mottoWatermark {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 0.95;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.giantPlayCircle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #000000;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+  padding-left: 5px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.giantPlayCircle:hover {
+  transform: scale(1.08);
+}
+
+.contentGrid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.onAirCard {
+  position: relative;
+  height: 380px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.onAirImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.onAirOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(58, 21, 72, 0.4) 0%, rgba(58, 21, 72, 0.9) 100%);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #ffffff;
+}
+
+.badgeRow {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.showTitleHighlight {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #000000;
+  background: var(--color-accent);
+  padding: 4px 16px;
+  display: inline-block;
+  align-self: flex-start;
+  margin-bottom: 8px;
+}
+
+.presenterText {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: #ffffff;
+}
+
+.showTimeText {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.playlistStack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.playlistItem {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast);
+}
+
+.playlistItem:hover {
+  transform: translateX(4px);
+}
+
+.playlistThumb {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
+.playlistMeta {
+  flex: 1;
+}
+
+.playlistTitle {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1rem;
+  color: #000000;
+}
+
+.playlistArtist {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.actionCircle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #2b303a;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: background var(--transition-fast);
+}
+
+.actionCircle:hover {
+  background: var(--color-accent);
+  color: #000000;
+}
+
+@media (max-width: 1024px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .onAirSection {
+    padding: 60px 20px;
+  }
+  .watermarkRow {
+    flex-direction: column;
+    text-align: center;
+  }
+}

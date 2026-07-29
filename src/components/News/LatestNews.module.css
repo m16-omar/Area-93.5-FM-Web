@@ -1,0 +1,235 @@
+.newsSection {
+  position: relative;
+  background: var(--color-light-bg);
+  padding: 100px 48px;
+  overflow: hidden;
+}
+
+.watermarkTitle {
+  position: absolute;
+  top: 30px;
+  right: 5%;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(4rem, 14vw, 11rem);
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.topControls {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.categoriesBar {
+  display: flex;
+  gap: 8px;
+}
+
+.catBtn {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 6px 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all var(--transition-fast);
+}
+
+.activeCat {
+  background: #000000;
+  color: #ffffff;
+}
+
+.catBtn:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+.sponsorsBox {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mainTitle {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  text-transform: uppercase;
+  color: #000000;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 40px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.newsGrid {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1.3fr 1.3fr;
+  gap: 24px;
+}
+
+.bigCard {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+}
+
+.bigImageWrapper {
+  position: relative;
+  height: 320px;
+}
+
+.bigImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bigContent {
+  padding: 24px;
+}
+
+.bigTitle {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1.4rem;
+  line-height: 1.3;
+  color: #000000;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  transition: color var(--transition-fast);
+}
+
+.bigTitle:hover {
+  color: var(--color-primary);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.mediumCard {
+  position: relative;
+  height: 480px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.mediumImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mediumOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #ffffff;
+}
+
+.mediumTitle {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.3rem;
+  line-height: 1.2;
+  margin-top: 10px;
+  margin-bottom: 12px;
+}
+
+.rightList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.smallItem {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  gap: 14px;
+  padding: 10px;
+  transition: transform var(--transition-fast);
+}
+
+.smallItem:hover {
+  transform: translateY(-3px);
+}
+
+.smallThumb {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
+.smallTitle {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  color: #000000;
+}
+
+.navRow {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.navBtn {
+  background: #2b303a;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 8px 16px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: background var(--transition-fast);
+}
+
+.navBtn:hover {
+  background: #000000;
+}
+
+@media (max-width: 1024px) {
+  .newsGrid {
+    grid-template-columns: 1fr;
+  }
+}

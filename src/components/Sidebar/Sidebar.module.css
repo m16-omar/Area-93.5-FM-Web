@@ -1,0 +1,275 @@
+.sidebarContainer {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.widgetBox {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.searchForm {
+  position: relative;
+  width: 100%;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 14px 44px 14px 16px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: #000000;
+  outline: none;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.searchInput::placeholder {
+  color: #888888;
+}
+
+.searchInput:focus {
+  background: #ffffff;
+  border-color: #000000;
+}
+
+.searchIconBtn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4a5060;
+  font-size: 1.1rem;
+  background: none;
+  border: none;
+}
+
+.onAirWidgetCard {
+  position: relative;
+  height: 220px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.onAirWidgetImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.onAirWidgetOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #ffffff;
+}
+
+.onAirWidgetTitle {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.2rem;
+  margin-top: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.onAirWidgetTime {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+.mostListenedList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mostListenedItem {
+  background: #ffffff;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.rankBadge {
+  width: 28px;
+  height: 28px;
+  background: #000000;
+  color: var(--color-accent);
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.trackInfo {
+  flex: 1;
+}
+
+.trackTitle {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #000000;
+}
+
+.trackArtist {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.cartBtn {
+  color: #000000;
+  font-size: 1.1rem;
+  transition: color var(--transition-fast);
+}
+
+.cartBtn:hover {
+  color: var(--color-primary);
+}
+
+.fullTracklistBtn {
+  background: #ffffff;
+  color: #000000;
+  border: 1.5px solid #000000;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  transition: all var(--transition-fast);
+  margin-top: 8px;
+}
+
+.fullTracklistBtn:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.categoryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: #ffffff;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #000000;
+  box-shadow: var(--shadow-sm);
+  transition: background var(--transition-fast);
+  cursor: pointer;
+}
+
+.categoryRow:hover {
+  background: var(--color-accent);
+}
+
+.catCount {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+.recentPostsList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.recentPostItem {
+  background: #ffffff;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  padding: 10px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast);
+}
+
+.recentPostItem:hover {
+  transform: translateY(-2px);
+}
+
+.recentPostThumb {
+  width: 60px;
+  height: 60px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.recentPostTitle {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.85rem;
+  line-height: 1.3;
+  color: #000000;
+}
+
+.recentPostDate {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+.tagsCloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tagPill {
+  background: #ffffff;
+  color: #000000;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.tagPill:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+  .sidebarContainer {
+    width: 100%;
+  }
+}

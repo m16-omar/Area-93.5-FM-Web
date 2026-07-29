@@ -1,0 +1,8 @@
+[
+  { "id": "cat1", "name": "Artists", "count": 12 },
+  { "id": "cat2", "name": "Concerts", "count": 8 },
+  { "id": "cat3", "name": "Events", "count": 15 },
+  { "id": "cat4", "name": "Interviews", "count": 6 },
+  { "id": "cat5", "name": "News", "count": 24 },
+  { "id": "cat6", "name": "Trends", "count": 19 }
+]

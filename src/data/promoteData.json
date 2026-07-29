@@ -1,0 +1,65 @@
+{
+  "stats": [
+    { "label": "MONTHLY LISTENERS", "value": "500K+" },
+    { "label": "DAILY STREAMING HOURS", "value": "24/7" },
+    { "label": "SOCIAL REACH", "value": "1.2M" },
+    { "label": "CITIES COVERED", "value": "45+" }
+  ],
+  "packages": [
+    {
+      "id": "p_starter",
+      "name": "STARTER CAMPAIGN",
+      "price": "$299",
+      "period": "per week",
+      "popular": false,
+      "features": [
+        "15x Audio Ad Spot (30 sec)",
+        "Social Media Post Mention",
+        "Website Banner Placement",
+        "Weekly Performance Analytics"
+      ]
+    },
+    {
+      "id": "p_pro",
+      "name": "PRO RADIO SHOUTOUT",
+      "price": "$599",
+      "period": "per week",
+      "popular": true,
+      "features": [
+        "35x Prime Time Audio Ad Spots",
+        "Live DJ On-Air Interview (10 min)",
+        "Featured Hero Banner on Homepage",
+        "Social Media Video Promo Reel",
+        "Dedicated Email Newsletter Blast"
+      ]
+    },
+    {
+      "id": "p_ultimate",
+      "name": "SPONSORSHIP SUITE",
+      "price": "$1,299",
+      "period": "per month",
+      "popular": false,
+      "features": [
+        "75+ Prime Time Audio Ads",
+        "Exclusive Show Title Sponsorship",
+        "Live Concert Event Booth Space",
+        "Full Custom Branded Podcast Episode",
+        "VIP Access & Broadcast Mentions"
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What audio ad formats do you support?",
+      "answer": "We accept 15-second, 30-second, and 60-second WAV/MP3 audio files. Our in-house production team can also voice and produce your radio ad from scratch."
+    },
+    {
+      "question": "How quickly can my campaign launch?",
+      "answer": "Standard audio ads can go live within 24 to 48 hours after script approval and audio file verification."
+    },
+    {
+      "question": "Can I target specific show genres or time slots?",
+      "answer": "Yes! You can choose specific shows such as Morning Vibe Blast, Urban Beats, or Friday Night Party Starter to target your desired demographic."
+    }
+  ]
+}

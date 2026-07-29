@@ -1,0 +1,237 @@
+.podcastSection {
+  position: relative;
+  background: var(--color-light-bg);
+  padding: 100px 48px;
+  overflow: hidden;
+}
+
+.podcastGrid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.mainTitle {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  text-transform: uppercase;
+  color: #000000;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.description {
+  font-size: 1rem;
+  color: #4a5060;
+  line-height: 1.6;
+}
+
+.listenLiveSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tableHeader {
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.scheduleTable {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.scheduleRow {
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.dayCell {
+  background: var(--color-primary);
+  color: #000000;
+  padding: 14px 20px;
+  width: 120px;
+  text-transform: uppercase;
+}
+
+.timeCell {
+  background: #c5d8cc;
+  color: #2b303a;
+  padding: 14px 20px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hostedSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hostCard {
+  position: relative;
+  height: 240px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.hostImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hostOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #ffffff;
+}
+
+.hostName {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin-top: 6px;
+}
+
+.hostSocials {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.socialIconBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: background var(--transition-fast);
+}
+
+.socialIconBtn:hover {
+  background: var(--color-accent);
+  color: #000000;
+}
+
+.rightCol {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.episodeCard {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-normal);
+}
+
+.episodeCard:hover {
+  transform: translateY(-6px);
+}
+
+.episodeArtWrapper {
+  position: relative;
+  height: 240px;
+  background: #f7e127;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.episodeArtBg {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.playCircleBtn {
+  position: relative;
+  z-index: 2;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.75);
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  padding-left: 3px;
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.episodeCard:hover .playCircleBtn {
+  transform: scale(1.1);
+  background: var(--color-accent);
+  color: #000000;
+  border-color: #000000;
+}
+
+.episodeInfo {
+  padding: 20px;
+}
+
+.episodeTitle {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+.episodeDate {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 1024px) {
+  .podcastGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .rightCol {
+    grid-template-columns: 1fr;
+  }
+}

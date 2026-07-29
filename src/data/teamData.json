@@ -1,0 +1,62 @@
+[
+  {
+    "id": "t1",
+    "name": "Jordan Carter",
+    "role": "Head DJ & Station Host",
+    "bio": "Jordan leads the morning prime time slot on 93.5 AREA FM with over 10 years of radio broadcasting experience across pop, chart hits, and exclusive celebrity interviews.",
+    "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    "email": "jordan@area-fm.xyz",
+    "phone": "+1 (555) 019-2831",
+    "shows": ["Hitmakers Live", "Morning Vibe Blast"],
+    "socials": {
+      "instagram": "#",
+      "twitter": "#",
+      "youtube": "#",
+      "spotify": "#"
+    }
+  },
+  {
+    "id": "t2",
+    "name": "Elena Vance",
+    "role": "Music Director & Presenter",
+    "bio": "Curating urban beats, indie dance tracks, and live session interviews. Elena brings fresh international rhythm to afternoon listeners.",
+    "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+    "email": "elena@area-fm.xyz",
+    "phone": "+1 (555) 019-2832",
+    "shows": ["Urban Beats & Rhythms"],
+    "socials": {
+      "instagram": "#",
+      "twitter": "#",
+      "spotify": "#"
+    }
+  },
+  {
+    "id": "t3",
+    "name": "Lucas Ruiz",
+    "role": "Charts Specialist",
+    "bio": "Lucas hosts the weekly Top 10 Countdown and analyzes viral streaming statistics, track voting, and chart movements.",
+    "photo": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+    "email": "lucas@area-fm.xyz",
+    "phone": "+1 (555) 019-2833",
+    "shows": ["Top 10 Countdown"],
+    "socials": {
+      "instagram": "#",
+      "twitter": "#"
+    }
+  },
+  {
+    "id": "t4",
+    "name": "Chloe Grace",
+    "role": "Podcast Producer & Host",
+    "bio": "Producing deep-dive artist interviews, behind-the-scenes pop culture recaps, and weekly podcast sessions.",
+    "photo": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
+    "email": "chloe@area-fm.xyz",
+    "phone": "+1 (555) 019-2834",
+    "shows": ["Vibe Check Late Night"],
+    "socials": {
+      "instagram": "#",
+      "youtube": "#",
+      "spotify": "#"
+    }
+  }
+]

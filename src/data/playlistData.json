@@ -1,0 +1,30 @@
+[
+  {
+    "id": "p1",
+    "title": "Talk a Little",
+    "artist": "Samie Bower",
+    "image": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=300&q=80",
+    "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+  },
+  {
+    "id": "p2",
+    "title": "Love Too Serious",
+    "artist": "Lilly Wolf",
+    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
+    "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+  },
+  {
+    "id": "p3",
+    "title": "Escape This Night",
+    "artist": "Leslie Hunt",
+    "image": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=300&q=80",
+    "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+  },
+  {
+    "id": "p4",
+    "title": "BASXHKZIR",
+    "artist": "BASXHKZIR",
+    "image": "https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?auto=format&fit=crop&w=300&q=80",
+    "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+  }
+]

@@ -1,0 +1,57 @@
+{
+  "featuredTrack": {
+    "id": "ft1",
+    "title": "Weightless",
+    "artist": "Fresh Body Shop",
+    "badge": "Weightless",
+    "image": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80",
+    "votes": 1284
+  },
+  "tracks": [
+    {
+      "id": "t1",
+      "rank": 1,
+      "title": "Talk a Little",
+      "artist": "Samie Bower",
+      "image": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=300&q=80",
+      "votes": 954,
+      "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+    },
+    {
+      "id": "t2",
+      "rank": 2,
+      "title": "How Far",
+      "artist": "Samie Bower",
+      "image": "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=300&q=80",
+      "votes": 820,
+      "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+    },
+    {
+      "id": "t3",
+      "rank": 3,
+      "title": "Escape This Night",
+      "artist": "Leslie Hunt",
+      "image": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=300&q=80",
+      "votes": 715,
+      "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+    },
+    {
+      "id": "t4",
+      "rank": 4,
+      "title": "Out Of My Head [Radio Edit]",
+      "artist": "Tom Orlando",
+      "image": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=300&q=80",
+      "votes": 640,
+      "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+    },
+    {
+      "id": "t5",
+      "rank": 5,
+      "title": "Feelings of Yesterday",
+      "artist": "ASHWYN",
+      "image": "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=300&q=80",
+      "votes": 590,
+      "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "host": {
+    "name": "Jordan Carter",
+    "role": "Host",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    "socials": [
+      { "platform": "Instagram", "url": "#" },
+      { "platform": "Twitter", "url": "#" },
+      { "platform": "YouTube", "url": "#" },
+      { "platform": "Spotify", "url": "#" },
+      { "platform": "TikTok", "url": "#" }
+    ]
+  },
+  "listenLive": [
+    { "day": "TUESDAY", "start": "3:00 PM", "end": "9:00 PM" },
+    { "day": "FRIDAY", "start": "12:00 AM", "end": "4:30 AM" },
+    { "day": "SUNDAY", "start": "5:00 PM", "end": "9:30 PM" }
+  ],
+  "episodes": [
+    {
+      "id": "ep4",
+      "number": "#4",
+      "title": "Top 10 Countdown #4",
+      "date": "March 4, 2025",
+      "duration": "45 min",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+      "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+    },
+    {
+      "id": "ep3",
+      "number": "#3",
+      "title": "Top 10 Countdown #3",
+      "date": "March 4, 2025",
+      "duration": "52 min",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+      "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+    },
+    {
+      "id": "ep2",
+      "number": "#2",
+      "title": "Top 10 Countdown #2",
+      "date": "March 4, 2025",
+      "duration": "48 min",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+      "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+    },
+    {
+      "id": "ep1",
+      "number": "#1",
+      "title": "Top 10 Countdown #1",
+      "date": "January 8, 2025",
+      "duration": "60 min",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+      "audioUrl": "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+    }
+  ]
+}
