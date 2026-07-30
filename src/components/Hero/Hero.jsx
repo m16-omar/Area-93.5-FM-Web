@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaPlay, FaPause } from 'react-icons/fa';
-import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 import eventsData from '../../data/eventsData.json';
 import heroPresenterImg from '../../assets/Here Presenters.png';
@@ -13,13 +12,12 @@ export const Hero = () => {
 
   const maxIndex = Math.max(0, eventsData.length - 3);
 
-  const nextSlide = () => {
-    setSlideIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-  };
-
-  const prevSlide = () => {
-    setSlideIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSlideIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [maxIndex]);
 
   return (
     <section className={styles.heroSection}>
@@ -64,7 +62,7 @@ export const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Right Column: Floating Current Shows Slider (z-index: 2) */}
+        {/* Right Column: Floating Current Shows Auto-Slider (z-index: 2) */}
         <motion.div 
           className={styles.rightCol}
           initial={{ opacity: 0, y: 30 }}
@@ -73,21 +71,13 @@ export const Hero = () => {
         >
           <div className={styles.nextEventsHeader}>
             <span className="section-label">CURRENT SHOWS</span>
-            <div className={styles.sliderNavControls}>
-              <button onClick={prevSlide} className={styles.sliderArrowBtn} aria-label="Previous Shows">
-                <FiChevronLeft />
-              </button>
-              <button onClick={nextSlide} className={styles.sliderArrowBtn} aria-label="Next Shows">
-                <FiChevronRight />
-              </button>
-            </div>
           </div>
 
           <div className={styles.sliderTrackViewport}>
             <motion.div 
               className={styles.sliderTrack}
               animate={{ x: `calc(-${slideIndex} * (33.333% + 4.66px))` }}
-              transition={{ type: 'spring', stiffness: 260, damping: 26 }}
+              transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
             >
               {eventsData.map((ev) => (
                 <div key={ev.id} className={styles.eventCardItem}>
