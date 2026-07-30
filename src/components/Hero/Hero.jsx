@@ -2,15 +2,71 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
-import eventsData from '../../data/eventsData.json';
 import heroPresenterImg from '../../assets/Here Presenters.png';
 import styles from './Hero.module.css';
+
+const currentShows = [
+  {
+    id: "s1",
+    title: "Morning Vibe Blast",
+    dj: "Jordan Carter",
+    time: "06:00",
+    period: "AM",
+    genre: "Interviews",
+    image: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "s2",
+    title: "Urban Beats & Rhythms",
+    dj: "Elena Vance",
+    time: "10:00",
+    period: "AM",
+    genre: "Music",
+    image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "s3",
+    title: "Sunset Chillout Sessions",
+    dj: "Marcus Sterling",
+    time: "02:00",
+    period: "PM",
+    genre: "Trends",
+    image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "s4",
+    title: "Hitmakers Live",
+    dj: "Jordan Carter",
+    time: "06:00",
+    period: "PM",
+    genre: "Live Show",
+    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "s5",
+    title: "Top 10 Countdown",
+    dj: "Lucas Ruiz",
+    time: "08:00",
+    period: "PM",
+    genre: "Charts",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "s6",
+    title: "Friday Party Starter",
+    dj: "DJ Pulse",
+    time: "10:00",
+    period: "PM",
+    genre: "Club Mix",
+    image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80"
+  }
+];
 
 export const Hero = () => {
   const { isPlaying, togglePlayPause, currentTrack } = useAudioPlayer();
   const [slideIndex, setSlideIndex] = useState(0);
 
-  const maxIndex = Math.max(0, eventsData.length - 3);
+  const maxIndex = Math.max(0, currentShows.length - 3);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -79,18 +135,19 @@ export const Hero = () => {
               animate={{ x: `calc(-${slideIndex} * (33.333% + 4.66px))` }}
               transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
             >
-              {eventsData.map((ev) => (
-                <div key={ev.id} className={styles.eventCardItem}>
+              {currentShows.map((show) => (
+                <div key={show.id} className={styles.eventCardItem}>
                   <div className={styles.eventCard}>
-                    <img src={ev.image} alt={ev.title} className={styles.eventImage} loading="lazy" />
+                    <img src={show.image} alt={show.title} className={styles.eventImage} loading="lazy" />
                     <div className={styles.eventOverlay}>
                       <div className={styles.dateCircle}>
-                        <span>{ev.dateDay}</span>
-                        <span>{ev.dateMonth}</span>
+                        <span>{show.time}</span>
+                        <span>{show.period}</span>
                       </div>
                       <div>
-                        <span className="badge-outline" style={{ marginBottom: '6px' }}>{ev.badge}</span>
-                        <h3 className={styles.eventTitle}>{ev.title}</h3>
+                        <span className="badge-outline" style={{ marginBottom: '6px' }}>{show.genre}</span>
+                        <h3 className={styles.eventTitle}>{show.title}</h3>
+                        <p style={{ fontSize: '0.75rem', color: '#D1D5DB', marginTop: '2px', fontWeight: 600 }}>{show.dj}</p>
                       </div>
                     </div>
                   </div>
