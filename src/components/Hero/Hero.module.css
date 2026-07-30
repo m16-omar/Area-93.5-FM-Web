@@ -40,21 +40,18 @@
 /* 2. Hero Image Container (z-index: 1) */
 .heroImageContainer {
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 55%;
+  inset: 0;
   overflow: hidden;
   z-index: 1;
   pointer-events: none;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
 }
 
 .heroDjImage {
-  width: 100%;
+  position: absolute;
+  right: 14%;
+  bottom: 0;
   height: 100%;
+  max-width: 55%;
   object-fit: contain;
   object-position: center bottom;
   display: block;
@@ -63,7 +60,7 @@
 .heroImageOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(8, 59, 110, 0.95) 0%, rgba(8, 59, 110, 0.35) 40%, transparent 75%);
+  background: linear-gradient(90deg, rgba(8, 59, 110, 0.6) 0%, rgba(8, 59, 110, 0.1) 40%, transparent 70%);
 }
 
 /* Foreground Container */
@@ -243,8 +240,10 @@
     grid-template-columns: 1fr;
     gap: 30px;
   }
-  .heroImageContainer {
-    width: 100%;
+  .heroDjImage {
+    right: 50%;
+    transform: translateX(50%);
+    max-width: 80%;
     opacity: 0.3;
   }
   .eventsGrid {
@@ -261,7 +260,7 @@
   .eventsGrid {
     grid-template-columns: 1fr;
   }
-  .heroImageContainer {
+  .heroDjImage {
     opacity: 0.2;
   }
 }
