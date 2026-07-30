@@ -6,9 +6,10 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 }
 
+/* 1. Background layer (z-index: 0) */
 .bgCircle1 {
   position: absolute;
   top: -100px;
@@ -19,7 +20,7 @@
   background: var(--primary-orange);
   opacity: 0.35;
   filter: blur(60px);
-  z-index: 1;
+  z-index: 0;
 }
 
 .bgCircle2 {
@@ -32,19 +33,51 @@
   background: var(--primary-blue);
   opacity: 0.6;
   filter: blur(50px);
-  z-index: 1;
+  z-index: 0;
 }
 
+/* 2. Hero Image Container (z-index: 1) */
+.heroImageContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 68%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.heroDjImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+}
+
+.heroImageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(8, 59, 110, 0.85) 0%, rgba(8, 59, 110, 0.35) 45%, rgba(8, 59, 110, 0.15) 100%);
+}
+
+/* Foreground Container */
 .heroContent {
   position: relative;
-  z-index: 2;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   align-items: center;
 }
 
+/* 4 & 5. Left Column: Text (z-index: 3) & Play Button (z-index: 4) */
 .leftCol {
+  position: relative;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -63,7 +96,7 @@
 .heroHeadline {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-size: clamp(3rem, 5.5vw, 5.2rem);
   line-height: 0.95;
   color: var(--white);
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -72,6 +105,8 @@
 }
 
 .giantPlayWrapper {
+  position: relative;
+  z-index: 4;
   display: flex;
   align-items: center;
   gap: 24px;
@@ -91,6 +126,7 @@
   box-shadow: 0 15px 35px rgba(239, 75, 0, 0.4);
   transition: transform var(--transition-normal), background var(--transition-fast), box-shadow var(--transition-normal);
   padding-left: 6px;
+  cursor: pointer;
 }
 
 .giantPlayBtn:hover {
@@ -117,7 +153,10 @@
   font-weight: 500;
 }
 
+/* 3. Right Column: Floating Event Cards (z-index: 2) */
 .rightCol {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -137,7 +176,7 @@
 
 .eventCard {
   position: relative;
-  height: 280px;
+  height: 250px;
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -188,33 +227,23 @@
 .eventTitle {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.2;
   color: var(--white);
 }
 
-.heroDjImage {
-  position: absolute;
-  left: 32%;
-  bottom: 0;
-  max-height: 95%;
-  width: auto;
-  object-fit: contain;
-  pointer-events: none;
-  z-index: 1;
-}
-
+/* Responsive Breakpoints */
 @media (max-width: 1200px) {
   .heroContent {
     grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .heroImageContainer {
+    width: 100%;
+    opacity: 0.3;
   }
   .eventsGrid {
     grid-template-columns: repeat(3, 1fr);
-  }
-  .heroDjImage {
-    opacity: 0.4;
-    left: 50%;
-    transform: translateX(-50%);
   }
 }
 
@@ -225,7 +254,7 @@
   .eventsGrid {
     grid-template-columns: 1fr;
   }
-  .heroDjImage {
-    display: none;
+  .heroImageContainer {
+    opacity: 0.25;
   }
 }

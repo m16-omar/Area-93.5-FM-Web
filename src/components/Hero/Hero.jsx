@@ -11,12 +11,23 @@ export const Hero = () => {
 
   return (
     <section className={styles.heroSection}>
+      {/* Background circles */}
       <div className={styles.bgCircle1} />
       <div className={styles.bgCircle2} />
-      <img src={heroPresenterImg} alt="93.5 Area FM Presenter" className={styles.heroDjImage} />
 
+      {/* Hero Image Absolute Container (z-index: 1) */}
+      <div className={styles.heroImageContainer}>
+        <img 
+          src={heroPresenterImg} 
+          alt="93.5 Area FM Presenter" 
+          className={styles.heroDjImage} 
+        />
+        <div className={styles.heroImageOverlay} />
+      </div>
+
+      {/* Hero Foreground Content */}
       <div className={styles.heroContent}>
-        {/* Left Column */}
+        {/* Left Column: Hero Text (z-index: 3) & Play Button (z-index: 4) */}
         <motion.div 
           className={styles.leftCol}
           initial={{ opacity: 0, x: -30 }}
@@ -41,7 +52,7 @@ export const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Right Column - Events */}
+        {/* Right Column: Floating Event Cards (z-index: 2) */}
         <motion.div 
           className={styles.rightCol}
           initial={{ opacity: 0, y: 30 }}
