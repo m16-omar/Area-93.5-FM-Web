@@ -15,14 +15,14 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
 }
 
 .categoryCard {
   position: relative;
-  height: 160px;
-  border-radius: 18px;
+  height: 150px;
+  border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--border);
   box-shadow: 0 4px 12px rgba(10, 79, 146, 0.08);
@@ -30,6 +30,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  padding: 10px;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
 }
 
@@ -55,7 +57,7 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(8, 59, 110, 0.8) 0%, rgba(10, 79, 146, 0.85) 100%);
+  background: linear-gradient(135deg, rgba(8, 59, 110, 0.82) 0%, rgba(10, 79, 146, 0.88) 100%);
   transition: background var(--transition-fast);
 }
 
@@ -68,21 +70,22 @@
   z-index: 2;
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 1.6rem;
+  font-size: 1.15rem;
   text-transform: uppercase;
   color: var(--white);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 @media (max-width: 1024px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 600px) {
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
