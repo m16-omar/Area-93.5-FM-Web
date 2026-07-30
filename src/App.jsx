@@ -20,6 +20,7 @@ function App() {
         <PageLoader />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/news" element={<BlogSidebar />} />
           <Route path="/blog-sidebar" element={<BlogSidebar />} />
           <Route path="/blog" element={<BlogSidebar />} />
           <Route path="/podcasts" element={<Podcasts />} />

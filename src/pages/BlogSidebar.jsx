@@ -10,7 +10,7 @@ export const BlogSidebar = () => {
   return (
     <main style={{ position: 'relative', width: '100%', overflowX: 'clip', background: 'var(--color-light-bg)' }}>
       <Navbar />
-      <PageHeader title="BLOG SIDEBAR" watermark={`BLOG\nNEWS`} />
+      <PageHeader title="NEWS" watermark={`NEWS\nUPDATES`} />
 
       {/* Content Container */}
       <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 48px 100px' }}>

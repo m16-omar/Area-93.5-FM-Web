@@ -43,7 +43,7 @@ export const Navbar = () => {
               <Link to="/" onClick={() => setMobileMenuOpen(false)} className={`${styles.navLink} ${isActive('/') ? styles.activeNavLink : ''}`}>HOME</Link>
             </li>
             <li className={styles.navItem}>
-              <Link to="/blog-sidebar" onClick={() => setMobileMenuOpen(false)} className={`${styles.navLink} ${isActive('/blog-sidebar') || isActive('/blog') ? styles.activeNavLink : ''}`}>BLOG</Link>
+              <Link to="/news" onClick={() => setMobileMenuOpen(false)} className={`${styles.navLink} ${isActive('/news') || isActive('/blog-sidebar') || isActive('/blog') ? styles.activeNavLink : ''}`}>NEWS</Link>
             </li>
             <li className={styles.navItem}>
               <Link to="/podcasts" onClick={() => setMobileMenuOpen(false)} className={`${styles.navLink} ${isActive('/podcasts') ? styles.activeNavLink : ''}`}>PODCASTS</Link>

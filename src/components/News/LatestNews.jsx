@@ -8,7 +8,7 @@ export const LatestNews = () => {
   const [activeCategory, setActiveCategory] = useState('ALL');
 
   return (
-    <section className={styles.newsSection} id="blog">
+    <section className={styles.newsSection} id="news">
       <div className={styles.watermarkTitle}>LATEST NEWS</div>
 
       {/* Top Bar with Categories & Sponsors */}

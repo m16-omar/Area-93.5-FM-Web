@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './PageHeader.module.css';
 
-export const PageHeader = ({ title = "BLOG SIDEBAR", watermark = "BLOG\nNEWS" }) => {
+export const PageHeader = ({ title = "NEWS", watermark = "NEWS\nUPDATES" }) => {
   return (
     <section className={styles.pageHeaderSection}>
       <div className={styles.watermarkTitle}>{watermark}</div>
