@@ -171,15 +171,49 @@
 
 @media (max-width: 768px) {
   .scheduleSection {
-    padding: 60px 20px;
+    padding: 40px 16px;
+  }
+  .watermarkTitle {
+    font-size: 2.2rem;
+    top: 25px;
+  }
+  .mainTitle {
+    font-size: 1.6rem;
+  }
+  .sectionHeader {
+    margin-bottom: 24px;
   }
   .tabContainer {
-    flex-wrap: wrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px;
+    margin-bottom: 24px;
+    border-radius: 10px;
+    scrollbar-width: none;
+  }
+  .tabContainer::-webkit-scrollbar {
+    display: none;
   }
   .tabButton {
-    flex: 1 1 30%;
+    flex: 0 0 auto;
+    padding: 10px 14px;
+    font-size: 0.78rem;
+    border-radius: 6px;
   }
   .showGrid {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainTitle {
+    font-size: 1.35rem;
+  }
+  .tabButton {
+    padding: 8px 12px;
+    font-size: 0.75rem;
   }
 }
