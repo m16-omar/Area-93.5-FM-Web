@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FiSearch, FiMenu, FiVolume2, FiVolumeX, FiMusic, FiX } from 'react-icons/fi';
 import { FaTwitter, FaInstagram, FaFacebookF, FaYoutube, FaTiktok, FaPlay, FaPause } from 'react-icons/fa';
@@ -11,6 +11,15 @@ export const Navbar = () => {
   const { isPlaying, togglePlayPause, currentTrack, isMuted, toggleMute } = useAudioPlayer();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 30);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const isActive = (path) => location.pathname === path;
 
@@ -39,7 +48,7 @@ export const Navbar = () => {
       </div>
 
       {/* Main Navbar Header */}
-      <header className={styles.navbarContainer}>
+      <header className={`${styles.navbarContainer} ${isScrolled ? styles.scrolled : ''}`}>
         <Link to="/" className={styles.logoLink}>
           <img src={logoImg} alt="93.5 AREA FM Logo" className={styles.logoImg} />
           <span className={styles.logoText}>93.5 AREA <span className={styles.logoAccent}>FM</span></span>
