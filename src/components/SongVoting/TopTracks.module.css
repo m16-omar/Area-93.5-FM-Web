@@ -1,8 +1,8 @@
 .tracksSection {
   position: relative;
-  background: var(--gradient-purple);
+  background: var(--gradient-dark), var(--secondary-blue);
   padding: 100px 48px;
-  color: #ffffff;
+  color: var(--white);
   overflow: hidden;
 }
 
@@ -26,31 +26,40 @@
   font-weight: 900;
   font-size: clamp(3rem, 6vw, 4.5rem);
   text-transform: uppercase;
-  color: #ff3b68;
+  color: var(--primary-orange);
   line-height: 0.9;
   letter-spacing: -0.02em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .subTitle {
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 1.8rem;
-  color: #ffffff;
+  color: var(--white);
   margin-top: 8px;
 }
 
 .description {
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: #D1D5DB;
   line-height: 1.6;
 }
 
 .featuredCard {
   background: #ffffff;
-  border-radius: var(--radius-md);
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 24px rgba(10, 79, 146, 0.15);
   max-width: 450px;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.featuredCard:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary-orange);
+  box-shadow: 0 16px 36px rgba(10, 79, 146, 0.25);
 }
 
 .featuredArtWrapper {
@@ -68,18 +77,19 @@
   position: absolute;
   top: 16px;
   right: 16px;
-  background: rgba(255, 255, 255, 0.85);
-  color: #000000;
+  background: var(--primary-orange);
+  color: var(--white);
   font-weight: 800;
   font-size: 0.8rem;
   padding: 4px 12px;
   border-radius: var(--radius-sm);
+  box-shadow: 0 4px 10px rgba(239, 75, 0, 0.3);
 }
 
 .featuredFooter {
   padding: 20px;
   background: #ffffff;
-  color: #000000;
+  color: var(--text-dark);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -89,11 +99,12 @@
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 1.2rem;
+  color: var(--primary-blue);
 }
 
 .featuredArtist {
   font-size: 0.9rem;
-  color: var(--color-text-muted);
+  color: var(--text-muted);
 }
 
 .rightCol {
@@ -103,20 +114,22 @@
 }
 
 .trackRowCard {
-  background: #f7f9f8;
-  color: #000000;
-  border-radius: var(--radius-md);
+  background: #ffffff;
+  color: var(--text-dark);
+  border-radius: 18px;
+  border: 1px solid var(--border);
   padding: 12px 20px;
   display: flex;
   align-items: center;
   gap: 16px;
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-fast), background var(--transition-fast);
+  box-shadow: 0 4px 12px rgba(10, 79, 146, 0.08);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
 }
 
 .trackRowCard:hover {
-  transform: translateX(6px);
-  background: #ffffff;
+  transform: translateY(-4px);
+  border-color: var(--primary-orange);
+  box-shadow: 0 8px 24px rgba(10, 79, 146, 0.18);
 }
 
 .trackThumb {
@@ -134,40 +147,43 @@
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 1.05rem;
-  color: #000000;
+  color: var(--primary-blue);
 }
 
 .trackArtist {
   font-size: 0.85rem;
-  color: var(--color-text-muted);
+  color: var(--text-muted);
 }
 
 .voteBtn {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: #1a1c23;
-  color: #ffffff;
+  background: var(--primary-orange);
+  color: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.1rem;
+  box-shadow: 0 4px 12px rgba(239, 75, 0, 0.25);
   transition: all var(--transition-fast);
 }
 
 .voted {
-  background: #ff3b68;
-  color: #ffffff;
+  background: var(--orange-hover);
+  color: var(--white);
+  box-shadow: 0 0 15px rgba(239, 75, 0, 0.5);
 }
 
 .voteBtn:hover {
   transform: scale(1.1);
+  background: var(--orange-hover);
 }
 
 .voteCount {
   font-weight: 700;
   font-size: 0.85rem;
-  color: #555;
+  color: var(--primary-blue);
   min-width: 40px;
   text-align: right;
 }

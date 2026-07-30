@@ -22,13 +22,21 @@
 .categoryCard {
   position: relative;
   height: 160px;
-  border-radius: var(--radius-md);
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(10, 79, 146, 0.08);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.categoryCard:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary-orange);
+  box-shadow: 0 12px 30px rgba(10, 79, 146, 0.18);
 }
 
 .bgImage {
@@ -47,12 +55,12 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(45, 21, 55, 0.75) 0%, rgba(26, 76, 55, 0.75) 100%);
-  transition: opacity var(--transition-fast);
+  background: linear-gradient(135deg, rgba(8, 59, 110, 0.8) 0%, rgba(10, 79, 146, 0.85) 100%);
+  transition: background var(--transition-fast);
 }
 
 .categoryCard:hover .overlay {
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.65) 100%);
+  background: linear-gradient(135deg, rgba(239, 75, 0, 0.85) 0%, rgba(8, 59, 110, 0.9) 100%);
 }
 
 .title {
@@ -62,8 +70,9 @@
   font-weight: 900;
   font-size: 1.6rem;
   text-transform: uppercase;
-  color: #ffffff;
+  color: var(--white);
   letter-spacing: 0.05em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 @media (max-width: 1024px) {

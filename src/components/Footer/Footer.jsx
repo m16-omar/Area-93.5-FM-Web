@@ -2,6 +2,7 @@ import React from 'react';
 import { FaFacebookF, FaYoutube, FaInstagram, FaSpotify } from 'react-icons/fa';
 import { FiPhone, FiMail } from 'react-icons/fi';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
+import logoImg from '../../assets/logo.jpeg';
 import styles from './Footer.module.css';
 
 export const Footer = () => {
@@ -17,9 +18,9 @@ export const Footer = () => {
       <div className={styles.footerGrid}>
         {/* Left Column */}
         <div className={styles.leftCol}>
-          <div className={styles.logo}>
-            <span>93.5 AREA</span>
-            <span className={styles.logoAccent}>FM</span>
+          <div className={styles.logoLink}>
+            <img src={logoImg} alt="93.5 AREA FM Logo" className={styles.logoImg} />
+            <span className={styles.logoText}>93.5 AREA <span className={styles.logoAccent}>FM</span></span>
           </div>
 
           <div className={styles.nowPlayingInfo}>
@@ -32,10 +33,10 @@ export const Footer = () => {
           <div>
             <span className="section-label" style={{ marginBottom: '12px' }}>FOLLOW US ON</span>
             <div className={styles.socialGrid}>
-              <a href="#" className={styles.socialSquare} aria-label="Facebook"><FaFacebookF /></a>
-              <a href="#" className={styles.socialSquare} aria-label="YouTube"><FaYoutube /></a>
-              <a href="#" className={styles.socialSquare} aria-label="Instagram"><FaInstagram /></a>
-              <a href="#" className={styles.socialSquare} aria-label="Spotify"><FaSpotify /></a>
+              <a href="#" className={styles.socialCircle} aria-label="Facebook"><FaFacebookF /></a>
+              <a href="#" className={styles.socialCircle} aria-label="YouTube"><FaYoutube /></a>
+              <a href="#" className={styles.socialCircle} aria-label="Instagram"><FaInstagram /></a>
+              <a href="#" className={styles.socialCircle} aria-label="Spotify"><FaSpotify /></a>
             </div>
           </div>
 
@@ -43,12 +44,12 @@ export const Footer = () => {
             <span className="section-label" style={{ marginBottom: '12px' }}>CONTACTS</span>
             <div className={styles.contactList}>
               <div className={styles.contactItem}>
-                <FiPhone size={16} />
+                <FiPhone size={16} className={styles.contactIcon} />
                 <span>+523 456 403</span>
               </div>
               <div className={styles.contactItem}>
-                <FiMail size={16} />
-                <span>info@info.xyz</span>
+                <FiMail size={16} className={styles.contactIcon} />
+                <span>info@935areafm.com</span>
               </div>
             </div>
           </div>
@@ -82,8 +83,8 @@ export const Footer = () => {
 
       {/* Copyright Bar */}
       <div className={styles.copyrightRow}>
-        <p>© 2025 - 93.5 AREA FM / Pro Radio Demo Re-creation. All Rights Reserved.</p>
-        <p>Built with React 19, Vite, Framer Motion & CSS Modules.</p>
+        <p>© 2026 93.5 AREA FM. All Rights Reserved.</p>
+        <p>Where Every Note Connects.</p>
       </div>
     </footer>
   );

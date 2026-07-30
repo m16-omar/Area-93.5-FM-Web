@@ -25,7 +25,7 @@ export const EventsPage = () => {
   }, []);
 
   return (
-    <main style={{ position: 'relative', width: '100%', overflowX: 'hidden', background: 'var(--color-light-bg)' }}>
+    <main style={{ position: 'relative', width: '100%', overflowX: 'clip', background: 'var(--color-light-bg)' }}>
       <Navbar />
       <PageHeader title="UPCOMING EVENTS" watermark={`LIVE\nCONCERTS`} />
 
@@ -34,9 +34,10 @@ export const EventsPage = () => {
         <div
           style={{
             position: 'relative',
-            borderRadius: 'var(--radius-md)',
+            borderRadius: '18px',
+            border: '1px solid #E5E7EB',
             overflow: 'hidden',
-            boxShadow: 'var(--shadow-md)',
+            boxShadow: '0 8px 24px rgba(10, 79, 146, 0.15)',
             marginBottom: '60px',
             minHeight: '420px',
             display: 'flex',
@@ -48,45 +49,45 @@ export const EventsPage = () => {
             alt={featuredEvent.title}
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
           />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(8,59,110,0.3) 0%, rgba(8,59,110,0.92) 100%)' }} />
 
           <div style={{ position: 'relative', zIndex: 2, padding: '40px', color: '#ffffff', width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '20px' }}>
             <div>
-              <span className="badge-outline" style={{ background: 'var(--color-accent)', color: '#000000', marginBottom: '12px', display: 'inline-block' }}>
+              <span className="badge-outline" style={{ background: 'var(--primary-orange)', color: '#ffffff', border: 'none', marginBottom: '12px', display: 'inline-block' }}>
                 {featuredEvent.badge}
               </span>
-              <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '2.5rem', margin: '6px 0 10px' }}>
+              <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '2.5rem', color: '#ffffff', margin: '6px 0 10px' }}>
                 {featuredEvent.title}
               </h2>
-              <p style={{ fontSize: '1rem', opacity: 0.9, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <FiMapPin /> {featuredEvent.venue} — {featuredEvent.location}
+              <p style={{ fontSize: '1rem', opacity: 0.9, display: 'flex', alignItems: 'center', gap: '8px', color: '#F5F7FA' }}>
+                <FiMapPin style={{ color: 'var(--primary-orange)' }} /> {featuredEvent.venue} — {featuredEvent.location}
               </p>
             </div>
 
             {/* Countdown Box */}
-            <div style={{ display: 'flex', gap: '16px', background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(10px)', padding: '16px 24px', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(255,255,255,0.2)' }}>
+            <div style={{ display: 'flex', gap: '16px', background: 'rgba(8,59,110,0.85)', backdropFilter: 'blur(10px)', padding: '16px 24px', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(255,255,255,0.2)' }}>
               <div style={{ textAlign: 'center' }}>
-                <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.8rem', color: 'var(--color-accent)' }}>{timeLeft.days}</div>
-                <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>DAYS</div>
+                <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.8rem', color: 'var(--primary-orange)' }}>{timeLeft.days}</div>
+                <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#ffffff' }}>DAYS</div>
               </div>
               <div style={{ textAlign: 'center' }}>
-                <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.8rem', color: '#fff' }}>{timeLeft.hours}</div>
-                <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>HOURS</div>
+                <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.8rem', color: '#ffffff' }}>{timeLeft.hours}</div>
+                <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#ffffff' }}>HOURS</div>
               </div>
               <div style={{ textAlign: 'center' }}>
-                <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.8rem', color: '#fff' }}>{timeLeft.minutes}</div>
-                <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>MINS</div>
+                <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.8rem', color: '#ffffff' }}>{timeLeft.minutes}</div>
+                <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#ffffff' }}>MINS</div>
               </div>
               <div style={{ textAlign: 'center' }}>
-                <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.8rem', color: 'var(--color-accent)' }}>{timeLeft.seconds}</div>
-                <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>SECS</div>
+                <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.8rem', color: 'var(--primary-orange)' }}>{timeLeft.seconds}</div>
+                <div style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#ffffff' }}>SECS</div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Other Event Cards Grid */}
-        <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.8rem', color: '#000000', marginBottom: '24px' }}>
+        <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.8rem', color: 'var(--primary-blue)', marginBottom: '24px' }}>
           ALL EVENTS
         </h3>
 
@@ -98,11 +99,14 @@ export const EventsPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
+              whileHover={{ y: -6, borderColor: '#EF4B00', boxShadow: '0 12px 30px rgba(10, 79, 146, 0.18)' }}
               style={{
                 background: '#ffffff',
-                borderRadius: 'var(--radius-md)',
+                borderRadius: '18px',
+                border: '1px solid #E5E7EB',
                 overflow: 'hidden',
-                boxShadow: 'var(--shadow-md)'
+                boxShadow: '0 4px 12px rgba(10, 79, 146, 0.08)',
+                transition: 'transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease'
               }}
             >
               <div style={{ position: 'relative', height: '220px' }}>
@@ -112,31 +116,32 @@ export const EventsPage = () => {
                   position: 'absolute',
                   top: '16px',
                   left: '16px',
-                  background: '#000000',
+                  background: 'var(--primary-orange)',
                   color: '#ffffff',
                   padding: '8px 14px',
                   borderRadius: 'var(--radius-sm)',
                   textAlign: 'center',
                   fontFamily: 'var(--font-heading)',
-                  fontWeight: 900
+                  fontWeight: 900,
+                  boxShadow: '0 4px 12px rgba(239, 75, 0, 0.3)'
                 }}>
                   <div style={{ fontSize: '1.3rem', lineHeight: 1 }}>{ev.dateDay}</div>
-                  <div style={{ fontSize: '0.7rem', color: 'var(--color-accent)' }}>{ev.dateMonth}</div>
+                  <div style={{ fontSize: '0.7rem', color: '#ffffff' }}>{ev.dateMonth}</div>
                 </div>
               </div>
 
               <div style={{ padding: '24px' }}>
                 <span className="badge-outline" style={{ marginBottom: '8px', display: 'inline-block' }}>{ev.badge.toLowerCase()}</span>
-                <h4 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.3rem', color: '#000000', margin: '4px 0 10px' }}>
+                <h4 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.3rem', color: 'var(--primary-blue)', margin: '4px 0 10px' }}>
                   {ev.title}
                 </h4>
-                <p style={{ fontSize: '0.85rem', color: '#4a5060', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '16px' }}>
-                  <FiMapPin /> {ev.venue} • {ev.location}
+                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '16px' }}>
+                  <FiMapPin style={{ color: 'var(--primary-orange)' }} /> {ev.venue} • {ev.location}
                 </p>
 
-                <div style={{ borderTop: '1px solid #f0f0f0', paddingTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ borderTop: '1px solid #E5E7EB', paddingTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <button style={{
-                    background: '#000000',
+                    background: 'var(--primary-blue)',
                     color: '#ffffff',
                     border: 'none',
                     fontFamily: 'var(--font-heading)',
@@ -147,12 +152,14 @@ export const EventsPage = () => {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '6px',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 10px rgba(10, 79, 146, 0.25)',
+                    transition: 'background 0.2s ease'
                   }}>
                     <FaTicketAlt /> BUY TICKETS
                   </button>
 
-                  <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#000' }} aria-label="Share Event">
+                  <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--primary-orange)' }} aria-label="Share Event">
                     <FiShare2 size={18} />
                   </button>
                 </div>

@@ -1,14 +1,21 @@
+.stickyHeaderWrapper {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+}
+
 .topBanner {
-  background: #050608;
-  color: #ffffff;
+  background: var(--secondary-blue);
+  color: var(--white);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.05em;
-  padding: 6px 32px;
+  padding: 8px 32px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .nowPlayingTrack {
@@ -18,7 +25,7 @@
 }
 
 .musicIcon {
-  color: var(--color-accent);
+  color: var(--primary-orange);
 }
 
 .topSocials {
@@ -28,44 +35,52 @@
 }
 
 .topSocialLink {
-  color: #a0a5b5;
+  color: var(--white);
   transition: color var(--transition-fast);
 }
 
 .topSocialLink:hover {
-  color: var(--color-accent);
+  color: var(--primary-orange);
 }
 
 .navbarContainer {
-  position: relative;
-  z-index: 100;
-  background: rgba(85, 230, 133, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(10, 79, 146, 0.12);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 12px 32px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--border);
 }
 
-.logo {
+.logoLink {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logoImg {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.logoText {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   letter-spacing: -0.02em;
-  color: #000000;
-  cursor: pointer;
+  color: var(--primary-blue);
 }
 
 .logoAccent {
-  color: #000000;
-  background: var(--color-accent);
-  padding: 0 4px;
+  color: var(--white);
+  background: var(--primary-orange);
+  padding: 2px 6px;
   border-radius: 4px;
+  font-size: 1.2rem;
 }
 
 .navMenu {
@@ -85,7 +100,7 @@
   font-size: 0.85rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #000000;
+  color: var(--primary-blue);
   display: flex;
   align-items: center;
   gap: 4px;
@@ -95,21 +110,22 @@
 
 .navLink:hover,
 .activeNavLink {
-  color: #bd00ff !important;
+  color: var(--primary-orange) !important;
   opacity: 1;
 }
 
 .navActions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .iconBtn {
-  background: #000000;
-  color: #ffffff;
+  background: var(--secondary-blue);
+  color: var(--white);
   width: 40px;
   height: 40px;
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,15 +134,17 @@
 }
 
 .iconBtn:hover {
-  background: #1a1c23;
+  background: var(--primary-orange);
+  color: var(--white);
   transform: translateY(-1px);
 }
 
 .playBtn {
-  background: #000000;
-  color: #ffffff;
+  background: var(--primary-orange);
+  color: var(--white);
   height: 40px;
   padding: 0 20px;
+  border-radius: var(--radius-sm);
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 0.85rem;
@@ -134,36 +152,41 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  transition: background var(--transition-fast);
+  box-shadow: 0 4px 12px rgba(239, 75, 0, 0.25);
+  transition: background var(--transition-fast), transform var(--transition-fast);
 }
 
 .playBtn:hover {
-  background: #222631;
+  background: var(--orange-hover);
+  transform: translateY(-1px);
 }
 
 .popupBtn {
-  background: #000000;
-  color: #ffffff;
+  background: var(--primary-blue);
+  color: var(--white);
   height: 40px;
   padding: 0 16px;
+  border-radius: var(--radius-sm);
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  transition: background var(--transition-fast);
+  transition: background var(--transition-fast), transform var(--transition-fast);
 }
 
 .popupBtn:hover {
-  background: #222631;
+  background: var(--secondary-blue);
+  transform: translateY(-1px);
 }
 
 .mobileToggle {
   display: none;
-  background: #000000;
-  color: #ffffff;
+  background: var(--primary-blue);
+  color: var(--white);
   width: 40px;
   height: 40px;
+  border-radius: var(--radius-sm);
   align-items: center;
   justify-content: center;
   font-size: 1.3rem;
@@ -184,5 +207,18 @@
 
   .navbarContainer {
     padding: 12px 16px;
+  }
+
+  .mobileMenuOpen .navMenu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(10, 79, 146, 0.15);
+    border-bottom: 2px solid var(--primary-orange);
   }
 }

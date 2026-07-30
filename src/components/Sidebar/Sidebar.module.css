@@ -19,24 +19,24 @@
 .searchInput {
   width: 100%;
   padding: 14px 44px 14px 16px;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   font-family: inherit;
   font-size: 0.95rem;
-  color: #000000;
+  color: var(--text-dark);
   outline: none;
-  transition: border-color var(--transition-fast), background var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .searchInput::placeholder {
-  color: #888888;
+  color: var(--text-muted);
 }
 
 .searchInput:focus {
   background: #ffffff;
-  border-color: #000000;
+  border-color: var(--primary-orange);
+  box-shadow: 0 0 0 3px rgba(10, 79, 146, 0.25);
 }
 
 .searchIconBtn {
@@ -44,18 +44,32 @@
   right: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: #4a5060;
+  color: var(--primary-orange);
   font-size: 1.1rem;
   background: none;
   border: none;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.searchIconBtn:hover {
+  color: var(--primary-blue);
 }
 
 .onAirWidgetCard {
   position: relative;
   height: 220px;
-  border-radius: var(--radius-md);
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(10, 79, 146, 0.08);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.onAirWidgetCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary-orange);
+  box-shadow: 0 12px 30px rgba(10, 79, 146, 0.18);
 }
 
 .onAirWidgetImg {
@@ -67,12 +81,12 @@
 .onAirWidgetOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%);
+  background: linear-gradient(180deg, rgba(8, 59, 110, 0.2) 0%, rgba(8, 59, 110, 0.9) 100%);
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .onAirWidgetTitle {
@@ -83,11 +97,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: var(--white);
 }
 
 .onAirWidgetTime {
   font-size: 0.8rem;
-  opacity: 0.85;
+  color: #F5F7FA;
 }
 
 .mostListenedList {
@@ -98,20 +113,28 @@
 
 .mostListenedItem {
   background: #ffffff;
-  border-radius: var(--radius-sm);
+  border-radius: 18px;
+  border: 1px solid var(--border);
   overflow: hidden;
   padding: 10px 14px;
   display: flex;
   align-items: center;
   gap: 12px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 12px rgba(10, 79, 146, 0.08);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.mostListenedItem:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary-orange);
+  box-shadow: 0 8px 24px rgba(10, 79, 146, 0.18);
 }
 
 .rankBadge {
   width: 28px;
   height: 28px;
-  background: #000000;
-  color: var(--color-accent);
+  background: var(--primary-orange);
+  color: var(--white);
   font-family: var(--font-heading);
   font-weight: 900;
   font-size: 0.9rem;
@@ -129,28 +152,28 @@
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 0.95rem;
-  color: #000000;
+  color: var(--primary-blue);
 }
 
 .trackArtist {
   font-size: 0.8rem;
-  color: var(--color-text-muted);
+  color: var(--text-muted);
 }
 
 .cartBtn {
-  color: #000000;
+  color: var(--primary-orange);
   font-size: 1.1rem;
   transition: color var(--transition-fast);
 }
 
 .cartBtn:hover {
-  color: var(--color-primary);
+  color: var(--primary-blue);
 }
 
 .fullTracklistBtn {
-  background: #ffffff;
-  color: #000000;
-  border: 1.5px solid #000000;
+  background: var(--primary-orange);
+  color: var(--white);
+  border: none;
   font-family: var(--font-heading);
   font-weight: 900;
   font-size: 0.8rem;
@@ -159,13 +182,14 @@
   padding: 12px;
   border-radius: var(--radius-sm);
   text-align: center;
+  box-shadow: 0 4px 12px rgba(239, 75, 0, 0.25);
   transition: all var(--transition-fast);
   margin-top: 8px;
 }
 
 .fullTracklistBtn:hover {
-  background: #000000;
-  color: #ffffff;
+  background: var(--orange-hover);
+  color: var(--white);
 }
 
 .categoryList {
@@ -180,23 +204,26 @@
   align-items: center;
   padding: 10px 14px;
   background: #ffffff;
-  border-radius: var(--radius-sm);
+  border-radius: 18px;
+  border: 1px solid var(--border);
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.9rem;
-  color: #000000;
-  box-shadow: var(--shadow-sm);
-  transition: background var(--transition-fast);
+  color: var(--primary-blue);
+  box-shadow: 0 4px 12px rgba(10, 79, 146, 0.08);
+  transition: all var(--transition-fast);
   cursor: pointer;
 }
 
 .categoryRow:hover {
-  background: var(--color-accent);
+  background: var(--primary-orange);
+  color: var(--white);
+  border-color: var(--primary-orange);
 }
 
 .catCount {
   font-size: 0.8rem;
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .recentPostsList {
@@ -207,18 +234,21 @@
 
 .recentPostItem {
   background: #ffffff;
-  border-radius: var(--radius-sm);
+  border-radius: 18px;
+  border: 1px solid var(--border);
   overflow: hidden;
   padding: 10px;
   display: flex;
   gap: 12px;
   align-items: center;
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-fast);
+  box-shadow: 0 4px 12px rgba(10, 79, 146, 0.08);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
 }
 
 .recentPostItem:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  border-color: var(--primary-orange);
+  box-shadow: 0 8px 24px rgba(10, 79, 146, 0.18);
 }
 
 .recentPostThumb {
@@ -233,12 +263,12 @@
   font-weight: 800;
   font-size: 0.85rem;
   line-height: 1.3;
-  color: #000000;
+  color: var(--primary-blue);
 }
 
 .recentPostDate {
   font-size: 0.75rem;
-  color: var(--color-text-muted);
+  color: var(--text-muted);
   margin-top: 4px;
 }
 
@@ -249,8 +279,8 @@
 }
 
 .tagPill {
-  background: #ffffff;
-  color: #000000;
+  background: var(--primary-blue);
+  color: var(--white);
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 0.75rem;
@@ -258,14 +288,14 @@
   letter-spacing: 0.05em;
   padding: 6px 12px;
   border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 8px rgba(10, 79, 146, 0.12);
   transition: all var(--transition-fast);
   cursor: pointer;
 }
 
 .tagPill:hover {
-  background: #000000;
-  color: #ffffff;
+  background: var(--primary-orange);
+  color: var(--white);
 }
 
 @media (max-width: 1024px) {

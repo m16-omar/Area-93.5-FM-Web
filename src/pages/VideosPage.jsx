@@ -29,7 +29,7 @@ export const VideosPage = () => {
   };
 
   return (
-    <main style={{ position: 'relative', width: '100%', overflowX: 'hidden', background: 'var(--color-light-bg)' }}>
+    <main style={{ position: 'relative', width: '100%', overflowX: 'clip', background: 'var(--color-light-bg)' }}>
       <Navbar />
       <PageHeader title="VIDEOS" watermark={`LATEST\nCLIPS`} />
 
@@ -38,9 +38,10 @@ export const VideosPage = () => {
         <div
           style={{
             position: 'relative',
-            borderRadius: 'var(--radius-md)',
+            borderRadius: '18px',
+            border: '1px solid #E5E7EB',
             overflow: 'hidden',
-            boxShadow: 'var(--shadow-md)',
+            boxShadow: '0 8px 24px rgba(10, 79, 146, 0.15)',
             marginBottom: '50px',
             minHeight: '440px',
             display: 'flex',
@@ -50,7 +51,7 @@ export const VideosPage = () => {
           onClick={() => setActiveVideo(featuredVideo)}
         >
           <img src={featuredEventImage(featuredVideo.image)} alt={featuredVideo.title} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%)' }} />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(8,59,110,0.3) 0%, rgba(8,59,110,0.92) 100%)' }} />
 
           {/* Central Play Button */}
           <button
@@ -62,14 +63,14 @@ export const VideosPage = () => {
               width: '80px',
               height: '80px',
               borderRadius: '50%',
-              background: 'var(--color-accent)',
-              color: '#000000',
+              background: 'var(--primary-orange)',
+              color: '#ffffff',
               border: '4px solid #ffffff',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               fontSize: '1.8rem',
-              boxShadow: 'var(--shadow-md)',
+              boxShadow: '0 8px 24px rgba(239, 75, 0, 0.4)',
               paddingLeft: '4px',
               zIndex: 3
             }}
@@ -79,16 +80,16 @@ export const VideosPage = () => {
           </button>
 
           <div style={{ position: 'relative', zIndex: 2, padding: '40px', color: '#ffffff', width: '100%' }}>
-            <span className="badge-outline" style={{ background: 'var(--color-accent)', color: '#000000', marginBottom: '12px', display: 'inline-block' }}>
+            <span className="badge-outline" style={{ background: 'var(--primary-orange)', color: '#ffffff', border: 'none', marginBottom: '12px', display: 'inline-block' }}>
               {featuredVideo.category}
             </span>
-            <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '2.2rem', margin: '6px 0 10px' }}>
+            <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '2.2rem', color: '#ffffff', margin: '6px 0 10px' }}>
               {featuredVideo.title}
             </h2>
-            <div style={{ display: 'flex', gap: '20px', fontSize: '0.85rem', opacity: 0.9, fontWeight: 600 }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><FiClock /> {featuredVideo.duration}</span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><FiEye /> {featuredVideo.views.toLocaleString()} views</span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><FiCalendar /> {featuredVideo.date}</span>
+            <div style={{ display: 'flex', gap: '20px', fontSize: '0.85rem', color: '#F5F7FA', fontWeight: 600 }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><FiClock style={{ color: 'var(--primary-orange)' }} /> {featuredVideo.duration}</span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><FiEye style={{ color: 'var(--primary-orange)' }} /> {featuredVideo.views.toLocaleString()} views</span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><FiCalendar style={{ color: 'var(--primary-orange)' }} /> {featuredVideo.date}</span>
             </div>
           </div>
         </div>
@@ -102,15 +103,16 @@ export const VideosPage = () => {
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 style={{
-                  background: activeCategory === cat ? '#000000' : '#ffffff',
-                  color: activeCategory === cat ? '#ffffff' : '#000000',
-                  border: '1px solid #000000',
+                  background: activeCategory === cat ? 'var(--primary-orange)' : '#ffffff',
+                  color: activeCategory === cat ? '#ffffff' : 'var(--primary-blue)',
+                  border: activeCategory === cat ? '1px solid var(--primary-orange)' : '1px solid var(--border)',
                   fontFamily: 'var(--font-heading)',
                   fontWeight: 800,
                   fontSize: '0.8rem',
                   padding: '8px 18px',
                   borderRadius: 'var(--radius-sm)',
                   cursor: 'pointer',
+                  boxShadow: activeCategory === cat ? '0 4px 12px rgba(239, 75, 0, 0.3)' : '0 2px 6px rgba(10,79,146,0.06)',
                   transition: 'all 0.2s ease'
                 }}
               >
@@ -130,14 +132,15 @@ export const VideosPage = () => {
                 width: '100%',
                 padding: '10px 38px 10px 14px',
                 background: '#ffffff',
-                border: '1px solid rgba(0,0,0,0.15)',
+                border: '1px solid #D1D5DB',
                 borderRadius: 'var(--radius-sm)',
                 fontFamily: 'inherit',
                 fontSize: '0.9rem',
-                outline: 'none'
+                outline: 'none',
+                color: '#1A1A1A'
               }}
             />
-            <FiSearch style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', color: '#666' }} />
+            <FiSearch style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--primary-orange)' }} />
           </div>
         </div>
 
@@ -150,13 +153,16 @@ export const VideosPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
+              whileHover={{ y: -6, borderColor: '#EF4B00', boxShadow: '0 12px 30px rgba(10, 79, 146, 0.18)' }}
               style={{
                 background: '#ffffff',
-                borderRadius: 'var(--radius-md)',
+                borderRadius: '18px',
+                border: '1px solid #E5E7EB',
                 overflow: 'hidden',
-                boxShadow: 'var(--shadow-md)',
+                boxShadow: '0 4px 12px rgba(10, 79, 146, 0.08)',
                 display: 'flex',
-                flexDirection: 'column'
+                flexDirection: 'column',
+                transition: 'transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease'
               }}
             >
               <div
@@ -164,14 +170,14 @@ export const VideosPage = () => {
                 onClick={() => setActiveVideo(video)}
               >
                 <img src={video.image} alt={video.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.2)' }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'rgba(10, 79, 146, 0.45)' }} />
 
                 {/* Duration Badge */}
                 <span style={{
                   position: 'absolute',
                   bottom: '12px',
                   right: '12px',
-                  background: 'rgba(0,0,0,0.85)',
+                  background: 'var(--primary-blue)',
                   color: '#ffffff',
                   fontSize: '0.75rem',
                   fontWeight: 800,
@@ -193,14 +199,14 @@ export const VideosPage = () => {
                   width: '54px',
                   height: '54px',
                   borderRadius: '50%',
-                  background: '#ffffff',
-                  color: '#000000',
+                  background: 'var(--primary-orange)',
+                  color: '#ffffff',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontSize: '1.2rem',
                   paddingLeft: '3px',
-                  boxShadow: 'var(--shadow-md)'
+                  boxShadow: '0 4px 14px rgba(239, 75, 0, 0.4)'
                 }}>
                   <FaPlay />
                 </div>
@@ -213,16 +219,16 @@ export const VideosPage = () => {
                   </span>
                   <h3 
                     onClick={() => setActiveVideo(video)}
-                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.3rem', color: '#000000', margin: '4px 0 10px', cursor: 'pointer' }}
+                    style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.3rem', color: 'var(--primary-blue)', margin: '4px 0 10px', cursor: 'pointer' }}
                   >
                     {video.title}
                   </h3>
-                  <p style={{ fontSize: '0.9rem', color: '#4a5060', lineHeight: 1.5, marginBottom: '20px' }}>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-dark)', lineHeight: 1.5, marginBottom: '20px' }}>
                     {video.description}
                   </p>
                 </div>
 
-                <div style={{ borderTop: '1px solid #f0f0f0', paddingTop: '14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8rem', color: '#333333', fontWeight: 600 }}>
+                <div style={{ borderTop: '1px solid #E5E7EB', paddingTop: '14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600 }}>
                   <div style={{ display: 'flex', gap: '14px' }}>
                     <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><FiEye size={13} /> {video.views.toLocaleString()}</span>
                     <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><FiUser size={13} /> {video.author}</span>
@@ -231,12 +237,12 @@ export const VideosPage = () => {
                   <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                     <button
                       onClick={() => toggleLike(video.id)}
-                      style={{ background: 'none', border: 'none', cursor: 'pointer', color: likedMap[video.id] ? '#ff3b68' : '#000000' }}
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', color: likedMap[video.id] ? 'var(--primary-orange)' : 'var(--primary-blue)' }}
                       aria-label="Like Video"
                     >
                       <FaHeart size={14} />
                     </button>
-                    <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#000000' }} aria-label="Share Video">
+                    <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--primary-blue)' }} aria-label="Share Video">
                       <FiShare2 size={15} />
                     </button>
                   </div>
@@ -258,14 +264,14 @@ export const VideosPage = () => {
               position: 'fixed',
               inset: 0,
               zIndex: 9999,
-              background: 'rgba(0,0,0,0.9)',
+              background: 'rgba(8, 59, 110, 0.92)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               padding: '20px'
             }}
           >
-            <div style={{ position: 'relative', width: '100%', maxWidth: '900px', background: '#000000', borderRadius: 'var(--radius-md)', overflow: 'hidden' }}>
+            <div style={{ position: 'relative', width: '100%', maxWidth: '900px', background: 'var(--secondary-blue)', borderRadius: '18px', overflow: 'hidden', border: '1px solid var(--primary-orange)', boxShadow: '0 20px 50px rgba(0,0,0,0.5)' }}>
               <button
                 onClick={() => setActiveVideo(null)}
                 style={{
@@ -273,7 +279,7 @@ export const VideosPage = () => {
                   top: '16px',
                   right: '16px',
                   zIndex: 10,
-                  background: 'rgba(255,255,255,0.2)',
+                  background: 'var(--primary-orange)',
                   color: '#ffffff',
                   border: 'none',
                   width: '40px',
@@ -283,7 +289,8 @@ export const VideosPage = () => {
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontSize: '1.2rem',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 10px rgba(239, 75, 0, 0.4)'
                 }}
                 aria-label="Close Video"
               >
@@ -301,10 +308,10 @@ export const VideosPage = () => {
               </div>
 
               <div style={{ padding: '24px', color: '#ffffff' }}>
-                <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.4rem', marginBottom: '6px' }}>
+                <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.4rem', color: '#ffffff', marginBottom: '6px' }}>
                   {activeVideo.title}
                 </h3>
-                <p style={{ fontSize: '0.9rem', color: '#aaaaaa', margin: 0 }}>
+                <p style={{ fontSize: '0.9rem', color: '#F5F7FA', margin: 0 }}>
                   {activeVideo.description}
                 </p>
               </div>

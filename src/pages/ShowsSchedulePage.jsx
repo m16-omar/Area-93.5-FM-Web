@@ -13,7 +13,7 @@ export const ShowsSchedulePage = () => {
   const currentSchedule = showsData.schedule[activeDay] || [];
 
   return (
-    <main style={{ position: 'relative', width: '100%', overflowX: 'hidden', background: 'var(--color-light-bg)' }}>
+    <main style={{ position: 'relative', width: '100%', overflowX: 'clip', background: 'var(--color-light-bg)' }}>
       <Navbar />
       <PageHeader title="SHOWS SCHEDULE" watermark={`WEEKLY\nRADIO`} />
 
@@ -28,9 +28,9 @@ export const ShowsSchedulePage = () => {
                 onClick={() => setActiveDay(day)}
                 style={{
                   position: 'relative',
-                  background: isActive ? '#000000' : '#ffffff',
-                  color: isActive ? '#ffffff' : '#000000',
-                  border: '1.5px solid #000000',
+                  background: isActive ? 'var(--primary-orange)' : '#ffffff',
+                  color: isActive ? '#ffffff' : 'var(--primary-blue)',
+                  border: isActive ? '1px solid var(--primary-orange)' : '1px solid var(--border)',
                   fontFamily: 'var(--font-heading)',
                   fontWeight: 900,
                   fontSize: '0.85rem',
@@ -38,7 +38,7 @@ export const ShowsSchedulePage = () => {
                   padding: '12px 22px',
                   borderRadius: 'var(--radius-sm)',
                   cursor: 'pointer',
-                  boxShadow: isActive ? 'var(--shadow-md)' : 'var(--shadow-sm)',
+                  boxShadow: isActive ? '0 4px 14px rgba(239, 75, 0, 0.35)' : '0 2px 8px rgba(10, 79, 146, 0.08)',
                   transition: 'all 0.2s ease'
                 }}
               >
@@ -63,18 +63,19 @@ export const ShowsSchedulePage = () => {
                 key={show.id}
                 style={{
                   background: '#ffffff',
-                  borderRadius: 'var(--radius-md)',
+                  borderRadius: '18px',
+                  border: '1px solid #E5E7EB',
                   overflow: 'hidden',
                   display: 'flex',
                   alignItems: 'center',
-                  boxShadow: 'var(--shadow-md)',
-                  borderLeft: show.nowPlaying ? '6px solid var(--color-primary)' : 'none'
+                  boxShadow: '0 4px 12px rgba(10, 79, 146, 0.08)',
+                  borderLeft: show.nowPlaying ? '6px solid var(--primary-orange)' : '1px solid #E5E7EB'
                 }}
               >
                 <div style={{ position: 'relative', width: '220px', height: '160px', flexShrink: 0 }}>
                   <img src={show.image} alt={show.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   {show.nowPlaying && (
-                    <span className="badge-live" style={{ position: 'absolute', top: '12px', left: '12px', zIndex: 2 }}>
+                    <span className="badge-neon" style={{ position: 'absolute', top: '12px', left: '12px', zIndex: 2, background: 'var(--primary-orange)', color: '#ffffff' }}>
                       NOW PLAYING
                     </span>
                   )}
@@ -86,16 +87,16 @@ export const ShowsSchedulePage = () => {
                       {show.genre.toLowerCase()}
                     </span>
 
-                    <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.5rem', color: '#000000', margin: '4px 0 8px' }}>
+                    <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.5rem', color: 'var(--primary-blue)', margin: '4px 0 8px' }}>
                       {show.name}
                     </h3>
 
-                    <div style={{ display: 'flex', gap: '20px', fontSize: '0.85rem', color: '#4a5060', fontWeight: 600 }}>
+                    <div style={{ display: 'flex', gap: '20px', fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 600 }}>
                       <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <FiUser size={14} /> {show.dj}
+                        <FiUser size={14} style={{ color: 'var(--primary-orange)' }} /> {show.dj}
                       </span>
                       <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <FiClock size={14} /> {show.time}
+                        <FiClock size={14} style={{ color: 'var(--primary-orange)' }} /> {show.time}
                       </span>
                     </div>
                   </div>
@@ -105,14 +106,15 @@ export const ShowsSchedulePage = () => {
                       width: '44px',
                       height: '44px',
                       borderRadius: '50%',
-                      background: '#000000',
+                      background: 'var(--primary-orange)',
                       color: '#ffffff',
                       border: 'none',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       fontSize: '1.2rem',
-                      cursor: 'pointer'
+                      cursor: 'pointer',
+                      boxShadow: '0 4px 12px rgba(239, 75, 0, 0.3)'
                     }}
                     aria-label="Show Details"
                   >

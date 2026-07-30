@@ -22,7 +22,7 @@ export const Podcasts = () => {
     : podcastsData.filter(p => p.category === activeCategory);
 
   return (
-    <main style={{ position: 'relative', width: '100%', overflowX: 'hidden', background: 'var(--color-light-bg)' }}>
+    <main style={{ position: 'relative', width: '100%', overflowX: 'clip', background: 'var(--color-light-bg)' }}>
       <Navbar />
       <PageHeader title="PODCASTS" watermark={`ALL\nEPISODES`} />
 
@@ -34,9 +34,9 @@ export const Podcasts = () => {
               key={cat}
               onClick={() => setActiveCategory(cat)}
               style={{
-                background: activeCategory === cat ? '#000000' : '#ffffff',
-                color: activeCategory === cat ? '#ffffff' : '#000000',
-                border: '1px solid #000000',
+                background: activeCategory === cat ? 'var(--primary-orange)' : '#ffffff',
+                color: activeCategory === cat ? '#ffffff' : 'var(--primary-blue)',
+                border: activeCategory === cat ? '1px solid var(--primary-orange)' : '1px solid var(--border)',
                 fontFamily: 'var(--font-heading)',
                 fontWeight: 800,
                 fontSize: '0.8rem',
@@ -44,6 +44,7 @@ export const Podcasts = () => {
                 letterSpacing: '0.05em',
                 borderRadius: 'var(--radius-sm)',
                 cursor: 'pointer',
+                boxShadow: activeCategory === cat ? '0 4px 12px rgba(239, 75, 0, 0.3)' : '0 2px 6px rgba(10,79,146,0.06)',
                 transition: 'all 0.2s ease'
               }}
             >
@@ -63,16 +64,19 @@ export const Podcasts = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
+                whileHover={{ y: -6, borderColor: '#EF4B00', boxShadow: '0 12px 30px rgba(10, 79, 146, 0.18)' }}
                 style={{
                   background: '#ffffff',
-                  borderRadius: 'var(--radius-md)',
+                  borderRadius: '18px',
+                  border: '1px solid #E5E7EB',
                   overflow: 'hidden',
-                  boxShadow: 'var(--shadow-md)',
+                  boxShadow: '0 4px 12px rgba(10, 79, 146, 0.08)',
                   display: 'flex',
-                  flexDirection: 'column'
+                  flexDirection: 'column',
+                  transition: 'transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease'
                 }}
               >
-                <div style={{ position: 'relative', height: '240px', background: '#f7e127', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ position: 'relative', height: '240px', background: 'var(--secondary-blue)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <img 
                     src={ep.image} 
                     alt={ep.title} 
@@ -86,15 +90,16 @@ export const Podcasts = () => {
                       width: '60px',
                       height: '60px',
                       borderRadius: '50%',
-                      background: isSelected ? 'var(--color-accent)' : 'rgba(0,0,0,0.8)',
-                      color: isSelected ? '#000000' : '#ffffff',
+                      background: 'var(--primary-orange)',
+                      color: '#ffffff',
                       border: '2px solid #ffffff',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       fontSize: '1.2rem',
                       cursor: 'pointer',
-                      paddingLeft: isSelected ? '0' : '3px'
+                      paddingLeft: isSelected ? '0' : '3px',
+                      boxShadow: '0 4px 14px rgba(239, 75, 0, 0.4)'
                     }}
                     aria-label={`Play ${ep.title}`}
                   >
@@ -105,21 +110,23 @@ export const Podcasts = () => {
                 <div style={{ padding: '24px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                      <span className="badge-outline">{ep.category.toLowerCase()}</span>
-                      <span style={{ fontSize: '0.8rem', color: 'var(--color-text-muted)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <span className="badge-outline" style={{ border: '1px solid var(--primary-orange)', color: 'var(--primary-orange)' }}>
+                        {ep.category.toLowerCase()}
+                      </span>
+                      <span style={{ fontSize: '0.8rem', color: '#ffffff', background: 'var(--primary-blue)', padding: '2px 8px', borderRadius: '4px', display: 'flex', alignItems: 'center', gap: '4px', fontWeight: 700 }}>
                         <FiClock size={13} /> {ep.duration}
                       </span>
                     </div>
 
-                    <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.3rem', color: '#000000', marginBottom: '10px' }}>
+                    <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.3rem', color: 'var(--primary-blue)', marginBottom: '10px' }}>
                       {ep.title}
                     </h3>
-                    <p style={{ fontSize: '0.9rem', color: '#4a5060', lineHeight: 1.5, marginBottom: '20px' }}>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--text-dark)', lineHeight: 1.5, marginBottom: '20px' }}>
                       {ep.description}
                     </p>
                   </div>
 
-                  <div style={{ borderTop: '1px solid #f0f0f0', paddingTop: '14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8rem', color: '#333333', fontWeight: 600 }}>
+                  <div style={{ borderTop: '1px solid #E5E7EB', paddingTop: '14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600 }}>
                     <div style={{ display: 'flex', gap: '14px' }}>
                       <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                         <FiCalendar size={13} /> {ep.date}
@@ -129,10 +136,10 @@ export const Podcasts = () => {
                       </span>
                     </div>
                     <div style={{ display: 'flex', gap: '10px' }}>
-                      <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#000000' }} aria-label="Download">
+                      <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--primary-orange)' }} aria-label="Download">
                         <FiDownload size={15} />
                       </button>
-                      <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#000000' }} aria-label="Share">
+                      <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--primary-orange)' }} aria-label="Share">
                         <FiShare2 size={15} />
                       </button>
                     </div>

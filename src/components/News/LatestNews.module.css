@@ -12,7 +12,7 @@
   font-family: var(--font-heading);
   font-weight: 900;
   font-size: clamp(4rem, 14vw, 11rem);
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(10, 79, 146, 0.05);
   letter-spacing: -0.02em;
   white-space: nowrap;
   pointer-events: none;
@@ -35,9 +35,10 @@
 }
 
 .catBtn {
-  background: #ffffff;
-  color: #000000;
-  border: 1px solid #000000;
+  background: var(--white);
+  color: var(--primary-blue);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 0.75rem;
@@ -48,13 +49,15 @@
 }
 
 .activeCat {
-  background: #000000;
-  color: #ffffff;
+  background: var(--primary-orange);
+  color: var(--white);
+  border-color: var(--primary-orange);
 }
 
 .catBtn:hover {
-  background: #000000;
-  color: #ffffff;
+  background: var(--primary-orange);
+  color: var(--white);
+  border-color: var(--primary-orange);
 }
 
 .sponsorsBox {
@@ -70,7 +73,7 @@
   font-weight: 900;
   font-size: clamp(3rem, 6vw, 4.5rem);
   text-transform: uppercase;
-  color: #000000;
+  color: var(--secondary-blue);
   line-height: 0.95;
   letter-spacing: -0.02em;
   margin-bottom: 40px;
@@ -91,11 +94,19 @@
 
 .bigCard {
   background: #ffffff;
-  border-radius: var(--radius-md);
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(10, 79, 146, 0.08);
   display: flex;
   flex-direction: column;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.bigCard:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary-orange);
+  box-shadow: 0 12px 30px rgba(10, 79, 146, 0.18);
 }
 
 .bigImageWrapper {
@@ -118,14 +129,14 @@
   font-weight: 900;
   font-size: 1.4rem;
   line-height: 1.3;
-  color: #000000;
+  color: var(--primary-blue);
   margin-top: 12px;
   margin-bottom: 12px;
   transition: color var(--transition-fast);
 }
 
 .bigTitle:hover {
-  color: var(--color-primary);
+  color: var(--primary-orange);
 }
 
 .metaRow {
@@ -133,15 +144,23 @@
   align-items: center;
   gap: 16px;
   font-size: 0.8rem;
-  color: var(--color-text-muted);
+  color: var(--text-muted);
 }
 
 .mediumCard {
   position: relative;
   height: 480px;
-  border-radius: var(--radius-md);
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(10, 79, 146, 0.08);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.mediumCard:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary-orange);
+  box-shadow: 0 12px 30px rgba(10, 79, 146, 0.18);
 }
 
 .mediumImage {
@@ -153,12 +172,12 @@
 .mediumOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%);
+  background: linear-gradient(180deg, rgba(8, 59, 110, 0.2) 0%, rgba(8, 59, 110, 0.9) 100%);
   padding: 24px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .mediumTitle {
@@ -168,6 +187,7 @@
   line-height: 1.2;
   margin-top: 10px;
   margin-bottom: 12px;
+  color: var(--white);
 }
 
 .rightList {
@@ -178,17 +198,20 @@
 
 .smallItem {
   background: #ffffff;
-  border-radius: var(--radius-md);
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(10, 79, 146, 0.08);
   display: flex;
   gap: 14px;
   padding: 10px;
-  transition: transform var(--transition-fast);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
 }
 
 .smallItem:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  border-color: var(--primary-orange);
+  box-shadow: 0 8px 24px rgba(10, 79, 146, 0.18);
 }
 
 .smallThumb {
@@ -203,7 +226,7 @@
   font-weight: 800;
   font-size: 0.9rem;
   line-height: 1.3;
-  color: #000000;
+  color: var(--primary-blue);
 }
 
 .navRow {
@@ -213,8 +236,9 @@
 }
 
 .navBtn {
-  background: #2b303a;
-  color: #ffffff;
+  background: var(--primary-orange);
+  color: var(--white);
+  border-radius: var(--radius-sm);
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 0.75rem;
@@ -225,7 +249,7 @@
 }
 
 .navBtn:hover {
-  background: #000000;
+  background: var(--orange-hover);
 }
 
 @media (max-width: 1024px) {

@@ -28,14 +28,14 @@ export const ChartsPage = () => {
   };
 
   const getTrendIcon = (trend) => {
-    if (trend === 'UP') return <span style={{ color: '#00d26a', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.75rem', fontWeight: 800 }}><FiTrendingUp /> UP</span>;
-    if (trend === 'DOWN') return <span style={{ color: '#ff3b68', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.75rem', fontWeight: 800 }}><FiTrendingDown /> DOWN</span>;
-    if (trend === 'NEW') return <span style={{ color: '#ffc107', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.75rem', fontWeight: 800 }}><FiStar /> NEW</span>;
-    return <span style={{ color: '#888', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.75rem', fontWeight: 800 }}><FiMinus /> EVEN</span>;
+    if (trend === 'UP') return <span style={{ color: '#22C55E', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.75rem', fontWeight: 800 }}><FiTrendingUp /> UP</span>;
+    if (trend === 'DOWN') return <span style={{ color: '#DC2626', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.75rem', fontWeight: 800 }}><FiTrendingDown /> DOWN</span>;
+    if (trend === 'NEW') return <span style={{ color: '#EF4B00', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.75rem', fontWeight: 800 }}><FiStar /> NEW</span>;
+    return <span style={{ color: '#6B7280', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.75rem', fontWeight: 800 }}><FiMinus /> EVEN</span>;
   };
 
   return (
-    <main style={{ position: 'relative', width: '100%', overflowX: 'hidden', background: 'var(--color-light-bg)' }}>
+    <main style={{ position: 'relative', width: '100%', overflowX: 'clip', background: 'var(--color-light-bg)' }}>
       <Navbar />
       <PageHeader title="TOP 40 CHARTS" watermark={`TOP 40\nHITS`} />
 
@@ -51,15 +51,17 @@ export const ChartsPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
+                whileHover={{ y: -4, borderColor: '#EF4B00', boxShadow: '0 12px 30px rgba(10, 79, 146, 0.18)' }}
                 style={{
                   background: '#ffffff',
-                  borderRadius: 'var(--radius-md)',
+                  borderRadius: '18px',
+                  border: '1px solid #E5E7EB',
                   padding: '16px 24px',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '20px',
-                  boxShadow: 'var(--shadow-md)',
-                  transition: 'transform 0.2s ease'
+                  boxShadow: '0 4px 12px rgba(10, 79, 146, 0.08)',
+                  transition: 'transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease'
                 }}
               >
                 {/* Rank Number */}
@@ -67,7 +69,7 @@ export const ChartsPage = () => {
                   fontFamily: 'var(--font-heading)',
                   fontWeight: 900,
                   fontSize: '1.8rem',
-                  color: track.rank === 1 ? 'var(--color-primary)' : '#000000',
+                  color: 'var(--primary-orange)',
                   minWidth: '40px',
                   textAlign: 'center'
                 }}>
@@ -83,7 +85,7 @@ export const ChartsPage = () => {
 
                 {/* Track Meta */}
                 <div style={{ flex: 1 }}>
-                  <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.15rem', color: '#000000', margin: 0 }}>
+                  <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.15rem', color: 'var(--primary-blue)', margin: 0 }}>
                     {track.title}
                   </h3>
                   <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', margin: '2px 0 0' }}>
@@ -97,7 +99,7 @@ export const ChartsPage = () => {
                 </div>
 
                 {/* Duration */}
-                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#555', minWidth: '50px' }}>
+                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--primary-blue)', minWidth: '50px' }}>
                   {track.duration}
                 </div>
 
@@ -109,20 +111,21 @@ export const ChartsPage = () => {
                       width: '40px',
                       height: '40px',
                       borderRadius: '50%',
-                      background: votedMap[track.id] ? '#ff3b68' : '#1a1c23',
+                      background: votedMap[track.id] ? 'var(--orange-hover)' : 'var(--primary-orange)',
                       color: '#ffffff',
                       border: 'none',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       cursor: 'pointer',
+                      boxShadow: '0 4px 10px rgba(239, 75, 0, 0.3)',
                       transition: 'all 0.2s ease'
                     }}
                     aria-label="Vote Track"
                   >
                     <FaHeart size={14} />
                   </button>
-                  <span style={{ fontWeight: 700, fontSize: '0.85rem', minWidth: '45px', textAlign: 'right', color: '#333' }}>
+                  <span style={{ fontWeight: 700, fontSize: '0.85rem', minWidth: '45px', textAlign: 'right', color: 'var(--primary-blue)' }}>
                     {track.votes}
                   </span>
                 </div>
@@ -134,7 +137,7 @@ export const ChartsPage = () => {
                     width: '44px',
                     height: '44px',
                     borderRadius: '50%',
-                    background: '#000000',
+                    background: 'var(--primary-blue)',
                     color: '#ffffff',
                     border: 'none',
                     display: 'flex',
@@ -142,7 +145,8 @@ export const ChartsPage = () => {
                     justifyContent: 'center',
                     fontSize: '1rem',
                     cursor: 'pointer',
-                    paddingLeft: isSelected ? '0' : '2px'
+                    paddingLeft: isSelected ? '0' : '2px',
+                    boxShadow: '0 4px 10px rgba(10, 79, 146, 0.3)'
                   }}
                   aria-label="Play Track"
                 >

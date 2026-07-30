@@ -28,8 +28,13 @@ body {
 }
 
 a {
-  color: inherit;
+  color: var(--primary-blue);
   text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-orange);
 }
 
 button {
@@ -50,47 +55,50 @@ img {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0d1117;
+  background: var(--secondary-blue);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-accent);
+  background: var(--primary-orange);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary);
+  background: var(--orange-hover);
 }
 
 /* Utility Tag Badges */
 .badge-neon {
-  background: var(--color-accent);
-  color: #000000;
+  background: var(--primary-orange);
+  color: var(--white);
   font-size: 0.75rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 2px 8px;
+  padding: 3px 10px;
+  border-radius: 4px;
   display: inline-block;
 }
 
 .badge-outline {
-  border: 1px solid var(--color-accent);
-  color: var(--color-accent);
+  border: 1px solid var(--primary-orange);
+  color: var(--primary-orange);
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
-  padding: 2px 6px;
+  padding: 2px 8px;
+  border-radius: 4px;
   display: inline-block;
 }
 
 /* Section Title Highlight */
 .section-label {
   display: inline-block;
-  background: #000000;
-  color: var(--color-accent);
+  background: var(--secondary-blue);
+  color: var(--primary-orange);
   font-weight: 900;
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  padding: 4px 12px;
+  padding: 4px 14px;
+  border-radius: 4px;
   margin-bottom: 12px;
 }

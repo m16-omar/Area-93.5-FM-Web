@@ -13,7 +13,7 @@
   font-family: var(--font-heading);
   font-weight: 900;
   font-size: clamp(4rem, 12vw, 10rem);
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(10, 79, 146, 0.05);
   letter-spacing: -0.02em;
   white-space: nowrap;
   pointer-events: none;
@@ -32,7 +32,7 @@
   font-weight: 900;
   font-size: clamp(2.5rem, 5vw, 4rem);
   text-transform: uppercase;
-  color: #000000;
+  color: var(--secondary-blue);
   letter-spacing: -0.02em;
 }
 
@@ -45,7 +45,8 @@
   margin: 0 auto 40px;
   background: #ffffff;
   border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(10, 79, 146, 0.08);
   overflow: hidden;
 }
 
@@ -56,7 +57,7 @@
   font-weight: 800;
   font-size: 0.85rem;
   letter-spacing: 0.05em;
-  color: #4a5060;
+  color: var(--primary-blue);
   background: transparent;
   border: none;
   transition: all var(--transition-fast);
@@ -64,8 +65,13 @@
 }
 
 .activeTab {
-  background: var(--color-accent);
-  color: #000000;
+  background: var(--primary-orange);
+  color: var(--white);
+}
+
+.tabButton:hover:not(.activeTab) {
+  color: var(--primary-orange);
+  background: rgba(239, 75, 0, 0.05);
 }
 
 .showGrid {
@@ -81,15 +87,18 @@
 .showCard {
   position: relative;
   height: 240px;
-  border-radius: var(--radius-md);
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(10, 79, 146, 0.08);
   cursor: pointer;
-  transition: transform var(--transition-normal);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
 }
 
 .showCard:hover {
   transform: translateY(-6px);
+  border-color: var(--primary-orange);
+  box-shadow: 0 12px 30px rgba(10, 79, 146, 0.18);
 }
 
 .showCard:hover .showImage {
@@ -106,12 +115,12 @@
 .showOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%);
+  background: linear-gradient(180deg, rgba(8, 59, 110, 0.2) 0%, rgba(8, 59, 110, 0.9) 100%);
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: #ffffff;
+  color: var(--white);
 }
 
 .badgeGroup {
@@ -133,22 +142,24 @@
   font-size: 1.3rem;
   line-height: 1.2;
   margin-bottom: 4px;
+  color: var(--white);
 }
 
 .showTime {
   font-size: 0.85rem;
-  opacity: 0.85;
+  color: #F5F7FA;
   font-weight: 500;
 }
 
 .moreBtn {
-  color: #ffffff;
+  color: var(--white);
   font-size: 1.2rem;
-  opacity: 0.8;
-  transition: opacity var(--transition-fast);
+  opacity: 0.85;
+  transition: color var(--transition-fast), opacity var(--transition-fast);
 }
 
 .moreBtn:hover {
+  color: var(--primary-orange);
   opacity: 1;
 }
 

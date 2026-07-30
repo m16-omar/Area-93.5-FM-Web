@@ -29,7 +29,7 @@ export const PromotePage = () => {
   };
 
   return (
-    <main style={{ position: 'relative', width: '100%', overflowX: 'hidden', background: 'var(--color-light-bg)' }}>
+    <main style={{ position: 'relative', width: '100%', overflowX: 'clip', background: 'var(--color-light-bg)' }}>
       <Navbar />
       <PageHeader title="PROMOTE" watermark={`ADVERTISE\nWITH US`} />
 
@@ -41,16 +41,17 @@ export const PromotePage = () => {
               key={idx}
               style={{
                 background: '#ffffff',
-                borderRadius: 'var(--radius-md)',
+                borderRadius: '18px',
+                border: '1px solid #E5E7EB',
                 padding: '24px',
                 textAlign: 'center',
-                boxShadow: 'var(--shadow-md)'
+                boxShadow: '0 4px 12px rgba(10, 79, 146, 0.08)'
               }}
             >
-              <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '2.5rem', color: 'var(--color-primary)', marginBottom: '4px' }}>
+              <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '2.5rem', color: 'var(--primary-orange)', marginBottom: '4px' }}>
                 {stat.value}
               </div>
-              <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '0.75rem', letterSpacing: '0.08em', color: '#000000' }}>
+              <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '0.75rem', letterSpacing: '0.08em', color: 'var(--primary-blue)' }}>
                 {stat.label}
               </div>
             </div>
@@ -58,9 +59,9 @@ export const PromotePage = () => {
         </div>
 
         {/* Pricing Packages */}
-        <div style={{ textAlignment: 'center', marginBottom: '40px', textAlign: 'center' }}>
+        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
           <span className="section-label">ADVERTISING PACKAGES</span>
-          <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '2.5rem', color: '#000000', marginTop: '6px' }}>
+          <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '2.5rem', color: 'var(--secondary-blue)', marginTop: '6px' }}>
             Choose Your Campaign
           </h2>
         </div>
@@ -73,153 +74,161 @@ export const PromotePage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
+              whileHover={{ y: -6, borderColor: '#EF4B00', boxShadow: '0 12px 30px rgba(10, 79, 146, 0.18)' }}
               style={{
                 position: 'relative',
-                background: pkg.popular ? '#000000' : '#ffffff',
-                color: pkg.popular ? '#ffffff' : '#000000',
-                borderRadius: 'var(--radius-md)',
-                padding: '40px 32px',
-                boxShadow: 'var(--shadow-md)',
+                background: '#ffffff',
+                color: 'var(--text-dark)',
+                borderRadius: '18px',
+                padding: '0',
+                boxShadow: '0 4px 12px rgba(10, 79, 146, 0.08)',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                border: pkg.popular ? '2px solid var(--color-accent)' : 'none'
+                border: pkg.popular ? '2px solid var(--primary-orange)' : '1px solid #E5E7EB',
+                overflow: 'hidden',
+                transition: 'transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease'
               }}
             >
               {pkg.popular && (
                 <span style={{
                   position: 'absolute',
-                  top: '-14px',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  background: 'var(--color-accent)',
-                  color: '#000000',
+                  top: '12px',
+                  right: '16px',
+                  zIndex: 3,
+                  background: 'var(--primary-orange)',
+                  color: '#ffffff',
                   fontFamily: 'var(--font-heading)',
                   fontWeight: 900,
                   fontSize: '0.75rem',
                   letterSpacing: '0.08em',
-                  padding: '4px 16px',
-                  borderRadius: '20px'
+                  padding: '4px 14px',
+                  borderRadius: '20px',
+                  boxShadow: '0 4px 10px rgba(239, 75, 0, 0.3)'
                 }}>
                   MOST POPULAR
                 </span>
               )}
 
-              <div>
-                <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.4rem', marginBottom: '12px' }}>
+              {/* Blue Header */}
+              <div style={{ background: 'var(--secondary-blue)', color: '#ffffff', padding: '32px 32px 24px' }}>
+                <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.4rem', marginBottom: '8px', color: '#ffffff' }}>
                   {pkg.name}
                 </h3>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px', marginBottom: '24px' }}>
-                  <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '3rem', color: pkg.popular ? 'var(--color-accent)' : 'var(--color-primary)' }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                  <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '3rem', color: 'var(--primary-orange)' }}>
                     {pkg.price}
                   </span>
-                  <span style={{ fontSize: '0.85rem', opacity: 0.8 }}>{pkg.period}</span>
+                  <span style={{ fontSize: '0.85rem', color: '#F5F7FA' }}>{pkg.period}</span>
                 </div>
+              </div>
 
+              <div style={{ padding: '32px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px 0', display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   {pkg.features.map((feat, idx) => (
-                    <li key={idx} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.9rem', fontWeight: 600 }}>
-                      <FiCheck style={{ color: pkg.popular ? 'var(--color-accent)' : '#000000', flexShrink: 0 }} /> {feat}
+                    <li key={idx} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-dark)' }}>
+                      <FiCheck style={{ color: 'var(--primary-orange)', flexShrink: 0 }} /> {feat}
                     </li>
                   ))}
                 </ul>
-              </div>
 
-              <button
-                onClick={() => setFormData(prev => ({ ...prev, campaignType: pkg.name }))}
-                style={{
-                  width: '100%',
-                  padding: '14px',
-                  borderRadius: 'var(--radius-sm)',
-                  border: 'none',
-                  background: pkg.popular ? 'var(--color-accent)' : '#000000',
-                  color: '#000000',
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 900,
-                  fontSize: '0.85rem',
-                  letterSpacing: '0.05em',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                SELECT PACKAGE
-              </button>
+                <button
+                  onClick={() => setFormData(prev => ({ ...prev, campaignType: pkg.name }))}
+                  style={{
+                    width: '100%',
+                    padding: '14px',
+                    borderRadius: 'var(--radius-sm)',
+                    border: 'none',
+                    background: 'var(--primary-orange)',
+                    color: '#ffffff',
+                    fontFamily: 'var(--font-heading)',
+                    fontWeight: 900,
+                    fontSize: '0.85rem',
+                    letterSpacing: '0.05em',
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 12px rgba(239, 75, 0, 0.3)',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  SELECT PACKAGE
+                </button>
+              </div>
             </motion.div>
           ))}
         </div>
 
         {/* Promotion Request Form */}
-        <div style={{ background: '#ffffff', borderRadius: 'var(--radius-md)', padding: '48px', boxShadow: 'var(--shadow-md)', marginBottom: '80px' }}>
+        <div style={{ background: '#ffffff', borderRadius: '18px', border: '1px solid #E5E7EB', padding: '48px', boxShadow: '0 4px 12px rgba(10, 79, 146, 0.08)', marginBottom: '80px' }}>
           <div style={{ textAlign: 'center', marginBottom: '32px' }}>
             <span className="section-label">GET STARTED</span>
-            <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '2rem', color: '#000000', marginTop: '6px' }}>
+            <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '2rem', color: 'var(--secondary-blue)', marginTop: '6px' }}>
               Request Advertising Proposal
             </h3>
           </div>
 
           {submitted ? (
             <div style={{ background: 'var(--gradient-hero)', padding: '32px', borderRadius: 'var(--radius-sm)', textAlign: 'center' }}>
-              <FiCheckCircle size={48} style={{ color: '#000', marginBottom: '12px' }} />
-              <h4 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.5rem', color: '#000' }}>
+              <FiCheckCircle size={48} style={{ color: 'var(--primary-orange)', marginBottom: '12px' }} />
+              <h4 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.5rem', color: '#ffffff' }}>
                 Thank You for Your Submission!
               </h4>
-              <p style={{ fontSize: '0.95rem', color: '#333' }}>
+              <p style={{ fontSize: '0.95rem', color: '#F5F7FA' }}>
                 Our 93.5 AREA FM sales team will contact you within 24 hours with your customized media kit.
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '6px' }}>COMPANY NAME</label>
+                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, color: 'var(--primary-blue)', marginBottom: '6px' }}>COMPANY NAME</label>
                 <input
                   type="text"
                   required
                   value={formData.companyName}
                   onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                  style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(0,0,0,0.15)', outline: 'none' }}
+                  style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid #D1D5DB', background: '#ffffff', outline: 'none', color: '#1A1A1A' }}
                 />
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '6px' }}>CONTACT NAME</label>
+                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, color: 'var(--primary-blue)', marginBottom: '6px' }}>CONTACT NAME</label>
                 <input
                   type="text"
                   required
                   value={formData.contactName}
                   onChange={(e) => setFormData({ ...formData, contactName: e.target.value })}
-                  style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(0,0,0,0.15)', outline: 'none' }}
+                  style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid #D1D5DB', background: '#ffffff', outline: 'none', color: '#1A1A1A' }}
                 />
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '6px' }}>EMAIL ADDRESS</label>
+                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, color: 'var(--primary-blue)', marginBottom: '6px' }}>EMAIL ADDRESS</label>
                 <input
                   type="email"
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(0,0,0,0.15)', outline: 'none' }}
+                  style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid #D1D5DB', background: '#ffffff', outline: 'none', color: '#1A1A1A' }}
                 />
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '6px' }}>PHONE NUMBER</label>
+                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, color: 'var(--primary-blue)', marginBottom: '6px' }}>PHONE NUMBER</label>
                 <input
                   type="tel"
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(0,0,0,0.15)', outline: 'none' }}
+                  style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid #D1D5DB', background: '#ffffff', outline: 'none', color: '#1A1A1A' }}
                 />
               </div>
 
               <div style={{ gridColumn: 'span 2' }}>
-                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, marginBottom: '6px' }}>CAMPAIGN DETAILS / MESSAGE</label>
+                <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 800, color: 'var(--primary-blue)', marginBottom: '6px' }}>CAMPAIGN DETAILS / MESSAGE</label>
                 <textarea
                   rows={4}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(0,0,0,0.15)', outline: 'none' }}
+                  style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid #D1D5DB', background: '#ffffff', outline: 'none', color: '#1A1A1A' }}
                 />
               </div>
 
@@ -227,7 +236,7 @@ export const PromotePage = () => {
                 <button
                   type="submit"
                   style={{
-                    background: '#000000',
+                    background: 'var(--primary-orange)',
                     color: '#ffffff',
                     fontFamily: 'var(--font-heading)',
                     fontWeight: 900,
@@ -236,7 +245,8 @@ export const PromotePage = () => {
                     borderRadius: 'var(--radius-sm)',
                     border: 'none',
                     cursor: 'pointer',
-                    letterSpacing: '0.05em'
+                    letterSpacing: '0.05em',
+                    boxShadow: '0 4px 12px rgba(239, 75, 0, 0.3)'
                   }}
                 >
                   SUBMIT PROPOSAL REQUEST
@@ -248,7 +258,7 @@ export const PromotePage = () => {
 
         {/* FAQ Accordion */}
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.8rem', textAlign: 'center', marginBottom: '24px' }}>
+          <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.8rem', color: 'var(--secondary-blue)', textAlign: 'center', marginBottom: '24px' }}>
             Frequently Asked Questions
           </h3>
 
@@ -256,7 +266,7 @@ export const PromotePage = () => {
             {promoteData.faqs.map((faq, idx) => {
               const isOpen = openFaq === idx;
               return (
-                <div key={idx} style={{ background: '#ffffff', borderRadius: 'var(--radius-sm)', overflow: 'hidden', boxShadow: 'var(--shadow-sm)' }}>
+                <div key={idx} style={{ background: '#ffffff', borderRadius: '18px', border: '1px solid #E5E7EB', overflow: 'hidden', boxShadow: '0 4px 12px rgba(10, 79, 146, 0.08)' }}>
                   <button
                     onClick={() => setOpenFaq(isOpen ? null : idx)}
                     style={{
@@ -270,17 +280,17 @@ export const PromotePage = () => {
                       fontFamily: 'var(--font-heading)',
                       fontWeight: 800,
                       fontSize: '1rem',
-                      color: '#000000',
+                      color: 'var(--primary-blue)',
                       cursor: 'pointer',
                       textAlign: 'left'
                     }}
                   >
                     <span>{faq.question}</span>
-                    <FiChevronDown style={{ transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }} />
+                    <FiChevronDown style={{ transform: isOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease', color: 'var(--primary-orange)' }} />
                   </button>
 
                   {isOpen && (
-                    <div style={{ padding: '0 24px 20px', fontSize: '0.9rem', color: '#4a5060', lineHeight: 1.6 }}>
+                    <div style={{ padding: '0 24px 20px', fontSize: '0.9rem', color: 'var(--text-dark)', lineHeight: 1.6 }}>
                       {faq.answer}
                     </div>
                   )}

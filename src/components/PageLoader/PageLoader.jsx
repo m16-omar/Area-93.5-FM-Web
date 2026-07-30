@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import logoImg from '../../assets/logo.jpeg';
 import styles from './PageLoader.module.css';
 
 export const PageLoader = () => {
@@ -27,6 +28,7 @@ export const PageLoader = () => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
         >
+          <img src={logoImg} alt="93.5 AREA FM Logo" className={styles.loaderLogo} />
           <div className={styles.spinnerCircle} />
           <div className={styles.brandText}>93.5 AREA FM</div>
         </motion.div>

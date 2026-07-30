@@ -8,7 +8,7 @@ import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 
 export const BlogSidebar = () => {
   return (
-    <main style={{ position: 'relative', width: '100%', overflowX: 'hidden', background: 'var(--color-light-bg)' }}>
+    <main style={{ position: 'relative', width: '100%', overflowX: 'clip', background: 'var(--color-light-bg)' }}>
       <Navbar />
       <PageHeader title="BLOG SIDEBAR" watermark={`BLOG\nNEWS`} />
 
