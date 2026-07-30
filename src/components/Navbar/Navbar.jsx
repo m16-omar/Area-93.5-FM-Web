@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FiSearch, FiMenu, FiVolume2, FiVolumeX, FiMusic, FiX } from 'react-icons/fi';
-import { FaTwitter, FaInstagram, FaFacebookF, FaPlay, FaPause } from 'react-icons/fa';
+import { FaTwitter, FaInstagram, FaFacebookF, FaYoutube, FaTiktok, FaPlay, FaPause } from 'react-icons/fa';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 import logoImg from '../../assets/logo.jpeg';
 import styles from './Navbar.module.css';
@@ -22,9 +22,11 @@ export const Navbar = () => {
           <span>{(currentTrack.showName || currentTrack.title).toUpperCase()} - {(currentTrack.presenterName || currentTrack.artist).toUpperCase()}</span>
         </div>
         <div className={styles.topSocials}>
-          <a href="#" className={styles.topSocialLink} aria-label="Twitter"><FaTwitter /></a>
+          <a href="#" className={styles.topSocialLink} aria-label="YouTube"><FaYoutube /></a>
+          <a href="#" className={styles.topSocialLink} aria-label="TikTok"><FaTiktok /></a>
           <a href="#" className={styles.topSocialLink} aria-label="Instagram"><FaInstagram /></a>
           <a href="#" className={styles.topSocialLink} aria-label="Facebook"><FaFacebookF /></a>
+          <a href="#" className={styles.topSocialLink} aria-label="Twitter"><FaTwitter /></a>
         </div>
       </div>
 

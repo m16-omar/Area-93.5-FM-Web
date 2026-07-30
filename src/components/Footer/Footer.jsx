@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFacebookF, FaYoutube, FaInstagram, FaSpotify } from 'react-icons/fa';
+import { FaFacebookF, FaYoutube, FaTiktok, FaInstagram, FaSpotify } from 'react-icons/fa';
 import { FiPhone, FiMail } from 'react-icons/fi';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 import logoImg from '../../assets/logo.jpeg';
@@ -24,7 +24,7 @@ export const Footer = () => {
           </div>
 
           <div className={styles.nowPlayingInfo}>
-            <span>{currentTrack.title}</span> - <span>{currentTrack.artist}</span>
+            <span>{currentTrack.showName || currentTrack.title}</span> - <span>{currentTrack.presenterName || currentTrack.artist}</span>
           </div>
         </div>
 
@@ -33,9 +33,10 @@ export const Footer = () => {
           <div>
             <span className="section-label" style={{ marginBottom: '12px' }}>FOLLOW US ON</span>
             <div className={styles.socialGrid}>
-              <a href="#" className={styles.socialCircle} aria-label="Facebook"><FaFacebookF /></a>
               <a href="#" className={styles.socialCircle} aria-label="YouTube"><FaYoutube /></a>
+              <a href="#" className={styles.socialCircle} aria-label="TikTok"><FaTiktok /></a>
               <a href="#" className={styles.socialCircle} aria-label="Instagram"><FaInstagram /></a>
+              <a href="#" className={styles.socialCircle} aria-label="Facebook"><FaFacebookF /></a>
               <a href="#" className={styles.socialCircle} aria-label="Spotify"><FaSpotify /></a>
             </div>
           </div>
