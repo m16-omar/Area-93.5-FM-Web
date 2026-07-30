@@ -19,7 +19,7 @@ export const Navbar = () => {
       <div className={styles.topBanner}>
         <div className={styles.nowPlayingTrack}>
           <FiMusic className={styles.musicIcon} />
-          <span>{currentTrack.artist.toUpperCase()} - {currentTrack.title.toUpperCase()}</span>
+          <span>{(currentTrack.showName || currentTrack.title).toUpperCase()} - {(currentTrack.presenterName || currentTrack.artist).toUpperCase()}</span>
         </div>
         <div className={styles.topSocials}>
           <a href="#" className={styles.topSocialLink} aria-label="Twitter"><FaTwitter /></a>

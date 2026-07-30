@@ -34,8 +34,8 @@ export const LivePlayer = () => {
         </button>
         <img src={currentTrack.image} alt={currentTrack.title} className={styles.trackThumb} />
         <div className={styles.trackMeta}>
-          <span className={styles.trackTitle}>{currentTrack.title}</span>
-          <span className={styles.trackArtist}>{currentTrack.artist}</span>
+          <span className={styles.trackTitle}>{currentTrack.showName || currentTrack.title}</span>
+          <span className={styles.trackArtist}>{currentTrack.presenterName || currentTrack.artist}</span>
         </div>
       </div>
 

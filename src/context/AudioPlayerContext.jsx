@@ -4,9 +4,11 @@ const AudioPlayerContext = createContext();
 
 const DEFAULT_TRACK = {
   id: 'def1',
-  title: 'Reason To Stay (Feat. Undy)',
-  artist: 'Lilac Frog',
-  image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=300&q=80',
+  title: 'Morning Vibe Blast',
+  artist: 'Jordan Carter',
+  showName: 'Morning Vibe Blast',
+  presenterName: 'Jordan Carter',
+  image: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=300&q=80',
   audioUrl: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3'
 };
 
