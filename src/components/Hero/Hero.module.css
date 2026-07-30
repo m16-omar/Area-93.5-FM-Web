@@ -3,7 +3,7 @@
   background: linear-gradient(180deg, rgba(8,59,110,.75), rgba(10,79,146,.85)), var(--secondary-blue);
   min-height: 680px;
   max-height: 800px;
-  padding: 140px 48px 60px;
+  padding: 60px 48px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -50,7 +50,7 @@
   position: absolute;
   right: 22%;
   bottom: 0;
-  height: 100%;
+  height: 90%;
   max-width: 58%;
   object-fit: contain;
   object-position: center bottom;
@@ -255,10 +255,11 @@
     right: 50%;
     transform: translateX(50%);
     max-width: 90%;
-    height: 100%;
-    opacity: 0.75;
-    object-fit: cover;
-    object-position: center top;
+    height: 88%;
+    bottom: 0;
+    opacity: 0.85;
+    object-fit: contain;
+    object-position: center bottom;
   }
   .eventCardItem {
     flex: 0 0 calc(33.333% - 9.33px);
@@ -270,7 +271,7 @@
   .heroSection {
     min-height: auto;
     max-height: none;
-    padding: 110px 16px 32px;
+    padding: 32px 16px;
   }
   .leftCol {
     gap: 12px;
@@ -306,8 +307,10 @@
   .heroDjImage {
     opacity: 0.85;
     max-width: 100%;
+    height: 85%;
+    bottom: 0;
     object-fit: contain;
-    object-position: center top;
+    object-position: center bottom;
   }
   .heroImageOverlay {
     background: linear-gradient(180deg, rgba(8, 59, 110, 0.45) 0%, rgba(8, 59, 110, 0.75) 100%);
@@ -316,7 +319,7 @@
 
 @media (max-width: 480px) {
   .heroSection {
-    padding: 95px 14px 24px;
+    padding: 24px 14px;
   }
   .logoWatermark {
     font-size: 1.45rem;
