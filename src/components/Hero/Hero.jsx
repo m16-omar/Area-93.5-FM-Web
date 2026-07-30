@@ -112,8 +112,8 @@ export const Hero = () => {
               {isPlaying ? <FaPause /> : <FaPlay />}
             </button>
             <div className={styles.trackMeta}>
-              <span className={styles.trackMetaTitle}>{currentTrack.showName || currentTrack.title}</span>
-              <span className={styles.trackMetaArtist}>{currentTrack.presenterName || currentTrack.artist}</span>
+              <span className={styles.trackMetaTitle}>LISTEN LIVE</span>
+              <span className={styles.trackMetaArtist}>{currentTrack.showName || currentTrack.title} — {currentTrack.presenterName || currentTrack.artist}</span>
             </div>
           </div>
         </motion.div>
