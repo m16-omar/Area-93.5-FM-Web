@@ -270,20 +270,69 @@
   .heroSection {
     min-height: auto;
     max-height: none;
-    padding: 40px 20px;
+    padding: 32px 16px;
+  }
+  .leftCol {
+    gap: 12px;
+  }
+  .logoWatermark {
+    font-size: 1.8rem;
+  }
+  .heroHeadline {
+    font-size: 2.0rem;
+  }
+  .giantPlayWrapper {
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .giantPlayBtn {
+    width: 60px;
+    height: 60px;
+    font-size: 1.3rem;
+  }
+  .trackMetaTitle {
+    font-size: 1.05rem;
+  }
+  .trackMetaArtist {
+    font-size: 0.8rem;
   }
   .rightCol {
-    margin-top: 20px;
+    margin-top: 16px;
   }
   .eventCardItem {
     flex: 0 0 100%;
     min-width: 100%;
   }
   .heroDjImage {
-    opacity: 0.7;
+    opacity: 0.85;
     max-width: 100%;
+    object-fit: contain;
+    object-position: center top;
   }
   .heroImageOverlay {
-    background: linear-gradient(180deg, rgba(8, 59, 110, 0.75) 0%, rgba(8, 59, 110, 0.85) 100%);
+    background: linear-gradient(180deg, rgba(8, 59, 110, 0.45) 0%, rgba(8, 59, 110, 0.75) 100%);
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    padding: 24px 14px;
+  }
+  .logoWatermark {
+    font-size: 1.45rem;
+  }
+  .heroHeadline {
+    font-size: 1.6rem;
+  }
+  .giantPlayBtn {
+    width: 52px;
+    height: 52px;
+    font-size: 1.1rem;
+  }
+  .trackMetaTitle {
+    font-size: 0.95rem;
+  }
+  .trackMetaArtist {
+    font-size: 0.75rem;
   }
 }
