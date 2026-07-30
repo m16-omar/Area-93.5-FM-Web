@@ -30,7 +30,7 @@ export const CategoriesGrid = () => {
     <section className={styles.categoriesSection}>
       <div className={styles.innerContainer}>
         <div className={styles.headerBadge}>
-          <span className="section-label">CATEGORIES</span>
+          <span className="section-label">PARTNERS</span>
         </div>
 
         <div className={styles.grid}>
