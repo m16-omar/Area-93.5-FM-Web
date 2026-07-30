@@ -126,7 +126,7 @@ export const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <div className={styles.nextEventsHeader}>
-            <span className="section-label">CURRENT SHOWS</span>
+            <span className="section-label">TODAY'S SHOWS</span>
           </div>
 
           <div className={styles.sliderTrackViewport}>
