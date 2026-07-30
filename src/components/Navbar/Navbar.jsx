@@ -90,6 +90,10 @@ export const Navbar = () => {
             <FiSearch />
           </button>
           
+          <button className={styles.iconBtn} onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle Menu">
+            {mobileMenuOpen ? <FiX /> : <FiMenu />}
+          </button>
+
           <button className={styles.playBtn} onClick={togglePlayPause}>
             {isPlaying ? <FaPause size={12} /> : <FaPlay size={12} />}
             <span>{isPlaying ? 'PAUSE' : 'PLAY'}</span>
@@ -101,10 +105,6 @@ export const Navbar = () => {
 
           <button className={`${styles.popupBtn} ${styles.hideOnTablet}`}>
             POP UP
-          </button>
-
-          <button className={styles.mobileToggle} onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle Menu">
-            {mobileMenuOpen ? <FiX /> : <FiMenu />}
           </button>
         </div>
       </header>
