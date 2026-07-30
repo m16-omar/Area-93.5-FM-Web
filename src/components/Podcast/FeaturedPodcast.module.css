@@ -239,11 +239,56 @@
 @media (max-width: 1024px) {
   .podcastGrid {
     grid-template-columns: 1fr;
+    gap: 40px;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .podcastSection {
+    padding: 40px 16px;
+  }
+  .leftCol {
+    gap: 18px;
+  }
+  .mainTitle {
+    font-size: 1.6rem;
+  }
+  .description {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .dayCell {
+    padding: 10px 14px;
+    width: 100px;
+    font-size: 0.75rem;
+  }
+  .timeCell {
+    padding: 10px 14px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .podcastSection {
+    padding: 28px 14px;
+  }
+  .mainTitle {
+    font-size: 1.3rem;
+  }
+  .description {
+    font-size: 0.82rem;
+  }
+  .dayCell {
+    padding: 8px 12px;
+    width: 85px;
+    font-size: 0.7rem;
+  }
+  .timeCell {
+    padding: 8px 12px;
+    font-size: 0.7rem;
+  }
   .rightCol {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
