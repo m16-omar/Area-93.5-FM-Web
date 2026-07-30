@@ -249,20 +249,263 @@
   cursor: pointer;
 }
 
-/* Mobile Slide-Out Drawer Overlay */
+/* Offcanvas Drawer Overlay & Panel */
+.drawerOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 10000;
+  display: flex;
+  justify-content: flex-end;
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .mobileDrawer {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: var(--secondary-blue);
-  padding: 24px 20px;
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  width: 400px;
+  max-width: 90vw;
+  height: 100vh;
+  background: #ffffff;
+  color: var(--color-text-dark);
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  border-bottom: 4px solid var(--primary-orange);
-  z-index: 998;
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.25);
+  animation: slideLeft 0.3s ease-out forwards;
+  z-index: 10001;
+  box-sizing: border-box;
+}
+
+@keyframes slideLeft {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.drawerHeader {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.closeDrawerBtn {
+  background: #f1f5f9;
+  border: none;
+  color: #0f172a;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+
+.closeDrawerBtn:hover {
+  background: #e2e8f0;
+}
+
+.drawerContent {
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.drawerSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionHeadingWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.sectionTagBadge {
+  background: #b5ff00;
+  color: #000000;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  padding: 4px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.sectionLine {
+  flex: 1;
+  height: 2px;
+  background: #b5ff00;
+}
+
+.onAirCard {
+  position: relative;
+  height: 180px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.onAirBgImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.onAirOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(8,59,110,0.9) 100%);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #ffffff;
+}
+
+.genreBadge {
+  display: inline-block;
+  width: fit-content;
+  font-size: 0.65rem;
+  font-weight: 800;
+  border: 1px solid #00ffcc;
+  color: #00ffcc;
+  padding: 2px 6px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.onAirTitle {
+  font-size: 1.15rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  margin: 0 0 4px 0;
+  color: #ffffff;
+}
+
+.onAirTime {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+.topChartList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.topChartItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.topChartItem:hover {
+  background: #f1f5f9;
+  transform: translateX(2px);
+}
+
+.trackArtWrapper {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.trackArtImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rankNum {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1.2rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+
+.trackDetails {
+  overflow: hidden;
+  flex: 1;
+}
+
+.trackTitleText {
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin: 0 0 2px 0;
+  color: #0f172a;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trackArtistText {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fullTracklistBtn {
+  width: 100%;
+  border: 2px solid #cbd5e1;
+  background: transparent;
+  color: #64748b;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.fullTracklistBtn:hover {
+  border-color: #0f172a;
+  color: #0f172a;
+  background: #f8fafc;
 }
 
 .mobileSearchBox {
@@ -281,34 +524,34 @@
 
 .mobileSearchInput {
   width: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
   border-radius: var(--radius-sm);
-  padding: 12px 14px 12px 42px;
-  color: var(--white);
+  padding: 10px 14px 10px 42px;
+  color: #0f172a;
   font-size: 0.9rem;
   outline: none;
 }
 
 .mobileSearchInput::placeholder {
-  color: #9CA3AF;
+  color: #94a3b8;
 }
 
 .mobileNavList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
 }
 
 .mobileNavLink {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 1.05rem;
+  font-size: 1rem;
   letter-spacing: 0.05em;
-  color: var(--white);
+  color: #0f172a;
   text-decoration: none;
-  padding: 10px 14px;
+  padding: 8px 12px;
   border-radius: var(--radius-sm);
   display: block;
   transition: background var(--transition-fast), color var(--transition-fast);
@@ -325,7 +568,7 @@
   flex-direction: column;
   gap: 16px;
   padding-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid #e2e8f0;
 }
 
 .mobilePopUpBtn {
@@ -347,13 +590,17 @@
   justify-content: center;
   gap: 24px;
   font-size: 1.2rem;
-  color: var(--white);
+  color: #0f172a;
   padding-top: 6px;
 }
 
 .mobileSocialsRow a {
-  color: var(--white);
+  color: #0f172a;
   transition: color var(--transition-fast);
+}
+
+.mobileSocialsRow a:hover {
+  color: var(--primary-orange);
 }
 
 .mobileSocialsRow a:hover {

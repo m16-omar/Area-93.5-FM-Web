@@ -4,6 +4,7 @@ import { FiSearch, FiMenu, FiVolume2, FiVolumeX, FiMusic, FiX } from 'react-icon
 import { FaTwitter, FaInstagram, FaFacebookF, FaYoutube, FaTiktok, FaPlay, FaPause } from 'react-icons/fa';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 import logoImg from '../../assets/logo.jpeg';
+import topTracksData from '../../data/topTracksData.json';
 import styles from './Navbar.module.css';
 
 export const Navbar = () => {
@@ -109,52 +110,113 @@ export const Navbar = () => {
         </div>
       </header>
 
-      {/* Mobile Slide-Out Drawer Navigation */}
+      {/* Offcanvas Drawer Navigation */}
       {mobileMenuOpen && (
-        <div className={styles.mobileDrawer}>
-          <div className={styles.mobileSearchBox}>
-            <FiSearch className={styles.searchBoxIcon} />
-            <input type="text" placeholder="Search shows, news, podcasts..." className={styles.mobileSearchInput} />
-          </div>
+        <div className={styles.drawerOverlay} onClick={() => setMobileMenuOpen(false)}>
+          <div className={styles.mobileDrawer} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.drawerHeader}>
+              <div className={styles.mobileSearchBox}>
+                <FiSearch className={styles.searchBoxIcon} />
+                <input type="text" placeholder="Search shows, news, podcasts..." className={styles.mobileSearchInput} />
+              </div>
+              <button className={styles.closeDrawerBtn} onClick={() => setMobileMenuOpen(false)} aria-label="Close Drawer">
+                <FiX />
+              </button>
+            </div>
 
-          <ul className={styles.mobileNavList}>
-            <li>
-              <Link to="/" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/') ? styles.activeMobileLink : ''}`}>HOME</Link>
-            </li>
-            <li>
-              <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>NEWS</a>
-            </li>
-            <li>
-              <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>PODCASTS</a>
-            </li>
-            <li>
-              <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>SHOWS</a>
-            </li>
-            <li>
-              <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>CHARTS</a>
-            </li>
-            <li>
-              <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>VIDEOS</a>
-            </li>
-            <li>
-              <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>PROMOTE</a>
-            </li>
-            <li>
-              <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>CONTACTS</a>
-            </li>
-          </ul>
+            <div className={styles.drawerContent}>
+              {/* ON AIR Section */}
+              <div className={styles.drawerSection}>
+                <div className={styles.sectionHeadingWrapper}>
+                  <span className={styles.sectionTagBadge}>ON AIR</span>
+                  <div className={styles.sectionLine} />
+                </div>
+                
+                <div className={styles.onAirCard}>
+                  <img 
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" 
+                    alt="On Air Presenter" 
+                    className={styles.onAirBgImg} 
+                  />
+                  <div className={styles.onAirOverlay}>
+                    <span className={styles.genreBadge}>TRENDS</span>
+                    <h4 className={styles.onAirTitle}>{currentTrack.showName || "The Sound Session"}</h4>
+                    <p className={styles.onAirTime}>8:00 am - 12:00 pm</p>
+                  </div>
+                </div>
+              </div>
 
-          <div className={styles.mobileExtraActions}>
-            <button className={styles.mobilePopUpBtn}>
-              POP UP PLAYER
-            </button>
-            
-            <div className={styles.mobileSocialsRow}>
-              <a href="#" aria-label="YouTube"><FaYoutube /></a>
-              <a href="#" aria-label="TikTok"><FaTiktok /></a>
-              <a href="#" aria-label="Instagram"><FaInstagram /></a>
-              <a href="#" aria-label="Facebook"><FaFacebookF /></a>
-              <a href="#" aria-label="Twitter"><FaTwitter /></a>
+              {/* TOP CHART Section */}
+              <div className={styles.drawerSection}>
+                <div className={styles.sectionHeadingWrapper}>
+                  <span className={styles.sectionTagBadge}>TOP CHART</span>
+                  <div className={styles.sectionLine} />
+                </div>
+
+                <div className={styles.topChartList}>
+                  {topTracksData.tracks.slice(0, 5).map((track) => (
+                    <div key={track.id} className={styles.topChartItem}>
+                      <div className={styles.trackArtWrapper}>
+                        <img src={track.image} alt={track.title} className={styles.trackArtImg} />
+                        <span className={styles.rankNum}>{track.rank}</span>
+                      </div>
+                      <div className={styles.trackDetails}>
+                        <h5 className={styles.trackTitleText}>{track.title}</h5>
+                        <p className={styles.trackArtistText}>{track.artist}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <button className={styles.fullTracklistBtn} onClick={handleBlockedClick}>
+                  FULL TRACKLIST
+                </button>
+              </div>
+
+              {/* Navigation Links */}
+              <div className={styles.drawerSection}>
+                <ul className={styles.mobileNavList}>
+                  <li>
+                    <Link to="/" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/') ? styles.activeMobileLink : ''}`}>HOME</Link>
+                  </li>
+                  <li>
+                    <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>NEWS</a>
+                  </li>
+                  <li>
+                    <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>PODCASTS</a>
+                  </li>
+                  <li>
+                    <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>SHOWS</a>
+                  </li>
+                  <li>
+                    <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>CHARTS</a>
+                  </li>
+                  <li>
+                    <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>VIDEOS</a>
+                  </li>
+                  <li>
+                    <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>PROMOTE</a>
+                  </li>
+                  <li>
+                    <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>CONTACTS</a>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Extra Actions & Socials */}
+              <div className={styles.mobileExtraActions}>
+                <button className={styles.mobilePopUpBtn}>
+                  POP UP PLAYER
+                </button>
+                
+                <div className={styles.mobileSocialsRow}>
+                  <a href="#" aria-label="YouTube"><FaYoutube /></a>
+                  <a href="#" aria-label="TikTok"><FaTiktok /></a>
+                  <a href="#" aria-label="Instagram"><FaInstagram /></a>
+                  <a href="#" aria-label="Facebook"><FaFacebookF /></a>
+                  <a href="#" aria-label="Twitter"><FaTwitter /></a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
