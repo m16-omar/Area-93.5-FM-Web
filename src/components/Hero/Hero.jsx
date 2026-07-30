@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaPlay, FaPause } from 'react-icons/fa';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 import eventsData from '../../data/eventsData.json';
 import heroPresenterImg from '../../assets/Here Presenters.png';
@@ -8,6 +9,17 @@ import styles from './Hero.module.css';
 
 export const Hero = () => {
   const { isPlaying, togglePlayPause, currentTrack } = useAudioPlayer();
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  const maxIndex = Math.max(0, eventsData.length - 3);
+
+  const nextSlide = () => {
+    setSlideIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  };
+
+  const prevSlide = () => {
+    setSlideIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  };
 
   return (
     <section className={styles.heroSection}>
@@ -52,7 +64,7 @@ export const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Right Column: Floating Event Cards (z-index: 2) */}
+        {/* Right Column: Floating Current Shows Slider (z-index: 2) */}
         <motion.div 
           className={styles.rightCol}
           initial={{ opacity: 0, y: 30 }}
@@ -60,25 +72,41 @@ export const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <div className={styles.nextEventsHeader}>
-            <span className="section-label">NEXT EVENTS</span>
+            <span className="section-label">CURRENT SHOWS</span>
+            <div className={styles.sliderNavControls}>
+              <button onClick={prevSlide} className={styles.sliderArrowBtn} aria-label="Previous Shows">
+                <FiChevronLeft />
+              </button>
+              <button onClick={nextSlide} className={styles.sliderArrowBtn} aria-label="Next Shows">
+                <FiChevronRight />
+              </button>
+            </div>
           </div>
 
-          <div className={styles.eventsGrid}>
-            {eventsData.map((ev) => (
-              <div key={ev.id} className={styles.eventCard}>
-                <img src={ev.image} alt={ev.title} className={styles.eventImage} loading="lazy" />
-                <div className={styles.eventOverlay}>
-                  <div className={styles.dateCircle}>
-                    <span>{ev.dateDay}</span>
-                    <span>{ev.dateMonth}</span>
-                  </div>
-                  <div>
-                    <span className="badge-outline" style={{ marginBottom: '6px' }}>{ev.badge}</span>
-                    <h3 className={styles.eventTitle}>{ev.title}</h3>
+          <div className={styles.sliderTrackViewport}>
+            <motion.div 
+              className={styles.sliderTrack}
+              animate={{ x: `calc(-${slideIndex} * (33.333% + 4.66px))` }}
+              transition={{ type: 'spring', stiffness: 260, damping: 26 }}
+            >
+              {eventsData.map((ev) => (
+                <div key={ev.id} className={styles.eventCardItem}>
+                  <div className={styles.eventCard}>
+                    <img src={ev.image} alt={ev.title} className={styles.eventImage} loading="lazy" />
+                    <div className={styles.eventOverlay}>
+                      <div className={styles.dateCircle}>
+                        <span>{ev.dateDay}</span>
+                        <span>{ev.dateMonth}</span>
+                      </div>
+                      <div>
+                        <span className="badge-outline" style={{ marginBottom: '6px' }}>{ev.badge}</span>
+                        <h3 className={styles.eventTitle}>{ev.title}</h3>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </motion.div>
           </div>
         </motion.div>
       </div>

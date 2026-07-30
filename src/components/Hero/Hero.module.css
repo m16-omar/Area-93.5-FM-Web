@@ -154,7 +154,7 @@
   font-weight: 500;
 }
 
-/* 3. Right Column: Floating Event Cards (z-index: 2) */
+/* 3. Right Column: Floating Current Shows Slider (z-index: 2) */
 .rightCol {
   position: relative;
   z-index: 2;
@@ -162,18 +162,58 @@
   flex-direction: column;
   gap: 12px;
   margin-top: 20px;
+  overflow: hidden;
 }
 
 .nextEventsHeader {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 4px;
 }
 
-.eventsGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.sliderNavControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sliderArrowBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--secondary-blue);
+  color: var(--white);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(10, 79, 146, 0.2);
+  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.sliderArrowBtn:hover {
+  background: var(--primary-orange);
+  border-color: var(--primary-orange);
+  transform: translateY(-1px);
+}
+
+.sliderTrackViewport {
+  width: 100%;
+  overflow: hidden;
+}
+
+.sliderTrack {
+  display: flex;
   gap: 14px;
+  width: 100%;
+}
+
+.eventCardItem {
+  flex: 0 0 calc(33.333% - 9.33px);
+  min-width: calc(33.333% - 9.33px);
 }
 
 .eventCard {
@@ -246,8 +286,9 @@
     max-width: 80%;
     opacity: 0.3;
   }
-  .eventsGrid {
-    grid-template-columns: repeat(3, 1fr);
+  .eventCardItem {
+    flex: 0 0 calc(33.333% - 9.33px);
+    min-width: calc(33.333% - 9.33px);
   }
 }
 
@@ -257,8 +298,9 @@
     max-height: none;
     padding: 40px 20px;
   }
-  .eventsGrid {
-    grid-template-columns: 1fr;
+  .eventCardItem {
+    flex: 0 0 100%;
+    min-width: 100%;
   }
   .heroDjImage {
     opacity: 0.2;
