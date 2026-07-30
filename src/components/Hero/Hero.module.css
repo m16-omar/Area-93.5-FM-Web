@@ -254,8 +254,11 @@
   .heroDjImage {
     right: 50%;
     transform: translateX(50%);
-    max-width: 80%;
-    opacity: 0.3;
+    max-width: 90%;
+    height: 100%;
+    opacity: 0.75;
+    object-fit: cover;
+    object-position: center top;
   }
   .eventCardItem {
     flex: 0 0 calc(33.333% - 9.33px);
@@ -277,6 +280,10 @@
     min-width: 100%;
   }
   .heroDjImage {
-    opacity: 0.2;
+    opacity: 0.7;
+    max-width: 100%;
+  }
+  .heroImageOverlay {
+    background: linear-gradient(180deg, rgba(8, 59, 110, 0.75) 0%, rgba(8, 59, 110, 0.85) 100%);
   }
 }
