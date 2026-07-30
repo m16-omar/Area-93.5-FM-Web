@@ -40,32 +40,11 @@ export const Navbar = () => {
           <span className={styles.logoText}>93.5 AREA <span className={styles.logoAccent}>FM</span></span>
         </Link>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation - HOME ONLY */}
         <nav className={styles.desktopNav}>
           <ul className={styles.navMenu}>
             <li className={styles.navItem}>
               <Link to="/" className={`${styles.navLink} ${isActive('/') ? styles.activeNavLink : ''}`}>HOME</Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/news" className={`${styles.navLink} ${isActive('/news') || isActive('/blog-sidebar') || isActive('/blog') ? styles.activeNavLink : ''}`}>NEWS</Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/podcasts" className={`${styles.navLink} ${isActive('/podcasts') ? styles.activeNavLink : ''}`}>PODCASTS</Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/shows" className={`${styles.navLink} ${isActive('/shows') ? styles.activeNavLink : ''}`}>SHOWS</Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/charts" className={`${styles.navLink} ${isActive('/charts') ? styles.activeNavLink : ''}`}>CHARTS</Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/videos" className={`${styles.navLink} ${isActive('/videos') ? styles.activeNavLink : ''}`}>VIDEOS</Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/promote" className={`${styles.navLink} ${isActive('/promote') ? styles.activeNavLink : ''}`}>PROMOTE</Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/contacts" className={`${styles.navLink} ${isActive('/contacts') ? styles.activeNavLink : ''}`}>CONTACTS</Link>
             </li>
           </ul>
         </nav>
@@ -106,27 +85,6 @@ export const Navbar = () => {
           <ul className={styles.mobileNavList}>
             <li>
               <Link to="/" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/') ? styles.activeMobileLink : ''}`}>HOME</Link>
-            </li>
-            <li>
-              <Link to="/news" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/news') || isActive('/blog-sidebar') || isActive('/blog') ? styles.activeMobileLink : ''}`}>NEWS</Link>
-            </li>
-            <li>
-              <Link to="/podcasts" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/podcasts') ? styles.activeMobileLink : ''}`}>PODCASTS</Link>
-            </li>
-            <li>
-              <Link to="/shows" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/shows') ? styles.activeMobileLink : ''}`}>SHOWS</Link>
-            </li>
-            <li>
-              <Link to="/charts" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/charts') ? styles.activeMobileLink : ''}`}>CHARTS</Link>
-            </li>
-            <li>
-              <Link to="/videos" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/videos') ? styles.activeMobileLink : ''}`}>VIDEOS</Link>
-            </li>
-            <li>
-              <Link to="/promote" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/promote') ? styles.activeMobileLink : ''}`}>PROMOTE</Link>
-            </li>
-            <li>
-              <Link to="/contacts" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/contacts') ? styles.activeMobileLink : ''}`}>CONTACTS</Link>
             </li>
           </ul>
 
