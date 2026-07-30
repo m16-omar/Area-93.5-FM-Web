@@ -57,7 +57,7 @@ export const TopTracks = () => {
               <span className={styles.featuredBadge}>{topTracksData.featuredTrack.badge}</span>
             </div>
             <div className={styles.featuredFooter}>
-              <div>
+              <div className={styles.featuredMeta}>
                 <h4 className={styles.featuredTitle}>{topTracksData.featuredTrack.title}</h4>
                 <p className={styles.featuredArtist}>{topTracksData.featuredTrack.artist}</p>
               </div>
