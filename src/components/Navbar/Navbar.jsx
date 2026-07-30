@@ -10,6 +10,7 @@ export const Navbar = () => {
   const location = useLocation();
   const { isPlaying, togglePlayPause, currentTrack, isMuted, toggleMute } = useAudioPlayer();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const isActive = (path) => location.pathname === path;
 
@@ -19,7 +20,9 @@ export const Navbar = () => {
       <div className={styles.topBanner}>
         <div className={styles.nowPlayingTrack}>
           <FiMusic className={styles.musicIcon} />
-          <span>{(currentTrack.showName || currentTrack.title).toUpperCase()} - {(currentTrack.presenterName || currentTrack.artist).toUpperCase()}</span>
+          <span className={styles.tickerText}>
+            {(currentTrack.showName || currentTrack.title).toUpperCase()} - {(currentTrack.presenterName || currentTrack.artist).toUpperCase()}
+          </span>
         </div>
         <div className={styles.topSocials}>
           <a href="#" className={styles.topSocialLink} aria-label="YouTube"><FaYoutube /></a>
@@ -30,61 +33,118 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Main Navbar */}
+      {/* Main Navbar Header */}
       <header className={styles.navbarContainer}>
         <Link to="/" className={styles.logoLink}>
           <img src={logoImg} alt="93.5 AREA FM Logo" className={styles.logoImg} />
           <span className={styles.logoText}>93.5 AREA <span className={styles.logoAccent}>FM</span></span>
         </Link>
 
-        <nav className={`${styles.navWrapper} ${mobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
+        {/* Desktop Navigation */}
+        <nav className={styles.desktopNav}>
           <ul className={styles.navMenu}>
             <li className={styles.navItem}>
-              <Link to="/" onClick={() => setMobileMenuOpen(false)} className={`${styles.navLink} ${isActive('/') ? styles.activeNavLink : ''}`}>HOME</Link>
+              <Link to="/" className={`${styles.navLink} ${isActive('/') ? styles.activeNavLink : ''}`}>HOME</Link>
             </li>
             <li className={styles.navItem}>
-              <Link to="/news" onClick={() => setMobileMenuOpen(false)} className={`${styles.navLink} ${isActive('/news') || isActive('/blog-sidebar') || isActive('/blog') ? styles.activeNavLink : ''}`}>NEWS</Link>
+              <Link to="/news" className={`${styles.navLink} ${isActive('/news') || isActive('/blog-sidebar') || isActive('/blog') ? styles.activeNavLink : ''}`}>NEWS</Link>
             </li>
             <li className={styles.navItem}>
-              <Link to="/podcasts" onClick={() => setMobileMenuOpen(false)} className={`${styles.navLink} ${isActive('/podcasts') ? styles.activeNavLink : ''}`}>PODCASTS</Link>
+              <Link to="/podcasts" className={`${styles.navLink} ${isActive('/podcasts') ? styles.activeNavLink : ''}`}>PODCASTS</Link>
             </li>
             <li className={styles.navItem}>
-              <Link to="/shows" onClick={() => setMobileMenuOpen(false)} className={`${styles.navLink} ${isActive('/shows') ? styles.activeNavLink : ''}`}>SHOWS</Link>
+              <Link to="/shows" className={`${styles.navLink} ${isActive('/shows') ? styles.activeNavLink : ''}`}>SHOWS</Link>
             </li>
             <li className={styles.navItem}>
-              <Link to="/charts" onClick={() => setMobileMenuOpen(false)} className={`${styles.navLink} ${isActive('/charts') ? styles.activeNavLink : ''}`}>CHARTS</Link>
+              <Link to="/charts" className={`${styles.navLink} ${isActive('/charts') ? styles.activeNavLink : ''}`}>CHARTS</Link>
             </li>
             <li className={styles.navItem}>
-              <Link to="/videos" onClick={() => setMobileMenuOpen(false)} className={`${styles.navLink} ${isActive('/videos') ? styles.activeNavLink : ''}`}>VIDEOS</Link>
+              <Link to="/videos" className={`${styles.navLink} ${isActive('/videos') ? styles.activeNavLink : ''}`}>VIDEOS</Link>
             </li>
             <li className={styles.navItem}>
-              <Link to="/promote" onClick={() => setMobileMenuOpen(false)} className={`${styles.navLink} ${isActive('/promote') ? styles.activeNavLink : ''}`}>PROMOTE</Link>
+              <Link to="/promote" className={`${styles.navLink} ${isActive('/promote') ? styles.activeNavLink : ''}`}>PROMOTE</Link>
             </li>
             <li className={styles.navItem}>
-              <Link to="/contacts" onClick={() => setMobileMenuOpen(false)} className={`${styles.navLink} ${isActive('/contacts') ? styles.activeNavLink : ''}`}>CONTACTS</Link>
+              <Link to="/contacts" className={`${styles.navLink} ${isActive('/contacts') ? styles.activeNavLink : ''}`}>CONTACTS</Link>
             </li>
           </ul>
         </nav>
 
+        {/* Right Header Action Buttons */}
         <div className={styles.navActions}>
-          <button className={styles.iconBtn} aria-label="Search">
+          <button className={`${styles.iconBtn} ${styles.hideOnMobile}`} onClick={() => setSearchOpen(!searchOpen)} aria-label="Search">
             <FiSearch />
           </button>
+          
           <button className={styles.playBtn} onClick={togglePlayPause}>
             {isPlaying ? <FaPause size={12} /> : <FaPlay size={12} />}
             <span>{isPlaying ? 'PAUSE' : 'PLAY'}</span>
           </button>
-          <button className={styles.iconBtn} onClick={toggleMute} aria-label="Toggle Sound">
+
+          <button className={`${styles.iconBtn} ${styles.hideOnMobile}`} onClick={toggleMute} aria-label="Toggle Sound">
             {isMuted ? <FiVolumeX /> : <FiVolume2 />}
           </button>
-          <button className={styles.popupBtn}>
+
+          <button className={`${styles.popupBtn} ${styles.hideOnTablet}`}>
             POP UP
           </button>
+
           <button className={styles.mobileToggle} onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle Menu">
             {mobileMenuOpen ? <FiX /> : <FiMenu />}
           </button>
         </div>
       </header>
+
+      {/* Mobile Slide-Out Drawer Navigation */}
+      {mobileMenuOpen && (
+        <div className={styles.mobileDrawer}>
+          <div className={styles.mobileSearchBox}>
+            <FiSearch className={styles.searchBoxIcon} />
+            <input type="text" placeholder="Search shows, news, podcasts..." className={styles.mobileSearchInput} />
+          </div>
+
+          <ul className={styles.mobileNavList}>
+            <li>
+              <Link to="/" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/') ? styles.activeMobileLink : ''}`}>HOME</Link>
+            </li>
+            <li>
+              <Link to="/news" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/news') || isActive('/blog-sidebar') || isActive('/blog') ? styles.activeMobileLink : ''}`}>NEWS</Link>
+            </li>
+            <li>
+              <Link to="/podcasts" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/podcasts') ? styles.activeMobileLink : ''}`}>PODCASTS</Link>
+            </li>
+            <li>
+              <Link to="/shows" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/shows') ? styles.activeMobileLink : ''}`}>SHOWS</Link>
+            </li>
+            <li>
+              <Link to="/charts" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/charts') ? styles.activeMobileLink : ''}`}>CHARTS</Link>
+            </li>
+            <li>
+              <Link to="/videos" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/videos') ? styles.activeMobileLink : ''}`}>VIDEOS</Link>
+            </li>
+            <li>
+              <Link to="/promote" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/promote') ? styles.activeMobileLink : ''}`}>PROMOTE</Link>
+            </li>
+            <li>
+              <Link to="/contacts" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/contacts') ? styles.activeMobileLink : ''}`}>CONTACTS</Link>
+            </li>
+          </ul>
+
+          <div className={styles.mobileExtraActions}>
+            <button className={styles.mobilePopUpBtn}>
+              POP UP PLAYER
+            </button>
+            
+            <div className={styles.mobileSocialsRow}>
+              <a href="#" aria-label="YouTube"><FaYoutube /></a>
+              <a href="#" aria-label="TikTok"><FaTiktok /></a>
+              <a href="#" aria-label="Instagram"><FaInstagram /></a>
+              <a href="#" aria-label="Facebook"><FaFacebookF /></a>
+              <a href="#" aria-label="Twitter"><FaTwitter /></a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

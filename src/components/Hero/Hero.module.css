@@ -269,6 +269,9 @@
     max-height: none;
     padding: 40px 20px;
   }
+  .rightCol {
+    margin-top: 20px;
+  }
   .eventCardItem {
     flex: 0 0 100%;
     min-width: 100%;
