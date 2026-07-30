@@ -141,6 +141,7 @@
 
 .trackMeta {
   flex: 1;
+  min-width: 0;
 }
 
 .trackTitle {
@@ -148,11 +149,17 @@
   font-weight: 800;
   font-size: 1.05rem;
   color: var(--primary-blue);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .trackArtist {
   font-size: 0.85rem;
   color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .voteBtn {
@@ -167,6 +174,9 @@
   font-size: 1.1rem;
   box-shadow: 0 4px 12px rgba(239, 75, 0, 0.25);
   transition: all var(--transition-fast);
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 .voted {
@@ -184,18 +194,88 @@
   font-weight: 700;
   font-size: 0.85rem;
   color: var(--primary-blue);
-  min-width: 40px;
+  min-width: 32px;
   text-align: right;
 }
 
 @media (max-width: 1024px) {
   .tracksGrid {
     grid-template-columns: 1fr;
+    gap: 36px;
   }
 }
 
 @media (max-width: 768px) {
   .tracksSection {
-    padding: 60px 20px;
+    padding: 36px 16px;
+  }
+  .leftCol {
+    gap: 14px;
+  }
+  .mainTitle {
+    font-size: 1.6rem;
+  }
+  .subTitle {
+    font-size: 1.2rem;
+    margin-top: 4px;
+  }
+  .description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .featuredCard {
+    max-width: 100%;
+  }
+  .featuredArtWrapper {
+    height: 180px;
+  }
+  .featuredFooter {
+    padding: 14px;
+  }
+  .featuredTitle {
+    font-size: 1.0rem;
+  }
+  .featuredArtist {
+    font-size: 0.8rem;
+  }
+  .trackRowCard {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  .trackThumb {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    flex-shrink: 0;
+  }
+  .trackTitle {
+    font-size: 0.9rem;
+  }
+  .trackArtist {
+    font-size: 0.75rem;
+  }
+  .voteBtn {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tracksSection {
+    padding: 24px 14px;
+  }
+  .mainTitle {
+    font-size: 1.3rem;
+  }
+  .subTitle {
+    font-size: 1.05rem;
+  }
+  .description {
+    font-size: 0.8rem;
+  }
+  .featuredArtWrapper {
+    height: 140px;
   }
 }

@@ -58,7 +58,7 @@ export const FeaturedPodcast = () => {
             <div className={styles.hostCard}>
               <img src={podcastData.host.image} alt={podcastData.host.name} className={styles.hostImage} loading="lazy" />
               <div className={styles.hostOverlay}>
-                <span className="badge-neon" style={{ background: 'var(--color-primary)', color: '#000' }}>
+                <span className={`${styles.hostRoleBadge} badge-neon`}>
                   {podcastData.host.role}
                 </span>
                 <h3 className={styles.hostName}>{podcastData.host.name}</h3>

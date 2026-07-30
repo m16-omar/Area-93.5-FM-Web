@@ -245,7 +245,7 @@
 
 @media (max-width: 768px) {
   .podcastSection {
-    padding: 40px 16px;
+    padding: 36px 16px;
   }
   .leftCol {
     gap: 18px;
@@ -266,11 +266,43 @@
     padding: 10px 14px;
     font-size: 0.75rem;
   }
+  .hostOverlay {
+    align-items: flex-start;
+    padding: 14px;
+  }
+  .hostRoleBadge {
+    display: inline-block;
+    width: auto;
+    max-width: fit-content;
+  }
+  .hostCard {
+    height: 180px;
+  }
+  .hostName {
+    font-size: 1.25rem;
+  }
+  .socialIconBtn {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+  .episodeArtWrapper {
+    height: 160px;
+  }
+  .episodeArtBg {
+    width: 120px;
+    height: 120px;
+  }
+  .playCircleBtn {
+    width: 44px;
+    height: 44px;
+    font-size: 0.95rem;
+  }
 }
 
 @media (max-width: 480px) {
   .podcastSection {
-    padding: 28px 14px;
+    padding: 24px 14px;
   }
   .mainTitle {
     font-size: 1.3rem;
@@ -286,6 +318,24 @@
   .timeCell {
     padding: 8px 12px;
     font-size: 0.7rem;
+  }
+  .hostCard {
+    height: 150px;
+  }
+  .hostName {
+    font-size: 1.1rem;
+  }
+  .episodeArtWrapper {
+    height: 140px;
+  }
+  .episodeArtBg {
+    width: 100px;
+    height: 100px;
+  }
+  .playCircleBtn {
+    width: 38px;
+    height: 38px;
+    font-size: 0.85rem;
   }
   .rightCol {
     grid-template-columns: 1fr;
