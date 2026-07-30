@@ -3,7 +3,7 @@
   background: linear-gradient(180deg, rgba(8,59,110,.75), rgba(10,79,146,.85)), var(--secondary-blue);
   min-height: 680px;
   max-height: 800px;
-  padding: 60px 48px;
+  padding: 140px 48px 60px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -270,7 +270,7 @@
   .heroSection {
     min-height: auto;
     max-height: none;
-    padding: 32px 16px;
+    padding: 110px 16px 32px;
   }
   .leftCol {
     gap: 12px;
@@ -316,7 +316,7 @@
 
 @media (max-width: 480px) {
   .heroSection {
-    padding: 24px 14px;
+    padding: 95px 14px 24px;
   }
   .logoWatermark {
     font-size: 1.45rem;

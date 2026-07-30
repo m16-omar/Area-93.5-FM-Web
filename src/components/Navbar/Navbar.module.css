@@ -1,12 +1,14 @@
 .stickyHeaderWrapper {
-  position: sticky;
+  position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 999;
   width: 100%;
 }
 
 .topBanner {
-  background: var(--secondary-blue);
+  background: rgba(6, 25, 50, 0.85);
   color: var(--white);
   font-size: 0.75rem;
   font-weight: 700;
@@ -16,6 +18,8 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .nowPlayingTrack {
@@ -54,13 +58,15 @@
 }
 
 .navbarContainer {
-  background: #ffffff;
-  box-shadow: 0 4px 20px rgba(10, 79, 146, 0.12);
+  background: rgba(8, 35, 65, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 12px 32px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   gap: 16px;
 }
 
@@ -85,7 +91,7 @@
   font-weight: 900;
   font-size: 1.4rem;
   letter-spacing: -0.02em;
-  color: var(--primary-blue);
+  color: var(--white);
   white-space: nowrap;
 }
 
@@ -119,7 +125,7 @@
   font-size: 0.85rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--primary-blue);
+  color: var(--white);
   display: flex;
   align-items: center;
   gap: 4px;
@@ -141,7 +147,7 @@
 }
 
 .iconBtn {
-  background: var(--secondary-blue);
+  background: rgba(255, 255, 255, 0.15);
   color: var(--white);
   width: 40px;
   height: 40px;
@@ -151,7 +157,7 @@
   justify-content: center;
   font-size: 1.1rem;
   transition: background var(--transition-fast), transform var(--transition-fast);
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
 }
 
@@ -174,7 +180,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 4px 12px rgba(239, 75, 0, 0.25);
+  box-shadow: 0 4px 12px rgba(239, 75, 0, 0.35);
   transition: background var(--transition-fast), transform var(--transition-fast);
   border: none;
   cursor: pointer;
@@ -187,7 +193,7 @@
 }
 
 .popupBtn {
-  background: var(--primary-blue);
+  background: rgba(255, 255, 255, 0.15);
   color: var(--white);
   height: 40px;
   padding: 0 16px;
@@ -198,19 +204,20 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: background var(--transition-fast), transform var(--transition-fast);
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
   white-space: nowrap;
 }
 
 .popupBtn:hover {
-  background: var(--secondary-blue);
+  background: var(--primary-orange);
+  border-color: var(--primary-orange);
   transform: translateY(-1px);
 }
 
 .mobileToggle {
   display: none;
-  background: var(--primary-blue);
+  background: rgba(255, 255, 255, 0.15);
   color: var(--white);
   width: 40px;
   height: 40px;
@@ -218,7 +225,7 @@
   align-items: center;
   justify-content: center;
   font-size: 1.3rem;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
 }
 
@@ -228,9 +235,11 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: var(--secondary-blue);
+  background: rgba(6, 25, 50, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   padding: 24px 20px;
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
   gap: 20px;
