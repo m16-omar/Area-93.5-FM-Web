@@ -171,17 +171,17 @@
 
 @media (max-width: 768px) {
   .scheduleSection {
-    padding: 40px 16px;
+    padding: 32px 16px;
   }
   .watermarkTitle {
-    font-size: 2.2rem;
-    top: 25px;
+    font-size: 1.8rem;
+    top: 20px;
   }
   .mainTitle {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
   }
   .sectionHeader {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
   .tabContainer {
     justify-content: flex-start;
@@ -189,7 +189,7 @@
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
     padding: 4px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     border-radius: 10px;
     scrollbar-width: none;
   }
@@ -198,8 +198,8 @@
   }
   .tabButton {
     flex: 0 0 auto;
-    padding: 10px 14px;
-    font-size: 0.78rem;
+    padding: 8px 12px;
+    font-size: 0.75rem;
     border-radius: 6px;
   }
   .showGrid {
@@ -209,11 +209,18 @@
 }
 
 @media (max-width: 480px) {
+  .scheduleSection {
+    padding: 24px 14px;
+  }
+  .watermarkTitle {
+    font-size: 1.4rem;
+    top: 16px;
+  }
   .mainTitle {
-    font-size: 1.35rem;
+    font-size: 1.1rem;
   }
   .tabButton {
-    padding: 8px 12px;
-    font-size: 0.75rem;
+    padding: 7px 10px;
+    font-size: 0.72rem;
   }
 }
