@@ -1,11 +1,11 @@
 .stickyHeaderWrapper {
-  position: sticky;
-  top: 0;
-  z-index: 999;
+  position: relative;
   width: 100%;
+  z-index: 999;
 }
 
 .topBanner {
+  position: relative;
   background: var(--secondary-blue);
   color: var(--white);
   font-size: 0.75rem;
@@ -54,6 +54,9 @@
 }
 
 .navbarContainer {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
   background: #ffffff;
   box-shadow: 0 4px 20px rgba(10, 79, 146, 0.12);
   display: flex;
@@ -62,6 +65,7 @@
   padding: 12px 32px;
   border-bottom: 1px solid var(--border);
   gap: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .logoLink {
