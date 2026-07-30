@@ -195,9 +195,10 @@
 
 .heroDjImage {
   position: absolute;
-  right: 25%;
+  left: 32%;
   bottom: 0;
-  max-height: 90%;
+  max-height: 95%;
+  width: auto;
   object-fit: contain;
   pointer-events: none;
   z-index: 1;
@@ -210,6 +211,11 @@
   .eventsGrid {
     grid-template-columns: repeat(3, 1fr);
   }
+  .heroDjImage {
+    opacity: 0.4;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 @media (max-width: 768px) {
@@ -218,5 +224,8 @@
   }
   .eventsGrid {
     grid-template-columns: 1fr;
+  }
+  .heroDjImage {
+    display: none;
   }
 }

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 import eventsData from '../../data/eventsData.json';
+import heroPresenterImg from '../../assets/Here Presenters.png';
 import styles from './Hero.module.css';
 
 export const Hero = () => {
@@ -12,6 +13,7 @@ export const Hero = () => {
     <section className={styles.heroSection}>
       <div className={styles.bgCircle1} />
       <div className={styles.bgCircle2} />
+      <img src={heroPresenterImg} alt="93.5 Area FM Presenter" className={styles.heroDjImage} />
 
       <div className={styles.heroContent}>
         {/* Left Column */}
