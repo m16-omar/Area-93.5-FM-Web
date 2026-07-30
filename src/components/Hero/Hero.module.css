@@ -48,10 +48,10 @@
 
 .heroDjImage {
   position: absolute;
-  right: 14%;
+  right: 22%;
   bottom: 0;
   height: 100%;
-  max-width: 55%;
+  max-width: 58%;
   object-fit: contain;
   object-position: center bottom;
   display: block;
