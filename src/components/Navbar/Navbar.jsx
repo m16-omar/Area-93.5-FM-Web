@@ -14,6 +14,11 @@ export const Navbar = () => {
 
   const isActive = (path) => location.pathname === path;
 
+  const handleBlockedClick = (e) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+  };
+
   return (
     <div className={styles.stickyHeaderWrapper}>
       {/* Top Ticker / Social Bar */}
@@ -40,11 +45,32 @@ export const Navbar = () => {
           <span className={styles.logoText}>93.5 AREA <span className={styles.logoAccent}>FM</span></span>
         </Link>
 
-        {/* Desktop Navigation - HOME ONLY */}
+        {/* Desktop Navigation */}
         <nav className={styles.desktopNav}>
           <ul className={styles.navMenu}>
             <li className={styles.navItem}>
               <Link to="/" className={`${styles.navLink} ${isActive('/') ? styles.activeNavLink : ''}`}>HOME</Link>
+            </li>
+            <li className={styles.navItem}>
+              <a href="#" onClick={handleBlockedClick} className={styles.navLink}>NEWS</a>
+            </li>
+            <li className={styles.navItem}>
+              <a href="#" onClick={handleBlockedClick} className={styles.navLink}>PODCASTS</a>
+            </li>
+            <li className={styles.navItem}>
+              <a href="#" onClick={handleBlockedClick} className={styles.navLink}>SHOWS</a>
+            </li>
+            <li className={styles.navItem}>
+              <a href="#" onClick={handleBlockedClick} className={styles.navLink}>CHARTS</a>
+            </li>
+            <li className={styles.navItem}>
+              <a href="#" onClick={handleBlockedClick} className={styles.navLink}>VIDEOS</a>
+            </li>
+            <li className={styles.navItem}>
+              <a href="#" onClick={handleBlockedClick} className={styles.navLink}>PROMOTE</a>
+            </li>
+            <li className={styles.navItem}>
+              <a href="#" onClick={handleBlockedClick} className={styles.navLink}>CONTACTS</a>
             </li>
           </ul>
         </nav>
@@ -85,6 +111,27 @@ export const Navbar = () => {
           <ul className={styles.mobileNavList}>
             <li>
               <Link to="/" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/') ? styles.activeMobileLink : ''}`}>HOME</Link>
+            </li>
+            <li>
+              <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>NEWS</a>
+            </li>
+            <li>
+              <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>PODCASTS</a>
+            </li>
+            <li>
+              <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>SHOWS</a>
+            </li>
+            <li>
+              <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>CHARTS</a>
+            </li>
+            <li>
+              <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>VIDEOS</a>
+            </li>
+            <li>
+              <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>PROMOTE</a>
+            </li>
+            <li>
+              <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>CONTACTS</a>
             </li>
           </ul>
 
