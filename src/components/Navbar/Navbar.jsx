@@ -62,13 +62,13 @@ export const Navbar = () => {
               <Link to="/" className={`${styles.navLink} ${isActive('/') ? styles.activeNavLink : ''}`}>HOME</Link>
             </li>
             <li className={styles.navItem}>
-              <a href="#" onClick={handleBlockedClick} className={styles.navLink}>NEWS</a>
+              <a href="#" onClick={handleBlockedClick} className={styles.navLink}>SHOWS</a>
             </li>
             <li className={styles.navItem}>
               <a href="#" onClick={handleBlockedClick} className={styles.navLink}>PODCASTS</a>
             </li>
             <li className={styles.navItem}>
-              <a href="#" onClick={handleBlockedClick} className={styles.navLink}>SHOWS</a>
+              <a href="#" onClick={handleBlockedClick} className={styles.navLink}>NEWS</a>
             </li>
             <li className={styles.navItem}>
               <a href="#" onClick={handleBlockedClick} className={styles.navLink}>CHARTS</a>
@@ -180,13 +180,13 @@ export const Navbar = () => {
                     <Link to="/" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/') ? styles.activeMobileLink : ''}`}>HOME</Link>
                   </li>
                   <li>
-                    <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>NEWS</a>
+                    <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>SHOWS</a>
                   </li>
                   <li>
                     <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>PODCASTS</a>
                   </li>
                   <li>
-                    <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>SHOWS</a>
+                    <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>NEWS</a>
                   </li>
                   <li>
                     <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>CHARTS</a>
