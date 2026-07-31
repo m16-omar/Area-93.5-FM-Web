@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiClock, FiUser, FiMusic, FiChevronRight } from 'react-icons/fi';
+import { FiClock, FiUser, FiChevronRight } from 'react-icons/fi';
 import { Navbar } from '../components/Navbar/Navbar';
 import { PageHeader } from '../components/PageHeader/PageHeader';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import showsData from '../data/showsScheduleData.json';
+import styles from './ShowsSchedulePage.module.css';
 
 export const ShowsSchedulePage = () => {
   const [activeDay, setActiveDay] = useState('MONDAY');
@@ -13,34 +14,20 @@ export const ShowsSchedulePage = () => {
   const currentSchedule = showsData.schedule[activeDay] || [];
 
   return (
-    <main style={{ position: 'relative', width: '100%', overflowX: 'clip', background: 'var(--color-light-bg)' }}>
+    <main className={styles.showsPageContainer}>
       <Navbar />
       <PageHeader title="SHOWS SCHEDULE" watermark={`WEEKLY\nRADIO`} />
 
-      <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '60px 48px 100px' }}>
+      <section className={styles.scheduleSection}>
         {/* Day Selector Tabs */}
-        <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '50px' }}>
+        <div className={styles.dayTabsRow}>
           {showsData.days.map((day) => {
             const isActive = activeDay === day;
             return (
               <button
                 key={day}
                 onClick={() => setActiveDay(day)}
-                style={{
-                  position: 'relative',
-                  background: isActive ? 'var(--primary-orange)' : '#ffffff',
-                  color: isActive ? '#ffffff' : 'var(--primary-blue)',
-                  border: isActive ? '1px solid var(--primary-orange)' : '1px solid var(--border)',
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 900,
-                  fontSize: '0.85rem',
-                  letterSpacing: '0.05em',
-                  padding: '12px 22px',
-                  borderRadius: 'var(--radius-sm)',
-                  cursor: 'pointer',
-                  boxShadow: isActive ? '0 4px 14px rgba(239, 75, 0, 0.35)' : '0 2px 8px rgba(10, 79, 146, 0.08)',
-                  transition: 'all 0.2s ease'
-                }}
+                className={`${styles.dayTabBtn} ${isActive ? styles.dayTabBtnActive : ''}`}
               >
                 {day}
               </button>
@@ -56,68 +43,43 @@ export const ShowsSchedulePage = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
-            style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}
+            className={styles.scheduleList}
           >
             {currentSchedule.map((show) => (
               <div
                 key={show.id}
-                style={{
-                  background: '#ffffff',
-                  borderRadius: '18px',
-                  border: '1px solid #E5E7EB',
-                  overflow: 'hidden',
-                  display: 'flex',
-                  alignItems: 'center',
-                  boxShadow: '0 4px 12px rgba(10, 79, 146, 0.08)',
-                  borderLeft: show.nowPlaying ? '6px solid var(--primary-orange)' : '1px solid #E5E7EB'
-                }}
+                className={`${styles.showCard} ${show.nowPlaying ? styles.showCardNowPlaying : ''}`}
               >
-                <div style={{ position: 'relative', width: '220px', height: '160px', flexShrink: 0 }}>
-                  <img src={show.image} alt={show.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <div className={styles.showCardImageWrapper}>
+                  <img src={show.image} alt={show.name} className={styles.showCardImg} />
                   {show.nowPlaying && (
-                    <span className="badge-neon" style={{ position: 'absolute', top: '12px', left: '12px', zIndex: 2, background: 'var(--primary-orange)', color: '#ffffff' }}>
+                    <span className={styles.nowPlayingBadge}>
                       NOW PLAYING
                     </span>
                   )}
                 </div>
 
-                <div style={{ padding: '24px 32px', flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div>
-                    <span className="badge-outline" style={{ marginBottom: '8px', display: 'inline-block' }}>
+                <div className={styles.showCardContent}>
+                  <div className={styles.showCardMainInfo}>
+                    <span className={`badge-outline ${styles.genreBadge}`}>
                       {show.genre.toLowerCase()}
                     </span>
 
-                    <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.5rem', color: 'var(--primary-blue)', margin: '4px 0 8px' }}>
+                    <h3 className={styles.showTitle}>
                       {show.name}
                     </h3>
 
-                    <div style={{ display: 'flex', gap: '20px', fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 600 }}>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <FiUser size={14} style={{ color: 'var(--primary-orange)' }} /> {show.dj}
+                    <div className={styles.showDetailsRow}>
+                      <span className={styles.showDetailItem}>
+                        <FiUser size={14} className={styles.detailIcon} /> {show.dj}
                       </span>
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <FiClock size={14} style={{ color: 'var(--primary-orange)' }} /> {show.time}
+                      <span className={styles.showDetailItem}>
+                        <FiClock size={14} className={styles.detailIcon} /> {show.time}
                       </span>
                     </div>
                   </div>
 
-                  <button
-                    style={{
-                      width: '44px',
-                      height: '44px',
-                      borderRadius: '50%',
-                      background: 'var(--primary-orange)',
-                      color: '#ffffff',
-                      border: 'none',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '1.2rem',
-                      cursor: 'pointer',
-                      boxShadow: '0 4px 12px rgba(239, 75, 0, 0.3)'
-                    }}
-                    aria-label="Show Details"
-                  >
+                  <button className={styles.actionBtn} aria-label="Show Details">
                     <FiChevronRight />
                   </button>
                 </div>
