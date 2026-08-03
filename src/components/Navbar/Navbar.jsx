@@ -146,33 +146,6 @@ export const Navbar = () => {
                 </div>
               </div>
 
-              {/* TOP CHART Section */}
-              <div className={styles.drawerSection}>
-                <div className={styles.sectionHeadingWrapper}>
-                  <span className={styles.sectionTagBadge}>TOP CHART</span>
-                  <div className={styles.sectionLine} />
-                </div>
-
-                <div className={styles.topChartList}>
-                  {topTracksData.tracks.slice(0, 5).map((track) => (
-                    <div key={track.id} className={styles.topChartItem}>
-                      <div className={styles.trackArtWrapper}>
-                        <img src={track.image} alt={track.title} className={styles.trackArtImg} />
-                        <span className={styles.rankNum}>{track.rank}</span>
-                      </div>
-                      <div className={styles.trackDetails}>
-                        <h5 className={styles.trackTitleText}>{track.title}</h5>
-                        <p className={styles.trackArtistText}>{track.artist}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <button className={styles.fullTracklistBtn} onClick={handleBlockedClick}>
-                  FULL TRACKLIST
-                </button>
-              </div>
-
               {/* Navigation Links */}
               <div className={styles.drawerSection}>
                 <ul className={styles.mobileNavList}>
@@ -201,6 +174,33 @@ export const Navbar = () => {
                     <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>CONTACTS</a>
                   </li>
                 </ul>
+              </div>
+
+              {/* TOP CHART Section */}
+              <div className={styles.drawerSection}>
+                <div className={styles.sectionHeadingWrapper}>
+                  <span className={styles.sectionTagBadge}>TOP CHART</span>
+                  <div className={styles.sectionLine} />
+                </div>
+
+                <div className={styles.topChartList}>
+                  {topTracksData.tracks.slice(0, 5).map((track) => (
+                    <div key={track.id} className={styles.topChartItem}>
+                      <div className={styles.trackArtWrapper}>
+                        <img src={track.image} alt={track.title} className={styles.trackArtImg} />
+                        <span className={styles.rankNum}>{track.rank}</span>
+                      </div>
+                      <div className={styles.trackDetails}>
+                        <h5 className={styles.trackTitleText}>{track.title}</h5>
+                        <p className={styles.trackArtistText}>{track.artist}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <button className={styles.fullTracklistBtn} onClick={handleBlockedClick}>
+                  FULL TRACKLIST
+                </button>
               </div>
 
               {/* Extra Actions & Socials */}
