@@ -1,0 +1,27 @@
+.liveContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--primary-orange);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(239, 75, 0, 0.4);
+}
+
+.equalizerBar {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 10px;
+}
+
+.bar {
+  width: 2px;
+  background: #ffffff;
+  border-radius: 1px;
+}

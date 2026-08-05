@@ -1,0 +1,92 @@
+.sidebarBox {
+  background: var(--white);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(10, 79, 146, 0.06);
+  position: sticky;
+  top: 100px;
+}
+
+.headingWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.tagBadge {
+  background: #b5ff00;
+  color: #000000;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.greenLine {
+  flex: 1;
+  height: 2px;
+  background: #b5ff00;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: var(--primary-blue);
+  margin: 0 0 20px;
+  text-transform: uppercase;
+}
+
+.upcomingList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.upcomingItem {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.upcomingItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.itemImg {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.itemTime {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--primary-orange);
+  margin-bottom: 2px;
+  display: block;
+}
+
+.itemTitle {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--primary-blue);
+  margin: 0 0 2px;
+  line-height: 1.25;
+}
+
+.itemPresenter {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}

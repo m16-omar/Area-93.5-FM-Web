@@ -1,0 +1,33 @@
+.chipsRow {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 28px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.chipBtn {
+  background: rgba(10, 79, 146, 0.05);
+  color: var(--primary-blue);
+  border: 1px solid transparent;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.chipBtn:hover {
+  background: rgba(10, 79, 146, 0.1);
+}
+
+.chipActive {
+  background: var(--primary-blue) !important;
+  color: var(--white) !important;
+}

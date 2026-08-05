@@ -1,0 +1,374 @@
+{
+  "categories": ["ALL", "News", "Sports", "Talk", "Entertainment", "Politics", "Lifestyle", "Music", "Business", "Religion"],
+  "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+  "featured": {
+    "id": "feat-1",
+    "title": "Hitmakers Live & High Voltage",
+    "presenter": "Jordan Carter & Elena Vance",
+    "category": "Entertainment",
+    "genre": "Pop & Chart Hits",
+    "time": "08:00 AM - 11:00 AM",
+    "shortDescription": "The ultimate morning prime-time broadcast packed with trending charts, live artist interviews, exclusive phone-ins, and high-octane energy across the city.",
+    "fullDescription": "Join Jordan Carter & Elena Vance as they take over the airwaves with top-charting anthems, exclusive celebrity interviews, viral segment rundowns, and interactive audience calls.",
+    "thumbnail": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+    "banner": "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80",
+    "isLive": true,
+    "language": "English & Pidgin",
+    "targetAudience": "Youth & Professionals (18 - 45)"
+  },
+  "schedule": {
+    "Monday": [
+      {
+        "id": "mon-1",
+        "title": "Morning Vibe Blast",
+        "presenter": "Jordan Carter",
+        "presenterRole": "Head DJ & Presenter",
+        "presenterPhoto": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+        "category": "Talk",
+        "genre": "Interviews & Morning Talk",
+        "description": "Kickstart your day with urban news, weather updates, viral gossip, and inspiring conversations.",
+        "fullDescription": "The Morning Vibe Blast delivers prime-time radio entertainment. From local news highlights to artist spotlight interviews and live phone-in discussions.",
+        "day": "Monday",
+        "startTime": "06:00 AM",
+        "endTime": "10:00 AM",
+        "duration": "4 Hours",
+        "thumbnail": "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=600&q=80",
+        "language": "English & Pidgin",
+        "targetAudience": "Commuters & Early Risers",
+        "isLive": false
+      },
+      {
+        "id": "mon-2",
+        "title": "Urban Beats & Rhythms",
+        "presenter": "Elena Vance",
+        "presenterRole": "Music Director",
+        "presenterPhoto": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+        "category": "Music",
+        "genre": "Afrobeats & Hip Hop",
+        "description": "Mid-day musical journey through top trending Afrobeats, Hip-Hop classics, and new music debuts.",
+        "fullDescription": "Elena Vance brings curated playlists, request line sessions, and artist profiles across the continent.",
+        "day": "Monday",
+        "startTime": "10:00 AM",
+        "endTime": "02:00 PM",
+        "duration": "4 Hours",
+        "thumbnail": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=600&q=80",
+        "language": "English",
+        "targetAudience": "Music Lovers & Students",
+        "isLive": false
+      },
+      {
+        "id": "mon-3",
+        "title": "Area Politics & Power Hour",
+        "presenter": "Marcus Sterling",
+        "presenterRole": "Senior Political Analyst",
+        "presenterPhoto": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
+        "category": "Politics",
+        "genre": "Current Affairs",
+        "description": "Deep-dive political analysis, policy breakdowns, and hard-hitting government interviews.",
+        "fullDescription": "Marcus Sterling scrutinizes public governance, economic trends, and civic affairs with guest policy experts.",
+        "day": "Monday",
+        "startTime": "02:00 PM",
+        "endTime": "05:00 PM",
+        "duration": "3 Hours",
+        "thumbnail": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80",
+        "language": "English",
+        "targetAudience": "Civic Advocates & Decision Makers",
+        "isLive": false
+      },
+      {
+        "id": "mon-4",
+        "title": "Hitmakers Live",
+        "presenter": "Jordan Carter",
+        "presenterRole": "Head DJ & Presenter",
+        "presenterPhoto": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+        "category": "Entertainment",
+        "genre": "Live Show",
+        "description": "Prime-time evening show featuring interactive polls, studio guest performances, and song request countdowns.",
+        "fullDescription": "Hitmakers Live is Area 93.5 FM's flagship evening broadcast where listeners control the playlist.",
+        "day": "Monday",
+        "startTime": "05:00 PM",
+        "endTime": "08:00 PM",
+        "duration": "3 Hours",
+        "thumbnail": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
+        "language": "English & Pidgin",
+        "targetAudience": "General Audience",
+        "isLive": true
+      },
+      {
+        "id": "mon-5",
+        "title": "Night Owl Chillout Sessions",
+        "presenter": "Lucas Ruiz",
+        "presenterRole": "Late Night Host",
+        "presenterPhoto": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
+        "category": "Lifestyle",
+        "genre": "R&B & Soul",
+        "description": "Relaxing late-night tunes, intimate story-sharing, and acoustic soul selections.",
+        "fullDescription": "Wind down your day with smooth R&B cuts, acoustic sessions, and late-night listener phone calls.",
+        "day": "Monday",
+        "startTime": "08:00 PM",
+        "endTime": "11:00 PM",
+        "duration": "3 Hours",
+        "thumbnail": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+        "language": "English",
+        "targetAudience": "Late Night Listeners",
+        "isLive": false
+      }
+    ],
+    "Tuesday": [
+      {
+        "id": "tue-1",
+        "title": "Business Today & Market Trends",
+        "presenter": "Amanda Foster",
+        "presenterRole": "Financial Journalist",
+        "presenterPhoto": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+        "category": "Business",
+        "genre": "Finance & Markets",
+        "description": "Morning stock market analysis, startup interviews, and financial planning tips.",
+        "fullDescription": "Empowering entrepreneurs with market insights, investment strategies, and corporate leadership spotlights.",
+        "day": "Tuesday",
+        "startTime": "07:00 AM",
+        "endTime": "10:00 AM",
+        "duration": "3 Hours",
+        "thumbnail": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
+        "language": "English",
+        "targetAudience": "Entrepreneurs & Investors",
+        "isLive": false
+      },
+      {
+        "id": "tue-2",
+        "title": "Area Sports Hub",
+        "presenter": "David Beckham",
+        "presenterRole": "Sports Anchor",
+        "presenterPhoto": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
+        "category": "Sports",
+        "genre": "Sports Talk",
+        "description": "Comprehensive coverage of local football leagues, European football, basketball, and athlete interviews.",
+        "fullDescription": "Live match commentary, tactical analysis, transfer rumor breakdowns, and phone-in fan debates.",
+        "day": "Tuesday",
+        "startTime": "10:00 AM",
+        "endTime": "01:00 PM",
+        "duration": "3 Hours",
+        "thumbnail": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80",
+        "language": "English & Pidgin",
+        "targetAudience": "Sports Fans",
+        "isLive": false
+      },
+      {
+        "id": "tue-3",
+        "title": "Top 10 Countdown",
+        "presenter": "Lucas Ruiz",
+        "presenterRole": "Charts Specialist",
+        "presenterPhoto": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
+        "category": "Music",
+        "genre": "Weekly Charts",
+        "description": "Counting down the 10 biggest tracks voted by listeners across the week.",
+        "fullDescription": "Lucas Ruiz analyzes streaming chart trends, fresh releases, and announces the weekly #1 track.",
+        "day": "Tuesday",
+        "startTime": "05:00 PM",
+        "endTime": "08:00 PM",
+        "duration": "3 Hours",
+        "thumbnail": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80",
+        "language": "English",
+        "targetAudience": "Chart Enthusiasts",
+        "isLive": false
+      }
+    ],
+    "Wednesday": [
+      {
+        "id": "wed-1",
+        "title": "Lifestyle & Wellness Today",
+        "presenter": "Chloe Grace",
+        "presenterRole": "Wellness Host",
+        "presenterPhoto": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80",
+        "category": "Lifestyle",
+        "genre": "Health & Relationships",
+        "description": "Inspiring talk on mental health, fitness, relationships, and modern living.",
+        "fullDescription": "Chloe Grace hosts expert nutritionists, therapists, and fitness coaches answering caller questions live.",
+        "day": "Wednesday",
+        "startTime": "08:00 AM",
+        "endTime": "11:00 AM",
+        "duration": "3 Hours",
+        "thumbnail": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80",
+        "language": "English",
+        "targetAudience": "Families & Health Enthusiasts",
+        "isLive": false
+      },
+      {
+        "id": "wed-2",
+        "title": "Newsline 93.5",
+        "presenter": "Michael Cole",
+        "presenterRole": "Chief Editor",
+        "presenterPhoto": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80",
+        "category": "News",
+        "genre": "Breaking News",
+        "description": "In-depth reporting on national headlines, investigative stories, and international bulletins.",
+        "fullDescription": "Delivering accurate, verified news bulletins with live field correspondents across key regional sectors.",
+        "day": "Wednesday",
+        "startTime": "01:00 PM",
+        "endTime": "04:00 PM",
+        "duration": "3 Hours",
+        "thumbnail": "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=600&q=80",
+        "language": "English",
+        "targetAudience": "General Public",
+        "isLive": false
+      }
+    ],
+    "Thursday": [
+      {
+        "id": "thu-1",
+        "title": "Tech & Future Innovation",
+        "presenter": "Alex Rivera",
+        "presenterRole": "Tech Editor",
+        "presenterPhoto": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
+        "category": "Entertainment",
+        "genre": "Technology",
+        "description": "Exploring artificial intelligence, gadget reviews, and African tech startup founders.",
+        "fullDescription": "Alex Rivera breaks down consumer tech trends, cybersecurity updates, and interviews tech pioneers.",
+        "day": "Thursday",
+        "startTime": "10:00 AM",
+        "endTime": "01:00 PM",
+        "duration": "3 Hours",
+        "thumbnail": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80",
+        "language": "English",
+        "targetAudience": "Tech Enthusiasts & Developers",
+        "isLive": false
+      }
+    ],
+    "Friday": [
+      {
+        "id": "fri-1",
+        "title": "Friday Party Starter",
+        "presenter": "DJ Pulse",
+        "presenterRole": "Resident Club DJ",
+        "presenterPhoto": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80",
+        "category": "Music",
+        "genre": "Club Mix & Amapiano",
+        "description": "High-energy weekend kickoff mix set loaded with Amapiano, Afro House, and Dancehall bangers.",
+        "fullDescription": "Get the weekend started with non-stop club mixes, DJ battle spotlights, and venue party guides.",
+        "day": "Friday",
+        "startTime": "07:00 PM",
+        "endTime": "11:00 PM",
+        "duration": "4 Hours",
+        "thumbnail": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80",
+        "language": "English & Pidgin",
+        "targetAudience": "Partygoers & Weekend Youth",
+        "isLive": false
+      }
+    ],
+    "Saturday": [
+      {
+        "id": "sat-1",
+        "title": "Weekend Gospel & Grace",
+        "presenter": "Pastor Grace",
+        "presenterRole": "Inspirational Host",
+        "presenterPhoto": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+        "category": "Religion",
+        "genre": "Gospel & Faith",
+        "description": "Uplifting weekend worship tunes, inspirational sermons, and community prayer sessions.",
+        "fullDescription": "Inspirational gospel melodies, choir guest spotlights, and motivational morning encouragement.",
+        "day": "Saturday",
+        "startTime": "07:00 AM",
+        "endTime": "11:00 AM",
+        "duration": "4 Hours",
+        "thumbnail": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80",
+        "language": "English",
+        "targetAudience": "Families & Faith Community",
+        "isLive": false
+      }
+    ],
+    "Sunday": [
+      {
+        "id": "sun-1",
+        "title": "Sunday Soul & Reflections",
+        "presenter": "Samantha Lopez",
+        "presenterRole": "Radio Host",
+        "presenterPhoto": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+        "category": "Music",
+        "genre": "Classic Soul & Jazz",
+        "description": "Timeless soul standards, jazz classics, and relaxing conversations for Sunday afternoons.",
+        "fullDescription": "Smooth Sunday radio experience playing golden era classics, Motown hits, and neo-soul selections.",
+        "day": "Sunday",
+        "startTime": "02:00 PM",
+        "endTime": "06:00 PM",
+        "duration": "4 Hours",
+        "thumbnail": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80",
+        "language": "English",
+        "targetAudience": "Mature Listeners & Families",
+        "isLive": false
+      }
+    ]
+  },
+  "upcoming": [
+    {
+      "id": "up-1",
+      "title": "Urban Beats & Rhythms",
+      "time": "10:00 AM",
+      "presenter": "Elena Vance",
+      "thumbnail": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "up-2",
+      "title": "Area Politics & Power Hour",
+      "time": "02:00 PM",
+      "presenter": "Marcus Sterling",
+      "thumbnail": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+      "id": "up-3",
+      "title": "Hitmakers Live",
+      "time": "05:00 PM",
+      "presenter": "Jordan Carter",
+      "thumbnail": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80"
+    }
+  ],
+  "presenters": [
+    {
+      "id": "p-1",
+      "name": "Jordan Carter",
+      "role": "Head DJ & Presenter",
+      "show": "Hitmakers Live",
+      "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+      "socials": {
+        "instagram": "#",
+        "twitter": "#",
+        "youtube": "#",
+        "spotify": "#"
+      }
+    },
+    {
+      "id": "p-2",
+      "name": "Elena Vance",
+      "role": "Music Director",
+      "show": "Urban Beats & Rhythms",
+      "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+      "socials": {
+        "instagram": "#",
+        "twitter": "#",
+        "spotify": "#"
+      }
+    },
+    {
+      "id": "p-3",
+      "name": "Lucas Ruiz",
+      "role": "Charts Specialist",
+      "show": "Top 10 Countdown",
+      "photo": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
+      "socials": {
+        "instagram": "#",
+        "twitter": "#"
+      }
+    },
+    {
+      "id": "p-4",
+      "name": "Chloe Grace",
+      "role": "Wellness & Talk Host",
+      "show": "Lifestyle & Wellness Today",
+      "photo": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80",
+      "socials": {
+        "instagram": "#",
+        "youtube": "#",
+        "spotify": "#"
+      }
+    }
+  ]
+}
