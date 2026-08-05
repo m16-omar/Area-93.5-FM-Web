@@ -28,7 +28,7 @@ export const Podcasts = () => {
       <PodcastHero />
 
       {/* Featured Episode Showcase */}
-      <FeaturedPodcastSection episode={podcastsFullData.featured} />
+      {/* <FeaturedPodcastSection episode={podcastsFullData.featured} /> */}
 
       {/* Trending Episodes Carousel */}
       <TrendingPodcasts episodes={podcastsFullData.trending} />
