@@ -97,6 +97,7 @@ export const PodcastHero = () => {
         <div className={styles.heroContentGrid}>
           {/* Left Presenter Column */}
           <div className={styles.leftPresenterCol}>
+            <div className={styles.neonCircleBg} />
             <img 
               src={podcastHeroImg} 
               alt="Area 93.5 FM Podcast Hero" 
