@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   padding: 60px 48px 50px;
-  background: linear-gradient(135deg, #f59e0b 0%, #d946ef 45%, #6b21a8 100%);
+  background: linear-gradient(135deg, #04203e 0%, #083b6e 40%, #0a4f92 75%, #ef4b00 100%);
   color: var(--white);
   overflow: hidden;
   box-sizing: border-box;
@@ -34,8 +34,8 @@
   width: 330px;
   height: 330px;
   border-radius: 50%;
-  background: var(--primary-orange); /* Brand Red/Orange matching Area 93.5 FM logo */
-  box-shadow: 0 0 50px rgba(239, 75, 0, 0.4);
+  background: var(--primary-orange);
+  box-shadow: 0 0 60px rgba(239, 75, 0, 0.5);
   z-index: 1;
 }
 
@@ -45,7 +45,7 @@
   max-height: 420px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.35));
 }
 
 /* Right Hot Podcast Column */
@@ -63,7 +63,7 @@
   margin: 0 0 20px;
   text-transform: uppercase;
   letter-spacing: -0.03em;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .badgeRow {
@@ -74,21 +74,22 @@
 }
 
 .neonTagBadge {
-  background: #000000;
-  color: #00ffcc;
+  background: var(--primary-orange);
+  color: var(--white);
   font-family: var(--font-heading);
   font-weight: 900;
   font-size: 0.75rem;
-  padding: 4px 8px;
-  border-radius: 2px;
+  padding: 4px 10px;
+  border-radius: 4px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba(239, 75, 0, 0.35);
 }
 
 .badgeLine {
   flex: 1;
   height: 2px;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 .episodesStack {
@@ -100,18 +101,18 @@
 
 .epCard {
   background: #ffffff;
-  border-radius: 4px;
+  border-radius: 8px;
   padding: 14px 20px;
   display: flex;
   align-items: center;
   gap: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .epCard:hover {
   transform: translateX(4px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
 }
 
 .avatarWrapper {
@@ -121,8 +122,8 @@
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
-  border: 2px solid #00ffcc;
-  background: #f59e0b;
+  border: 2px solid var(--primary-orange);
+  background: var(--secondary-blue);
 }
 
 .avatarImg {
@@ -134,14 +135,19 @@
 .playOverlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(10, 79, 146, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
+  color: var(--primary-orange);
   font-size: 1.1rem;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.playOverlay:hover {
+  background: rgba(10, 79, 146, 0.7);
+  color: #ffffff;
 }
 
 .epCardContent {
@@ -152,8 +158,8 @@
   display: inline-block;
   font-size: 0.65rem;
   font-weight: 900;
-  border: 1px solid #00b386;
-  color: #00b386;
+  border: 1px solid var(--primary-orange);
+  color: var(--primary-orange);
   padding: 2px 6px;
   border-radius: 2px;
   text-transform: uppercase;
@@ -164,7 +170,7 @@
   font-family: var(--font-heading);
   font-weight: 900;
   font-size: 1.15rem;
-  color: #000000;
+  color: var(--primary-blue);
   margin: 0 0 4px;
   line-height: 1.2;
 }
@@ -184,37 +190,39 @@
 }
 
 .prevBtn {
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.2);
   color: #ffffff;
   font-family: var(--font-heading);
   font-weight: 900;
   font-size: 0.75rem;
-  padding: 6px 16px;
-  border: none;
-  border-radius: 2px;
+  padding: 8px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
   cursor: pointer;
   transition: background 0.2s ease;
 }
 
 .prevBtn:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.35);
 }
 
 .nextBtn {
-  background: #00ffcc;
-  color: #000000;
+  background: var(--primary-orange);
+  color: #ffffff;
   font-family: var(--font-heading);
   font-weight: 900;
   font-size: 0.75rem;
-  padding: 6px 16px;
+  padding: 8px 18px;
   border: none;
-  border-radius: 2px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  box-shadow: 0 4px 12px rgba(239, 75, 0, 0.35);
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .nextBtn:hover {
-  background: #00e6b8;
+  background: var(--orange-hover);
+  transform: translateY(-1px);
 }
 
 /* Series Section Below Hero */
@@ -246,14 +254,14 @@
   height: 260px;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(10, 79, 146, 0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   cursor: pointer;
 }
 
 .seriesCard:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 12px 30px rgba(10, 79, 146, 0.18);
 }
 
 .seriesImg {
@@ -265,7 +273,7 @@
 .seriesOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(8, 59, 110, 0.9) 100%);
+  background: linear-gradient(180deg, transparent 40%, rgba(8, 59, 110, 0.92) 100%);
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -283,8 +291,8 @@
 
 .seriesMeta {
   font-size: 0.78rem;
-  color: #00ffcc;
-  font-weight: 700;
+  color: var(--primary-orange);
+  font-weight: 800;
 }
 
 /* Mobile Responsiveness (< 992px) */
