@@ -298,36 +298,69 @@
 /* Mobile Responsiveness (< 992px) */
 @media (max-width: 992px) {
   .heroContentGrid {
-    grid-template-columns: 1fr;
-    gap: 30px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 28px;
   }
   .leftPresenterCol {
-    min-height: 300px;
+    min-height: 280px;
+    margin-top: 10px;
   }
   .neonCircleBg {
-    width: 240px;
-    height: 240px;
+    width: 230px;
+    height: 230px;
+    top: 5px;
   }
   .presenterImg {
-    max-height: 300px;
+    max-height: 280px;
   }
   .seriesGrid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .seriesCard {
+    height: 200px;
   }
 }
 
 @media (max-width: 768px) {
   .heroSection {
-    padding: 40px 16px 30px;
+    padding: 30px 16px 20px;
   }
   .hotTitle {
-    font-size: 2.4rem;
+    font-size: 2.3rem;
+    margin-bottom: 14px;
+  }
+  .epCard {
+    padding: 10px 14px;
+    gap: 12px;
+  }
+  .avatarWrapper {
+    width: 52px;
+    height: 52px;
+  }
+  .epTitle {
+    font-size: 1rem;
   }
   .seriesSection {
     padding: 0 16px;
-    margin-top: 40px;
+    margin-top: 36px;
+  }
+  .sectionHeadline {
+    font-size: 1.8rem;
+    margin-bottom: 18px;
   }
   .seriesGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .seriesCard {
+    height: 170px;
+  }
+  .seriesTitle {
+    font-size: 0.95rem;
+  }
+  .seriesMeta {
+    font-size: 0.72rem;
   }
 }
