@@ -125,34 +125,6 @@
       "likes": 950,
       "downloads": 2100,
       "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"
-    },
-    {
-      "id": "pod-5",
-      "title": "Tech Innovation in West Africa: AI & FinTech",
-      "presenter": "Alex Rivera",
-      "description": "Exploring artificial intelligence integration, mobile money regulation, and digital payment infrastructure.",
-      "category": "Entertainment",
-      "artwork": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80",
-      "publishDate": "July 28, 2026",
-      "duration": "50 mins",
-      "listens": 11300,
-      "likes": 1400,
-      "downloads": 3400,
-      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"
-    },
-    {
-      "id": "pod-6",
-      "title": "Electoral Reforms & Civic Engagement Special",
-      "presenter": "Marcus Sterling",
-      "description": "In-depth examination of upcoming legislative policies, voter turnout initiatives, and youth political participation.",
-      "category": "Politics",
-      "artwork": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80",
-      "publishDate": "July 25, 2026",
-      "duration": "55 mins",
-      "listens": 15600,
-      "likes": 1980,
-      "downloads": 4800,
-      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3"
     }
   ],
   "hosts": [

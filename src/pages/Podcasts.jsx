@@ -36,10 +36,10 @@ export const Podcasts = () => {
       {/* Main Catalog Grid with Category Filter Chips */}
       <section style={{ maxWidth: '1150px', margin: '60px auto 0', padding: '0 48px', boxSizing: 'border-box' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
-          <span style={{ background: '#b5ff00', color: '#000000', fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '0.78rem', padding: '4px 10px', borderRadius: '2px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          <span style={{ background: 'var(--primary-orange)', color: '#ffffff', fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '0.78rem', padding: '4px 10px', borderRadius: '2px', textTransform: 'uppercase', letterSpacing: '0.05em', boxShadow: '0 4px 12px rgba(239, 75, 0, 0.3)' }}>
             LATEST EPISODES
           </span>
-          <div style={{ flex: 1, height: '2px', background: '#b5ff00' }} />
+          <div style={{ flex: 1, height: '2px', background: 'rgba(239, 75, 0, 0.3)' }} />
         </div>
 
         {/* Category Filters */}
