@@ -153,17 +153,21 @@
 
 @media (max-width: 768px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
   .card {
-    height: 280px;
+    height: 400px;
   }
   .backdropCircle {
-    width: 160px;
-    height: 160px;
+    width: 240px;
+    height: 240px;
   }
   .titlePill {
-    font-size: 0.95rem;
+    font-size: 1.15rem;
+  }
+  .hoverActions {
+    opacity: 1;
+    right: 16px;
   }
 }
