@@ -35,7 +35,14 @@ export const TrendingPodcasts = ({ episodes }) => {
               })}
             >
               <div className={styles.imageWrapper}>
-                <img src={ep.artwork} alt={ep.title} className={styles.artwork} />
+                <img 
+                  src={ep.artwork} 
+                  alt={ep.title} 
+                  className={styles.artwork} 
+                  onError={(e) => {
+                    e.target.src = "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=600&q=80";
+                  }}
+                />
                 <span className={styles.catBadge}>{ep.category}</span>
                 <button className={styles.playOverlayBtn} aria-label="Play Episode">
                   {isSelected ? <FaPause /> : <FaPlay style={{ marginLeft: '2px' }} />}

@@ -46,7 +46,14 @@ export const FeaturedPodcastSection = ({ episode }) => {
       >
         {/* Left Artwork Column */}
         <div className={styles.imageCol}>
-          <img src={episode.artwork} alt={episode.title} className={styles.artworkImg} />
+          <img 
+            src={episode.artwork} 
+            alt={episode.title} 
+            className={styles.artworkImg} 
+            onError={(e) => {
+              e.target.src = "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=600&q=80";
+            }}
+          />
           
           <div className={styles.imageOverlay}>
             <div className={styles.topBadgesRow}>

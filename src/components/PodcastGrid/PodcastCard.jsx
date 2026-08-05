@@ -57,7 +57,14 @@ export const PodcastCard = ({ episode }) => {
       transition={{ duration: 0.4 }}
     >
       <div className={styles.cardHeaderImg}>
-        <img src={episode.artwork} alt={episode.title} className={styles.artwork} />
+        <img 
+          src={episode.artwork} 
+          alt={episode.title} 
+          className={styles.artwork} 
+          onError={(e) => {
+            e.target.src = "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=600&q=80";
+          }}
+        />
         
         <div className={styles.overlay}>
           <div className={styles.badgeRow}>
