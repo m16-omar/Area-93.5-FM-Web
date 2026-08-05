@@ -34,16 +34,13 @@ export const Podcasts = () => {
       <TrendingPodcasts episodes={podcastsFullData.trending} />
 
       {/* Main Catalog Grid with Category Filter Chips */}
-      <section style={{ maxWidth: '1100px', margin: '60px auto 0', padding: '0 48px', boxSizing: 'border-box' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
-          <span style={{ background: '#b5ff00', color: '#000000', fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '0.75rem', padding: '4px 8px', borderRadius: '2px', textTransform: 'uppercase' }}>
-            ALL EPISODES
+      <section style={{ maxWidth: '1150px', margin: '60px auto 0', padding: '0 48px', boxSizing: 'border-box' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
+          <span style={{ background: '#b5ff00', color: '#000000', fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '0.78rem', padding: '4px 10px', borderRadius: '2px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            LATEST EPISODES
           </span>
           <div style={{ flex: 1, height: '2px', background: '#b5ff00' }} />
         </div>
-        <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '2.2rem', color: '#0f172a', margin: '0 0 24px', textTransform: 'uppercase', letterSpacing: '-0.02em' }}>
-          LATEST PODCAST EPISODES
-        </h2>
 
         {/* Category Filters */}
         <PodcastCategories 

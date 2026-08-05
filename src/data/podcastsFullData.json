@@ -44,7 +44,7 @@
       "presenter": "David Beckham",
       "duration": "42 mins",
       "category": "Sports",
-      "artwork": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80",
+      "artwork": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80",
       "publishDate": "Aug 1, 2026",
       "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
     },
@@ -104,7 +104,7 @@
       "presenter": "David Beckham",
       "description": "Tactical analysis of recent weekend fixtures, transfer window rumors, and local league developments.",
       "category": "Sports",
-      "artwork": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80",
+      "artwork": "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80",
       "publishDate": "August 1, 2026",
       "duration": "42 mins",
       "listens": 18400,
@@ -204,7 +204,6 @@
   "stats": [
     { "id": "st-1", "value": "180+", "label": "EPISODES PUBLISHED" },
     { "id": "st-2", "value": "250K+", "label": "MONTHLY LISTENERS" },
-    { "id": "st-3", "value": "14", "label": "PODCAST SERIES" },
-    { "id": "st-4", "value": "1.2M+", "label": "TOTAL DOWNLOADS" }
+    { "id": "st-3", "value": "14", "label": "PODCAST SERIES" }
   ]
 }

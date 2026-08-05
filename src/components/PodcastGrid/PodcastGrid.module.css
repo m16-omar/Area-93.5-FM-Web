@@ -1,225 +1,169 @@
-.catalogSection {
-  max-width: 1100px;
-  margin: 60px auto;
-  padding: 0 48px;
-  box-sizing: border-box;
-}
-
-.headingWrapper {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 6px;
-}
-
-.tagBadge {
-  background: #b5ff00;
-  color: #000000;
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-size: 0.75rem;
-  padding: 4px 8px;
-  border-radius: 2px;
-  text-transform: uppercase;
-}
-
-.greenLine {
-  flex: 1;
-  height: 2px;
-  background: #b5ff00;
-}
-
-.sectionHeadline {
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-size: 2.2rem;
-  color: #0f172a;
-  margin: 0 0 24px;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-}
-
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
 .card {
-  background: var(--white);
-  border-radius: 18px;
-  border: 1px solid var(--border);
+  position: relative;
+  height: 380px;
+  border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 4px 14px rgba(10, 79, 146, 0.08);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  background: linear-gradient(180deg, #facc15 0%, #ca8a04 100%);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 14px 32px rgba(10, 79, 146, 0.16);
-  border-color: var(--primary-orange);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
 }
 
-.cardHeaderImg {
-  position: relative;
-  height: 200px;
-  background: var(--secondary-blue);
+.backdropCircle {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: #00ffcc;
+  z-index: 1;
+  opacity: 0.9;
 }
 
-.artwork {
+.presenterPhoto {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  z-index: 2;
+  transition: transform 0.3s ease;
 }
 
-.overlay {
+.card:hover .presenterPhoto {
+  transform: scale(1.04);
+}
+
+/* Hover Action Icons on Right Edge */
+.hoverActions {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(8, 59, 110, 0.15) 0%, rgba(8, 59, 110, 0.75) 100%);
-  padding: 16px;
+  top: 40%;
+  right: 14px;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 12px;
+  z-index: 4;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
-.badgeRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.card:hover .hoverActions {
+  opacity: 1;
 }
 
-.catBadge {
-  background: var(--primary-orange);
-  color: var(--white);
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 0.7rem;
-  padding: 3px 8px;
-  border-radius: 4px;
-  text-transform: uppercase;
-}
-
-.durationBadge {
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
-  color: var(--white);
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.centerPlayBtn {
-  align-self: center;
-  width: 54px;
-  height: 54px;
+.actionIconBtn {
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background: var(--primary-orange);
-  color: var(--white);
-  border: 2px solid var(--white);
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(239, 75, 0, 0.4);
-  transition: transform 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.centerPlayBtn:hover {
-  transform: scale(1.08);
+.actionIconBtn:hover {
+  background: #00ffcc;
+  color: #000000;
+  transform: scale(1.1);
 }
 
-.cardBody {
-  padding: 22px;
-  flex: 1;
+.actionIconBtnLiked {
+  color: #ef4444 !important;
+}
+
+/* Bottom Card Overlay */
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 35%, rgba(0, 0, 0, 0.85) 100%);
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
+  z-index: 3;
 }
 
-.cardTitle {
+.cardHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.catBadge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 900;
+  border: 1.5px solid #00ffcc;
+  color: #00ffcc;
+  padding: 2px 6px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.titlePill {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 1.25rem;
-  color: var(--primary-blue);
-  margin: 0 0 8px;
+  font-size: 1.15rem;
+  color: #ffffff;
+  margin: 0;
   line-height: 1.25;
+  display: inline-block;
 }
 
-.cardDesc {
-  font-size: 0.9rem;
-  color: var(--text-dark);
-  line-height: 1.5;
-  margin: 0 0 20px;
+.titlePillActive {
+  background: #00ffcc;
+  color: #000000 !important;
+  padding: 2px 6px;
+  border-radius: 2px;
 }
 
-.cardFooter {
-  border-top: 1px solid var(--border);
-  padding-top: 14px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  font-weight: 600;
-}
-
-.metaGroup {
-  display: flex;
-  gap: 14px;
-}
-
-.metaItem {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.actionsGroup {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.iconActionBtn {
-  background: none;
-  border: none;
+.moreIcon {
+  color: #ffffff;
+  font-size: 1.2rem;
   cursor: pointer;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  transition: color 0.2s ease;
-}
-
-.iconActionBtn:hover {
-  color: var(--primary-orange);
-}
-
-.iconActionBtnLiked {
-  color: #ef4444 !important;
 }
 
 @media (max-width: 992px) {
   .grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 }
 
 @media (max-width: 768px) {
-  .catalogSection {
-    padding: 0 16px;
-    margin: 40px auto;
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
-  .sectionHeadline {
-    font-size: 1.6rem;
+  .card {
+    height: 280px;
+  }
+  .backdropCircle {
+    width: 160px;
+    height: 160px;
+  }
+  .titlePill {
+    font-size: 0.95rem;
   }
 }

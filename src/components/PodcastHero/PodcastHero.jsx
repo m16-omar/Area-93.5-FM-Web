@@ -72,7 +72,7 @@ const seriesList = [
     id: "ser-4",
     title: "Sports Talk 93.5",
     episodesCount: "24 Episodes",
-    image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80"
+    image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80"
   }
 ];
 
@@ -127,7 +127,14 @@ export const PodcastHero = () => {
                     transition={{ duration: 0.4 }}
                   >
                     <div className={styles.avatarWrapper}>
-                      <img src={ep.artwork} alt={ep.title} className={styles.avatarImg} />
+                      <img 
+                        src={ep.artwork} 
+                        alt={ep.title} 
+                        className={styles.avatarImg} 
+                        onError={(e) => {
+                          e.target.src = "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=400&q=80";
+                        }}
+                      />
                       <button 
                         className={styles.playOverlay}
                         onClick={() => playTrack({
@@ -184,7 +191,14 @@ export const PodcastHero = () => {
               className={styles.seriesCard}
               whileHover={{ y: -6 }}
             >
-              <img src={ser.image} alt={ser.title} className={styles.seriesImg} />
+              <img 
+                src={ser.image} 
+                alt={ser.title} 
+                className={styles.seriesImg} 
+                onError={(e) => {
+                  e.target.src = "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=600&q=80";
+                }}
+              />
               <div className={styles.seriesOverlay}>
                 <h3 className={styles.seriesTitle}>{ser.title}</h3>
                 <span className={styles.seriesMeta}>{ser.episodesCount}</span>
