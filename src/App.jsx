@@ -4,6 +4,7 @@ import { AudioPlayerProvider } from './context/AudioPlayerContext';
 import { PageLoader } from './components/PageLoader/PageLoader';
 import { Home } from './pages/Home';
 import { ShowsSchedulePage } from './pages/ShowsSchedulePage';
+import { Podcasts } from './pages/Podcasts';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shows" element={<ShowsSchedulePage />} />
+          <Route path="/podcasts" element={<Podcasts />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
