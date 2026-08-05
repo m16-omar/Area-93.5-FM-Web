@@ -116,7 +116,7 @@ export const ShowsSchedulePage = () => {
         {/* Left Col: Meet Our Hosts */}
         <div>
           <div className={styles.sectionBadgeWrapper}>
-            <span className={styles.neonBadge}>OUR SPEAKERS</span>
+            <span className={styles.neonBadge}>OUR HOSTS</span>
             <div className={styles.greenLine} />
           </div>
           <h2 className={styles.sectionHeadline}>MEET OUR HOSTS</h2>
