@@ -1,0 +1,134 @@
+.hostsSection {
+  max-width: 1100px;
+  margin: 60px auto 0;
+  padding: 0 48px;
+  box-sizing: border-box;
+}
+
+.headingWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.tagBadge {
+  background: #b5ff00;
+  color: #000000;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.greenLine {
+  flex: 1;
+  height: 2px;
+  background: #b5ff00;
+}
+
+.sectionHeadline {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 2.2rem;
+  color: #0f172a;
+  margin: 0 0 28px;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: var(--white);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(10, 79, 146, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(10, 79, 146, 0.16);
+  border-color: var(--primary-orange);
+}
+
+.photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 14px;
+  border: 3px solid var(--primary-orange);
+  box-shadow: 0 4px 12px rgba(239, 75, 0, 0.25);
+  transition: transform 0.25s ease;
+}
+
+.card:hover .photo {
+  transform: scale(1.05);
+}
+
+.name {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1.15rem;
+  color: var(--primary-blue);
+  margin: 0 0 4px;
+}
+
+.role {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary-orange);
+  margin-bottom: 4px;
+}
+
+.episodesCount {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.socialsRow {
+  display: flex;
+  gap: 10px;
+  color: var(--primary-blue);
+  font-size: 0.9rem;
+}
+
+.socialsRow a {
+  color: var(--primary-blue);
+  transition: color 0.2s ease;
+}
+
+.socialsRow a:hover {
+  color: var(--primary-orange);
+}
+
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hostsSection {
+    padding: 0 16px;
+    margin-top: 40px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

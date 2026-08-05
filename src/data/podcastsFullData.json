@@ -1,0 +1,210 @@
+{
+  "categories": [
+    "All",
+    "News",
+    "Sports",
+    "Politics",
+    "Entertainment",
+    "Lifestyle",
+    "Business",
+    "Interviews",
+    "Community",
+    "Special Reports"
+  ],
+  "featured": {
+    "id": "pod-feat-1",
+    "episodeNumber": "EP. 42",
+    "title": "The Future of Afrobeats & Global Music Distribution",
+    "presenter": "Jordan Carter",
+    "presenterRole": "Head DJ & Station Host",
+    "presenterPhoto": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
+    "publishDate": "August 3, 2026",
+    "duration": "48 mins",
+    "category": "Interviews",
+    "description": "An exclusive deep dive into how African music producers and independent artists are conquering global charts, streaming algorithms, and international festival headlines.",
+    "artwork": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1000&q=80",
+    "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    "listens": 14200,
+    "likes": 1850
+  },
+  "trending": [
+    {
+      "id": "pod-tr-1",
+      "title": "Urban Economic Realities & Youth Startup Culture",
+      "presenter": "Amanda Foster",
+      "duration": "35 mins",
+      "category": "Business",
+      "artwork": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
+      "publishDate": "Aug 2, 2026",
+      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+    },
+    {
+      "id": "pod-tr-2",
+      "title": "Premier League Tactics & Transfer Breakdown",
+      "presenter": "David Beckham",
+      "duration": "42 mins",
+      "category": "Sports",
+      "artwork": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80",
+      "publishDate": "Aug 1, 2026",
+      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+    },
+    {
+      "id": "pod-tr-3",
+      "title": "Mental Health & Work-Life Harmony for Creatives",
+      "presenter": "Chloe Grace",
+      "duration": "29 mins",
+      "category": "Lifestyle",
+      "artwork": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80",
+      "publishDate": "Jul 30, 2026",
+      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"
+    },
+    {
+      "id": "pod-tr-4",
+      "title": "Tech Innovation in West Africa: AI & FinTech",
+      "presenter": "Alex Rivera",
+      "duration": "50 mins",
+      "category": "Entertainment",
+      "artwork": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80",
+      "publishDate": "Jul 28, 2026",
+      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"
+    }
+  ],
+  "episodes": [
+    {
+      "id": "pod-1",
+      "title": "The Future of Afrobeats & Global Music Distribution",
+      "presenter": "Jordan Carter",
+      "description": "An exclusive deep dive into how African music producers and independent artists are conquering global charts and streaming platforms.",
+      "category": "Interviews",
+      "artwork": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=600&q=80",
+      "publishDate": "August 3, 2026",
+      "duration": "48 mins",
+      "listens": 14200,
+      "likes": 1850,
+      "downloads": 4200,
+      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+    },
+    {
+      "id": "pod-2",
+      "title": "Urban Economic Realities & Youth Startup Culture",
+      "presenter": "Amanda Foster",
+      "description": "Analyzing emerging business ecosystems, tech incubators, and financial independence strategies for young founders.",
+      "category": "Business",
+      "artwork": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
+      "publishDate": "August 2, 2026",
+      "duration": "35 mins",
+      "listens": 9800,
+      "likes": 1120,
+      "downloads": 2900,
+      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+    },
+    {
+      "id": "pod-3",
+      "title": "Premier League Tactics & Transfer Breakdown",
+      "presenter": "David Beckham",
+      "description": "Tactical analysis of recent weekend fixtures, transfer window rumors, and local league developments.",
+      "category": "Sports",
+      "artwork": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80",
+      "publishDate": "August 1, 2026",
+      "duration": "42 mins",
+      "listens": 18400,
+      "likes": 2400,
+      "downloads": 5800,
+      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+    },
+    {
+      "id": "pod-4",
+      "title": "Mental Health & Work-Life Harmony for Creatives",
+      "presenter": "Chloe Grace",
+      "description": "Expert therapists and artists discuss burnout prevention, creative anxiety, and establishing emotional resilience.",
+      "category": "Lifestyle",
+      "artwork": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80",
+      "publishDate": "July 30, 2026",
+      "duration": "29 mins",
+      "listens": 7600,
+      "likes": 950,
+      "downloads": 2100,
+      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"
+    },
+    {
+      "id": "pod-5",
+      "title": "Tech Innovation in West Africa: AI & FinTech",
+      "presenter": "Alex Rivera",
+      "description": "Exploring artificial intelligence integration, mobile money regulation, and digital payment infrastructure.",
+      "category": "Entertainment",
+      "artwork": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80",
+      "publishDate": "July 28, 2026",
+      "duration": "50 mins",
+      "listens": 11300,
+      "likes": 1400,
+      "downloads": 3400,
+      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"
+    },
+    {
+      "id": "pod-6",
+      "title": "Electoral Reforms & Civic Engagement Special",
+      "presenter": "Marcus Sterling",
+      "description": "In-depth examination of upcoming legislative policies, voter turnout initiatives, and youth political participation.",
+      "category": "Politics",
+      "artwork": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80",
+      "publishDate": "July 25, 2026",
+      "duration": "55 mins",
+      "listens": 15600,
+      "likes": 1980,
+      "downloads": 4800,
+      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3"
+    }
+  ],
+  "hosts": [
+    {
+      "id": "h-1",
+      "name": "Jordan Carter",
+      "role": "Head DJ & Podcast Producer",
+      "totalEpisodes": "34 Episodes",
+      "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+      "socials": {
+        "instagram": "#",
+        "twitter": "#",
+        "spotify": "#"
+      }
+    },
+    {
+      "id": "h-2",
+      "name": "Elena Vance",
+      "role": "Music & Pop Culture Analyst",
+      "totalEpisodes": "28 Episodes",
+      "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+      "socials": {
+        "instagram": "#",
+        "twitter": "#"
+      }
+    },
+    {
+      "id": "h-3",
+      "name": "Chloe Grace",
+      "role": "Lifestyle & Wellness Host",
+      "totalEpisodes": "22 Episodes",
+      "photo": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&q=80",
+      "socials": {
+        "instagram": "#",
+        "spotify": "#"
+      }
+    },
+    {
+      "id": "h-4",
+      "name": "Marcus Sterling",
+      "role": "Political & Current Affairs Editor",
+      "totalEpisodes": "40 Episodes",
+      "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80",
+      "socials": {
+        "twitter": "#"
+      }
+    }
+  ],
+  "stats": [
+    { "id": "st-1", "value": "180+", "label": "EPISODES PUBLISHED" },
+    { "id": "st-2", "value": "250K+", "label": "MONTHLY LISTENERS" },
+    { "id": "st-3", "value": "14", "label": "PODCAST SERIES" },
+    { "id": "st-4", "value": "1.2M+", "label": "TOTAL DOWNLOADS" }
+  ]
+}

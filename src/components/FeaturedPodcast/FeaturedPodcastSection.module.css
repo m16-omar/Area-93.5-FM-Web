@@ -1,0 +1,235 @@
+.sectionContainer {
+  max-width: 1100px;
+  margin: -30px auto 50px;
+  padding: 0 48px;
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.featuredCard {
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 14px 40px rgba(10, 79, 146, 0.12);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 440px 1fr;
+  align-items: stretch;
+}
+
+.imageCol {
+  position: relative;
+  min-height: 320px;
+  overflow: hidden;
+  background: var(--secondary-blue);
+}
+
+.artworkImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.featuredCard:hover .artworkImg {
+  transform: scale(1.03);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 59, 110, 0.2) 0%, rgba(8, 59, 110, 0.85) 100%);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.topBadgesRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.epBadge {
+  background: var(--primary-orange);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.categoryBadge {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.centerPlayBtnWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.playCircleBtn {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: var(--primary-orange);
+  color: var(--white);
+  border: 3px solid var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(239, 75, 0, 0.45);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.playCircleBtn:hover {
+  transform: scale(1.08);
+  background: var(--orange-hover);
+}
+
+.contentCol {
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tagline {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.75rem;
+  color: var(--primary-orange);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 2.1rem;
+  color: var(--primary-blue);
+  margin: 0 0 12px;
+  line-height: 1.15;
+}
+
+.metaRow {
+  display: flex;
+  gap: 20px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  line-height: 1.6;
+  margin: 0 0 28px;
+}
+
+.actionsRow {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.listenBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--primary-orange);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(239, 75, 0, 0.35);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.listenBtn:hover {
+  transform: translateY(-2px);
+  background: var(--orange-hover);
+}
+
+.secondaryBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--primary-blue);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.secondaryBtn:hover {
+  background: rgba(10, 79, 146, 0.05);
+  border-color: var(--primary-blue);
+}
+
+@media (max-width: 992px) {
+  .featuredCard {
+    grid-template-columns: 1fr;
+  }
+  .imageCol {
+    height: 240px;
+  }
+  .contentCol {
+    padding: 24px 20px;
+  }
+  .title {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sectionContainer {
+    margin: -20px auto 30px;
+    padding: 0 16px;
+  }
+  .actionsRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .listenBtn, .secondaryBtn {
+    justify-content: center;
+  }
+}
