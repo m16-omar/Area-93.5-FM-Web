@@ -34,7 +34,8 @@
   width: 330px;
   height: 330px;
   border-radius: 50%;
-  background: #34e89e; /* Solid bright neon green */
+  background: var(--primary-orange); /* Brand Red/Orange matching Area 93.5 FM logo */
+  box-shadow: 0 0 50px rgba(239, 75, 0, 0.4);
   z-index: 1;
 }
 
