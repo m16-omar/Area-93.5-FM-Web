@@ -1,12 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaPlay, FaPause, FaApple, FaGooglePlay } from 'react-icons/fa';
-import { useAudioPlayer } from '../../context/AudioPlayerContext';
+import { FaApple, FaGooglePlay } from 'react-icons/fa';
 import styles from './ListenCTA.module.css';
 
 export const ListenCTA = () => {
-  const { isPlaying, togglePlayPause } = useAudioPlayer();
-
   return (
     <section className={styles.ctaSection}>
       <div className={styles.bgCircle} />
@@ -26,11 +23,6 @@ export const ListenCTA = () => {
         </p>
 
         <div className={styles.buttonsRow}>
-          <button className={styles.listenBtn} onClick={togglePlayPause} aria-label="Listen Live">
-            {isPlaying ? <FaPause size={14} /> : <FaPlay size={14} />}
-            <span>{isPlaying ? 'PAUSE STREAM' : 'LISTEN LIVE'}</span>
-          </button>
-          
           <button className={styles.storeBtn} onClick={() => alert('Area 93.5 FM iOS App coming soon!')} aria-label="Download on App Store">
             <FaApple size={20} />
             <div className={styles.storeText}>
