@@ -16,7 +16,7 @@ export const ListenCTA = () => {
         transition={{ duration: 0.6 }}
       >
         <h2 className={styles.headline}>
-          You're One Click Away From Live Radio
+          You Are One Click Away From Live App
         </h2>
         <p className={styles.subtext}>
           Tune in to Area 93.5 FM anywhere, anytime. Stream crystal-clear live broadcasts, podcasts, charts, and breaking news updates directly from your device.
