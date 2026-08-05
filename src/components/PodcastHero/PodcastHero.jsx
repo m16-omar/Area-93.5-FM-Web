@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { FiCalendar } from 'react-icons/fi';
-import heroPresenterImg from '../../assets/Here Presenters.png';
+import podcastHeroImg from '../../assets/podcast-hero-image.png';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 import styles from './PodcastHero.module.css';
 
@@ -97,10 +97,9 @@ export const PodcastHero = () => {
         <div className={styles.heroContentGrid}>
           {/* Left Presenter Column */}
           <div className={styles.leftPresenterCol}>
-            <div className={styles.neonCircleBg} />
             <img 
-              src={heroPresenterImg} 
-              alt="Area 93.5 FM Presenter" 
+              src={podcastHeroImg} 
+              alt="Area 93.5 FM Podcast Hero" 
               className={styles.presenterImg} 
             />
           </div>

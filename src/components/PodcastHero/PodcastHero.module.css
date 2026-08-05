@@ -24,28 +24,18 @@
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  min-height: 420px;
-}
-
-.neonCircleBg {
-  position: absolute;
-  top: 40px;
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  background: #00ffcc;
-  box-shadow: 0 0 60px rgba(0, 255, 204, 0.6);
-  z-index: 0;
+  align-items: center;
 }
 
 .presenterImg {
   position: relative;
   z-index: 2;
-  max-height: 420px;
-  width: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.3));
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
 }
 
 /* Right Hot Podcast Column */
