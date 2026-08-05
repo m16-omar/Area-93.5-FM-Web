@@ -12,7 +12,7 @@ export const PopularHosts = ({ hosts }) => {
         <span className={styles.tagBadge}>CREATORS</span>
         <div className={styles.greenLine} />
       </div>
-      <h2 className={styles.sectionHeadline}>POPULAR HOSTS</h2>
+      <h2 className={styles.sectionHeadline}>POPULAR PODCAST HOSTS</h2>
 
       <div className={styles.grid}>
         {hosts.map((h, idx) => (
