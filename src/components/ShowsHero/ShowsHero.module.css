@@ -148,22 +148,31 @@
 /* Mobile Responsiveness (< 992px) */
 @media (max-width: 992px) {
   .heroContentGrid {
-    grid-template-columns: 1fr;
-    gap: 36px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 44px;
   }
 }
 
 @media (max-width: 768px) {
   .heroSection {
-    padding: 50px 16px 40px;
+    padding: 44px 20px 48px;
   }
   .calloutTitle {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
+    margin-bottom: 12px;
   }
   .calloutDesc {
     font-size: 0.95rem;
+    margin-bottom: 24px;
+  }
+  .leftShowBlock {
+    width: 100%;
+  }
+  .thumbnailWrapper {
+    height: 200px;
   }
   .showTitle {
-    font-size: 1.8rem;
+    font-size: 1.75rem;
   }
 }
