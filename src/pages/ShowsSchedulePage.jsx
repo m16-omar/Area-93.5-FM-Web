@@ -36,13 +36,10 @@ export const ShowsSchedulePage = () => {
       <Navbar />
 
       {/* Hero Banner */}
-      <ShowsHero />
+      <ShowsHero onScrollToSchedule={scrollToSchedule} />
 
-      {/* Featured Show Banner */}
-      <FeaturedShow 
-        showData={showsFullData.featured} 
-        onScrollToSchedule={scrollToSchedule} 
-      />
+      {/* Featured Show Banner (Integrated in ShowsHero) */}
+      {/* <FeaturedShow showData={showsFullData.featured} onScrollToSchedule={scrollToSchedule} /> */}
 
       {/* Main Weekly Schedule & Sidebar Section */}
       <div ref={scheduleRef} className={styles.mainScheduleLayout}>
