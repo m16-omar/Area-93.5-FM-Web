@@ -13,20 +13,22 @@
 }
 
 .tagBadge {
-  background: #b5ff00;
-  color: #000000;
+  background: var(--primary-orange);
+  color: #ffffff;
   font-family: var(--font-heading);
   font-weight: 900;
   font-size: 0.75rem;
-  padding: 4px 8px;
+  padding: 4px 10px;
   border-radius: 2px;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba(239, 75, 0, 0.3);
 }
 
 .greenLine {
   flex: 1;
   height: 2px;
-  background: #b5ff00;
+  background: rgba(239, 75, 0, 0.3);
 }
 
 .sectionHeadline {
