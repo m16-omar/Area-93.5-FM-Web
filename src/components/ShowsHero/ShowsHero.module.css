@@ -1,8 +1,8 @@
 .heroSection {
   position: relative;
   width: 100%;
-  padding: 80px 48px 70px;
-  background: linear-gradient(135deg, rgba(4, 32, 62, 0.85) 0%, rgba(8, 59, 110, 0.9) 60%, rgba(239, 75, 0, 0.75) 100%), url('../../assets/show-hero.png');
+  padding: 90px 48px 80px;
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.82) 0%, rgba(217, 70, 239, 0.7) 45%, rgba(107, 33, 168, 0.85) 100%), url('../../assets/show-hero.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -17,27 +17,26 @@
   max-width: 1150px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 48px;
+  grid-template-columns: 360px 1fr;
+  gap: 60px;
   align-items: center;
 }
 
-/* Left Column: Featured Show Card */
-.leftShowCard {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+/* Left Column: Featured Show Block */
+.leftShowBlock {
   display: flex;
   flex-direction: column;
-  color: #0f172a;
+  align-items: flex-start;
 }
 
-.cardHeaderImg {
+.thumbnailWrapper {
   position: relative;
-  height: 200px;
+  width: 100%;
+  height: 180px;
+  border-radius: 4px;
   overflow: hidden;
-  background: var(--secondary-blue);
+  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .artworkImg {
@@ -46,75 +45,53 @@
   object-fit: cover;
 }
 
-.liveBadge {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: var(--primary-orange);
-  color: var(--white);
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-size: 0.7rem;
-  padding: 4px 10px;
-  border-radius: 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  box-shadow: 0 4px 12px rgba(239, 75, 0, 0.4);
-}
-
-.cardBody {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-}
-
 .showTitle {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 1.6rem;
-  color: var(--primary-blue);
+  font-size: 2.2rem;
+  color: #ffffff;
   margin: 0 0 6px;
-  line-height: 1.15;
+  line-height: 1.1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .presenterName {
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--primary-orange);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #000000;
   margin-bottom: 4px;
 }
 
 .timeSchedule {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  font-weight: 600;
+  font-size: 0.82rem;
+  color: rgba(0, 0, 0, 0.75);
+  font-weight: 800;
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .listenBtn {
-  align-self: flex-start;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--primary-orange);
-  color: var(--white);
+  background: #ffffff;
+  color: #000000;
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   letter-spacing: 0.05em;
-  padding: 10px 24px;
-  border-radius: 4px;
+  padding: 10px 32px;
+  border-radius: 2px;
   border: none;
   cursor: pointer;
-  box-shadow: 0 6px 16px rgba(239, 75, 0, 0.35);
-  transition: background 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  text-transform: uppercase;
 }
 
 .listenBtn:hover {
-  background: var(--orange-hover);
+  background: #000000;
+  color: #ffffff;
   transform: translateY(-2px);
 }
 
@@ -127,20 +104,20 @@
 .calloutTitle {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
-  line-height: 1.05;
+  font-size: clamp(2.8rem, 5.5vw, 4.4rem);
+  line-height: 0.95;
   color: #ffffff;
-  margin: 0 0 16px;
+  margin: 0 0 18px;
   text-transform: uppercase;
-  letter-spacing: -0.02em;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  letter-spacing: -0.03em;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .calloutDesc {
   font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.92);
   line-height: 1.6;
-  margin: 0 0 28px;
+  margin: 0 0 32px;
   max-width: 580px;
 }
 
@@ -148,16 +125,16 @@
   align-self: flex-start;
   background: #000000;
   color: #ffffff;
-  border: 2px solid #ffffff;
+  border: none;
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   letter-spacing: 0.05em;
-  padding: 12px 30px;
+  padding: 12px 32px;
   border-radius: 2px;
   cursor: pointer;
   text-transform: uppercase;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
   transition: all 0.2s ease;
 }
 
@@ -171,10 +148,7 @@
 @media (max-width: 992px) {
   .heroContentGrid {
     grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .rightCallout {
-    order: -1; /* Puts WANT YOUR OWN SHOW callout on top on mobile */
+    gap: 36px;
   }
 }
 
@@ -183,9 +157,12 @@
     padding: 50px 16px 40px;
   }
   .calloutTitle {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
   }
   .calloutDesc {
     font-size: 0.95rem;
+  }
+  .showTitle {
+    font-size: 1.8rem;
   }
 }
