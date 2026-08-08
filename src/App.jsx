@@ -5,6 +5,7 @@ import { PageLoader } from './components/PageLoader/PageLoader';
 import { Home } from './pages/Home';
 import { ShowsSchedulePage } from './pages/ShowsSchedulePage';
 import { Podcasts } from './pages/Podcasts';
+import { NewsPage } from './pages/NewsPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/shows" element={<ShowsSchedulePage />} />
           <Route path="/podcasts" element={<Podcasts />} />
+          <Route path="/news" element={<NewsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
