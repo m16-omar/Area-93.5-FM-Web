@@ -2,7 +2,7 @@ import React from 'react';
 import { FaFacebookF, FaYoutube, FaTiktok, FaInstagram, FaSpotify } from 'react-icons/fa';
 import { FiPhone, FiMail } from 'react-icons/fi';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
-import logoImg from '../../assets/logo.jpeg';
+import logoImg from '../../assets/area-logo.png';
 import styles from './Footer.module.css';
 
 export const Footer = () => {

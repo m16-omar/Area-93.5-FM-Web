@@ -1,12 +1,12 @@
-// 93.5 AREA FM Brand Theme & Design System Tokens
+// 93.5 AREA FM Brand Theme & Design System Tokens (Aligned with area-logo.png)
 
 export const theme = {
   colors: {
     // Brand Colors
-    primaryBlue: '#0A4F92',
-    secondaryBlue: '#083B6E',
-    primaryOrange: '#EF4B00',
-    orangeHover: '#D63F00',
+    primaryBlue: '#006B8D',
+    secondaryBlue: '#004E68',
+    primaryOrange: '#E50914',
+    orangeHover: '#C40812',
 
     // Neutrals
     white: '#FFFFFF',
@@ -30,17 +30,17 @@ export const theme = {
   },
 
   shadows: {
-    sm: '0 2px 8px rgba(10, 79, 146, 0.08)',
-    md: '0 8px 24px rgba(10, 79, 146, 0.12)',
-    lg: '0 16px 40px rgba(10, 79, 146, 0.18)',
-    blueGlow: '0 0 15px rgba(10, 79, 146, 0.3)',
-    cardHover: '0 12px 30px rgba(10, 79, 146, 0.18)',
+    sm: '0 2px 8px rgba(0, 107, 141, 0.08)',
+    md: '0 8px 24px rgba(0, 107, 141, 0.12)',
+    lg: '0 16px 40px rgba(0, 107, 141, 0.18)',
+    blueGlow: '0 0 15px rgba(0, 107, 141, 0.3)',
+    cardHover: '0 12px 30px rgba(0, 107, 141, 0.18)',
   },
 
   gradients: {
-    hero: 'linear-gradient(180deg, rgba(8,59,110,0.75), rgba(10,79,146,0.85))',
-    darkBlue: 'linear-gradient(180deg, #083B6E 0%, #0A4F92 100%)',
-    overlayBlue: 'linear-gradient(180deg, rgba(8,59,110,0.75) 0%, rgba(10,79,146,0.9) 100%)',
+    hero: 'linear-gradient(180deg, rgba(0,78,104,0.75), rgba(0,107,141,0.85))',
+    darkBlue: 'linear-gradient(180deg, #004E68 0%, #006B8D 100%)',
+    overlayBlue: 'linear-gradient(180deg, rgba(0,78,104,0.75) 0%, rgba(0,107,141,0.9) 100%)',
   },
 
   typography: {

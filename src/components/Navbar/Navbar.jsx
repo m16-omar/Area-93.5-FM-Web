@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { FiSearch, FiMenu, FiVolume2, FiVolumeX, FiMusic, FiX } from 'react-icons/fi';
 import { FaTwitter, FaInstagram, FaFacebookF, FaYoutube, FaTiktok, FaPlay, FaPause } from 'react-icons/fa';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
-import logoImg from '../../assets/logo.jpeg';
+import logoImg from '../../assets/area-logo.png';
 import topTracksData from '../../data/topTracksData.json';
 import styles from './Navbar.module.css';
 

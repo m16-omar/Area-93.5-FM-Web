@@ -1,9 +1,9 @@
 :root {
-  /* Brand Colors */
-  --primary-blue: #0A4F92;
-  --secondary-blue: #083B6E;
-  --primary-orange: #EF4B00;
-  --orange-hover: #D63F00;
+  /* Brand Colors (Aligned with area-logo.png) */
+  --primary-blue: #006B8D;
+  --secondary-blue: #004E68;
+  --primary-orange: #E50914;
+  --orange-hover: #C40812;
 
   /* Neutrals */
   --white: #FFFFFF;
@@ -18,12 +18,12 @@
   --error: #DC2626;
 
   /* Standard Component Aliases */
-  --color-primary: #0A4F92;
-  --color-primary-dark: #083B6E;
-  --color-accent: #EF4B00;
-  --color-accent-hover: #D63F00;
-  --color-dark: #083B6E;
-  --color-dark-card: #0A4F92;
+  --color-primary: #006B8D;
+  --color-primary-dark: #004E68;
+  --color-accent: #E50914;
+  --color-accent-hover: #C40812;
+  --color-dark: #004E68;
+  --color-dark-card: #006B8D;
   --color-light-bg: #F5F7FA;
   --color-light-card: #FFFFFF;
   --color-text-dark: #1A1A1A;
@@ -36,16 +36,16 @@
   --font-heading: 'Outfit', 'Montserrat', system-ui, sans-serif;
 
   /* Gradients */
-  --gradient-hero: linear-gradient(180deg, rgba(8,59,110,0.75), rgba(10,79,146,0.85));
-  --gradient-dark: linear-gradient(180deg, #083B6E 0%, #0A4F92 100%);
-  --gradient-blue-overlay: linear-gradient(180deg, rgba(8,59,110,0.75) 0%, rgba(10,79,146,0.9) 100%);
+  --gradient-hero: linear-gradient(180deg, rgba(0,78,104,0.85), rgba(0,107,141,0.92));
+  --gradient-dark: linear-gradient(180deg, #004E68 0%, #006B8D 100%);
+  --gradient-blue-overlay: linear-gradient(180deg, rgba(0,78,104,0.75) 0%, rgba(0,107,141,0.9) 100%);
 
   /* Shadows */
-  --shadow-sm: 0 2px 8px rgba(10, 79, 146, 0.08);
-  --shadow-md: 0 8px 24px rgba(10, 79, 146, 0.12);
-  --shadow-lg: 0 16px 40px rgba(10, 79, 146, 0.18);
-  --shadow-glow: 0 0 20px rgba(239, 75, 0, 0.35);
-  --shadow-blue-glow: 0 0 20px rgba(10, 79, 146, 0.3);
+  --shadow-sm: 0 2px 8px rgba(0, 107, 141, 0.08);
+  --shadow-md: 0 8px 24px rgba(0, 107, 141, 0.12);
+  --shadow-lg: 0 16px 40px rgba(0, 107, 141, 0.18);
+  --shadow-glow: 0 0 20px rgba(229, 9, 20, 0.35);
+  --shadow-blue-glow: 0 0 20px rgba(0, 107, 141, 0.3);
 
   /* Border Radius */
   --radius-sm: 8px;

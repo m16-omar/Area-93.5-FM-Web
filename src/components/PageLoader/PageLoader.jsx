@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoImg from '../../assets/logo.jpeg';
+import logoImg from '../../assets/area-logo.png';
 import styles from './PageLoader.module.css';
 
 export const PageLoader = () => {
