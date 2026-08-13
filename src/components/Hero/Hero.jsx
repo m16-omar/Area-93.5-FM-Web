@@ -100,7 +100,7 @@ export const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className={styles.logoWatermark}>93.5 AREA FM</div>
+          <div className={styles.logoWatermark}>93.5 <span className={styles.logoWatermarkAccent}>AREA</span> FM</div>
           
           <h1 className={styles.heroHeadline}>
             WHERE EVERY<br />
