@@ -30,7 +30,7 @@ export const ChartsPage = () => {
   const getTrendIcon = (trend) => {
     if (trend === 'UP') return <span style={{ color: '#22C55E', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.75rem', fontWeight: 800 }}><FiTrendingUp /> UP</span>;
     if (trend === 'DOWN') return <span style={{ color: '#DC2626', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.75rem', fontWeight: 800 }}><FiTrendingDown /> DOWN</span>;
-    if (trend === 'NEW') return <span style={{ color: '#EF4B00', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.75rem', fontWeight: 800 }}><FiStar /> NEW</span>;
+    if (trend === 'NEW') return <span style={{ color: 'var(--primary-orange)', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.75rem', fontWeight: 800 }}><FiStar /> NEW</span>;
     return <span style={{ color: '#6B7280', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.75rem', fontWeight: 800 }}><FiMinus /> EVEN</span>;
   };
 
@@ -51,7 +51,7 @@ export const ChartsPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
-                whileHover={{ y: -4, borderColor: '#EF4B00', boxShadow: '0 12px 30px rgba(10, 79, 146, 0.18)' }}
+                whileHover={{ y: -4, borderColor: 'var(--primary-orange)', boxShadow: '0 12px 30px rgba(0, 107, 141, 0.18)' }}
                 style={{
                   background: '#ffffff',
                   borderRadius: '18px',
