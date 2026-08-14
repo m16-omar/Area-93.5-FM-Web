@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { FaInstagram, FaTwitter, FaYoutube, FaSpotify, FaTwitch, FaSoundcloud, FaPlay, FaUser } from 'react-icons/fa';
+import { FaInstagram, FaTwitter, FaYoutube, FaSpotify, FaTwitch, FaSoundcloud, FaPlay, FaUser, FaTiktok } from 'react-icons/fa';
 import { FiMail, FiRadio } from 'react-icons/fi';
 import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
@@ -11,14 +11,14 @@ import styles from './HostsPage.module.css';
 const featuredEpisodes = [
   {
     id: "ep1",
-    tag: "LIVE SHOW",
+    tag: "Vibe Check",
     title: "Vibe Check #4",
     date: "March 4, 2026",
     image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=400&q=80"
   },
   {
     id: "ep2",
-    tag: "POPULAR",
+    tag: "Vibe Check",
     title: "Vibe Check #3",
     date: "March 4, 2026",
     image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=400&q=80"
@@ -41,12 +41,16 @@ export const HostsPage = () => {
         <div className={styles.bgCircleTopRight} />
         <div className={styles.glowCircleTeal} />
 
-        <div className={styles.heroWatermark}>
-          TEAM MEMBERS
-        </div>
+        <div className={styles.heroGrid}>
+          {/* Left Column: Stacked Watermark Text */}
+          <div className={styles.heroWatermarkCol}>
+            <div className={styles.heroWatermarkText}>
+              TEAM<br />MEMBERS
+            </div>
+          </div>
 
-        <div className={styles.heroContent}>
-          <div className={styles.heroHeaderBox}>
+          {/* Right Column: Meet Our Hosts Header */}
+          <div className={styles.heroContentCol}>
             <motion.h1 
               className={styles.heroTitle}
               initial={{ opacity: 0, y: 20 }}
@@ -80,6 +84,8 @@ export const HostsPage = () => {
 
       {/* 2. POPULAR HOST FEATURED BLOCK */}
       <section className={styles.popularHostSection}>
+        <div className={styles.popularGlowBg} />
+
         <div className={styles.popularGrid}>
           {/* Left Col: Info & Socials */}
           <motion.div 
@@ -98,7 +104,11 @@ export const HostsPage = () => {
               DISCOVER MORE
             </button>
 
-            <span className={styles.followOnTag}>FOLLOW ON</span>
+            <div className={styles.followOnHeader}>
+              <span className={styles.followOnTag}>FOLLOW ON</span>
+              <div className={styles.followOnLine} />
+            </div>
+
             <div className={styles.socialBtnsRow}>
               <a href="#" className={styles.socialSquareBtn} aria-label="YouTube"><FaYoutube /></a>
               <a href="#" className={styles.socialSquareBtn} aria-label="Twitch"><FaTwitch /></a>
@@ -123,11 +133,14 @@ export const HostsPage = () => {
               </div>
 
               <div className={styles.featuredHostFooter}>
+                <div className={styles.djBadgeBox}>DJ</div>
                 <h3 className={styles.featuredHostName}>{featuredHost.name}</h3>
                 <div className={styles.featuredHostSocials}>
-                  <a href="#" className={styles.miniSocialIcon} aria-label="Instagram"><FaInstagram /></a>
-                  <a href="#" className={styles.miniSocialIcon} aria-label="Twitter"><FaTwitter /></a>
-                  <a href="#" className={styles.miniSocialIcon} aria-label="Spotify"><FaSpotify /></a>
+                  <a href="#" className={styles.miniSocialCircle} aria-label="Instagram"><FaInstagram /></a>
+                  <a href="#" className={styles.miniSocialCircle} aria-label="Twitter"><FaTwitter /></a>
+                  <a href="#" className={styles.miniSocialCircle} aria-label="YouTube"><FaYoutube /></a>
+                  <a href="#" className={styles.miniSocialCircle} aria-label="Spotify"><FaSpotify /></a>
+                  <a href="#" className={styles.miniSocialCircle} aria-label="TikTok"><FaTiktok /></a>
                 </div>
               </div>
             </div>
@@ -158,7 +171,7 @@ export const HostsPage = () => {
                     </div>
                   </div>
                   <div className={styles.episodeInfo}>
-                    <span className={styles.episodeTag}>{ep.tag}</span>
+                    <span className={styles.episodePillOutline}>{ep.tag}</span>
                     <h4 className={styles.episodeTitle}>{ep.title}</h4>
                     <p className={styles.episodeDate}>{ep.date}</p>
                   </div>
