@@ -8,6 +8,7 @@ import { Podcasts } from './pages/Podcasts';
 import { NewsPage } from './pages/NewsPage';
 import { ChartsPage } from './pages/ChartsPage';
 import { HostsPage } from './pages/HostsPage';
+import { VideosPage } from './pages/VideosPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/news" element={<NewsPage />} />
           <Route path="/charts" element={<ChartsPage />} />
           <Route path="/hosts" element={<HostsPage />} />
+          <Route path="/videos" element={<VideosPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
