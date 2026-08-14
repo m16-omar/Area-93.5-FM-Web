@@ -23,7 +23,7 @@
 .bgCircleBottomLeft {
   position: absolute;
   top: 500px;
-  left: 200px;
+  left: -40px;
   width: 440px;
   height: 440px;
   border-radius: 50%;
