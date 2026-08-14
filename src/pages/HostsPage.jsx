@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaInstagram, FaTwitter, FaYoutube, FaSpotify, FaTwitch, FaSoundcloud, FaPlay, FaUser, FaTiktok } from 'react-icons/fa';
-import { FiMail, FiRadio } from 'react-icons/fi';
 import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
@@ -26,11 +25,7 @@ const featuredEpisodes = [
 ];
 
 export const HostsPage = () => {
-  const featuredHost = teamData[0] || {
-    name: "Samantha Lopez",
-    role: "Head DJ & Station Host",
-    photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
-  };
+  const featuredHost = teamData.find(t => t.name === "Samantha Lopez") || teamData[0];
 
   return (
     <main className={styles.hostsPageContainer}>
@@ -133,7 +128,7 @@ export const HostsPage = () => {
               </div>
 
               <div className={styles.featuredHostFooter}>
-                <div className={styles.djBadgeBox}>DJ</div>
+                <div className={styles.djBadgeBox}>{featuredHost.badge || "DJ"}</div>
                 <h3 className={styles.featuredHostName}>{featuredHost.name}</h3>
                 <div className={styles.featuredHostSocials}>
                   <a href="#" className={styles.miniSocialCircle} aria-label="Instagram"><FaInstagram /></a>
@@ -187,7 +182,7 @@ export const HostsPage = () => {
         </div>
       </section>
 
-      {/* 3. ALL TEAM MEMBERS SECTION */}
+      {/* 3. ALL TEAM MEMBERS SECTION (3-COLUMN GRID MATCHING SCREENSHOT) */}
       <section className={styles.allMembersSection}>
         <div className={styles.allMembersWatermark}>ALL MEMBERS</div>
 
@@ -195,73 +190,32 @@ export const HostsPage = () => {
           <h2 className={styles.sectionCenterTitle}>ALL TEAM MEMBERS</h2>
         </div>
 
-        <div className={styles.hostsGrid}>
-          {teamData.map((host, idx) => (
+        <div className={styles.allMembersGrid}>
+          {teamData.map((member, idx) => (
             <motion.div
-              key={host.id}
-              className={styles.hostCard}
+              key={member.id}
+              className={styles.memberCard}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
             >
-              {/* Photo & On Air Badge Wrapper */}
-              <div className={styles.hostImgWrapper}>
-                <img src={host.photo} alt={host.name} className={styles.hostImg} />
-                
-                <div className={styles.hostBadge}>
-                  <FiRadio size={11} /> ON AIR
-                </div>
-
-                {/* Social Links Overlay Bar on Hover */}
-                <div className={styles.hostSocialsOverlay}>
-                  {host.socials?.instagram && (
-                    <a href={host.socials.instagram} className={styles.socialIconLink} aria-label="Instagram">
-                      <FaInstagram />
-                    </a>
-                  )}
-                  {host.socials?.twitter && (
-                    <a href={host.socials.twitter} className={styles.socialIconLink} aria-label="Twitter">
-                      <FaTwitter />
-                    </a>
-                  )}
-                  {host.socials?.youtube && (
-                    <a href={host.socials.youtube} className={styles.socialIconLink} aria-label="YouTube">
-                      <FaYoutube />
-                    </a>
-                  )}
-                  {host.socials?.spotify && (
-                    <a href={host.socials.spotify} className={styles.socialIconLink} aria-label="Spotify">
-                      <FaSpotify />
-                    </a>
-                  )}
-                </div>
+              <img src={member.photo} alt={member.name} className={styles.memberImg} />
+              
+              <div className={styles.memberAvatarIcon}>
+                <FaUser />
               </div>
 
-              {/* Host Meta Details */}
-              <div className={styles.hostInfo}>
-                <h3 className={styles.hostName}>{host.name}</h3>
-                <span className={styles.hostRole}>{host.role}</span>
-                <p className={styles.hostBio}>{host.bio}</p>
-
-                {/* Show Tag Pills */}
-                {host.shows && host.shows.length > 0 && (
-                  <div className={styles.showsTagWrapper}>
-                    {host.shows.map((show, sIdx) => (
-                      <span key={sIdx} className={styles.showPill}>
-                        {show}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {/* Contact Row */}
-                <div className={styles.contactRow}>
-                  {host.email && (
-                    <a href={`mailto:${host.email}`} className={styles.contactBtn}>
-                      <FiMail size={13} /> {host.email}
-                    </a>
-                  )}
+              <div className={styles.memberOverlayFooter}>
+                <div className={styles.memberBadgeBox}>{member.badge || "DJ"}</div>
+                <h3 className={styles.memberName}>{member.name}</h3>
+                
+                <div className={styles.memberSocialsRow}>
+                  <a href="#" className={styles.memberSocialCircle} aria-label="Instagram"><FaInstagram /></a>
+                  <a href="#" className={styles.memberSocialCircle} aria-label="Twitter"><FaTwitter /></a>
+                  <a href="#" className={styles.memberSocialCircle} aria-label="YouTube"><FaYoutube /></a>
+                  <a href="#" className={styles.memberSocialCircle} aria-label="Spotify"><FaSpotify /></a>
+                  <a href="#" className={styles.memberSocialCircle} aria-label="TikTok"><FaTiktok /></a>
                 </div>
               </div>
             </motion.div>

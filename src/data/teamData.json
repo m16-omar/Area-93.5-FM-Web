@@ -1,62 +1,50 @@
 [
   {
     "id": "t1",
-    "name": "Jordan Carter",
-    "role": "Head DJ & Station Host",
-    "bio": "Jordan leads the morning prime time slot on 93.5 AREA FM with over 10 years of radio broadcasting experience across pop, chart hits, and exclusive celebrity interviews.",
-    "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
-    "email": "jordan@area-fm.xyz",
-    "phone": "+1 (555) 019-2831",
-    "shows": ["Hitmakers Live", "Morning Vibe Blast"],
-    "socials": {
-      "instagram": "#",
-      "twitter": "#",
-      "youtube": "#",
-      "spotify": "#"
-    }
+    "name": "Alex Rivera",
+    "role": "Station DJ",
+    "badge": "DJ",
+    "photo": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
+    "email": "alex@area-fm.xyz"
   },
   {
     "id": "t2",
-    "name": "Elena Vance",
-    "role": "Music Director & Presenter",
-    "bio": "Curating urban beats, indie dance tracks, and live session interviews. Elena brings fresh international rhythm to afternoon listeners.",
-    "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
-    "email": "elena@area-fm.xyz",
-    "phone": "+1 (555) 019-2832",
-    "shows": ["Urban Beats & Rhythms"],
-    "socials": {
-      "instagram": "#",
-      "twitter": "#",
-      "spotify": "#"
-    }
+    "name": "Chloe Nguyen",
+    "role": "Radio Host & Producer",
+    "badge": "Host",
+    "photo": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+    "email": "chloe@area-fm.xyz"
   },
   {
     "id": "t3",
-    "name": "Lucas Ruiz",
-    "role": "Charts Specialist",
-    "bio": "Lucas hosts the weekly Top 10 Countdown and analyzes viral streaming statistics, track voting, and chart movements.",
-    "photo": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
-    "email": "lucas@area-fm.xyz",
-    "phone": "+1 (555) 019-2833",
-    "shows": ["Top 10 Countdown"],
-    "socials": {
-      "instagram": "#",
-      "twitter": "#"
-    }
+    "name": "Jordan Carter",
+    "role": "Prime Time Host",
+    "badge": "Host",
+    "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    "email": "jordan@area-fm.xyz"
   },
   {
     "id": "t4",
-    "name": "Chloe Grace",
-    "role": "Podcast Producer & Host",
-    "bio": "Producing deep-dive artist interviews, behind-the-scenes pop culture recaps, and weekly podcast sessions.",
-    "photo": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
-    "email": "chloe@area-fm.xyz",
-    "phone": "+1 (555) 019-2834",
-    "shows": ["Vibe Check Late Night"],
-    "socials": {
-      "instagram": "#",
-      "youtube": "#",
-      "spotify": "#"
-    }
+    "name": "Mia Johnson",
+    "role": "Late Night DJ",
+    "badge": "DJ",
+    "photo": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+    "email": "mia@area-fm.xyz"
+  },
+  {
+    "id": "t5",
+    "name": "Ryan Taylor",
+    "role": "Station Director & Founder",
+    "badge": "Owner",
+    "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+    "email": "ryan@area-fm.xyz"
+  },
+  {
+    "id": "t6",
+    "name": "Samantha Lopez",
+    "role": "Music Director & DJ",
+    "badge": "DJ",
+    "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+    "email": "samantha@area-fm.xyz"
   }
 ]
