@@ -141,8 +141,7 @@ export const ChartsPage = () => {
       <Navbar />
 
       <section className={styles.heroSection}>
-        {/* Background decorative circles & watermark */}
-        <div className={styles.bgCircleBottomLeft} />
+        {/* Background decorative elements & watermark */}
         <div className={styles.bgCircleTopRight} />
         <div className={styles.glowCircleTeal} />
         
@@ -266,8 +265,6 @@ export const ChartsPage = () => {
 
         {/* SECTION 2: MOST LISTENED TRACKS */}
         <div className={styles.mostListenedSection}>
-          <div className={styles.bgCircleMostListened} />
-
           <div className={styles.sectionCenterHeader}>
             <h2 className={styles.sectionCenterTitle}>MOST LISTENED TRACKS</h2>
           </div>
