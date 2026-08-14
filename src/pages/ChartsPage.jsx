@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaPlay, FaPause, FaChevronUp, FaChevronDown, FaHeadphones } from 'react-icons/fa';
-import { FiMusic } from 'react-icons/fi';
+import { FaPlay, FaPause, FaChevronUp, FaChevronDown } from 'react-icons/fa';
+import { FiMusic, FiEye, FiMessageSquare, FiShare2 } from 'react-icons/fi';
 import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
@@ -47,18 +47,57 @@ const mostListenedTracks = [
 const allChartsCategories = [
   {
     id: "ac1",
+    tag: "TOP PICKS",
     title: "Top Picks Chart",
+    date: "January 8, 2026",
+    views: "1.2k",
+    comments: "24",
     image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=600&q=80"
   },
   {
     id: "ac2",
-    title: "Urban & Afrobeat Chart",
+    tag: "STAR TRACKS",
+    title: "Star Tracks Chart",
+    date: "January 8, 2026",
+    views: "980",
+    comments: "18",
     image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=600&q=80"
   },
   {
     id: "ac3",
-    title: "Dance & EDM Chart",
+    tag: "THE BUZZ",
+    title: "The Buzz 50 Chart",
+    date: "January 8, 2026",
+    views: "1.5k",
+    comments: "32",
     image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "ac4",
+    tag: "POP DROP",
+    title: "Pop Drop Chart",
+    date: "January 8, 2026",
+    views: "850",
+    comments: "14",
+    image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "ac5",
+    tag: "BEAT",
+    title: "Beat Chart",
+    date: "January 8, 2026",
+    views: "1.1k",
+    comments: "19",
+    image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "ac6",
+    tag: "HIT LIST",
+    title: "Hit List Chart",
+    date: "January 8, 2026",
+    views: "2.1k",
+    comments: "45",
+    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80"
   }
 ];
 
@@ -89,7 +128,7 @@ export const ChartsPage = () => {
           const currentVote = userVotes[id];
           if (currentVote === 'down') return t;
           const voteChange = currentVote === 'up' ? -2 : -1;
-          return { ...t, votes: t.votes + voteChange };
+          return { ...t, votes: t.votes - voteChange };
         }
         return t;
       })
@@ -227,6 +266,8 @@ export const ChartsPage = () => {
 
         {/* SECTION 2: MOST LISTENED TRACKS */}
         <div className={styles.mostListenedSection}>
+          <div className={styles.bgCircleMostListened} />
+
           <div className={styles.sectionCenterHeader}>
             <h2 className={styles.sectionCenterTitle}>MOST LISTENED TRACKS</h2>
           </div>
@@ -266,7 +307,7 @@ export const ChartsPage = () => {
           </div>
         </div>
 
-        {/* SECTION 3: ALL CHARTS */}
+        {/* SECTION 3: ALL CHARTS (6 CARDS IN 2 ROWS) */}
         <div className={styles.allChartsSection}>
           <div className={styles.allChartsWatermark}>ALL CHARTS</div>
 
@@ -282,12 +323,13 @@ export const ChartsPage = () => {
                 initial={{ opacity: 0, y: 35 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.12 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
               >
                 <div className={styles.categoryImgWrapper}>
                   <img src={cat.image} alt={cat.title} className={styles.categoryImg} />
+                  <div className={styles.categoryBadgeTag}>{cat.tag}</div>
                   <div className={styles.categoryBadgeIcon}>
-                    <FiMusic size={15} />
+                    <FiMusic size={14} />
                   </div>
                   <div className={styles.categoryOverlayWatermark}>
                     MUSIC<br />CHARTS
@@ -296,6 +338,13 @@ export const ChartsPage = () => {
 
                 <div className={styles.categoryFooter}>
                   <h3 className={styles.categoryTitle}>{cat.title}</h3>
+                  <div className={styles.categoryMetaRow}>
+                    <span>{cat.date}</span>
+                    <span>•</span>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '3px' }}><FiEye size={12} /> {cat.views}</span>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '3px' }}><FiMessageSquare size={11} /> {cat.comments}</span>
+                    <span style={{ marginLeft: 'auto' }}><FiShare2 size={12} /></span>
+                  </div>
                 </div>
               </motion.div>
             ))}
