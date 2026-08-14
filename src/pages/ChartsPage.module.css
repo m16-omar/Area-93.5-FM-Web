@@ -1,0 +1,401 @@
+.chartsPageContainer {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
+  background: #EBF2F7;
+  min-height: 100vh;
+}
+
+.heroSection {
+  position: relative;
+  width: 100%;
+  padding: 80px 48px 100px;
+  background: linear-gradient(135deg, #E6F0F6 0%, #D8E7F2 50%, #EBF2F7 100%);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Ambient glow circles matching brand teal and red */
+.glowCircleTeal {
+  position: absolute;
+  top: -80px;
+  left: 30%;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  background: rgba(0, 107, 141, 0.18);
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.glowCircleRed {
+  position: absolute;
+  top: -100px;
+  right: 15%;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: rgba(229, 9, 20, 0.12);
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.glowCircleBottom {
+  position: absolute;
+  bottom: -150px;
+  left: 10%;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background: rgba(0, 107, 141, 0.15);
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+/* Giant background watermark */
+.watermarkText {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(4rem, 12vw, 10rem);
+  line-height: 0.85;
+  color: rgba(0, 107, 141, 0.08);
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  text-align: center;
+}
+
+/* Main 2-column container */
+.chartsGrid {
+  position: relative;
+  z-index: 2;
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 56px;
+  align-items: flex-start;
+}
+
+/* Left Column: Track List */
+.trackListCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.trackCard {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 107, 141, 0.12);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 78, 104, 0.06);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.trackCard:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary-orange);
+  box-shadow: 0 12px 30px rgba(0, 78, 104, 0.14);
+}
+
+/* Image & Rank overlay block */
+.rankImgBlock {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: var(--secondary-blue);
+}
+
+.trackImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rankBadge {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 2.2rem;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Voting Arrows Block */
+.voteBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  min-width: 48px;
+  gap: 2px;
+}
+
+.voteArrowBtn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.voteArrowBtn:hover {
+  color: var(--primary-orange);
+  transform: scale(1.2);
+}
+
+.votedUp {
+  color: #22C55E !important;
+}
+
+.votedDown {
+  color: var(--primary-orange) !important;
+}
+
+.voteCount {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--primary-blue);
+}
+
+/* Track Meta Info */
+.trackMetaInfo {
+  flex: 1;
+  padding: 12px 16px 12px 0;
+  min-width: 0;
+}
+
+.trackTitle {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #111827;
+  margin: 0 0 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trackArtist {
+  font-size: 0.85rem;
+  color: #6B7280;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.trackAlbum {
+  color: #9CA3AF;
+  font-weight: 400;
+}
+
+/* Action Play / Favorite Button */
+.actionBtn {
+  margin-right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--primary-blue);
+  color: #ffffff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 107, 141, 0.25);
+  transition: transform var(--transition-fast), background var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.actionBtn:hover {
+  transform: scale(1.08);
+  background: var(--primary-orange);
+  box-shadow: 0 6px 16px rgba(229, 9, 20, 0.35);
+}
+
+.actionBtnPlaying {
+  background: var(--primary-orange);
+}
+
+/* Full Tracklist Button */
+.fullTracklistBtn {
+  align-self: center;
+  margin-top: 24px;
+  padding: 14px 36px;
+  background: transparent;
+  border: 2px solid #111827;
+  border-radius: 4px;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #111827;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.fullTracklistBtn:hover {
+  background: #111827;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Right Column: Sidebar */
+.chartSidebarCol {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-top: 10px;
+}
+
+.sidebarHeading {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  line-height: 1.05;
+  color: #111827;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.sidebarDesc {
+  font-size: 0.95rem;
+  color: #4B5563;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Top Picks Promo Box */
+.topPicksCard {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 107, 141, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 78, 104, 0.1);
+  max-width: 340px;
+  transition: transform var(--transition-fast);
+}
+
+.topPicksCard:hover {
+  transform: translateY(-4px);
+}
+
+.topPicksImgWrapper {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  background: linear-gradient(135deg, #006B8D 0%, #22C55E 100%);
+  overflow: hidden;
+}
+
+.topPicksImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.topPicksWatermark {
+  position: absolute;
+  bottom: 10px;
+  left: 14px;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 2.2rem;
+  line-height: 0.9;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  pointer-events: none;
+}
+
+.topPicksFooter {
+  padding: 18px 20px;
+  background: #ffffff;
+  border-top: 1px solid #F3F4F6;
+}
+
+.topPicksTitle {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: #111827;
+  margin: 0;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .chartsGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .chartSidebarCol {
+    padding-top: 0;
+  }
+
+  .topPicksCard {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 60px 20px 80px;
+  }
+
+  .watermarkText {
+    font-size: 3.5rem;
+  }
+
+  .rankImgBlock {
+    width: 68px;
+    height: 68px;
+  }
+
+  .rankBadge {
+    font-size: 1.75rem;
+  }
+
+  .trackTitle {
+    font-size: 0.95rem;
+  }
+
+  .trackArtist {
+    font-size: 0.78rem;
+  }
+
+  .actionBtn {
+    margin-right: 12px;
+    width: 36px;
+    height: 36px;
+  }
+}

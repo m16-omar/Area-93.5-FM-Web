@@ -1,160 +1,175 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaPlay, FaPause, FaHeart } from 'react-icons/fa';
-import { FiTrendingUp, FiTrendingDown, FiMinus, FiStar } from 'react-icons/fi';
+import { FaPlay, FaPause, FaChevronUp, FaChevronDown } from 'react-icons/fa';
+import { FiShoppingBag } from 'react-icons/fi';
 import { Navbar } from '../components/Navbar/Navbar';
-import { PageHeader } from '../components/PageHeader/PageHeader';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import { useAudioPlayer } from '../context/AudioPlayerContext';
 import chartsData from '../data/chartsData.json';
+import styles from './ChartsPage.module.css';
 
 export const ChartsPage = () => {
   const { playTrack, currentTrack, isPlaying } = useAudioPlayer();
-  const [tracks, setTracks] = useState(chartsData);
-  const [votedMap, setVotedMap] = useState({});
+  const [tracks, setTracks] = useState(chartsData.slice(0, 5));
+  const [userVotes, setUserVotes] = useState({});
 
-  const handleVote = (id) => {
+  const handleVoteUp = (id) => {
     setTracks(prev =>
       prev.map(t => {
         if (t.id === id) {
-          const isVoted = votedMap[id];
-          return { ...t, votes: isVoted ? t.votes - 1 : t.votes + 1 };
+          const currentVote = userVotes[id];
+          if (currentVote === 'up') return t;
+          const voteChange = currentVote === 'down' ? 2 : 1;
+          return { ...t, votes: t.votes + voteChange };
         }
         return t;
       })
     );
-    setVotedMap(prev => ({ ...prev, [id]: !prev[id] }));
+    setUserVotes(prev => ({ ...prev, [id]: 'up' }));
   };
 
-  const getTrendIcon = (trend) => {
-    if (trend === 'UP') return <span style={{ color: '#22C55E', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.75rem', fontWeight: 800 }}><FiTrendingUp /> UP</span>;
-    if (trend === 'DOWN') return <span style={{ color: '#DC2626', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.75rem', fontWeight: 800 }}><FiTrendingDown /> DOWN</span>;
-    if (trend === 'NEW') return <span style={{ color: 'var(--primary-orange)', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.75rem', fontWeight: 800 }}><FiStar /> NEW</span>;
-    return <span style={{ color: '#6B7280', display: 'flex', alignItems: 'center', gap: '2px', fontSize: '0.75rem', fontWeight: 800 }}><FiMinus /> EVEN</span>;
+  const handleVoteDown = (id) => {
+    setTracks(prev =>
+      prev.map(t => {
+        if (t.id === id) {
+          const currentVote = userVotes[id];
+          if (currentVote === 'down') return t;
+          const voteChange = currentVote === 'up' ? -2 : -1;
+          return { ...t, votes: t.votes + voteChange };
+        }
+        return t;
+      })
+    );
+    setUserVotes(prev => ({ ...prev, [id]: 'down' }));
   };
 
   return (
-    <main style={{ position: 'relative', width: '100%', overflowX: 'clip', background: 'var(--color-light-bg)' }}>
+    <main className={styles.chartsPageContainer}>
       <Navbar />
-      <PageHeader title="TOP 5 CHARTS" watermark={`TOP 5\nHITS`} />
 
-      <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '60px 48px 100px' }}>
-        {/* Top Charts List */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          {tracks.map((track) => {
-            const isSelected = currentTrack?.id === track.id && isPlaying;
-            return (
-              <motion.div
-                key={track.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4 }}
-                whileHover={{ y: -4, borderColor: 'var(--primary-orange)', boxShadow: '0 12px 30px rgba(0, 107, 141, 0.18)' }}
-                style={{
-                  background: '#ffffff',
-                  borderRadius: '18px',
-                  border: '1px solid #E5E7EB',
-                  padding: '16px 24px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '20px',
-                  boxShadow: '0 4px 12px rgba(10, 79, 146, 0.08)',
-                  transition: 'transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease'
-                }}
-              >
-                {/* Rank Number */}
-                <div style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontWeight: 900,
-                  fontSize: '1.8rem',
-                  color: 'var(--primary-orange)',
-                  minWidth: '40px',
-                  textAlign: 'center'
-                }}>
-                  #{track.rank}
-                </div>
+      <section className={styles.heroSection}>
+        {/* Background ambient glows & watermark */}
+        <div className={styles.glowCircleTeal} />
+        <div className={styles.glowCircleRed} />
+        <div className={styles.glowCircleBottom} />
+        
+        <div className={styles.watermarkText}>
+          MUSIC CHARTS
+        </div>
 
-                {/* Track Artwork */}
-                <img 
-                  src={track.image} 
-                  alt={track.title} 
-                  style={{ width: '64px', height: '64px', borderRadius: 'var(--radius-sm)', objectFit: 'cover' }} 
-                />
+        {/* 2-Column Content Grid */}
+        <div className={styles.chartsGrid}>
+          {/* Left Column: Top 5 Tracks List */}
+          <div className={styles.trackListCol}>
+            {tracks.map((track, idx) => {
+              const isSelected = currentTrack?.id === track.id && isPlaying;
+              const voteState = userVotes[track.id];
 
-                {/* Track Meta */}
-                <div style={{ flex: 1 }}>
-                  <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.15rem', color: 'var(--primary-blue)', margin: 0 }}>
-                    {track.title}
-                  </h3>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', margin: '2px 0 0' }}>
-                    {track.artist} • <span style={{ opacity: 0.75 }}>{track.album}</span>
-                  </p>
-                </div>
-
-                {/* Trend Badge */}
-                <div style={{ minWidth: '70px' }}>
-                  {getTrendIcon(track.trend)}
-                </div>
-
-                {/* Duration */}
-                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--primary-blue)', minWidth: '50px' }}>
-                  {track.duration}
-                </div>
-
-                {/* Vote Button */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <button
-                    onClick={() => handleVote(track.id)}
-                    style={{
-                      width: '40px',
-                      height: '40px',
-                      borderRadius: '50%',
-                      background: votedMap[track.id] ? 'var(--orange-hover)' : 'var(--primary-orange)',
-                      color: '#ffffff',
-                      border: 'none',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      cursor: 'pointer',
-                      boxShadow: '0 4px 10px rgba(239, 75, 0, 0.3)',
-                      transition: 'all 0.2s ease'
-                    }}
-                    aria-label="Vote Track"
-                  >
-                    <FaHeart size={14} />
-                  </button>
-                  <span style={{ fontWeight: 700, fontSize: '0.85rem', minWidth: '45px', textAlign: 'right', color: 'var(--primary-blue)' }}>
-                    {track.votes}
-                  </span>
-                </div>
-
-                {/* Play Button */}
-                <button
-                  onClick={() => playTrack(track)}
-                  style={{
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '50%',
-                    background: 'var(--primary-blue)',
-                    color: '#ffffff',
-                    border: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '1rem',
-                    cursor: 'pointer',
-                    paddingLeft: isSelected ? '0' : '2px',
-                    boxShadow: '0 4px 10px rgba(10, 79, 146, 0.3)'
-                  }}
-                  aria-label="Play Track"
+              return (
+                <motion.div
+                  key={track.id}
+                  className={styles.trackCard}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.08 }}
                 >
-                  {isSelected ? <FaPause size={12} /> : <FaPlay size={12} />}
-                </button>
-              </motion.div>
-            );
-          })}
+                  {/* Rank & Image Block */}
+                  <div className={styles.rankImgBlock}>
+                    <img src={track.image} alt={track.title} className={styles.trackImg} />
+                    <div className={styles.rankBadge}>{track.rank}</div>
+                  </div>
+
+                  {/* Up / Down Vote Counter */}
+                  <div className={styles.voteBlock}>
+                    <button 
+                      onClick={() => handleVoteUp(track.id)}
+                      className={`${styles.voteArrowBtn} ${voteState === 'up' ? styles.votedUp : ''}`}
+                      aria-label="Vote Up"
+                    >
+                      <FaChevronUp size={11} />
+                    </button>
+
+                    <span className={styles.voteCount}>{track.votes}</span>
+
+                    <button 
+                      onClick={() => handleVoteDown(track.id)}
+                      className={`${styles.voteArrowBtn} ${voteState === 'down' ? styles.votedDown : ''}`}
+                      aria-label="Vote Down"
+                    >
+                      <FaChevronDown size={11} />
+                    </button>
+                  </div>
+
+                  {/* Track Meta Details */}
+                  <div className={styles.trackMetaInfo}>
+                    <h3 className={styles.trackTitle}>{track.title}</h3>
+                    <p className={styles.trackArtist}>
+                      {track.artist} <span className={styles.trackAlbum}>[{track.album}]</span>
+                    </p>
+                  </div>
+
+                  {/* Action Play Button */}
+                  <button
+                    onClick={() => playTrack(track)}
+                    className={`${styles.actionBtn} ${isSelected ? styles.actionBtnPlaying : ''}`}
+                    aria-label="Play Track"
+                  >
+                    {isSelected ? <FaPause size={13} /> : <FaPlay size={13} style={{ marginLeft: '2px' }} />}
+                  </button>
+                </motion.div>
+              );
+            })}
+
+            {/* Centered Full Tracklist Button */}
+            <button className={styles.fullTracklistBtn}>
+              FULL TRACKLIST
+            </button>
+          </div>
+
+          {/* Right Column: Chart of the Week & Top Picks Promo */}
+          <div className={styles.chartSidebarCol}>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
+            >
+              <h1 className={styles.sidebarHeading}>
+                CHART OF<br />THE WEEK
+              </h1>
+
+              <p className={styles.sidebarDesc}>
+                Discover Area 93.5 FM's weekly top 5 music charts. Voted live by our listeners across the city, featuring the hottest viral hits, chart-topping anthems, and exclusive radio releases.
+              </p>
+            </motion.div>
+
+            {/* Top Picks Chart Card */}
+            <motion.div
+              className={styles.topPicksCard}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className={styles.topPicksImgWrapper}>
+                <img 
+                  src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=600&q=80" 
+                  alt="Top Picks Chart Headphones" 
+                  className={styles.topPicksImg} 
+                />
+                <div className={styles.topPicksWatermark}>
+                  MUSIC<br />CHARTS
+                </div>
+              </div>
+
+              <div className={styles.topPicksFooter}>
+                <h3 className={styles.topPicksTitle}>Top Picks Chart</h3>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
