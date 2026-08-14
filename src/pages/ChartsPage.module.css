@@ -13,7 +13,7 @@
 .heroSection {
   position: relative;
   width: 100%;
-  padding: 80px 48px 90px;
+  padding: 170px 48px 90px;
   background: linear-gradient(135deg, #E2F0F6 0%, #D5E6F3 50%, #EAF3F7 100%);
   overflow: hidden;
   box-sizing: border-box;
@@ -22,10 +22,10 @@
 /* Solid decorative circles aligned with Area 93.5 FM brand palette */
 .bgCircleBottomLeft {
   position: absolute;
-  bottom: -60px;
-  left: 6%;
-  width: 460px;
-  height: 460px;
+  top: 360px;
+  left: -80px;
+  width: 440px;
+  height: 440px;
   border-radius: 50%;
   background: var(--primary-blue);
   opacity: 0.85;
@@ -35,8 +35,8 @@
 
 .bgCircleTopRight {
   position: absolute;
-  top: -40px;
-  right: 24%;
+  top: 20px;
+  right: 18%;
   width: 140px;
   height: 140px;
   border-radius: 50%;
@@ -57,17 +57,18 @@
   pointer-events: none;
 }
 
-/* Giant background watermark positioned in center-top */
+/* Giant background watermark positioned cleanly above the title & cards */
 .watermarkText {
   position: absolute;
-  top: 40px;
+  top: 35px;
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: clamp(4rem, 12vw, 10rem);
+  font-size: clamp(2.8rem, 8.5vw, 6.8rem);
   line-height: 0.85;
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(255, 255, 255, 0.95);
+  opacity: 0.9;
   text-transform: uppercase;
   letter-spacing: -0.04em;
   white-space: nowrap;
@@ -640,7 +641,7 @@
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
   .heroSection {
-    padding: 90px 32px 80px;
+    padding: 140px 32px 80px;
   }
 
   .chartsGrid {
@@ -663,14 +664,14 @@
   .bgCircleBottomLeft {
     width: 320px;
     height: 320px;
-    bottom: -40px;
+    top: 280px;
     left: -40px;
   }
 }
 
 @media (max-width: 768px) {
   .heroSection {
-    padding: 70px 20px 60px;
+    padding: 110px 20px 60px;
   }
 
   .mostListenedSection, .allChartsSection {
@@ -686,8 +687,8 @@
   }
 
   .watermarkText {
-    font-size: 2.8rem;
-    top: 20px;
+    font-size: 2.2rem;
+    top: 25px;
   }
 
   .rankImgBlock {
