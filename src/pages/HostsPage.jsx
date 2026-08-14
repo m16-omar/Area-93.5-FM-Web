@@ -221,6 +221,13 @@ export const HostsPage = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Centered VIEW MORE Button */}
+        <div className={styles.viewMoreWrapper}>
+          <button className={styles.viewMoreBtn}>
+            VIEW MORE
+          </button>
+        </div>
       </section>
 
       <Footer />

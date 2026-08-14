@@ -667,6 +667,36 @@
   background: var(--primary-blue);
 }
 
+/* Centered View More Button */
+.viewMoreWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 44px;
+  position: relative;
+  z-index: 2;
+}
+
+.viewMoreBtn {
+  padding: 14px 40px;
+  background: transparent;
+  border: 2px solid #111827;
+  border-radius: 4px;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #111827;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.viewMoreBtn:hover {
+  background: #111827;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
   .heroSection {
