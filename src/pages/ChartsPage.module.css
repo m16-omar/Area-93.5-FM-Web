@@ -368,19 +368,6 @@
   box-sizing: border-box;
 }
 
-.bgCircleMostListened {
-  position: absolute;
-  top: -90px;
-  left: 12%;
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  background: var(--primary-blue);
-  opacity: 0.85;
-  z-index: 1;
-  pointer-events: none;
-}
-
 .sectionCenterHeader {
   text-align: center;
   margin-bottom: 36px;

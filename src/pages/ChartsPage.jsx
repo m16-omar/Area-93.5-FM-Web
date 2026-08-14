@@ -141,7 +141,8 @@ export const ChartsPage = () => {
       <Navbar />
 
       <section className={styles.heroSection}>
-        {/* Background decorative elements & watermark */}
+        {/* Background decorative circles & watermark */}
+        <div className={styles.bgCircleBottomLeft} />
         <div className={styles.bgCircleTopRight} />
         <div className={styles.glowCircleTeal} />
         
