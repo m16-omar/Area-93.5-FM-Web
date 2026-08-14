@@ -10,7 +10,7 @@
 .heroSection {
   position: relative;
   width: 100%;
-  padding: 130px 48px 100px;
+  padding: 130px 48px 80px;
   background: linear-gradient(135deg, #E2F0F6 0%, #D5E6F3 50%, #EAF3F7 100%);
   overflow: hidden;
   box-sizing: border-box;
@@ -355,6 +355,247 @@
   margin: 0;
 }
 
+/* ========================================================
+   SECTION 2: MOST LISTENED TRACKS
+   ======================================================== */
+.mostListenedSection {
+  position: relative;
+  max-width: 1140px;
+  margin: 80px auto 0;
+  padding: 0 48px;
+  box-sizing: border-box;
+}
+
+.sectionCenterHeader {
+  text-align: center;
+  margin-bottom: 36px;
+  position: relative;
+  z-index: 2;
+}
+
+.sectionCenterTitle {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  text-transform: uppercase;
+  color: #111827;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.mostListenedGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.mostCard {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 107, 141, 0.12);
+  box-shadow: 0 6px 20px rgba(0, 78, 104, 0.07);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+}
+
+.mostCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary-orange);
+  box-shadow: 0 14px 30px rgba(0, 78, 104, 0.16);
+}
+
+.mostImgWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--secondary-blue);
+}
+
+.mostImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.mostCard:hover .mostImg {
+  transform: scale(1.06);
+}
+
+.mostPlayOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.mostCard:hover .mostPlayOverlay {
+  opacity: 1;
+}
+
+.mostPlayBtn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--primary-orange);
+  color: #ffffff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  box-shadow: 0 6px 18px rgba(229, 9, 20, 0.4);
+  cursor: pointer;
+}
+
+.mostCardFooter {
+  padding: 16px;
+  background: #ffffff;
+}
+
+.mostTrackTitle {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #111827;
+  margin: 0 0 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mostTrackArtist {
+  font-size: 0.8rem;
+  color: #6B7280;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ========================================================
+   SECTION 3: ALL CHARTS (CATEGORIES)
+   ======================================================== */
+.allChartsSection {
+  position: relative;
+  max-width: 1140px;
+  margin: 90px auto 120px;
+  padding: 0 48px;
+  box-sizing: border-box;
+}
+
+.allChartsWatermark {
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: clamp(3.5rem, 11vw, 8.5rem);
+  color: rgba(0, 107, 141, 0.06);
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  text-align: center;
+  z-index: 1;
+}
+
+.allChartsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  position: relative;
+  z-index: 2;
+}
+
+.categoryCard {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 107, 141, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 78, 104, 0.08);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.categoryCard:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary-orange);
+  box-shadow: 0 16px 36px rgba(0, 78, 104, 0.16);
+}
+
+.categoryImgWrapper {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #006B8D 0%, #004E68 100%);
+}
+
+.categoryImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.categoryCard:hover .categoryImg {
+  transform: scale(1.05);
+}
+
+.categoryBadgeIcon {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--primary-orange);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.35);
+}
+
+.categoryOverlayWatermark {
+  position: absolute;
+  bottom: 8px;
+  left: 12px;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 2.2rem;
+  line-height: 0.9;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  pointer-events: none;
+}
+
+.categoryFooter {
+  padding: 18px 20px;
+  background: #ffffff;
+}
+
+.categoryTitle {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: #111827;
+  margin: 0;
+}
+
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
   .heroSection {
@@ -366,25 +607,34 @@
     gap: 40px;
   }
 
-  .chartSidebarCol {
-    padding-top: 0;
+  .mostListenedGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .topPicksCard {
-    max-width: 100%;
+  .allChartsGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .bgCircleBottomLeft {
-    width: 320px;
-    height: 320px;
-    bottom: -60px;
-    left: -40px;
+  .mostListenedSection, .allChartsSection {
+    padding: 0 32px;
   }
 }
 
 @media (max-width: 768px) {
   .heroSection {
     padding: 90px 20px 60px;
+  }
+
+  .mostListenedSection, .allChartsSection {
+    padding: 0 20px;
+  }
+
+  .mostListenedGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .allChartsGrid {
+    grid-template-columns: 1fr;
   }
 
   .watermarkText {
