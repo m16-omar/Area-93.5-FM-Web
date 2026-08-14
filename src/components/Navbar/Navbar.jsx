@@ -73,6 +73,9 @@ export const Navbar = () => {
               <Link to="/charts" className={`${styles.navLink} ${isActive('/charts') ? styles.activeNavLink : ''}`}>CHARTS</Link>
             </li>
             <li className={styles.navItem}>
+              <Link to="/hosts" className={`${styles.navLink} ${isActive('/hosts') ? styles.activeNavLink : ''}`}>HOSTS</Link>
+            </li>
+            <li className={styles.navItem}>
               <a href="#" onClick={handleBlockedClick} className={styles.navLink}>VIDEOS</a>
             </li>
             <li className={styles.navItem}>
@@ -162,6 +165,9 @@ export const Navbar = () => {
                   </li>
                   <li>
                     <Link to="/charts" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/charts') ? styles.activeMobileLink : ''}`}>CHARTS</Link>
+                  </li>
+                  <li>
+                    <Link to="/hosts" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/hosts') ? styles.activeMobileLink : ''}`}>HOSTS</Link>
                   </li>
                   <li>
                     <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>VIDEOS</a>
