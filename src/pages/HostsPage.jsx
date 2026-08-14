@@ -1,61 +1,187 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaInstagram, FaTwitter, FaYoutube, FaSpotify, FaMicrophone } from 'react-icons/fa';
-import { FiMail, FiPhone, FiRadio } from 'react-icons/fi';
+import { FaInstagram, FaTwitter, FaYoutube, FaSpotify, FaTwitch, FaSoundcloud, FaPlay, FaUser } from 'react-icons/fa';
+import { FiMail, FiRadio } from 'react-icons/fi';
 import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import teamData from '../data/teamData.json';
 import styles from './HostsPage.module.css';
 
+const featuredEpisodes = [
+  {
+    id: "ep1",
+    tag: "LIVE SHOW",
+    title: "Vibe Check #4",
+    date: "March 4, 2026",
+    image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=400&q=80"
+  },
+  {
+    id: "ep2",
+    tag: "POPULAR",
+    title: "Vibe Check #3",
+    date: "March 4, 2026",
+    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=400&q=80"
+  }
+];
+
 export const HostsPage = () => {
+  const featuredHost = teamData[0] || {
+    name: "Samantha Lopez",
+    role: "Head DJ & Station Host",
+    photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+  };
+
   return (
     <main className={styles.hostsPageContainer}>
       <Navbar />
 
       {/* 1. HERO BANNER SECTION */}
       <section className={styles.heroSection}>
-        <div className={styles.bgCircleBottomLeft} />
         <div className={styles.bgCircleTopRight} />
         <div className={styles.glowCircleTeal} />
 
-        <div className={styles.watermarkText}>
-          OUR HOSTS
+        <div className={styles.heroWatermark}>
+          TEAM MEMBERS
         </div>
 
         <div className={styles.heroContent}>
-          <motion.div 
-            className={styles.tagWrapper}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            <div className={styles.tagDot} />
-            <span className={styles.tagText}>AREA 93.5 FM BROADCAST TEAM</span>
-          </motion.div>
+          <div className={styles.heroHeaderBox}>
+            <motion.h1 
+              className={styles.heroTitle}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              MEET OUR HOSTS
+            </motion.h1>
 
-          <motion.h1 
-            className={styles.mainTitle}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            MEET OUR RADIO HOSTS & PRESENTERS
-          </motion.h1>
+            <motion.p 
+              className={styles.heroDesc}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              Discover the hitmakers, creators, and DJs behind Area 93.5 FM. Delivering daily live radio sessions, exclusive pop culture interviews, and urban hit countdowns.
+            </motion.p>
 
-          <motion.p 
-            className={styles.heroDesc}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            Discover the voices, hitmakers, and creators powering Area 93.5 FM. Delivering live morning shows, urban beat sessions, exclusive podcasts, and weekly music chart countdowns.
-          </motion.p>
+            <motion.a 
+              href="mailto:careers@area-fm.xyz"
+              className={styles.joinBtn}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              JOIN US
+            </motion.a>
+          </div>
         </div>
       </section>
 
-      {/* 2. HOSTS GRID SECTION */}
-      <section className={styles.hostsGridSection}>
+      {/* 2. POPULAR HOST FEATURED BLOCK */}
+      <section className={styles.popularHostSection}>
+        <div className={styles.popularGrid}>
+          {/* Left Col: Info & Socials */}
+          <motion.div 
+            className={styles.popularLeftCol}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className={styles.popularTitle}>POPULAR HOST</h2>
+            <p className={styles.popularDesc}>
+              Hosting the prime time morning slot on Area 93.5 FM. Bringing high energy beats, live listener interaction, and breaking music news.
+            </p>
+
+            <button className={styles.discoverBtn}>
+              DISCOVER MORE
+            </button>
+
+            <span className={styles.followOnTag}>FOLLOW ON</span>
+            <div className={styles.socialBtnsRow}>
+              <a href="#" className={styles.socialSquareBtn} aria-label="YouTube"><FaYoutube /></a>
+              <a href="#" className={styles.socialSquareBtn} aria-label="Twitch"><FaTwitch /></a>
+              <a href="#" className={styles.socialSquareBtn} aria-label="Spotify"><FaSpotify /></a>
+              <a href="#" className={styles.socialSquareBtn} aria-label="Soundcloud"><FaSoundcloud /></a>
+            </div>
+          </motion.div>
+
+          {/* Middle Col: Featured Host Portrait */}
+          <motion.div 
+            className={styles.popularMiddleCol}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <div className={styles.featuredHostCard}>
+              <img src={featuredHost.photo} alt={featuredHost.name} className={styles.featuredHostImg} />
+              
+              <div className={styles.avatarBadge}>
+                <FaUser />
+              </div>
+
+              <div className={styles.featuredHostFooter}>
+                <h3 className={styles.featuredHostName}>{featuredHost.name}</h3>
+                <div className={styles.featuredHostSocials}>
+                  <a href="#" className={styles.miniSocialIcon} aria-label="Instagram"><FaInstagram /></a>
+                  <a href="#" className={styles.miniSocialIcon} aria-label="Twitter"><FaTwitter /></a>
+                  <a href="#" className={styles.miniSocialIcon} aria-label="Spotify"><FaSpotify /></a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Col: Episodes & Listen On */}
+          <motion.div 
+            className={styles.popularRightCol}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <div className={styles.bgCircleRightEpisodes} />
+
+            <div className={styles.listenOnHeader}>
+              <span className={styles.listenOnTag}>LISTEN ON</span>
+              <div className={styles.listenOnLine} />
+            </div>
+
+            <div className={styles.episodesList}>
+              {featuredEpisodes.map(ep => (
+                <div key={ep.id} className={styles.episodeCard}>
+                  <div className={styles.episodeThumbWrapper}>
+                    <img src={ep.image} alt={ep.title} className={styles.episodeThumb} />
+                    <div className={styles.episodePlayOverlay}>
+                      <FaPlay size={10} style={{ marginLeft: '1px' }} />
+                    </div>
+                  </div>
+                  <div className={styles.episodeInfo}>
+                    <span className={styles.episodeTag}>{ep.tag}</span>
+                    <h4 className={styles.episodeTitle}>{ep.title}</h4>
+                    <p className={styles.episodeDate}>{ep.date}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className={styles.paginationRow}>
+              <button className={styles.pagBtn}>PREV</button>
+              <button className={`${styles.pagBtn} ${styles.pagBtnActive}`}>NEXT</button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 3. ALL TEAM MEMBERS SECTION */}
+      <section className={styles.allMembersSection}>
+        <div className={styles.allMembersWatermark}>ALL MEMBERS</div>
+
+        <div className={styles.sectionCenterHeader}>
+          <h2 className={styles.sectionCenterTitle}>ALL TEAM MEMBERS</h2>
+        </div>
+
         <div className={styles.hostsGrid}>
           {teamData.map((host, idx) => (
             <motion.div
@@ -127,21 +253,6 @@ export const HostsPage = () => {
               </div>
             </motion.div>
           ))}
-        </div>
-      </section>
-
-      {/* 3. JOIN OUR TEAM CTA */}
-      <section className={styles.joinCtaSection}>
-        <div className={styles.ctaBox}>
-          <div className={styles.ctaTextCol}>
-            <h2 className={styles.ctaTitle}>WANT TO HOST YOUR OWN SHOW ON AREA 93.5 FM?</h2>
-            <p className={styles.ctaDesc}>
-              We are constantly seeking talented DJs, podcast creators, and broadcast journalists. Get in touch with our program management team today.
-            </p>
-          </div>
-          <a href="mailto:careers@area-fm.xyz" className={styles.ctaBtn}>
-            JOIN THE TEAM
-          </a>
         </div>
       </section>
 
