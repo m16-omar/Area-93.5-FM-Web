@@ -15,7 +15,7 @@
   width: 100%;
   padding: 140px 48px 90px;
   background: linear-gradient(135deg, #E2F0F6 0%, #D5E6F3 50%, #EAF3F7 100%);
-  overflow: hidden;
+  overflow: visible;
   box-sizing: border-box;
 }
 
