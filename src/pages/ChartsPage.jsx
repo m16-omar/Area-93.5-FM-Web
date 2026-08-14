@@ -37,7 +37,7 @@ export const ChartsPage = () => {
   return (
     <main style={{ position: 'relative', width: '100%', overflowX: 'clip', background: 'var(--color-light-bg)' }}>
       <Navbar />
-      <PageHeader title="TOP 40 CHARTS" watermark={`TOP 40\nHITS`} />
+      <PageHeader title="TOP 5 CHARTS" watermark={`TOP 5\nHITS`} />
 
       <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '60px 48px 100px' }}>
         {/* Top Charts List */}
