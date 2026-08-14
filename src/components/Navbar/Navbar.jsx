@@ -96,7 +96,7 @@ export const Navbar = () => {
 
           <button className={styles.playBtn} onClick={togglePlayPause}>
             {isPlaying ? <FaPause size={12} /> : <FaPlay size={12} />}
-            <span>{isPlaying ? 'PAUSE' : 'PLAY'}</span>
+            <span>{isPlaying ? 'PAUSE' : 'LIVE'}</span>
           </button>
 
           <button className={`${styles.iconBtn} ${styles.hideOnMobile}`} onClick={toggleMute} aria-label="Toggle Sound">
