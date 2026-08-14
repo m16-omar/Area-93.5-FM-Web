@@ -10,7 +10,7 @@
 .heroSection {
   position: relative;
   width: 100%;
-  padding: 130px 48px 80px;
+  padding: 200px 48px 90px;
   background: linear-gradient(135deg, #E2F0F6 0%, #D5E6F3 50%, #EAF3F7 100%);
   overflow: hidden;
   box-sizing: border-box;
@@ -19,8 +19,8 @@
 /* Solid decorative circles aligned with Area 93.5 FM brand palette */
 .bgCircleBottomLeft {
   position: absolute;
-  bottom: -100px;
-  left: 6%;
+  top: 320px;
+  left: -100px;
   width: 480px;
   height: 480px;
   border-radius: 50%;
@@ -32,8 +32,8 @@
 
 .bgCircleTopRight {
   position: absolute;
-  top: -40px;
-  right: 24%;
+  top: 15px;
+  right: 18%;
   width: 140px;
   height: 140px;
   border-radius: 50%;
@@ -55,17 +55,17 @@
   pointer-events: none;
 }
 
-/* Giant background watermark positioned at the top */
+/* Giant background watermark positioned cleanly at the top */
 .watermarkText {
   position: absolute;
-  top: 25px;
+  top: 40px;
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: clamp(3.2rem, 10vw, 8.5rem);
+  font-size: clamp(3rem, 9.5vw, 7.8rem);
   line-height: 0.85;
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(255, 255, 255, 0.92);
   text-transform: uppercase;
   letter-spacing: -0.04em;
   white-space: nowrap;
@@ -599,7 +599,7 @@
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
   .heroSection {
-    padding: 110px 32px 80px;
+    padding: 150px 32px 80px;
   }
 
   .chartsGrid {
@@ -618,11 +618,18 @@
   .mostListenedSection, .allChartsSection {
     padding: 0 32px;
   }
+
+  .bgCircleBottomLeft {
+    width: 320px;
+    height: 320px;
+    top: 250px;
+    left: -80px;
+  }
 }
 
 @media (max-width: 768px) {
   .heroSection {
-    padding: 90px 20px 60px;
+    padding: 120px 20px 60px;
   }
 
   .mostListenedSection, .allChartsSection {
@@ -638,8 +645,8 @@
   }
 
   .watermarkText {
-    font-size: 2.8rem;
-    top: 20px;
+    font-size: 2.4rem;
+    top: 25px;
   }
 
   .rankImgBlock {
