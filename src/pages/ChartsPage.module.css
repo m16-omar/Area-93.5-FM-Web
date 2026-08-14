@@ -10,8 +10,8 @@
 .heroSection {
   position: relative;
   width: 100%;
-  padding: 80px 48px 100px;
-  background: linear-gradient(135deg, #E6F0F6 0%, #D8E7F2 50%, #EBF2F7 100%);
+  padding: 150px 48px 100px;
+  background: linear-gradient(135deg, #E2F0F6 0%, #D5E6F3 50%, #EBF2F7 100%);
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -19,25 +19,25 @@
 /* Ambient glow circles matching brand teal and red */
 .glowCircleTeal {
   position: absolute;
-  top: -80px;
-  left: 30%;
-  width: 550px;
-  height: 550px;
+  top: -40px;
+  left: 35%;
+  width: 600px;
+  height: 600px;
   border-radius: 50%;
-  background: rgba(0, 107, 141, 0.18);
-  filter: blur(90px);
+  background: rgba(0, 107, 141, 0.22);
+  filter: blur(100px);
   pointer-events: none;
 }
 
 .glowCircleRed {
   position: absolute;
-  top: -100px;
-  right: 15%;
-  width: 350px;
-  height: 350px;
+  top: -80px;
+  right: 12%;
+  width: 380px;
+  height: 380px;
   border-radius: 50%;
   background: rgba(229, 9, 20, 0.12);
-  filter: blur(80px);
+  filter: blur(85px);
   pointer-events: none;
 }
 
@@ -53,23 +53,24 @@
   pointer-events: none;
 }
 
-/* Giant background watermark */
+/* Giant background watermark positioned at the top */
 .watermarkText {
   position: absolute;
-  top: 40px;
+  top: 25px;
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: clamp(4rem, 12vw, 10rem);
+  font-size: clamp(3.2rem, 10vw, 8.5rem);
   line-height: 0.85;
-  color: rgba(0, 107, 141, 0.08);
+  color: rgba(255, 255, 255, 0.85);
   text-transform: uppercase;
   letter-spacing: -0.04em;
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
   text-align: center;
+  text-shadow: 0 2px 20px rgba(0, 107, 141, 0.08);
 }
 
 /* Main 2-column container */
@@ -353,6 +354,10 @@
 
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
+  .heroSection {
+    padding: 110px 32px 80px;
+  }
+
   .chartsGrid {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -369,11 +374,12 @@
 
 @media (max-width: 768px) {
   .heroSection {
-    padding: 60px 20px 80px;
+    padding: 90px 20px 60px;
   }
 
   .watermarkText {
-    font-size: 3.5rem;
+    font-size: 2.8rem;
+    top: 20px;
   }
 
   .rankImgBlock {
