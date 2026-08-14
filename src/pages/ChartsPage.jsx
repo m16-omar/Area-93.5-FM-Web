@@ -49,10 +49,10 @@ export const ChartsPage = () => {
       <Navbar />
 
       <section className={styles.heroSection}>
-        {/* Background ambient glows & watermark */}
+        {/* Background decorative circles & watermark */}
+        <div className={styles.bgCircleBottomLeft} />
+        <div className={styles.bgCircleTopRight} />
         <div className={styles.glowCircleTeal} />
-        <div className={styles.glowCircleRed} />
-        <div className={styles.glowCircleBottom} />
         
         <div className={styles.watermarkText}>
           MUSIC CHARTS
