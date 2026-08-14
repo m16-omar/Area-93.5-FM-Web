@@ -52,7 +52,6 @@ export const Navbar = () => {
       <header className={`${styles.navbarContainer} ${isScrolled ? styles.scrolled : ''}`}>
         <Link to="/" className={styles.logoLink}>
           <img src={logoImg} alt="93.5 AREA FM Logo" className={styles.logoImg} />
-          <span className={styles.logoText}>93.5 AREA <span className={styles.logoAccent}>FM</span></span>
         </Link>
 
         {/* Desktop Navigation */}

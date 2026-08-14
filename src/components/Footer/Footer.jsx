@@ -20,7 +20,6 @@ export const Footer = () => {
         <div className={styles.leftCol}>
           <div className={styles.logoLink}>
             <img src={logoImg} alt="93.5 AREA FM Logo" className={styles.logoImg} />
-            <span className={styles.logoText}>93.5 AREA <span className={styles.logoAccent}>FM</span></span>
           </div>
 
           <div className={styles.nowPlayingInfo}>

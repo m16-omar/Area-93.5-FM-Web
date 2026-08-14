@@ -11,11 +11,10 @@
 }
 
 .loaderLogo {
-  height: 70px;
+  height: 110px;
   width: auto;
   margin-bottom: 24px;
-  border-radius: var(--radius-sm);
-  box-shadow: 0 8px 24px rgba(10, 79, 146, 0.4);
+  object-fit: contain;
 }
 
 .spinnerCircle {

@@ -30,7 +30,6 @@ export const PageLoader = () => {
         >
           <img src={logoImg} alt="93.5 AREA FM Logo" className={styles.loaderLogo} />
           <div className={styles.spinnerCircle} />
-          <div className={styles.brandText}>93.5 AREA FM</div>
         </motion.div>
       )}
     </AnimatePresence>
