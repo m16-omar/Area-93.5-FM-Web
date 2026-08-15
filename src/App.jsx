@@ -9,6 +9,7 @@ import { NewsPage } from './pages/NewsPage';
 import { ChartsPage } from './pages/ChartsPage';
 import { HostsPage } from './pages/HostsPage';
 import { VideosPage } from './pages/VideosPage';
+import { ContactPage } from './pages/ContactPage';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/charts" element={<ChartsPage />} />
           <Route path="/hosts" element={<HostsPage />} />
           <Route path="/videos" element={<VideosPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>

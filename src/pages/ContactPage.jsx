@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiMapPin, FiPhone, FiMail, FiClock, FiSend, FiCheckCircle } from 'react-icons/fi';
 import { Navbar } from '../components/Navbar/Navbar';
-import { PageHeader } from '../components/PageHeader/PageHeader';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import contactInfoData from '../data/contactInfoData.json';
+import styles from './ContactPage.module.css';
 
 export const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -26,169 +26,242 @@ export const ContactPage = () => {
   };
 
   return (
-    <main style={{ position: 'relative', width: '100%', overflowX: 'clip', background: 'var(--color-light-bg)' }}>
+    <main className={styles.contactPageContainer}>
       <Navbar />
-      <PageHeader title="CONTACT US" watermark={`GET IN\nTOUCH`} />
 
-      <section style={{ maxWidth: '1200px', margin: '0 auto', padding: '60px 48px 100px' }}>
-        {/* Top Info Cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', marginBottom: '60px' }}>
+      {/* 1. HERO BANNER SECTION */}
+      <section className={styles.heroSection}>
+        <div className={styles.bgCircleTopRight} />
+        <div className={styles.glowCircleTeal} />
+
+        <div className={styles.watermarkText}>
+          CONTACT
+        </div>
+
+        <div className={styles.heroContent}>
+          <motion.div 
+            className={styles.tagWrapper}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <div className={styles.tagDot} />
+            <span className={styles.tagText}>GET IN TOUCH WITH AREA 93.5 FM</span>
+          </motion.div>
+
+          <motion.h1 
+            className={styles.mainTitle}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            CONTACT OUR BROADCAST TEAM
+          </motion.h1>
+
+          <motion.p 
+            className={styles.heroDesc}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Have song requests, press inquiries, advertising partnerships, or listener feedback? Send us a message or reach out via our direct hotlines.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* 2. CONTACT INFO CARDS & FORM SECTION */}
+      <section className={styles.contactMainSection}>
+        {/* Top 3 Info Cards */}
+        <div className={styles.infoCardsGrid}>
           {/* Card 1: Address */}
-          <div style={{ background: '#ffffff', borderRadius: '18px', border: '1px solid #E5E7EB', padding: '32px', boxShadow: '0 4px 12px rgba(10, 79, 146, 0.08)' }}>
-            <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--primary-orange)', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', marginBottom: '16px', boxShadow: '0 4px 12px rgba(239, 75, 0, 0.3)' }}>
+          <motion.div 
+            className={styles.infoCard}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className={styles.iconBadge}>
               <FiMapPin />
             </div>
-            <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.2rem', color: 'var(--primary-blue)', marginBottom: '8px' }}>
+            <h3 className={styles.cardTitle}>
               {contactInfoData.address.title}
             </h3>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-dark)', lineHeight: 1.5, margin: 0 }}>
+            <p className={styles.cardBodyText}>
               {contactInfoData.address.street}<br />
               {contactInfoData.address.city}
             </p>
-          </div>
+          </motion.div>
 
           {/* Card 2: Hotlines */}
-          <div style={{ background: '#ffffff', borderRadius: '18px', border: '1px solid #E5E7EB', padding: '32px', boxShadow: '0 4px 12px rgba(10, 79, 146, 0.08)' }}>
-            <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--primary-orange)', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', marginBottom: '16px', boxShadow: '0 4px 12px rgba(239, 75, 0, 0.3)' }}>
+          <motion.div 
+            className={styles.infoCard}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <div className={styles.iconBadge}>
               <FiPhone />
             </div>
-            <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.2rem', color: 'var(--primary-blue)', marginBottom: '8px' }}>
+            <h3 className={styles.cardTitle}>
               HOTLINES & EMAIL
             </h3>
-            <div style={{ fontSize: '0.9rem', color: 'var(--text-dark)', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <div className={styles.contactList}>
               {contactInfoData.contacts.map((c, idx) => (
                 <div key={idx}><strong>{c.type}:</strong> {c.value}</div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Card 3: Business Hours */}
-          <div style={{ background: '#ffffff', borderRadius: '18px', border: '1px solid #E5E7EB', padding: '32px', boxShadow: '0 4px 12px rgba(10, 79, 146, 0.08)' }}>
-            <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'var(--primary-orange)', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', marginBottom: '16px', boxShadow: '0 4px 12px rgba(239, 75, 0, 0.3)' }}>
+          <motion.div 
+            className={styles.infoCard}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <div className={styles.iconBadge}>
               <FiClock />
             </div>
-            <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.2rem', color: 'var(--primary-blue)', marginBottom: '8px' }}>
+            <h3 className={styles.cardTitle}>
               OFFICE HOURS
             </h3>
-            <div style={{ fontSize: '0.9rem', color: 'var(--text-dark)', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <div className={styles.contactList}>
               {contactInfoData.hours.map((h, idx) => (
                 <div key={idx}><strong>{h.day}:</strong> {h.time}</div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Contact Form & Studio Location Section */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '48px', alignItems: 'flex-start' }}>
-          {/* Form */}
-          <div style={{ background: '#ffffff', borderRadius: '18px', border: '1px solid #E5E7EB', padding: '40px', boxShadow: '0 4px 12px rgba(10, 79, 146, 0.08)' }}>
-            <h3 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.8rem', color: 'var(--primary-blue)', marginBottom: '6px' }}>
-              Send Us a Message
+        <div className={styles.formLocationGrid}>
+          {/* Form Card */}
+          <motion.div 
+            className={styles.formCard}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h3 className={styles.formTitle}>
+              SEND US A MESSAGE
             </h3>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '24px' }}>
+            <p className={styles.formSubtitle}>
               Have song requests, press releases, or general questions? Drop us a line below.
             </p>
 
             {submitted ? (
-              <div style={{ background: 'var(--gradient-hero)', padding: '24px', borderRadius: 'var(--radius-sm)', textAlign: 'center' }}>
-                <FiCheckCircle size={36} style={{ color: 'var(--primary-orange)', marginBottom: '8px' }} />
-                <h4 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.3rem', color: '#ffffff', margin: 0 }}>
+              <div className={styles.successBox}>
+                <FiCheckCircle size={36} style={{ color: 'var(--primary-orange)' }} />
+                <h4 className={styles.successTitle}>
                   Message Sent Successfully!
                 </h4>
-                <p style={{ fontSize: '0.85rem', color: '#F5F7FA', marginTop: '4px' }}>
+                <p className={styles.successDesc}>
                   We appreciate your message and will respond shortly.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <form onSubmit={handleSubmit}>
+                <div className={styles.formGroupRow}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 800, color: 'var(--primary-blue)', marginBottom: '4px' }}>FULL NAME</label>
+                    <label className={styles.inputLabel}>FULL NAME</label>
                     <input
                       type="text"
                       required
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid #D1D5DB', background: '#ffffff', outline: 'none', color: '#1A1A1A' }}
+                      className={styles.inputControl}
+                      placeholder="e.g. John Doe"
                     />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 800, color: 'var(--primary-blue)', marginBottom: '4px' }}>EMAIL ADDRESS</label>
+                    <label className={styles.inputLabel}>EMAIL ADDRESS</label>
                     <input
                       type="email"
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid #D1D5DB', background: '#ffffff', outline: 'none', color: '#1A1A1A' }}
+                      className={styles.inputControl}
+                      placeholder="e.g. john@example.com"
                     />
                   </div>
                 </div>
 
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 800, color: 'var(--primary-blue)', marginBottom: '4px' }}>SUBJECT</label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid #D1D5DB', background: '#ffffff', outline: 'none', color: '#1A1A1A' }}
-                  />
+                <div className={styles.formGroupRow}>
+                  <div>
+                    <label className={styles.inputLabel}>PHONE NUMBER</label>
+                    <input
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className={styles.inputControl}
+                      placeholder="e.g. +234 800 000 0000"
+                    />
+                  </div>
+                  <div>
+                    <label className={styles.inputLabel}>SUBJECT</label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      className={styles.inputControl}
+                      placeholder="e.g. Song Request / Inquiry"
+                    />
+                  </div>
                 </div>
 
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: 800, color: 'var(--primary-blue)', marginBottom: '4px' }}>YOUR MESSAGE</label>
+                <div className={styles.inputGroup}>
+                  <label className={styles.inputLabel}>YOUR MESSAGE</label>
                   <textarea
                     rows={5}
                     required
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    style={{ width: '100%', padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid #D1D5DB', background: '#ffffff', outline: 'none', color: '#1A1A1A' }}
+                    className={`${styles.inputControl} ${styles.textareaControl}`}
+                    placeholder="Type your message here..."
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  style={{
-                    background: 'var(--primary-orange)',
-                    color: '#ffffff',
-                    fontFamily: 'var(--font-heading)',
-                    fontWeight: 900,
-                    fontSize: '0.85rem',
-                    padding: '14px 28px',
-                    borderRadius: 'var(--radius-sm)',
-                    border: 'none',
-                    cursor: 'pointer',
-                    letterSpacing: '0.05em',
-                    alignSelf: 'flex-start',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    boxShadow: '0 4px 12px rgba(239, 75, 0, 0.3)'
-                  }}
-                >
+                <button type="submit" className={styles.submitBtn}>
                   <FiSend /> SEND MESSAGE
                 </button>
               </form>
             )}
-          </div>
+          </motion.div>
 
-          {/* Map Preview Card */}
-          <div style={{ background: 'var(--secondary-blue)', color: '#ffffff', borderRadius: '18px', border: '1px solid #E5E7EB', overflow: 'hidden', boxShadow: '0 8px 24px rgba(10, 79, 146, 0.15)', height: '100%', minHeight: '440px', position: 'relative' }}>
+          {/* Map & Studio Location Card */}
+          <motion.div 
+            className={styles.mapCard}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
             <img 
               src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=80" 
               alt="Studio Location" 
-              style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.5 }} 
+              className={styles.mapImg}
             />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(8,59,110,0.3) 0%, rgba(8,59,110,0.92) 100%)', padding: '32px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
-              <span className="badge-outline" style={{ background: 'var(--primary-orange)', color: '#ffffff', border: 'none', alignSelf: 'flex-start', marginBottom: '8px' }}>STUDIO LOCATION</span>
-              <h4 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: '1.4rem', color: '#ffffff', margin: '0 0 6px 0' }}>
+            <div className={styles.mapOverlay}>
+              <span className={styles.mapBadge}>STUDIO LOCATION</span>
+              <h4 className={styles.mapTitle}>
                 93.5 AREA FM HEADQUARTERS
               </h4>
-              <p style={{ fontSize: '0.85rem', color: '#F5F7FA', margin: 0 }}>
+              <p className={styles.mapAddress}>
                 108 Music Frequency Avenue, Metro City
               </p>
+
+              <div className={styles.mapDetailsList}>
+                <div><strong>Live Studio Line:</strong> +1 (555) 935-8000</div>
+                <div><strong>WhatsApp Line:</strong> +1 (555) 935-8001</div>
+                <div><strong>Email:</strong> contact@area-fm.xyz</div>
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
