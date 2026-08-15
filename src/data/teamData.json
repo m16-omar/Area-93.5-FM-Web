@@ -1,50 +1,50 @@
 [
   {
     "id": "t1",
-    "name": "Alex Rivera",
-    "role": "Station DJ",
+    "name": "Tobi Adebayo",
+    "role": "Station DJ (DJ Tobi)",
     "badge": "DJ",
     "photo": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
-    "email": "alex@area-fm.xyz"
+    "email": "tobi@area-fm.xyz"
   },
   {
     "id": "t2",
-    "name": "Chloe Nguyen",
-    "role": "Radio Host & Producer",
+    "name": "Funke Akindele",
+    "role": "Radio Host & Executive Producer",
     "badge": "Host",
     "photo": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
-    "email": "chloe@area-fm.xyz"
+    "email": "funke@area-fm.xyz"
   },
   {
     "id": "t3",
-    "name": "Jordan Carter",
-    "role": "Prime Time Host",
+    "name": "Olamide Okafor",
+    "role": "Prime Time Morning Host",
     "badge": "Host",
     "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
-    "email": "jordan@area-fm.xyz"
+    "email": "olamide@area-fm.xyz"
   },
   {
     "id": "t4",
-    "name": "Mia Johnson",
-    "role": "Late Night DJ",
+    "name": "Kemi Adetiba",
+    "role": "Late Night Vibe DJ",
     "badge": "DJ",
     "photo": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
-    "email": "mia@area-fm.xyz"
+    "email": "kemi@area-fm.xyz"
   },
   {
     "id": "t5",
-    "name": "Ryan Taylor",
+    "name": "Babalola Alabi",
     "role": "Station Director & Founder",
     "badge": "Owner",
     "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
-    "email": "ryan@area-fm.xyz"
+    "email": "babalola@area-fm.xyz"
   },
   {
     "id": "t6",
-    "name": "Samantha Lopez",
-    "role": "Music Director & DJ",
+    "name": "Simi Ogunleye",
+    "role": "Music Director & Resident DJ",
     "badge": "DJ",
     "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
-    "email": "samantha@area-fm.xyz"
+    "email": "simi@area-fm.xyz"
   }
 ]

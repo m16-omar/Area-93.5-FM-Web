@@ -11,21 +11,21 @@ const featuredEpisodes = [
   {
     id: "ep1",
     tag: "Vibe Check",
-    title: "Vibe Check #4",
+    title: "Naija Vibe Check #4",
     date: "March 4, 2026",
     image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=400&q=80"
   },
   {
     id: "ep2",
     tag: "Vibe Check",
-    title: "Vibe Check #3",
+    title: "Naija Vibe Check #3",
     date: "March 4, 2026",
     image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=400&q=80"
   }
 ];
 
 export const HostsPage = () => {
-  const featuredHost = teamData.find(t => t.name === "Samantha Lopez") || teamData[0];
+  const featuredHost = teamData.find(t => t.name === "Simi Ogunleye") || teamData[0];
 
   return (
     <main className={styles.hostsPageContainer}>
