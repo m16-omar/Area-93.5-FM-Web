@@ -185,51 +185,6 @@ export const PromotePage = () => {
             </div>
           </motion.div>
         </div>
-
-        {/* CAMPAIGN PACKAGES SECTION */}
-        <div className={styles.packagesHeader}>
-          <h2 className={styles.packagesTitle}>CAMPAIGN ADVERTISING PACKAGES</h2>
-        </div>
-
-        <div className={styles.packagesGrid}>
-          {promoteData.packages.map((pkg, idx) => (
-            <motion.div
-              key={pkg.id}
-              className={`${styles.pkgCard} ${pkg.popular ? styles.pkgPopular : ''}`}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-            >
-              {pkg.popular && (
-                <span className={styles.popularBadge}>MOST POPULAR</span>
-              )}
-
-              <div>
-                <h3 className={styles.pkgName}>{pkg.name}</h3>
-                <div className={styles.pkgPrice}>
-                  {pkg.price} <span>/ campaign</span>
-                </div>
-
-                <ul className={styles.pkgFeaturesList}>
-                  {pkg.features.map((feat, fIdx) => (
-                    <li key={fIdx} className={styles.pkgFeatureItem}>
-                      <FiCheck className={styles.checkIcon} />
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <button 
-                className={styles.selectPkgBtn}
-                onClick={() => alert(`Selected ${pkg.name} package. Our advertising team will contact you shortly!`)}
-              >
-                SELECT PACKAGE
-              </button>
-            </motion.div>
-          ))}
-        </div>
       </section>
 
       {/* PDF VIEWER MODAL */}
