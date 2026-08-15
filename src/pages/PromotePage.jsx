@@ -1,29 +1,19 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiCheck, FiDownload, FiRadio, FiPercent, FiCalendar, FiDollarSign } from 'react-icons/fi';
+import { FiCheck, FiDownload, FiEye, FiFileText, FiX } from 'react-icons/fi';
+import { FaFilePdf } from 'react-icons/fa';
 import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import promoteData from '../data/promoteData.json';
 import styles from './PromotePage.module.css';
 
-const programmeSchedule = [
-  { time: "06:00 - 10:00 AM", name: "Morning Vibe Blast", host: "Jordan Carter" },
-  { time: "10:00 - 02:00 PM", name: "Urban Beats & Rhythms", host: "Elena Vance" },
-  { time: "02:00 - 06:00 PM", name: "Hitmakers Live Drive", host: "Alex Rivera" },
-  { time: "06:00 - 10:00 PM", name: "Top 10 Countdown", host: "Lucas Ruiz" },
-  { time: "10:00 - 02:00 AM", name: "Vibe Check Late Night", host: "Mia Johnson" }
-];
-
-const rateCardSlots = [
-  { slot: "30s Morning Spot (06:00 - 10:00)", price: "₦45,000 / spot" },
-  { slot: "30s Daytime Spot (10:00 - 16:00)", price: "₦35,000 / spot" },
-  { slot: "30s Drive Time Spot (16:00 - 20:00)", price: "₦40,000 / spot" },
-  { slot: "60s Live Presenter Hype", price: "₦60,000 / read" },
-  { slot: "1-Hour Show Sponsorship", price: "₦250,000 / ep" }
-];
-
 export const PromotePage = () => {
+  const [activePdfModal, setActivePdfModal] = useState(null);
+
+  const rateCardPdfUrl = "/assets/Area_935_FM_Rate_Card_2026.pdf";
+  const programmePdfUrl = "/assets/Area_935_FM_Programme_Schedule_2026.pdf";
+
   return (
     <main className={styles.promotePageContainer}>
       <Navbar />
@@ -87,11 +77,11 @@ export const PromotePage = () => {
           ))}
         </div>
 
-        {/* DUAL SECTION: PROGRAMME CARD & RATE CARD */}
+        {/* DUAL SECTION: PROGRAMME CARD PDF & RATE CARD PDF */}
         <div className={styles.cardsDualRow}>
-          {/* PROGRAMME CARD */}
+          {/* PROGRAMME CARD PDF */}
           <motion.div 
-            className={styles.resourceCard}
+            className={styles.pdfCard}
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -100,38 +90,51 @@ export const PromotePage = () => {
             <div>
               <div className={styles.cardHeaderRow}>
                 <span className={styles.cardBadge}>STATION SCHEDULE</span>
-                <div className={styles.cardIconCircle}>
-                  <FiCalendar />
+                <div className={styles.pdfIconCircle}>
+                  <FaFilePdf />
                 </div>
               </div>
 
-              <h2 className={styles.cardTitle}>PROGRAMME CARD</h2>
+              <h2 className={styles.cardTitle}>PROGRAMME CARD (PDF)</h2>
               <p className={styles.cardDesc}>
-                Explore our official broadcast schedule, prime-time show slots, and drive-time presenter lineups for targeted sponsorship placement.
+                Download the complete official 93.5 Area FM broadcast schedule PDF document detailing show times, presenter lineups, and prime-time sponsorship slots.
               </p>
 
-              <div className={styles.resourceList}>
-                {programmeSchedule.map((p, idx) => (
-                  <div key={idx} className={styles.resourceItem}>
-                    <span className={styles.itemLabel}>{p.name} ({p.time})</span>
-                    <span className={styles.itemDetail}>Host: {p.host}</span>
+              {/* PDF Preview Container */}
+              <div className={styles.pdfPreviewBox}>
+                <FaFilePdf className={styles.pdfDocIcon} />
+                <div className={styles.pdfDocMeta}>
+                  <div className={styles.pdfDocName}>Area_935_FM_Programme_Schedule_2026.pdf</div>
+                  <div className={styles.pdfMetaPillRow}>
+                    <span className={styles.pdfMetaPill}>PDF Document</span>
+                    <span className={styles.pdfMetaPill}>Size: 1.2 MB</span>
+                    <span className={styles.pdfMetaPill}>Version 2026</span>
                   </div>
-                ))}
+                </div>
               </div>
             </div>
 
-            <a 
-              href="#"
-              onClick={(e) => { e.preventDefault(); alert("Downloading Station Programme Card (PDF)..."); }}
-              className={styles.downloadBtn}
-            >
-              <FiDownload /> DOWNLOAD PROGRAMME CARD (PDF)
-            </a>
+            <div className={styles.btnGroupRow}>
+              <a 
+                href={programmePdfUrl}
+                download="Area_935_FM_Programme_Schedule_2026.pdf"
+                className={styles.downloadBtn}
+              >
+                <FiDownload /> DOWNLOAD PDF
+              </a>
+
+              <button 
+                onClick={() => setActivePdfModal({ title: "Programme Schedule 2026 (PDF)", url: programmePdfUrl })}
+                className={styles.viewPdfBtn}
+              >
+                <FiEye /> VIEW ONLINE
+              </button>
+            </div>
           </motion.div>
 
-          {/* RATE CARD */}
+          {/* RATE CARD PDF */}
           <motion.div 
-            className={styles.resourceCard}
+            className={styles.pdfCard}
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -140,33 +143,46 @@ export const PromotePage = () => {
             <div>
               <div className={styles.cardHeaderRow}>
                 <span className={styles.cardBadge}>OFFICIAL RATES</span>
-                <div className={styles.cardIconCircle}>
-                  <FiDollarSign />
+                <div className={styles.pdfIconCircle}>
+                  <FaFilePdf />
                 </div>
               </div>
 
-              <h2 className={styles.cardTitle}>ADVERTISING RATE CARD 2026</h2>
+              <h2 className={styles.cardTitle}>ADVERTISING RATE CARD (PDF)</h2>
               <p className={styles.cardDesc}>
-                Transparent commercial rates for 30s radio spots, live presenter hypes, show segment sponsorships, and digital cross-promotions.
+                Download the official 93.5 Area FM Rate Card PDF document containing full commercial spot rates, live presenter hypes, segment sponsorships, and digital packages.
               </p>
 
-              <div className={styles.resourceList}>
-                {rateCardSlots.map((r, idx) => (
-                  <div key={idx} className={styles.resourceItem}>
-                    <span className={styles.itemLabel}>{r.slot}</span>
-                    <span className={styles.itemDetail}>{r.price}</span>
+              {/* PDF Preview Container */}
+              <div className={styles.pdfPreviewBox}>
+                <FaFilePdf className={styles.pdfDocIcon} />
+                <div className={styles.pdfDocMeta}>
+                  <div className={styles.pdfDocName}>Area_935_FM_Rate_Card_2026.pdf</div>
+                  <div className={styles.pdfMetaPillRow}>
+                    <span className={styles.pdfMetaPill}>PDF Document</span>
+                    <span className={styles.pdfMetaPill}>Size: 1.4 MB</span>
+                    <span className={styles.pdfMetaPill}>Official Rate Card</span>
                   </div>
-                ))}
+                </div>
               </div>
             </div>
 
-            <a 
-              href="#"
-              onClick={(e) => { e.preventDefault(); alert("Downloading Official Rate Card 2026 (PDF)..."); }}
-              className={styles.downloadBtn}
-            >
-              <FiDownload /> DOWNLOAD RATE CARD 2026 (PDF)
-            </a>
+            <div className={styles.btnGroupRow}>
+              <a 
+                href={rateCardPdfUrl}
+                download="Area_935_FM_Rate_Card_2026.pdf"
+                className={styles.downloadBtn}
+              >
+                <FiDownload /> DOWNLOAD RATE CARD PDF
+              </a>
+
+              <button 
+                onClick={() => setActivePdfModal({ title: "Official Rate Card 2026 (PDF)", url: rateCardPdfUrl })}
+                className={styles.viewPdfBtn}
+              >
+                <FiEye /> VIEW ONLINE
+              </button>
+            </div>
           </motion.div>
         </div>
 
@@ -215,6 +231,25 @@ export const PromotePage = () => {
           ))}
         </div>
       </section>
+
+      {/* PDF VIEWER MODAL */}
+      {activePdfModal && (
+        <div className={styles.modalBackdrop} onClick={() => setActivePdfModal(null)}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.modalHeader}>
+              <h3 className={styles.modalTitle}>{activePdfModal.title}</h3>
+              <button className={styles.modalCloseBtn} onClick={() => setActivePdfModal(null)}>
+                <FiX />
+              </button>
+            </div>
+            <iframe 
+              src={activePdfModal.url} 
+              title={activePdfModal.title}
+              className={styles.modalIframe}
+            />
+          </div>
+        </div>
+      )}
 
       <Footer />
       <LivePlayer />

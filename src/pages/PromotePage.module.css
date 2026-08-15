@@ -118,7 +118,7 @@
 }
 
 /* ========================================================
-   2. MAIN CONTENT SECTION (PROGRAMME CARD & RATE CARD)
+   2. MAIN CONTENT SECTION (PROGRAMME CARD & RATE CARD PDFS)
    ======================================================== */
 .promoteMainSection {
   position: relative;
@@ -179,7 +179,7 @@
   z-index: 2;
 }
 
-.resourceCard {
+.pdfCard {
   background: #ffffff;
   border-radius: 20px;
   border: 1px solid rgba(0, 107, 141, 0.14);
@@ -191,7 +191,7 @@
   transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.resourceCard:hover {
+.pdfCard:hover {
   transform: translateY(-6px);
   border-color: var(--primary-orange);
   box-shadow: 0 18px 40px rgba(0, 78, 104, 0.16);
@@ -216,16 +216,17 @@
   text-transform: uppercase;
 }
 
-.cardIconCircle {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(0, 107, 141, 0.1);
-  color: var(--primary-blue);
+.pdfIconCircle {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(229, 9, 20, 0.1);
+  color: var(--primary-orange);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
+  border: 1px solid rgba(229, 9, 20, 0.2);
 }
 
 .cardTitle {
@@ -245,58 +246,109 @@
   margin: 0 0 24px;
 }
 
-.resourceList {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+/* PDF Document Display Preview Box */
+.pdfPreviewBox {
+  background: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%);
+  border: 1.5px dashed rgba(0, 107, 141, 0.3);
+  border-radius: 14px;
+  padding: 24px;
   margin-bottom: 28px;
-}
-
-.resourceItem {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 12px 14px;
-  background: #F9FAFB;
-  border-radius: 8px;
-  border: 1px solid #E5E7EB;
-  font-size: 0.88rem;
+  gap: 18px;
 }
 
-.itemLabel {
-  font-weight: 700;
+.pdfDocIcon {
+  font-size: 3rem;
+  color: var(--primary-orange);
+  flex-shrink: 0;
+}
+
+.pdfDocMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pdfDocName {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1.05rem;
   color: #111827;
 }
 
-.itemDetail {
-  font-family: var(--font-heading);
-  font-weight: 800;
+.pdfMetaPillRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pdfMetaPill {
+  font-size: 0.72rem;
+  font-weight: 700;
   color: var(--primary-blue);
+  background: rgba(0, 107, 141, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.btnGroupRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
 }
 
 .downloadBtn {
+  flex: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 14px 28px;
+  padding: 14px 20px;
+  background: var(--primary-orange);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 14px rgba(229, 9, 20, 0.3);
+}
+
+.downloadBtn:hover {
+  background: #111827;
+  transform: translateY(-2px);
+}
+
+.viewPdfBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
   background: #111827;
   color: #ffffff;
   border: none;
   border-radius: 4px;
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
   text-decoration: none;
   transition: all var(--transition-fast);
-  margin-top: auto;
 }
 
-.downloadBtn:hover {
-  background: var(--primary-orange);
+.viewPdfBtn:hover {
+  background: var(--primary-blue);
   transform: translateY(-2px);
 }
 
@@ -426,6 +478,71 @@
   transform: translateY(-2px);
 }
 
+/* Modal PDF Preview Viewer */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.modalContent {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 85vh;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.modalHeader {
+  padding: 16px 24px;
+  background: #111827;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modalTitle {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1.1rem;
+  margin: 0;
+  color: #ffffff;
+}
+
+.modalCloseBtn {
+  background: transparent;
+  color: #ffffff;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast);
+}
+
+.modalCloseBtn:hover {
+  color: var(--primary-orange);
+}
+
+.modalIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
   .heroSection {
@@ -460,6 +577,10 @@
 
   .statsGrid, .packagesGrid {
     grid-template-columns: 1fr;
+  }
+
+  .btnGroupRow {
+    flex-direction: column;
   }
 
   .watermarkText {
