@@ -252,13 +252,13 @@ export const ContactPage = () => {
                 93.5 AREA FM HEADQUARTERS
               </h4>
               <p className={styles.mapAddress}>
-                108 Music Frequency Avenue, Metro City
+                24 Kudirat Abiola Way, Oregun, Ikeja, Lagos State, Nigeria
               </p>
 
               <div className={styles.mapDetailsList}>
-                <div><strong>Live Studio Line:</strong> +1 (555) 935-8000</div>
-                <div><strong>WhatsApp Line:</strong> +1 (555) 935-8001</div>
-                <div><strong>Email:</strong> contact@area-fm.xyz</div>
+                <div><strong>Live Studio Line:</strong> +234 809 935 8000</div>
+                <div><strong>WhatsApp Line:</strong> +234 812 935 8001</div>
+                <div><strong>Email:</strong> contact@areafm.ng</div>
               </div>
             </div>
           </motion.div>

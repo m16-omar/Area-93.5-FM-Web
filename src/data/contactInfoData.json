@@ -1,17 +1,18 @@
 {
   "address": {
-    "title": "BROADCAST STUDIO",
-    "street": "108 Music Frequency Avenue, Suite 400",
-    "city": "Metro City, NY 10001",
-    "country": "United States"
+    "title": "BROADCAST STUDIO & HQ",
+    "street": "24 Kudirat Abiola Way, Oregun",
+    "city": "Ikeja, Lagos State",
+    "country": "Nigeria"
   },
   "contacts": [
-    { "type": "Studio Hotline", "value": "+1 (523) 456-403", "icon": "phone" },
-    { "type": "General Inquiries", "value": "info@area-fm.xyz", "icon": "mail" },
-    { "type": "Advertising & Sales", "value": "ads@area-fm.xyz", "icon": "briefcase" }
+    { "type": "Studio Hotline", "value": "+234 809 935 8000", "icon": "phone" },
+    { "type": "WhatsApp Studio Line", "value": "+234 812 935 8001", "icon": "phone" },
+    { "type": "General Inquiries", "value": "info@areafm.ng", "icon": "mail" },
+    { "type": "Advertising & Sales", "value": "ads@areafm.ng", "icon": "briefcase" }
   ],
   "hours": [
-    { "day": "Monday - Friday", "time": "08:00 AM - 08:00 PM" },
-    { "day": "Saturday - Sunday", "time": "10:00 AM - 06:00 PM" }
+    { "day": "Monday - Friday", "time": "06:00 AM - 10:00 PM" },
+    { "day": "Saturday - Sunday", "time": "08:00 AM - 08:00 PM" }
   ]
 }

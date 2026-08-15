@@ -45,11 +45,11 @@ export const Footer = () => {
             <div className={styles.contactList}>
               <div className={styles.contactItem}>
                 <FiPhone size={16} className={styles.contactIcon} />
-                <span>+523 456 403</span>
+                <span>+234 809 935 8000</span>
               </div>
               <div className={styles.contactItem}>
                 <FiMail size={16} className={styles.contactIcon} />
-                <span>info@935areafm.com</span>
+                <span>info@areafm.ng</span>
               </div>
             </div>
           </div>
