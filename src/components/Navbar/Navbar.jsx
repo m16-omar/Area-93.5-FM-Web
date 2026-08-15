@@ -79,7 +79,7 @@ export const Navbar = () => {
               <Link to="/videos" className={`${styles.navLink} ${isActive('/videos') ? styles.activeNavLink : ''}`}>VIDEOS</Link>
             </li>
             <li className={styles.navItem}>
-              <a href="#" onClick={handleBlockedClick} className={styles.navLink}>PROMOTE</a>
+              <Link to="/promote" className={`${styles.navLink} ${isActive('/promote') ? styles.activeNavLink : ''}`}>PROMOTE</Link>
             </li>
             <li className={styles.navItem}>
               <Link to="/contact" className={`${styles.navLink} ${isActive('/contact') ? styles.activeNavLink : ''}`}>CONTACTS</Link>
@@ -173,7 +173,7 @@ export const Navbar = () => {
                     <Link to="/videos" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/videos') ? styles.activeMobileLink : ''}`}>VIDEOS</Link>
                   </li>
                   <li>
-                    <a href="#" onClick={handleBlockedClick} className={styles.mobileNavLink}>PROMOTE</a>
+                    <Link to="/promote" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/promote') ? styles.activeMobileLink : ''}`}>PROMOTE</Link>
                   </li>
                   <li>
                     <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/contact') ? styles.activeMobileLink : ''}`}>CONTACTS</Link>
