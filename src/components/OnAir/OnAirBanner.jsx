@@ -15,8 +15,8 @@ export const OnAirBanner = () => {
       <div className={styles.watermarkRow}>
         <div className={styles.logoWatermark}>93.5 AREA FM</div>
         <div className={styles.mottoWatermark}>
-          WHERE EVERY<br />
-          NOTE CONNECTS
+          ONE VOICE,<br />
+          EVERY AREA
         </div>
         <button className={styles.giantPlayCircle} onClick={togglePlayPause} aria-label="Play Stream">
           {isPlaying ? <FaPause /> : <FaPlay />}

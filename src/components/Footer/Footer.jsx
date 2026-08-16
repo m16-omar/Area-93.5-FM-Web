@@ -11,8 +11,8 @@ export const Footer = () => {
   return (
     <footer className={styles.footerSection} id="contacts">
       <div className={styles.watermarkText}>
-        WHERE EVERY<br />
-        NOTE CONNECTS
+        ONE VOICE,<br />
+        EVERY AREA
       </div>
 
       <div className={styles.footerGrid}>
@@ -84,7 +84,7 @@ export const Footer = () => {
       {/* Copyright Bar */}
       <div className={styles.copyrightRow}>
         <p>© 2026 93.5 AREA FM. All Rights Reserved.</p>
-        <p>Where Every Note Connects.</p>
+        <p>One Voice, Every Area.</p>
       </div>
     </footer>
   );

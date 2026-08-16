@@ -103,8 +103,8 @@ export const Hero = () => {
           <div className={styles.logoWatermark}>93.5 <span className={styles.logoWatermarkAccent}>AREA</span> FM</div>
           
           <h1 className={styles.heroHeadline}>
-            WHERE EVERY<br />
-            NOTE CONNECTS
+            ONE VOICE,<br />
+            EVERY AREA
           </h1>
 
           <div className={styles.giantPlayWrapper}>
