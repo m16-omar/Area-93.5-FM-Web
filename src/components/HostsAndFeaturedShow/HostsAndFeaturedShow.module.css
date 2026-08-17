@@ -80,20 +80,21 @@
   overflow: hidden;
 }
 
-/* Flex track that slides */
+/* Flex track — wide enough for all 12 looped cards */
 .hostsTrack {
   display: flex;
   gap: 12px;
-  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  /* 12 cards × (33.333% + 4px) each — let flex handle natural width */
   will-change: transform;
 }
 
 /* Each card = exactly 1/3 of viewport width minus gaps */
 .hostCard {
   position: relative;
-  flex: 0 0 calc(33.333% - 8px);
-  width:  calc(33.333% - 8px);
-  aspect-ratio: 0.75 / 1;          /* portrait rectangle */
+  /* flex-basis = (100% of viewport - 2 gaps) / 3 */
+  flex: 0 0 calc((100% - 24px) / 3);
+  width: calc((100% - 24px) / 3);
+  aspect-ratio: 0.75 / 1;
   border-radius: 14px;
   overflow: hidden;
   background: var(--secondary-blue);
