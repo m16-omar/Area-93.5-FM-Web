@@ -252,7 +252,7 @@ export const ContactPage = () => {
                 93.5 AREA FM HEADQUARTERS
               </h4>
               <p className={styles.mapAddress}>
-                24 Kudirat Abiola Way, Oregun, Ikeja, Lagos State, Nigeria
+                Plot 11 Lateef Jakande Rd, Agidingbi, Ikeja 101233, Lagos, Nigeria
               </p>
 
               <div className={styles.mapDetailsList}>
