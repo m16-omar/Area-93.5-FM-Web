@@ -1,107 +1,111 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { FaInstagram, FaTwitter, FaYoutube, FaTiktok, FaSpotify } from 'react-icons/fa';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { FiUser, FiMoreVertical } from 'react-icons/fi';
+import { FaInstagram, FaXTwitter, FaYoutube, FaSpotify } from 'react-icons/fa6';
+import { SiTiktok } from 'react-icons/si';
 import styles from './HostsAndFeaturedShow.module.css';
 
-const hostsList = [
-  {
-    id: "h1",
-    name: "Kemi Adetiba",
-    role: "DJ",
-    photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    id: "h2",
-    name: "Olamide Okafor",
-    role: "HOST",
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    id: "h3",
-    name: "Funke Akindele",
-    role: "HOST",
-    photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    id: "h4",
-    name: "Simi Ogunleye",
-    role: "DJ",
-    photo: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    id: "h5",
-    name: "Tobi Adebayo",
-    role: "DJ",
-    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    id: "h6",
-    name: "Babalola Alabi",
-    role: "HOST",
-    photo: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=600&q=80"
-  }
+const GAP = 12; // px, matches CSS gap
+
+const hosts = [
+  { id: 1, name: 'Simi Ogunleye',   role: 'DJ',       bg: '#1a1a2e' },
+  { id: 2, name: 'Tobi Adebayo',    role: 'HOST',     bg: '#16213e' },
+  { id: 3, name: 'Funke Akindele',  role: 'HOST',     bg: '#0f3460' },
+  { id: 4, name: 'Olamide Okafor',  role: 'DJ',       bg: '#533483' },
+  { id: 5, name: 'Kemi Adetiba',    role: 'PRODUCER', bg: '#1a1a2e' },
+  { id: 6, name: 'Babalola Alabi',  role: 'HOST',     bg: '#16213e' },
 ];
 
-export const HostsAndFeaturedShow = () => {
-  const [hostIndex, setHostIndex] = useState(0);
+// Duplicate for seamless infinite loop
+const loopedHosts = [...hosts, ...hosts];
 
-  // Displays 3 cards at a time, max index = total - 3
-  const maxIndex = Math.max(0, hostsList.length - 3);
+const socialIcons = [
+  { Icon: FaInstagram, key: 'ig' },
+  { Icon: FaXTwitter,  key: 'tw' },
+  { Icon: FaYoutube,   key: 'yt' },
+  { Icon: FaSpotify,   key: 'sp' },
+  { Icon: SiTiktok,    key: 'tk' },
+];
 
-  // Continuous auto-sliding without stopping
+export default function HostsAndFeaturedShow() {
+  const [index,  setIndex]  = useState(0);   // current lead card index
+  const [animate, setAnimate] = useState(true);
+  const viewportRef = useRef(null);
+  const timerRef    = useRef(null);
+
+  // cardWidth = (viewportWidth - 2 * GAP) / 3
+  const getCardWidth = () => {
+    if (!viewportRef.current) return 0;
+    return (viewportRef.current.offsetWidth - GAP * 2) / 3;
+  };
+
+  const slideNext = useCallback(() => {
+    setAnimate(true);
+    setIndex(i => i + 1);
+  }, []);
+
+  // When we reach the cloned set, silently reset
+  const handleTransitionEnd = useCallback(() => {
+    if (index >= hosts.length) {
+      setAnimate(false);
+      setIndex(0);
+    }
+  }, [index]);
+
+  // After disabling animation and resetting index, re-enable animation on next tick
   useEffect(() => {
-    if (maxIndex === 0) return;
+    if (!animate) {
+      const raf = requestAnimationFrame(() => setAnimate(true));
+      return () => cancelAnimationFrame(raf);
+    }
+  }, [animate]);
 
-    const interval = setInterval(() => {
-      setHostIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-    }, 3000);
+  useEffect(() => {
+    timerRef.current = setInterval(slideNext, 3000);
+    return () => clearInterval(timerRef.current);
+  }, [slideNext]);
 
-    return () => clearInterval(interval);
-  }, [maxIndex]);
+  const cardWidth  = getCardWidth();
+  const translateX = cardWidth > 0 ? index * (cardWidth + GAP) : 0;
 
   return (
     <section className={styles.sectionContainer}>
-      <div className={styles.bgCircleTeal} />
-
       <div className={styles.gridContent}>
-        {/* Left Column: Meet Our Hosts (3 Cards Auto Sliding Track) */}
+
+        {/* ── LEFT: MEET OUR HOSTS ── */}
         <div className={styles.leftHostsCol}>
           <div className={styles.headingWrapper}>
             <span className={styles.tagBadge}>OUR SPEAKERS</span>
-            <div className={styles.accentLine} />
+            <span className={styles.accentLine} />
           </div>
-
           <h2 className={styles.sectionHeadline}>MEET OUR HOSTS</h2>
 
-          {/* Viewport for 3 Cards Carousel */}
-          <div className={styles.hostsViewport}>
-            <div 
+          {/* Clip window */}
+          <div className={styles.hostsViewport} ref={viewportRef}>
+            <div
               className={styles.hostsTrack}
               style={{
-                transform: `translateX(calc(-${hostIndex} * ((100% - 28px) / 3 + 14px)))`
+                transform:  `translateX(-${translateX}px)`,
+                transition: animate ? 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)' : 'none',
               }}
+              onTransitionEnd={handleTransitionEnd}
             >
-              {hostsList.map((host) => (
-                <div key={host.id} className={styles.hostCard}>
-                  <img src={host.photo} alt={host.name} className={styles.hostImg} />
-                  
-                  {/* Top-right avatar icon circle matching Screenshot 2 */}
-                  <div className={styles.userBadgeCircle}>
-                    <FiUser />
-                  </div>
+              {loopedHosts.map((host, idx) => (
+                <div
+                  key={`${host.id}-${idx}`}
+                  className={styles.hostCard}
+                  style={{ background: host.bg }}
+                >
+                  {/* Avatar circle top-right */}
+                  <span className={styles.userBadge}><FiUser size={13} /></span>
 
-                  <div className={styles.hostOverlay}>
+                  {/* Bottom info */}
+                  <div className={styles.hostInfo}>
                     <span className={styles.hostRoleBadge}>{host.role}</span>
-                    <h3 className={styles.hostName}>{host.name}</h3>
-
+                    <p className={styles.hostName}>{host.name}</p>
                     <div className={styles.socialsRow}>
-                      <span className={styles.socialCircle}><FaInstagram /></span>
-                      <span className={styles.socialCircle}><FaTwitter /></span>
-                      <span className={styles.socialCircle}><FaYoutube /></span>
-                      <span className={styles.socialCircle}><FaSpotify /></span>
-                      <span className={styles.socialCircle}><FaTiktok /></span>
+                      {socialIcons.map(({ Icon, key }) => (
+                        <span key={key} className={styles.socialCircle}><Icon /></span>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -110,41 +114,37 @@ export const HostsAndFeaturedShow = () => {
           </div>
         </div>
 
-        {/* Right Column: Featured Show */}
+        {/* ── RIGHT: FEATURED SHOW ── */}
         <div className={styles.rightFeaturedCol}>
           <div className={styles.headingWrapper}>
             <span className={styles.tagBadge}>FEATURED SHOW</span>
-            <div className={styles.accentLine} />
+            <span className={styles.accentLine} />
           </div>
-
           <h2 className={styles.sectionHeadline}>FEATURED SHOW</h2>
 
-          <motion.div 
-            className={styles.featuredCard}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <img 
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" 
-              alt="The Fan Zone" 
-              className={styles.featuredImg} 
+          <div className={styles.featuredCard}>
+            <div
+              className={styles.featuredImg}
+              style={{
+                background:
+                  'linear-gradient(135deg, #8B4B8B 0%, #4B6B8B 50%, #2B3B6B 100%)',
+              }}
             />
             <div className={styles.featuredOverlay}>
               <span className={styles.catBadge}>TRENDS</span>
               <h3 className={styles.featuredTitle}>The Fan Zone</h3>
             </div>
-            <button className={styles.moreBtn} aria-label="Options">
+            <button className={styles.moreBtn} aria-label="More options">
               <FiMoreVertical />
             </button>
-          </motion.div>
+          </div>
 
-          <Link to="/hosts" className={styles.discoverBtn}>
-            DISCOVER MORE
-          </Link>
+          <button className={styles.discoverBtn}>DISCOVER MORE</button>
         </div>
       </div>
+
+      {/* Decorative teal circle */}
+      <div className={styles.bgCircleTeal} aria-hidden="true" />
     </section>
   );
-};
+}

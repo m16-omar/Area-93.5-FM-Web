@@ -4,7 +4,7 @@ import { FiMoreVertical } from 'react-icons/fi';
 import { Navbar } from '../components/Navbar/Navbar';
 import { ShowsHero } from '../components/ShowsHero/ShowsHero';
 import { UpcomingShows } from '../components/UpcomingShows/UpcomingShows';
-import { HostsAndFeaturedShow } from '../components/HostsAndFeaturedShow/HostsAndFeaturedShow';
+import HostsAndFeaturedShow from '../components/HostsAndFeaturedShow/HostsAndFeaturedShow';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import showsScheduleData from '../data/showsScheduleData.json';
