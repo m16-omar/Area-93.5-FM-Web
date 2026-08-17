@@ -1,42 +1,63 @@
-import React from 'react';
-import { FiMoreVertical } from 'react-icons/fi';
+import React, { useRef } from 'react';
+import { FiChevronLeft, FiChevronRight, FiMoreVertical } from 'react-icons/fi';
+import showsScheduleData from '../../data/showsScheduleData.json';
 import styles from './UpcomingShows.module.css';
 
 export const UpcomingShows = () => {
-  const upcomingList = [
-    {
-      id: "up-1",
-      title: "Pop Culture Replay",
-      category: "TRENDS",
-      time: "12:00 pm - 03:00 pm",
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-      id: "up-2",
-      title: "Hitmakers Live Drive",
-      category: "AFROBEATS",
-      time: "03:00 pm - 06:30 pm",
-      image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80"
+  const scrollTrackRef = useRef(null);
+
+  // Today's shows list from MONDAY (or current day)
+  const todaysShows = showsScheduleData.schedule["MONDAY"] || [];
+
+  const handleScroll = (direction) => {
+    if (scrollTrackRef.current) {
+      const scrollAmount = direction === 'left' ? -360 : 360;
+      scrollTrackRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
-  ];
+  };
 
   return (
     <section className={styles.upcomingSection}>
-      <div className={styles.headingWrapper}>
-        <span className={styles.tagBadge}>COMING NEXT</span>
-        <div className={styles.accentLine} />
+      <div className={styles.headerRow}>
+        <div className={styles.headerLeft}>
+          <div className={styles.headingWrapper}>
+            <span className={styles.tagBadge}>COMING NEXT</span>
+            <div className={styles.accentLine} />
+          </div>
+          <h2 className={styles.sectionHeadline}>TODAY'S SHOWS</h2>
+        </div>
+
+        {/* Sliding Navigation Control Arrows */}
+        <div className={styles.navArrowsRow}>
+          <button 
+            className={styles.arrowBtn} 
+            onClick={() => handleScroll('left')}
+            aria-label="Previous Shows"
+          >
+            <FiChevronLeft />
+          </button>
+          <button 
+            className={styles.arrowBtn} 
+            onClick={() => handleScroll('right')}
+            aria-label="Next Shows"
+          >
+            <FiChevronRight />
+          </button>
+        </div>
       </div>
 
-      <h2 className={styles.sectionHeadline}>UPCOMING SHOWS</h2>
-
-      <div className={styles.cardsGrid}>
-        {upcomingList.map((item) => (
+      {/* Sliding Horizontal Cards Track */}
+      <div ref={scrollTrackRef} className={styles.carouselTrack}>
+        {todaysShows.map((item) => (
           <div key={item.id} className={styles.upcomingCard}>
-            <img src={item.image} alt={item.title} className={styles.cardImg} />
+            {item.nowPlaying && (
+              <span className={styles.nowPlayingTag}>NOW PLAYING</span>
+            )}
+            <img src={item.image} alt={item.name} className={styles.cardImg} />
             <div className={styles.cardOverlay}>
-              <span className={styles.catBadge}>{item.category}</span>
-              <h3 className={styles.showTitle}>{item.title}</h3>
-              <p className={styles.showTime}>{item.time}</p>
+              <span className={styles.catBadge}>{item.genre}</span>
+              <h3 className={styles.showTitle}>{item.name}</h3>
+              <p className={styles.showTime}>{item.time} • {item.dj}</p>
             </div>
             <button className={styles.moreBtn} aria-label="Options">
               <FiMoreVertical />

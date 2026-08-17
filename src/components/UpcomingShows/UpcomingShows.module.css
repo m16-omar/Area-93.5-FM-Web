@@ -7,6 +7,17 @@
   box-sizing: border-box;
 }
 
+.headerRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.headerLeft {
+  flex: 1;
+}
+
 .headingWrapper {
   display: flex;
   align-items: center;
@@ -38,22 +49,65 @@
   font-size: clamp(1.8rem, 3.5vw, 2.5rem);
   color: #111827;
   text-transform: uppercase;
-  margin: 0 0 28px;
+  margin: 0;
   letter-spacing: -0.02em;
 }
 
-.cardsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+/* Nav Arrows Row */
+.navArrowsRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.arrowBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid rgba(0, 107, 141, 0.18);
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 78, 104, 0.08);
+  transition: all var(--transition-fast);
+}
+
+.arrowBtn:hover {
+  background: var(--primary-orange);
+  color: #ffffff;
+  border-color: var(--primary-orange);
+  transform: scale(1.05);
+}
+
+/* Sliding Carousel Track */
+.carouselTrack {
+  display: flex;
   gap: 24px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 16px;
+  margin-bottom: -16px;
+  /* Hide scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.carouselTrack::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .upcomingCard {
   position: relative;
+  flex: 0 0 340px;
   height: 220px;
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 28px rgba(0, 78, 104, 0.12);
+  box-shadow: 0 10px 28px rgba(0, 78, 104, 0.14);
   background: var(--secondary-blue);
   transition: transform var(--transition-fast);
 }
@@ -68,10 +122,25 @@
   object-fit: cover;
 }
 
+.nowPlayingTag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: var(--primary-orange);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
 .cardOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.25) 50%, transparent 100%);
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -113,8 +182,8 @@
   right: 20px;
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.15rem;
   cursor: pointer;
 }
 
@@ -122,5 +191,9 @@
   .upcomingSection {
     padding: 0 20px;
     margin: 40px auto 40px;
+  }
+
+  .upcomingCard {
+    flex: 0 0 280px;
   }
 }
