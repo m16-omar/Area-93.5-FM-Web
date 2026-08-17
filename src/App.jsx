@@ -22,6 +22,7 @@ function App() {
           <Route path="/shows" element={<ShowsSchedulePage />} />
           <Route path="/podcasts" element={<Podcasts />} />
           <Route path="/news" element={<NewsPage />} />
+          <Route path="/blog-sidebar" element={<NewsPage />} />
           <Route path="/charts" element={<ChartsPage />} />
           <Route path="/hosts" element={<HostsPage />} />
           <Route path="/videos" element={<VideosPage />} />
