@@ -41,6 +41,7 @@ export const HostDetailPage = () => {
   }
 
   const heroBg = host.heroBg || host.photo;
+  const heroStyle = { backgroundImage: `url('${heroBg}'), url('${host.photo}')` };
 
   return (
     <main className={styles.pageWrapper}>
@@ -51,10 +52,9 @@ export const HostDetailPage = () => {
          ══════════════════════ */}
       <section className={styles.heroSection}>
         {/* Background image */}
-        <img
-          src={heroBg}
-          alt=""
+        <div
           className={styles.heroBgImg}
+          style={heroStyle}
           aria-hidden="true"
         />
         {/* Overlay */}
