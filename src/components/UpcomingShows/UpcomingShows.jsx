@@ -5,22 +5,21 @@ import styles from './UpcomingShows.module.css';
 
 export const UpcomingShows = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
 
-  // Shows schedule for today (e.g. MONDAY)
+  // Today's shows list
   const todaysShows = showsScheduleData.schedule["MONDAY"] || [];
   const maxIndex = Math.max(0, todaysShows.length - 2);
 
-  // Auto-sliding timer effect (slides every 3.5 seconds without manual button clicks)
+  // Continuous auto-sliding effect (never stops on hover)
   useEffect(() => {
-    if (isHovered || maxIndex === 0) return;
+    if (maxIndex === 0) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-    }, 3500);
+    }, 3200);
 
     return () => clearInterval(interval);
-  }, [isHovered, maxIndex]);
+  }, [maxIndex]);
 
   return (
     <section className={styles.upcomingSection}>
@@ -31,16 +30,12 @@ export const UpcomingShows = () => {
 
       <h2 className={styles.sectionHeadline}>UPCOMING SHOWS</h2>
 
-      {/* 2-Card Auto-Sliding Viewport Container */}
-      <div 
-        className={styles.carouselViewport}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+      {/* 2-Card Non-Stop Auto-Sliding Viewport */}
+      <div className={styles.carouselViewport}>
         <div 
           className={styles.carouselTrack}
           style={{
-            transform: `translateX(-${currentIndex * 50}%)`
+            transform: `translateX(calc(-${currentIndex} * (50% + 12px)))`
           }}
         >
           {todaysShows.map((item) => (
@@ -61,19 +56,6 @@ export const UpcomingShows = () => {
           ))}
         </div>
       </div>
-
-      {/* Dots Indicator Bar */}
-      {maxIndex > 0 && (
-        <div className={styles.dotsRow}>
-          {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
-            <span
-              key={idx}
-              className={`${styles.dot} ${currentIndex === idx ? styles.activeDot : ''}`}
-              onClick={() => setCurrentIndex(idx)}
-            />
-          ))}
-        </div>
-      )}
     </section>
   );
 };
