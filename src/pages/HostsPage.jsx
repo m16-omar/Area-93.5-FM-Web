@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaInstagram, FaTwitter, FaYoutube, FaSpotify, FaTwitch, FaSoundcloud, FaPlay, FaUser, FaTiktok } from 'react-icons/fa';
 import { Navbar } from '../components/Navbar/Navbar';
@@ -200,6 +201,7 @@ export const HostsPage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.08 }}
             >
+              <Link to={`/hosts/${member.slug}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
               <img src={member.photo} alt={member.name} className={styles.memberImg} />
               
               <div className={styles.memberAvatarIcon}>
@@ -218,6 +220,7 @@ export const HostsPage = () => {
                   <a href="#" className={styles.memberSocialCircle} aria-label="TikTok"><FaTiktok /></a>
                 </div>
               </div>
+              </Link>
             </motion.div>
           ))}
         </div>

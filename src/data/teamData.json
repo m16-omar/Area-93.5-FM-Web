@@ -1,50 +1,116 @@
 [
   {
     "id": "t1",
+    "slug": "tobi-adebayo",
     "name": "Tobi Adebayo",
     "role": "Station DJ (DJ Tobi)",
     "badge": "DJ",
     "photo": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
-    "email": "tobi@area-fm.xyz"
+    "heroBg": "https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?auto=format&fit=crop&w=1400&q=80",
+    "email": "tobi@areafm.ng",
+    "bio": "DJ Tobi is one of Nigeria's most electrifying on-air personalities, bringing fire energy to the airwaves every evening. With over 8 years of experience spinning afrobeats, amapiano, and hip-hop, he has become a household name in Lagos and beyond.",
+    "shows": ["The Evening Jam", "Afrobeats Reloaded"],
+    "socials": {
+      "instagram": "#",
+      "twitter": "#",
+      "youtube": "#",
+      "spotify": "#",
+      "tiktok": "#"
+    }
   },
   {
     "id": "t2",
+    "slug": "funke-akindele",
     "name": "Funke Akindele",
     "role": "Radio Host & Executive Producer",
     "badge": "Host",
     "photo": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
-    "email": "funke@area-fm.xyz"
+    "heroBg": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1400&q=80",
+    "email": "funke@areafm.ng",
+    "bio": "Funke Akindele is the powerhouse behind Area 93.5 FM's award-winning morning show. A veteran broadcaster with over 12 years in the industry, she brings warmth, wit, and world-class interviews to Lagos every single morning.",
+    "shows": ["Morning Drive", "The Fan Zone"],
+    "socials": {
+      "instagram": "#",
+      "twitter": "#",
+      "youtube": "#",
+      "spotify": "#",
+      "tiktok": "#"
+    }
   },
   {
     "id": "t3",
+    "slug": "olamide-okafor",
     "name": "Olamide Okafor",
     "role": "Prime Time Morning Host",
     "badge": "Host",
     "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
-    "email": "olamide@area-fm.xyz"
+    "heroBg": "https://images.unsplash.com/photo-1614680376408-81e91ffe3db7?auto=format&fit=crop&w=1400&q=80",
+    "email": "olamide@areafm.ng",
+    "bio": "Olamide Okafor is the voice Lagos wakes up to. Known for his razor-sharp commentary, infectious laughter, and deep knowledge of Nigerian street culture, he runs the most-listened-to morning show in the region.",
+    "shows": ["Lagos Morning Rush", "Street Talk"],
+    "socials": {
+      "instagram": "#",
+      "twitter": "#",
+      "youtube": "#",
+      "spotify": "#",
+      "tiktok": "#"
+    }
   },
   {
     "id": "t4",
+    "slug": "kemi-adetiba",
     "name": "Kemi Adetiba",
     "role": "Late Night Vibe DJ",
     "badge": "DJ",
     "photo": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
-    "email": "kemi@area-fm.xyz"
+    "heroBg": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1400&q=80",
+    "email": "kemi@areafm.ng",
+    "bio": "DJ Kemi Adetiba owns the night. Her late-night mixes blend classic R&B, neo-soul, and afro-fusion into a sonic experience that has Lagos glued to their radios past midnight. She also produces original beats for upcoming Nigerian artists.",
+    "shows": ["Midnight Vibes", "R&B Sundays"],
+    "socials": {
+      "instagram": "#",
+      "twitter": "#",
+      "youtube": "#",
+      "spotify": "#",
+      "tiktok": "#"
+    }
   },
   {
     "id": "t5",
+    "slug": "babalola-alabi",
     "name": "Babalola Alabi",
     "role": "Station Director & Founder",
     "badge": "Owner",
     "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
-    "email": "babalola@area-fm.xyz"
+    "heroBg": "https://images.unsplash.com/photo-1486299267070-83823f5448dd?auto=format&fit=crop&w=1400&q=80",
+    "email": "babalola@areafm.ng",
+    "bio": "Babalola Alabi founded Area 93.5 FM with a single vision: to give every neighbourhood in Lagos a voice. As Station Director, he sets the editorial direction and mentors the next generation of Nigerian broadcasters.",
+    "shows": ["The Founders Hour"],
+    "socials": {
+      "instagram": "#",
+      "twitter": "#",
+      "youtube": "#",
+      "spotify": "#",
+      "tiktok": "#"
+    }
   },
   {
     "id": "t6",
+    "slug": "simi-ogunleye",
     "name": "Simi Ogunleye",
     "role": "Music Director & Resident DJ",
     "badge": "DJ",
     "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
-    "email": "simi@area-fm.xyz"
+    "heroBg": "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=1400&q=80",
+    "email": "simi@areafm.ng",
+    "bio": "Simi Ogunleye is the musical heartbeat of Area 93.5 FM. As Music Director she curates the station's playlist, discovers emerging Nigerian talent, and hosts the flagship chart show that sets the agenda for what Lagos listens to each week.",
+    "shows": ["The Area Charts", "New Music Friday"],
+    "socials": {
+      "instagram": "#",
+      "twitter": "#",
+      "youtube": "#",
+      "spotify": "#",
+      "tiktok": "#"
+    }
   }
 ]

@@ -1,0 +1,414 @@
+/* ═══════════════════════════════════════════
+   HostDetailPage.module.css
+   ═══════════════════════════════════════════ */
+
+/* ── PAGE WRAPPER ── */
+.pageWrapper {
+  min-height: 100vh;
+  background: #EAF3F7;
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+/* ════════════════════════════════════════════
+   HERO SECTION
+   Full-width image background with overlay
+   ════════════════════════════════════════════ */
+.heroSection {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.heroBgImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Dark gradient overlay */
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 30, 50, 0.7) 60%,
+    rgba(0, 78, 104, 0.92) 100%
+  );
+}
+
+/* Brand teal arch circle — top right */
+.heroCircleTopRight {
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: var(--primary-orange, #E50914);
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 100px 48px 52px;
+  display: flex;
+  align-items: flex-end;
+  gap: 28px;
+}
+
+/* Small avatar circle */
+.heroAvatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.6);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.heroTextBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.heroRole {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.heroName {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: #ffffff;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+/* Social row under name in hero */
+.heroSocials {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.heroSocialCircle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--primary-blue, #006B8D);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  transition: background 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.heroSocialCircle:hover { background: var(--primary-orange, #E50914); }
+
+/* Scroll arrow */
+.scrollIndicator {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  color: rgba(255,255,255,0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ════════════════════════════════════════════
+   MAIN CONTENT BODY
+   ════════════════════════════════════════════ */
+.bodySection {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 64px 48px 100px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 60px;
+  align-items: start;
+}
+
+/* ── LEFT: large portrait + bio ── */
+.leftCol {}
+
+.portraitWrapper {
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 16px 48px rgba(0, 78, 104, 0.18);
+  margin-bottom: 40px;
+}
+
+.portraitImg {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+/* Watermark behind portrait area */
+.portraitWatermark {
+  position: relative;
+}
+
+.portraitWatermark::before {
+  content: 'HOST';
+  position: absolute;
+  top: -30px;
+  left: -20px;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: 8rem;
+  font-weight: 900;
+  color: rgba(0, 107, 141, 0.06);
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── BIO BLOCK ── */
+.bioBlock {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0, 78, 104, 0.07);
+}
+
+.bioHeading {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary-blue, #006B8D);
+  margin: 0 0 14px;
+}
+
+.bioDivider {
+  width: 48px;
+  height: 3px;
+  background: var(--primary-orange, #E50914);
+  border-radius: 2px;
+  margin-bottom: 16px;
+}
+
+.bioText {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #374151;
+  margin: 0;
+}
+
+/* ── RIGHT SIDEBAR ── */
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  position: sticky;
+  top: 100px;
+}
+
+.sideCard {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 28px 24px;
+  box-shadow: 0 4px 20px rgba(0, 78, 104, 0.07);
+}
+
+.sideCardTitle {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary-blue, #006B8D);
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sideCardTitle::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: #EAF3F7;
+}
+
+/* Shows list */
+.showsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.showItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #EAF3F7;
+  border-radius: 8px;
+  border-left: 3px solid var(--primary-blue, #006B8D);
+  transition: border-color 0.2s;
+}
+
+.showItem:hover { border-color: var(--primary-orange, #E50914); }
+
+.showIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--primary-blue, #006B8D);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.showName {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #111827;
+  margin: 0;
+}
+
+/* Contact info */
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contactRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: #374151;
+}
+
+.contactIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--primary-blue, #006B8D);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+
+/* Social links sidebar */
+.socialLinksGrid {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.socialLinkBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 2px solid #EAF3F7;
+  background: transparent;
+  font-size: 0.8rem;
+  color: #374151;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.socialLinkBtn:hover {
+  border-color: var(--primary-blue, #006B8D);
+  color: var(--primary-blue, #006B8D);
+  background: rgba(0, 107, 141, 0.05);
+}
+
+/* Back button */
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+  color: var(--primary-blue, #006B8D);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  transition: color 0.2s;
+}
+
+.backBtn:hover { color: var(--primary-orange, #E50914); }
+
+/* 404 style */
+.notFound {
+  text-align: center;
+  padding: 120px 48px;
+}
+
+.notFound h2 {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: 3rem;
+  color: var(--primary-blue, #006B8D);
+  margin-bottom: 16px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .bodySection {
+    grid-template-columns: 1fr;
+    padding: 40px 20px 60px;
+  }
+
+  .heroContent { padding: 80px 20px 40px; }
+
+  .rightCol { position: static; }
+}
