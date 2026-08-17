@@ -1,43 +1,59 @@
 .heroSection {
   position: relative;
   width: 100%;
-  padding: 90px 48px 80px;
-  background: linear-gradient(135deg, rgba(0, 78, 104, 0.92) 0%, rgba(0, 107, 141, 0.88) 55%, rgba(229, 9, 20, 0.78) 100%), url('../../assets/show-hero.png');
+  padding: 140px 48px 80px;
+  background: linear-gradient(135deg, rgba(0, 78, 104, 0.94) 0%, rgba(0, 107, 141, 0.9) 60%, rgba(229, 9, 20, 0.85) 100%), url('../../assets/show-hero.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  color: var(--white);
-  overflow: hidden;
+  color: #ffffff;
+  overflow: visible;
   box-sizing: border-box;
+}
+
+/* Red arch circle top right */
+.bgCircleTopRight {
+  position: absolute;
+  top: -120px;
+  right: 18%;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: var(--primary-orange);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .heroContentGrid {
   position: relative;
   z-index: 2;
-  max-width: 1150px;
+  max-width: 1140px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 360px 1fr;
+  grid-template-columns: 340px 1fr;
   gap: 60px;
   align-items: center;
 }
 
-/* Left Column: Featured Show Block */
+/* Left Column: Featured Show Badge Card */
 .leftShowBlock {
+  background: rgba(0, 78, 104, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
 
 .thumbnailWrapper {
   position: relative;
   width: 100%;
-  height: 180px;
-  border-radius: 6px;
+  aspect-ratio: 1.4 / 1;
+  border-radius: 10px;
   overflow: hidden;
-  margin-bottom: 20px;
-  box-shadow: 0 12px 32px rgba(4, 32, 62, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 16px;
 }
 
 .artworkImg {
@@ -49,130 +65,107 @@
 .showTitle {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 2.2rem;
+  font-size: 1.6rem;
   color: #ffffff;
-  margin: 0 0 6px;
-  line-height: 1.1;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  margin: 0 0 4px;
+  line-height: 1.15;
 }
 
 .presenterName {
-  font-family: var(--font-heading);
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: var(--primary-orange);
-  margin-bottom: 4px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 8px;
 }
 
 .timeSchedule {
-  font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 700;
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-bottom: 24px;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 18px;
 }
 
 .listenBtn {
-  background: var(--white);
-  color: var(--primary-blue);
+  align-self: flex-start;
+  padding: 10px 24px;
+  background: #ffffff;
+  color: #111827;
+  border: none;
+  border-radius: 4px;
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 0.82rem;
-  letter-spacing: 0.05em;
-  padding: 11px 32px;
-  border-radius: 3px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-fast);
 }
 
 .listenBtn:hover {
   background: var(--primary-orange);
-  color: var(--white);
-  transform: translateY(-2px);
+  color: #ffffff;
 }
 
 /* Right Column: Want Your Own Show Callout */
 .rightCallout {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .calloutTitle {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: clamp(2.8rem, 5.5vw, 4.4rem);
+  font-size: clamp(2.8rem, 5.5vw, 4.2rem);
   line-height: 0.95;
   color: #ffffff;
-  margin: 0 0 18px;
+  margin: 0 0 20px;
   text-transform: uppercase;
   letter-spacing: -0.03em;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .calloutDesc {
-  font-size: 1.05rem;
-  color: rgba(255, 255, 255, 0.92);
-  line-height: 1.6;
-  margin: 0 0 32px;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.88);
   max-width: 580px;
+  margin: 0 0 28px;
 }
 
 .contactBtn {
-  align-self: flex-start;
-  background: var(--primary-orange);
-  color: var(--white);
+  padding: 14px 36px;
+  background: #111827;
+  color: #ffffff;
   border: none;
+  border-radius: 4px;
   font-family: var(--font-heading);
   font-weight: 900;
   font-size: 0.82rem;
-  letter-spacing: 0.05em;
-  padding: 13px 34px;
-  border-radius: 3px;
-  cursor: pointer;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  box-shadow: 0 6px 20px rgba(239, 75, 0, 0.35);
-  transition: all 0.2s ease;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
 }
 
 .contactBtn:hover {
-  background: var(--white);
-  color: var(--primary-blue);
+  background: var(--primary-orange);
   transform: translateY(-2px);
 }
 
-/* Mobile Responsiveness (< 992px) */
-@media (max-width: 992px) {
+@media (max-width: 900px) {
   .heroContentGrid {
-    display: flex;
-    flex-direction: column-reverse;
-    gap: 44px;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .leftShowBlock {
+    max-width: 400px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .heroSection {
-    padding: 50px 20px 110px;
-  }
-  .calloutTitle {
-    font-size: 2.2rem;
-    margin-bottom: 12px;
-  }
-  .calloutDesc {
-    font-size: 0.95rem;
-    margin-bottom: 24px;
-  }
-  .leftShowBlock {
-    width: 100%;
-  }
-  .thumbnailWrapper {
-    height: 200px;
-  }
-  .showTitle {
-    font-size: 1.75rem;
+    padding: 110px 20px 60px;
   }
 }

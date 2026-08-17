@@ -1,104 +1,87 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FiMoreVertical } from 'react-icons/fi';
 import { Navbar } from '../components/Navbar/Navbar';
 import { ShowsHero } from '../components/ShowsHero/ShowsHero';
-import { FeaturedShow } from '../components/FeaturedShow/FeaturedShow';
-import { DayTabs } from '../components/WeeklySchedule/DayTabs';
-import { CategoryFilters } from '../components/WeeklySchedule/CategoryFilters';
-import { ShowCard } from '../components/WeeklySchedule/ShowCard';
 import { UpcomingShows } from '../components/UpcomingShows/UpcomingShows';
-import { PresenterGrid } from '../components/PresenterGrid/PresenterGrid';
-import { ListenCTA } from '../components/ListenCTA/ListenCTA';
+import { HostsAndFeaturedShow } from '../components/HostsAndFeaturedShow/HostsAndFeaturedShow';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
-import showsFullData from '../data/showsFullData.json';
+import showsScheduleData from '../data/showsScheduleData.json';
 import styles from './ShowsSchedulePage.module.css';
 
 export const ShowsSchedulePage = () => {
-  const [activeDay, setActiveDay] = useState('Monday');
-  const [activeCategory, setActiveCategory] = useState('ALL');
-  const scheduleRef = useRef(null);
+  const [activeDay, setActiveDay] = useState('MONDAY');
 
-  const daySchedule = showsFullData.schedule[activeDay] || [];
-
-  const filteredSchedule = activeCategory === 'ALL'
-    ? daySchedule
-    : daySchedule.filter(show => show.category === activeCategory);
-
-  const scrollToSchedule = () => {
-    if (scheduleRef.current) {
-      scheduleRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const currentSchedule = showsScheduleData.schedule[activeDay] || [];
 
   return (
     <main className={styles.showsPageContainer}>
       <Navbar />
 
-      {/* Hero Banner */}
-      <ShowsHero onScrollToSchedule={scrollToSchedule} />
+      {/* 1. HERO BANNER SECTION (WANT YOUR OWN SHOW?) */}
+      <ShowsHero />
 
-      {/* Featured Show Banner (Integrated in ShowsHero) */}
-      {/* <FeaturedShow showData={showsFullData.featured} onScrollToSchedule={scrollToSchedule} /> */}
+      {/* 2. UPCOMING SHOWS SECTION */}
+      <UpcomingShows />
 
-      {/* Main Weekly Schedule & Sidebar Section */}
-      <div ref={scheduleRef} className={styles.mainScheduleLayout}>
-        {/* Left Column: Weekly Schedule */}
-        <div>
-          <div className={styles.scheduleHeader}>
-            <div className={styles.headingWrapper}>
-              <span className={styles.tagBadge}>TIMETABLE</span>
-              <div className={styles.greenLine} />
-            </div>
-            <h2 className={styles.sectionHeadline}>WEEKLY PROGRAMME SCHEDULE</h2>
-          </div>
+      {/* 3. MEET OUR HOSTS & FEATURED SHOW SECTION */}
+      <HostsAndFeaturedShow />
 
-          {/* Horizontal Day Selector Tabs */}
-          <DayTabs 
-            days={showsFullData.days} 
-            activeDay={activeDay} 
-            onSelectDay={setActiveDay} 
-          />
+      {/* 4. WEEKLY SCHEDULE SECTION */}
+      <section className={styles.weeklyScheduleSection}>
+        <div className={styles.glowCircleLeft} />
 
-          {/* Category Filter Chips */}
-          <CategoryFilters 
-            categories={showsFullData.categories} 
-            activeCategory={activeCategory} 
-            onSelectCategory={setActiveCategory} 
-          />
-
-          {/* Programme Cards List */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`${activeDay}-${activeCategory}`}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3 }}
-              className={styles.scheduleList}
-            >
-              {filteredSchedule.length > 0 ? (
-                filteredSchedule.map((show) => (
-                  <ShowCard key={show.id} show={show} />
-                ))
-              ) : (
-                <div className={styles.emptyState}>
-                  No programmes found in this category for {activeDay}. Try selecting another filter.
-                </div>
-              )}
-            </motion.div>
-          </AnimatePresence>
+        <div className={styles.watermarkText}>
+          WEEKLY SCHEDULE
         </div>
 
-        {/* Right Sidebar: Upcoming Shows */}
-        <UpcomingShows shows={showsFullData.upcoming} />
-      </div>
+        <div className={styles.weeklyHeader}>
+          <h2 className={styles.sectionTitle}>WEEKLY SCHEDULE</h2>
+        </div>
 
-      {/* Presenter Spotlight Grid */}
-      <PresenterGrid presenters={showsFullData.presenters} />
+        {/* Day Selector Tabs */}
+        <div className={styles.dayTabsRow}>
+          {showsScheduleData.days.map((day) => (
+            <button
+              key={day}
+              className={`${styles.dayTabBtn} ${activeDay === day ? styles.dayTabBtnActive : ''}`}
+              onClick={() => setActiveDay(day)}
+            >
+              {day}
+            </button>
+          ))}
+        </div>
 
-      {/* Listen CTA Callout */}
-      <ListenCTA />
+        {/* 6-Card Shows Grid */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeDay}
+            className={styles.scheduleCardsGrid}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            {currentSchedule.map((show) => (
+              <div key={show.id} className={styles.gridShowCard}>
+                {show.nowPlaying && (
+                  <span className={styles.nowPlayingTag}>NOW PLAYING</span>
+                )}
+                <img src={show.image} alt={show.name} className={styles.cardBgImg} />
+                <div className={styles.cardOverlay}>
+                  <span className={styles.catBadge}>{show.genre}</span>
+                  <h3 className={styles.showTitle}>{show.name}</h3>
+                  <p className={styles.showMeta}>{show.time} • {show.dj}</p>
+                </div>
+                <button className={styles.moreBtn} aria-label="Options">
+                  <FiMoreVertical />
+                </button>
+              </div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </section>
 
       <Footer />
       <LivePlayer />

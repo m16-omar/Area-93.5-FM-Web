@@ -1,24 +1,23 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { FiClock } from 'react-icons/fi';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
-import showsFullData from '../../data/showsFullData.json';
 import styles from './ShowsHero.module.css';
 
 export const ShowsHero = () => {
   const { playTrack, currentTrack, isPlaying } = useAudioPlayer();
 
-  const featured = showsFullData.featured || {
-    id: "feat-1",
-    title: "Vibe Check",
-    presenter: "Presented by Jordan Carter",
-    time: "5:30 am - 11:30 am",
-    thumbnail: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=600&q=80",
+  const featured = {
+    id: "feat-shows-hero",
+    title: "The Fan Zone",
+    presenter: "Mixed by Simi Ogunleye",
+    time: "11:00 am - 02:30 pm",
+    thumbnail: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
     audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
   };
 
   const isSelected = currentTrack?.id === featured.id && isPlaying;
-  const imageSrc = featured.thumbnail || featured.artwork || featured.banner || "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=600&q=80";
 
   const handlePlayClick = () => {
     playTrack({
@@ -33,8 +32,10 @@ export const ShowsHero = () => {
 
   return (
     <section className={styles.heroSection}>
+      <div className={styles.bgCircleTopRight} />
+
       <div className={styles.heroContentGrid}>
-        {/* Left Column: Featured Show Block */}
+        {/* Left Column: Featured Show Badge Card */}
         <motion.div
           className={styles.leftShowBlock}
           initial={{ opacity: 0, x: -30 }}
@@ -43,12 +44,9 @@ export const ShowsHero = () => {
         >
           <div className={styles.thumbnailWrapper}>
             <img 
-              src={imageSrc} 
+              src={featured.thumbnail} 
               alt={featured.title} 
               className={styles.artworkImg} 
-              onError={(e) => {
-                e.target.src = "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=600&q=80";
-              }}
             />
           </div>
 
@@ -77,14 +75,9 @@ export const ShowsHero = () => {
             Have a unique voice, podcast concept, or radio show idea? Join the Area 93.5 FM presenter family and broadcast live across the city to thousands of listeners.
           </p>
 
-          <button 
-            className={styles.contactBtn}
-            onClick={() => {
-              window.location.href = "mailto:shows@area935fm.com";
-            }}
-          >
+          <Link to="/contact" className={styles.contactBtn}>
             CONTACT US
-          </button>
+          </Link>
         </motion.div>
       </div>
     </section>
