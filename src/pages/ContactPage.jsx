@@ -174,7 +174,7 @@ export const ContactPage = () => {
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                       className={styles.inputControl}
-                      placeholder="e.g. John Doe"
+                      placeholder="e.g. Tobi Adebayo"
                     />
                   </div>
                   <div>
@@ -185,7 +185,7 @@ export const ContactPage = () => {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className={styles.inputControl}
-                      placeholder="e.g. john@example.com"
+                      placeholder="e.g. tobi@areafm.ng"
                     />
                   </div>
                 </div>
