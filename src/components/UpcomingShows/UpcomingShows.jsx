@@ -1,70 +1,79 @@
-import React, { useRef } from 'react';
-import { FiChevronLeft, FiChevronRight, FiMoreVertical } from 'react-icons/fi';
+import React, { useState, useEffect } from 'react';
+import { FiMoreVertical } from 'react-icons/fi';
 import showsScheduleData from '../../data/showsScheduleData.json';
 import styles from './UpcomingShows.module.css';
 
 export const UpcomingShows = () => {
-  const scrollTrackRef = useRef(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
-  // Today's shows list from MONDAY (or current day)
+  // Shows schedule for today (e.g. MONDAY)
   const todaysShows = showsScheduleData.schedule["MONDAY"] || [];
+  const maxIndex = Math.max(0, todaysShows.length - 2);
 
-  const handleScroll = (direction) => {
-    if (scrollTrackRef.current) {
-      const scrollAmount = direction === 'left' ? -360 : 360;
-      scrollTrackRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
+  // Auto-sliding timer effect (slides every 3.5 seconds without manual button clicks)
+  useEffect(() => {
+    if (isHovered || maxIndex === 0) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [isHovered, maxIndex]);
 
   return (
     <section className={styles.upcomingSection}>
-      <div className={styles.headerRow}>
-        <div className={styles.headerLeft}>
-          <div className={styles.headingWrapper}>
-            <span className={styles.tagBadge}>COMING NEXT</span>
-            <div className={styles.accentLine} />
-          </div>
-          <h2 className={styles.sectionHeadline}>TODAY'S SHOWS</h2>
-        </div>
-
-        {/* Sliding Navigation Control Arrows */}
-        <div className={styles.navArrowsRow}>
-          <button 
-            className={styles.arrowBtn} 
-            onClick={() => handleScroll('left')}
-            aria-label="Previous Shows"
-          >
-            <FiChevronLeft />
-          </button>
-          <button 
-            className={styles.arrowBtn} 
-            onClick={() => handleScroll('right')}
-            aria-label="Next Shows"
-          >
-            <FiChevronRight />
-          </button>
-        </div>
+      <div className={styles.headingWrapper}>
+        <span className={styles.tagBadge}>COMING NEXT</span>
+        <div className={styles.accentLine} />
       </div>
 
-      {/* Sliding Horizontal Cards Track */}
-      <div ref={scrollTrackRef} className={styles.carouselTrack}>
-        {todaysShows.map((item) => (
-          <div key={item.id} className={styles.upcomingCard}>
-            {item.nowPlaying && (
-              <span className={styles.nowPlayingTag}>NOW PLAYING</span>
-            )}
-            <img src={item.image} alt={item.name} className={styles.cardImg} />
-            <div className={styles.cardOverlay}>
-              <span className={styles.catBadge}>{item.genre}</span>
-              <h3 className={styles.showTitle}>{item.name}</h3>
-              <p className={styles.showTime}>{item.time} • {item.dj}</p>
+      <h2 className={styles.sectionHeadline}>UPCOMING SHOWS</h2>
+
+      {/* 2-Card Auto-Sliding Viewport Container */}
+      <div 
+        className={styles.carouselViewport}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div 
+          className={styles.carouselTrack}
+          style={{
+            transform: `translateX(-${currentIndex * 50}%)`
+          }}
+        >
+          {todaysShows.map((item) => (
+            <div key={item.id} className={styles.upcomingCard}>
+              {item.nowPlaying && (
+                <span className={styles.nowPlayingTag}>NOW PLAYING</span>
+              )}
+              <img src={item.image} alt={item.name} className={styles.cardImg} />
+              <div className={styles.cardOverlay}>
+                <span className={styles.catBadge}>{item.genre}</span>
+                <h3 className={styles.showTitle}>{item.name}</h3>
+                <p className={styles.showTime}>{item.time} • {item.dj}</p>
+              </div>
+              <button className={styles.moreBtn} aria-label="Options">
+                <FiMoreVertical />
+              </button>
             </div>
-            <button className={styles.moreBtn} aria-label="Options">
-              <FiMoreVertical />
-            </button>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
+
+      {/* Dots Indicator Bar */}
+      {maxIndex > 0 && (
+        <div className={styles.dotsRow}>
+          {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
+            <span
+              key={idx}
+              className={`${styles.dot} ${currentIndex === idx ? styles.activeDot : ''}`}
+              onClick={() => setCurrentIndex(idx)}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 };
