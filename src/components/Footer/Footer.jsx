@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaFacebookF, FaYoutube, FaTiktok, FaInstagram, FaSpotify } from 'react-icons/fa';
-import { FiPhone, FiMail } from 'react-icons/fi';
+import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 import logoImg from '../../assets/area-logo.png';
 import styles from './Footer.module.css';
@@ -43,6 +43,10 @@ export const Footer = () => {
           <div>
             <span className="section-label" style={{ marginBottom: '12px' }}>CONTACTS</span>
             <div className={styles.contactList}>
+              <div className={styles.contactItem}>
+                <FiMapPin size={16} className={styles.contactIcon} style={{ flexShrink: 0 }} />
+                <span>Plot 11 Lateef Jakande Rd, Agidingbi, Ikeja, Lagos</span>
+              </div>
               <div className={styles.contactItem}>
                 <FiPhone size={16} className={styles.contactIcon} />
                 <span>+234 809 935 8000</span>
