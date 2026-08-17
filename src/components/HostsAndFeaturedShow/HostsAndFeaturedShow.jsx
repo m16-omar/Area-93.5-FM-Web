@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { FaInstagram, FaTwitter, FaYoutube, FaTiktok, FaSpotify } from 'react-icons/fa';
 import { FiUser, FiMoreVertical } from 'react-icons/fi';
 import styles from './HostsAndFeaturedShow.module.css';
@@ -7,14 +8,14 @@ import styles from './HostsAndFeaturedShow.module.css';
 const hostsList = [
   {
     id: "h1",
-    name: "Simi Ogunleye",
+    name: "Kemi Adetiba",
     role: "DJ",
     photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
   },
   {
     id: "h2",
-    name: "Tobi Adebayo",
-    role: "DJ",
+    name: "Olamide Okafor",
+    role: "HOST",
     photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
   },
   {
@@ -25,36 +26,37 @@ const hostsList = [
   },
   {
     id: "h4",
-    name: "Olamide Okafor",
-    role: "HOST",
-    photo: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    id: "h5",
-    name: "Kemi Adetiba",
+    name: "Simi Ogunleye",
     role: "DJ",
     photo: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
   },
   {
+    id: "h5",
+    name: "Tobi Adebayo",
+    role: "DJ",
+    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80"
+  },
+  {
     id: "h6",
     name: "Babalola Alabi",
-    role: "PRODUCER",
-    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80"
+    role: "HOST",
+    photo: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=600&q=80"
   }
 ];
 
 export const HostsAndFeaturedShow = () => {
   const [hostIndex, setHostIndex] = useState(0);
 
-  // Displays 3 cards at a time, max step index = total - 3
+  // Displays 3 cards at a time, max index = total - 3
   const maxIndex = Math.max(0, hostsList.length - 3);
 
+  // Continuous auto-sliding without stopping
   useEffect(() => {
     if (maxIndex === 0) return;
 
     const interval = setInterval(() => {
       setHostIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-    }, 3200);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [maxIndex]);
@@ -78,14 +80,14 @@ export const HostsAndFeaturedShow = () => {
             <div 
               className={styles.hostsTrack}
               style={{
-                transform: `translateX(calc(-${hostIndex} * (33.333% + 4.66px)))`
+                transform: `translateX(calc(-${hostIndex} * ((100% - 28px) / 3 + 14px)))`
               }}
             >
               {hostsList.map((host) => (
                 <div key={host.id} className={styles.hostCard}>
                   <img src={host.photo} alt={host.name} className={styles.hostImg} />
                   
-                  {/* Top-right avatar icon circle */}
+                  {/* Top-right avatar icon circle matching Screenshot 2 */}
                   <div className={styles.userBadgeCircle}>
                     <FiUser />
                   </div>
@@ -138,9 +140,9 @@ export const HostsAndFeaturedShow = () => {
             </button>
           </motion.div>
 
-          <button className={styles.discoverBtn}>
+          <Link to="/hosts" className={styles.discoverBtn}>
             DISCOVER MORE
-          </button>
+          </Link>
         </div>
       </div>
     </section>

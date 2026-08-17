@@ -2,17 +2,18 @@
   position: relative;
   width: 100%;
   max-width: 1140px;
-  margin: 60px auto 100px;
+  margin: 70px auto 100px;
   padding: 0 48px;
   box-sizing: border-box;
 }
 
+/* Vibrant brand decorative circle behind featured show */
 .bgCircleTeal {
   position: absolute;
   bottom: -40px;
-  right: 18%;
-  width: 220px;
-  height: 220px;
+  right: 20px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   background: var(--primary-blue);
   z-index: 1;
@@ -23,16 +24,18 @@
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: 1.35fr 0.65fr;
+  grid-template-columns: 1.45fr 0.95fr;
   gap: 40px;
   align-items: flex-start;
 }
 
-/* Left Column: Meet Our Hosts */
+/* ========================================================
+   LEFT COLUMN: MEET OUR HOSTS (3-CARD SLIDER)
+   ======================================================== */
 .leftHostsCol {
   display: flex;
   flex-direction: column;
-  min-width: 0; /* Prevents flex overflow */
+  min-width: 0;
 }
 
 .headingWrapper {
@@ -70,7 +73,7 @@
   letter-spacing: -0.02em;
 }
 
-/* Outer Viewport for 3 Hosts Cards Carousel */
+/* Carousel Viewport showing exactly 3 cards */
 .hostsViewport {
   position: relative;
   width: 100%;
@@ -86,15 +89,15 @@
   will-change: transform;
 }
 
-/* Each Host Card Takes Exactly 1/3 of the Viewport width */
+/* Each Host Card - 3 per view with ~1:1.05 square ratio */
 .hostCard {
   position: relative;
-  flex: 0 0 calc(33.333% - 9.33px);
-  width: calc(33.333% - 9.33px);
-  aspect-ratio: 0.75 / 1;
+  flex: 0 0 calc((100% - 28px) / 3);
+  width: calc((100% - 28px) / 3);
+  aspect-ratio: 1 / 1.05;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 78, 104, 0.12);
+  box-shadow: 0 10px 24px rgba(0, 78, 104, 0.14);
   background: var(--secondary-blue);
   box-sizing: border-box;
 }
@@ -103,9 +106,14 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.4s ease;
 }
 
-/* User avatar circle badge top right */
+.hostCard:hover .hostImg {
+  transform: scale(1.04);
+}
+
+/* Circular user icon top right */
 .userBadgeCircle {
   position: absolute;
   top: 12px;
@@ -113,37 +121,40 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid #ffffff;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .hostOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.15) 55%, transparent 100%);
-  padding: 16px 12px 14px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.25) 50%, transparent 100%);
+  padding: 16px 10px 14px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   text-align: center;
   color: #ffffff;
+  z-index: 1;
 }
 
 .hostRoleBadge {
-  background: var(--primary-orange);
+  background: transparent;
+  border: 1.5px solid var(--primary-orange);
   color: #ffffff;
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: 0.58rem;
   letter-spacing: 0.06em;
-  padding: 2px 8px;
+  padding: 1px 8px;
   border-radius: 3px;
   text-transform: uppercase;
   margin-bottom: 6px;
@@ -152,7 +163,7 @@
 .hostName {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   margin: 0 0 10px;
   color: #ffffff;
   line-height: 1.15;
@@ -165,28 +176,30 @@
 .socialsRow {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
 
 .socialCircle {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(4px);
+  background: var(--primary-blue);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.65rem;
-  transition: background var(--transition-fast);
+  transition: background var(--transition-fast), transform var(--transition-fast);
 }
 
 .socialCircle:hover {
   background: var(--primary-orange);
+  transform: scale(1.15);
 }
 
-/* Right Column: Featured Show */
+/* ========================================================
+   RIGHT COLUMN: FEATURED SHOW
+   ======================================================== */
 .rightFeaturedCol {
   display: flex;
   flex-direction: column;
@@ -196,12 +209,12 @@
 .featuredCard {
   position: relative;
   width: 100%;
-  aspect-ratio: 1.35 / 1;
+  aspect-ratio: 1.45 / 1;
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 10px 28px rgba(0, 78, 104, 0.14);
+  box-shadow: 0 10px 28px rgba(0, 78, 104, 0.16);
   background: var(--secondary-blue);
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .featuredImg {
@@ -214,7 +227,7 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.25) 50%, transparent 100%);
-  padding: 24px;
+  padding: 22px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -223,7 +236,8 @@
 
 .catBadge {
   align-self: flex-start;
-  background: var(--primary-blue);
+  background: transparent;
+  border: 1.5px solid var(--primary-blue);
   color: #ffffff;
   font-family: var(--font-heading);
   font-weight: 800;
@@ -238,15 +252,15 @@
 .featuredTitle {
   font-family: var(--font-heading);
   font-weight: 900;
-  font-size: 1.5rem;
-  margin: 0 0 4px;
+  font-size: 1.45rem;
+  margin: 0;
   color: #ffffff;
 }
 
 .moreBtn {
   position: absolute;
-  bottom: 24px;
-  right: 24px;
+  bottom: 22px;
+  right: 22px;
   background: none;
   border: none;
   color: rgba(255, 255, 255, 0.85);
@@ -278,7 +292,7 @@
 @media (max-width: 1024px) {
   .gridContent {
     grid-template-columns: 1fr;
-    gap: 44px;
+    gap: 48px;
   }
 
   .sectionContainer {
@@ -288,7 +302,7 @@
 
 @media (max-width: 640px) {
   .hostCard {
-    flex: 0 0 100%;
-    width: 100%;
+    flex: 0 0 calc((100% - 14px) / 2);
+    width: calc((100% - 14px) / 2);
   }
 }
