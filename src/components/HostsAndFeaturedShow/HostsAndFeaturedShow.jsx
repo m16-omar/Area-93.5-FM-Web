@@ -1,18 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { FiUser, FiMoreVertical } from 'react-icons/fi';
 import { FaInstagram, FaYoutube, FaSpotify } from 'react-icons/fa6';
 import { FaTwitter } from 'react-icons/fa';
 import { SiTiktok } from 'react-icons/si';
+import teamData from '../../data/teamData.json';
 import styles from './HostsAndFeaturedShow.module.css';
-
-const hosts = [
-  { id: 1, name: 'Simi Ogunleye',   role: 'DJ',       bg: '#1a1a2e' },
-  { id: 2, name: 'Tobi Adebayo',    role: 'HOST',     bg: '#16213e' },
-  { id: 3, name: 'Funke Akindele',  role: 'HOST',     bg: '#0f3460' },
-  { id: 4, name: 'Olamide Okafor',  role: 'DJ',       bg: '#533483' },
-  { id: 5, name: 'Kemi Adetiba',    role: 'PRODUCER', bg: '#1a1a2e' },
-  { id: 6, name: 'Babalola Alabi',  role: 'HOST',     bg: '#16213e' },
-];
 
 const socialIcons = [
   { Icon: FaInstagram, key: 'ig' },
@@ -23,12 +16,12 @@ const socialIcons = [
 ];
 
 export default function HostsAndFeaturedShow() {
-  const [offset, setOffset]     = useState(0);      // how many cards we've shifted
+  const [offset, setOffset]     = useState(0);
   const [transition, setTrans]  = useState(true);
-  const total = hosts.length;
+  const total = teamData.length;
 
   // Looped array: original + clone for seamless loop
-  const looped = [...hosts, ...hosts];
+  const looped = [...teamData, ...teamData];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -70,30 +63,50 @@ export default function HostsAndFeaturedShow() {
             <div
               className={styles.hostsTrack}
               style={{
-                // Each card is exactly 33.333% - (2/3 * 12px) = 1/3 of viewport
-                // Moving by 1 card = (100% / 3) + (12px * 2/3)
                 transform: `translateX(calc(-${offset} * (33.333% + 4px)))`,
                 transition: transition ? 'transform 0.75s cubic-bezier(0.25, 1, 0.5, 1)' : 'none',
               }}
               onTransitionEnd={handleTransEnd}
             >
               {looped.map((host, idx) => (
-                <div
+                <Link
                   key={`${host.id}-${idx}`}
+                  to={`/hosts/${host.slug}`}
                   className={styles.hostCard}
-                  style={{ background: host.bg }}
+                  style={{ textDecoration: 'none', color: 'inherit' }}
                 >
-                  <span className={styles.userBadge}><FiUser size={13} /></span>
+                  {/* Host Photo */}
+                  <img
+                    src={host.photo}
+                    alt={host.name}
+                    className={styles.hostImg}
+                    loading="lazy"
+                  />
+
+                  {/* Top-Right Avatar Badge */}
+                  <span className={styles.userBadge}>
+                    <FiUser size={13} />
+                  </span>
+
+                  {/* Host Info Overlay */}
                   <div className={styles.hostInfo}>
-                    <span className={styles.hostRoleBadge}>{host.role}</span>
+                    <span className={styles.hostRoleBadge}>
+                      {host.badge || 'HOST'}
+                    </span>
                     <p className={styles.hostName}>{host.name}</p>
                     <div className={styles.socialsRow}>
                       {socialIcons.map(({ Icon, key }) => (
-                        <span key={key} className={styles.socialCircle}><Icon /></span>
+                        <span
+                          key={key}
+                          className={styles.socialCircle}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Icon />
+                        </span>
                       ))}
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -108,11 +121,10 @@ export default function HostsAndFeaturedShow() {
           <h2 className={styles.sectionHeadline}>FEATURED SHOW</h2>
 
           <div className={styles.featuredCard}>
-            <div
+            <img
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
+              alt="The Fan Zone"
               className={styles.featuredImg}
-              style={{
-                background: 'linear-gradient(135deg, #8B4B8B 0%, #4B6B8B 50%, #2B3B6B 100%)',
-              }}
             />
             <div className={styles.featuredOverlay}>
               <span className={styles.catBadge}>TRENDS</span>
@@ -123,7 +135,9 @@ export default function HostsAndFeaturedShow() {
             </button>
           </div>
 
-          <button className={styles.discoverBtn}>DISCOVER MORE</button>
+          <Link to="/shows" style={{ textDecoration: 'none' }}>
+            <button className={styles.discoverBtn}>DISCOVER MORE</button>
+          </Link>
         </div>
       </div>
 
