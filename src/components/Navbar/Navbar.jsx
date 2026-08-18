@@ -29,6 +29,18 @@ export const Navbar = () => {
     setMobileMenuOpen(false);
   };
 
+  const openPopUpPlayer = () => {
+    const width = 420;
+    const height = 660;
+    const left = (window.screen.width - width) / 2;
+    const top = (window.screen.height - height) / 2;
+    window.open(
+      '/popup-player',
+      'Area935FMPopUpPlayer',
+      `width=${width},height=${height},top=${top},left=${left},status=no,menubar=no,toolbar=no,resizable=no,scrollbars=no`
+    );
+  };
+
   return (
     <div className={styles.stickyHeaderWrapper}>
       {/* Top Ticker / Social Bar */}
@@ -106,7 +118,7 @@ export const Navbar = () => {
             {isMuted ? <FiVolumeX /> : <FiVolume2 />}
           </button>
 
-          <button className={`${styles.popupBtn} ${styles.hideOnTablet}`}>
+          <button className={`${styles.popupBtn} ${styles.hideOnTablet}`} onClick={openPopUpPlayer}>
             POP UP
           </button>
         </div>
@@ -210,7 +222,7 @@ export const Navbar = () => {
 
               {/* Extra Actions & Socials */}
               <div className={styles.mobileExtraActions}>
-                <button className={styles.mobilePopUpBtn}>
+                <button className={styles.mobilePopUpBtn} onClick={() => { setMobileMenuOpen(false); openPopUpPlayer(); }}>
                   POP UP PLAYER
                 </button>
                 

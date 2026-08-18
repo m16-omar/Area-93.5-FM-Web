@@ -12,6 +12,7 @@ import { VideosPage } from './pages/VideosPage';
 import { ContactPage } from './pages/ContactPage';
 import { PromotePage } from './pages/PromotePage';
 import { HostDetailPage } from './pages/HostDetailPage';
+import { PopUpPlayerPage } from './pages/PopUpPlayerPage';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/promote" element={<PromotePage />} />
           <Route path="/hosts/:slug" element={<HostDetailPage />} />
+          <Route path="/popup-player" element={<PopUpPlayerPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>

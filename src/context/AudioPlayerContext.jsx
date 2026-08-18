@@ -4,11 +4,11 @@ const AudioPlayerContext = createContext();
 
 const DEFAULT_TRACK = {
   id: 'def1',
-  title: 'Morning Vibe Blast',
-  artist: 'Jordan Carter',
-  showName: 'Morning Vibe Blast',
-  presenterName: 'Jordan Carter',
-  image: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=300&q=80',
+  title: 'The Fan Zone',
+  artist: 'Simi Ogunleye',
+  showName: 'The Fan Zone',
+  presenterName: 'Simi Ogunleye',
+  image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
   audioUrl: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3'
 };
 
