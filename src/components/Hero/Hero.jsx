@@ -6,10 +6,19 @@ import { useAudioPlayer, LIVE_STREAM_URL } from '../../context/AudioPlayerContex
 import heroPresenterImg from '../../assets/Here Presenters.png';
 import styles from './Hero.module.css';
 
+// Generate dynamic dates for event cards
+const getUpcomingDateTag = (offsetDays = 0) => {
+  const d = new Date();
+  d.setDate(d.getDate() + offsetDays);
+  const day = String(d.getDate()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  return `${day}.${month}`;
+};
+
 const nextEvents = [
   {
     id: "e1",
-    tag: "03",
+    tag: "TODAY",
     subtitle: "ELECTRO",
     title: "The Buzz Hour",
     dj: "Olamide Okafor",
@@ -18,7 +27,7 @@ const nextEvents = [
   },
   {
     id: "e2",
-    tag: "25.08.19",
+    tag: getUpcomingDateTag(1),
     subtitle: "MUSIC FESTIVAL",
     title: "Vibe Makers Live",
     dj: "Simi Ogunleye",
@@ -27,7 +36,7 @@ const nextEvents = [
   },
   {
     id: "e3",
-    tag: "11.08",
+    tag: getUpcomingDateTag(2),
     subtitle: "SPECIAL EVENT",
     title: "Pop Picks Spotlight",
     dj: "DJ Tobi",
@@ -36,7 +45,7 @@ const nextEvents = [
   },
   {
     id: "e4",
-    tag: "04",
+    tag: getUpcomingDateTag(3),
     subtitle: "R&B SESSIONS",
     title: "Midnight Vibes",
     dj: "Kemi Adetiba",
@@ -48,6 +57,14 @@ const nextEvents = [
 export const Hero = () => {
   const { isPlaying, togglePlayPause, currentTrack, playTrack } = useAudioPlayer();
   const [slideIndex, setSlideIndex] = useState(0);
+
+  // Dynamic formatted today's date for badge
+  const todayFormatted = new Date().toLocaleDateString('en-US', {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric'
+  }).toUpperCase();
 
   const maxIndex = Math.max(0, nextEvents.length - 3);
 
@@ -132,7 +149,7 @@ export const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Right Column: NEXT EVENTS 3-Card Poster Stream */}
+        {/* Right Column: Dynamic Today's Date Badge & Event Cards */}
         <motion.div 
           className={styles.rightCol}
           initial={{ opacity: 0, y: 30 }}
@@ -140,7 +157,9 @@ export const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <div className={styles.nextEventsHeader}>
-            <span className={styles.sectionBadge}>NEXT EVENTS</span>
+            <span className={styles.sectionBadge}>
+              TODAY • {todayFormatted}
+            </span>
             <span className={styles.sectionAccentLine} />
           </div>
 
