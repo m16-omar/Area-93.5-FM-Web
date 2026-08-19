@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaPlay, FaPause } from 'react-icons/fa';
-import { FiSkipBack, FiSkipForward, FiVolume2, FiVolumeX, FiRadio } from 'react-icons/fi';
+import { FiSkipBack, FiSkipForward, FiVolume2, FiVolumeX, FiFolder } from 'react-icons/fi';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 import styles from './LivePlayer.module.css';
 
@@ -29,67 +29,39 @@ export const LivePlayer = () => {
 
   return (
     <div className={styles.stickyPlayerContainer}>
-      {/* Left Column: Play button & Track Info */}
+      {/* Left Section: Play Button, Track Meta, Thumbnail, Prev/Next & Folder Icon */}
       <div className={styles.leftControls}>
         <button className={styles.playToggleBtn} onClick={togglePlayPause} aria-label="Toggle Play">
-          {isPlaying ? <FaPause size={14} /> : <FaPlay size={14} />}
+          {isPlaying ? <FaPause size={12} /> : <FaPlay size={12} style={{ marginLeft: '1px' }} />}
         </button>
-        <img src={currentTrack.image} alt={currentTrack.title} className={styles.trackThumb} />
+
         <div className={styles.trackMeta}>
-          <div className={styles.titleRow}>
-            <span className={styles.trackTitle}>{currentTrack.showName || currentTrack.title}</span>
-            {isLive && <span className={styles.livePill}>LIVE</span>}
-          </div>
+          <span className={styles.trackTitle}>{currentTrack.showName || currentTrack.title}</span>
           <span className={styles.trackArtist}>{currentTrack.presenterName || currentTrack.artist}</span>
         </div>
+
+        <img src={currentTrack.image} alt={currentTrack.title} className={styles.trackThumb} />
+
+        <button className={styles.skipBtn} aria-label="Previous Track">
+          <FiSkipBack size={13} />
+        </button>
+        <button className={styles.skipBtn} aria-label="Next Track">
+          <FiSkipForward size={13} />
+        </button>
+        <button className={styles.folderBtn} aria-label="Playlist">
+          <FiFolder size={13} />
+        </button>
       </div>
 
-      {/* Center Column: Controls & Progress */}
+      {/* Center Section: Time / Live Indicator */}
       <div className={styles.centerControls}>
-        {isLive ? (
-          <div className={styles.liveStreamCenter}>
-            <FiRadio className={styles.radioIcon} />
-            <span className={styles.liveStreamText}>
-              {isPlaying ? 'STREAMING LIVE ON 93.5 AREA FM' : '93.5 AREA FM — CLICK PLAY TO LISTEN LIVE'}
-            </span>
-            {isPlaying && (
-              <div className={styles.liveEq}>
-                <span className={styles.eq1} />
-                <span className={styles.eq2} />
-                <span className={styles.eq3} />
-                <span className={styles.eq4} />
-              </div>
-            )}
-          </div>
-        ) : (
-          <>
-            <button className={styles.skipBtn} aria-label="Previous Track">
-              <FiSkipBack />
-            </button>
-            <button className={styles.skipBtn} aria-label="Next Track">
-              <FiSkipForward />
-            </button>
-
-            <div className={styles.progressWrapper}>
-              <span className={styles.timeText}>{formatTime(currentTime)}</span>
-              <input
-                type="range"
-                min="0"
-                max={duration || 100}
-                value={currentTime}
-                onChange={(e) => seek(Number(e.target.value))}
-                className={styles.seekBar}
-              />
-              <span className={styles.timeText}>{formatTime(duration)}</span>
-            </div>
-          </>
-        )}
+        <span className={styles.timeText}>{isLive ? '00:00' : formatTime(currentTime)}</span>
       </div>
 
-      {/* Right Column: Volume & Controls */}
+      {/* Right Section: Volume Toggle */}
       <div className={styles.rightControls}>
         <button className={styles.volumeBtn} onClick={toggleMute} aria-label="Toggle Volume">
-          {isMuted ? <FiVolumeX /> : <FiVolume2 />}
+          {isMuted ? <FiVolumeX size={15} /> : <FiVolume2 size={15} />}
         </button>
 
         <input

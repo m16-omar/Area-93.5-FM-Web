@@ -1,94 +1,91 @@
 import React from 'react';
-import { FaFacebookF, FaYoutube, FaTiktok, FaInstagram, FaSpotify } from 'react-icons/fa';
-import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
-import { useAudioPlayer } from '../../context/AudioPlayerContext';
-import logoImg from '../../assets/area-logo.png';
+import { FaFacebookF, FaYoutube, FaTiktok, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { FiPhone, FiMail } from 'react-icons/fi';
 import styles from './Footer.module.css';
 
 export const Footer = () => {
-  const { currentTrack } = useAudioPlayer();
-
   return (
     <footer className={styles.footerSection} id="contacts">
+      {/* Background Watermark */}
       <div className={styles.watermarkText}>
         ONE VOICE,<br />
         EVERY AREA
       </div>
 
       <div className={styles.footerGrid}>
-        {/* Left Column */}
+        {/* Left Column: Logo & Slogan */}
         <div className={styles.leftCol}>
-          <div className={styles.logoLink}>
-            <img src={logoImg} alt="93.5 AREA FM Logo" className={styles.logoImg} />
+          <div className={styles.brandTitleWrap}>
+            <span className={styles.logoNumber}>93.5</span>
+            <span className={styles.logoText}>AREA</span>
+            <span className={styles.logoSub}>FM</span>
           </div>
-
-          <div className={styles.nowPlayingInfo}>
-            <span>{currentTrack.showName || currentTrack.title}</span> - <span>{currentTrack.presenterName || currentTrack.artist}</span>
-          </div>
+          <p className={styles.stationSlogan}>One Voice, Every Area</p>
         </div>
 
-        {/* Middle Column */}
+        {/* Middle Column: Socials & Contacts */}
         <div className={styles.midCol}>
-          <div>
-            <span className="section-label" style={{ marginBottom: '12px' }}>FOLLOW US ON</span>
-            <div className={styles.socialGrid}>
-              <a href="#" className={styles.socialCircle} aria-label="YouTube"><FaYoutube /></a>
-              <a href="#" className={styles.socialCircle} aria-label="TikTok"><FaTiktok /></a>
-              <a href="#" className={styles.socialCircle} aria-label="Instagram"><FaInstagram /></a>
-              <a href="#" className={styles.socialCircle} aria-label="Facebook"><FaFacebookF /></a>
-              <a href="#" className={styles.socialCircle} aria-label="Spotify"><FaSpotify /></a>
+          {/* Follow Us */}
+          <div className={styles.subBlock}>
+            <span className={styles.sectionBadge}>FOLLOW US ON</span>
+            <div className={styles.socialRow}>
+              <a href="https://facebook.com" target="_blank" rel="noreferrer" className={styles.socialSquare} aria-label="Facebook">
+                <FaFacebookF />
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noreferrer" className={styles.socialSquare} aria-label="YouTube">
+                <FaYoutube />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noreferrer" className={styles.socialSquare} aria-label="Instagram">
+                <FaInstagram />
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noreferrer" className={styles.socialSquare} aria-label="Twitter">
+                <FaTwitter />
+              </a>
             </div>
           </div>
 
-          <div>
-            <span className="section-label" style={{ marginBottom: '12px' }}>CONTACTS</span>
+          {/* Contacts */}
+          <div className={styles.subBlock}>
+            <span className={styles.sectionBadge}>CONTACTS</span>
             <div className={styles.contactList}>
-              <div className={styles.contactItem}>
-                <FiMapPin size={16} className={styles.contactIcon} style={{ flexShrink: 0 }} />
-                <span>Plot 11 Lateef Jakande Rd, Agidingbi, Ikeja, Lagos</span>
-              </div>
-              <div className={styles.contactItem}>
-                <FiPhone size={16} className={styles.contactIcon} />
+              <a href="tel:+2348099358000" className={styles.contactItem}>
+                <FiPhone size={13} className={styles.contactIcon} />
                 <span>+234 809 935 8000</span>
-              </div>
-              <div className={styles.contactItem}>
-                <FiMail size={16} className={styles.contactIcon} />
+              </a>
+              <a href="mailto:info@areafm.ng" className={styles.contactItem}>
+                <FiMail size={13} className={styles.contactIcon} />
                 <span>info@areafm.ng</span>
-              </div>
+              </a>
             </div>
           </div>
         </div>
 
-        {/* Right Column */}
+        {/* Right Column: Latest Podcasts */}
         <div className={styles.rightCol}>
-          <span className="section-label">LATEST PODCASTS</span>
+          <span className={styles.sectionBadge}>LATEST PODCASTS</span>
 
-          <div className={styles.podcastMiniCard}>
-            <img 
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" 
-              alt="Vibe Check #2" 
-              className={styles.podcastThumb} 
-              loading="lazy" 
-            />
-            <span className={styles.podcastTitle}>Vibe Check #2</span>
-          </div>
+          <div className={styles.podcastStack}>
+            <div className={styles.podcastMiniCard}>
+              <img 
+                src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=160&q=80" 
+                alt="Top 10 Countdown #1" 
+                className={styles.podcastThumb} 
+                loading="lazy" 
+              />
+              <span className={styles.podcastTitle}>Top 10 Countdown #1</span>
+            </div>
 
-          <div className={styles.podcastMiniCard}>
-            <img 
-              src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80" 
-              alt="Throwback Jam #2" 
-              className={styles.podcastThumb} 
-              loading="lazy" 
-            />
-            <span className={styles.podcastTitle}>Throwback Jam #2</span>
+            <div className={styles.podcastMiniCard}>
+              <img 
+                src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=160&q=80" 
+                alt="Top 10 Countdown #2" 
+                className={styles.podcastThumb} 
+                loading="lazy" 
+              />
+              <span className={styles.podcastTitle}>Top 10 Countdown #2</span>
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Copyright Bar */}
-      <div className={styles.copyrightRow}>
-        <p>© 2026 93.5 AREA FM. All Rights Reserved.</p>
-        <p>One Voice, Every Area.</p>
       </div>
     </footer>
   );

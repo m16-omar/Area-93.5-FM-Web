@@ -1,186 +1,208 @@
 .footerSection {
   position: relative;
-  background: var(--secondary-blue);
-  color: var(--white);
-  padding: 80px 48px 40px;
+  background: #EAF3F7;
+  color: #0f172a;
+  padding: 80px 48px 100px;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .watermarkText {
   position: absolute;
-  top: 10px;
-  right: 5%;
-  font-family: var(--font-heading);
+  top: 15px;
+  left: 4%;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
-  font-size: clamp(3rem, 10vw, 8rem);
-  line-height: 0.85;
-  color: rgba(255, 255, 255, 0.04);
+  font-size: clamp(3.5rem, 9.5vw, 7.5rem);
+  line-height: 0.88;
+  color: rgba(0, 107, 141, 0.05);
   pointer-events: none;
   text-transform: uppercase;
   letter-spacing: -0.04em;
   white-space: nowrap;
+  z-index: 0;
 }
 
 .footerGrid {
   position: relative;
-  z-index: 2;
-  maxWidth: 1200px;
+  z-index: 1;
+  max-width: 1140px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 48px;
-  padding-bottom: 60px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 40px;
+  align-items: start;
 }
 
+/* Left Column */
 .leftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.brandTitleWrap {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  line-height: 1;
+}
+
+.logoNumber {
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: #0f172a;
+  letter-spacing: -0.04em;
+}
+
+.logoText {
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: var(--primary-orange, #E50914);
+  letter-spacing: -0.02em;
+  margin-left: 2px;
+}
+
+.logoSub {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin-left: 2px;
+}
+
+.stationSlogan {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Middle Column */
+.midCol {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.logoLink {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logoImg {
-  height: 76px;
-  width: auto;
-  object-fit: contain;
-  border-radius: 4px;
-}
-
-.logoText {
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-size: 1.6rem;
-  color: var(--white);
-}
-
-.logoAccent {
-  color: var(--white);
-  background: var(--primary-orange);
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.nowPlayingInfo {
-  font-size: 0.9rem;
-  color: #D1D5DB;
-  background: rgba(10, 79, 146, 0.5);
-  padding: 10px 16px;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.midCol {
+.subBlock {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 8px;
 }
 
-.socialGrid {
+.sectionBadge {
+  align-self: flex-start;
+  background: #a3e635;
+  color: #0f172a;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  padding: 2px 6px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.socialRow {
   display: flex;
-  gap: 12px;
+  gap: 8px;
 }
 
-.socialCircle {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: var(--primary-orange);
-  color: var(--white);
+.socialSquare {
+  width: 32px;
+  height: 32px;
+  border-radius: 2px;
+  background: #000000;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
-  box-shadow: 0 4px 12px rgba(239, 75, 0, 0.3);
-  transition: background var(--transition-fast), transform var(--transition-fast);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
 }
 
-.socialCircle:hover {
-  background: var(--primary-blue);
-  color: var(--white);
+.socialSquare:hover {
+  background: var(--primary-orange, #E50914);
   transform: translateY(-2px);
 }
 
 .contactList {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
 }
 
 .contactItem {
   display: flex;
   align-items: center;
-  gap: 12px;
-  color: #F5F7FA;
-  font-size: 0.95rem;
+  gap: 8px;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contactItem:hover {
+  color: var(--primary-blue, #006B8D);
 }
 
 .contactIcon {
-  color: var(--primary-orange);
+  color: #0f172a;
 }
 
+/* Right Column */
 .rightCol {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
+}
+
+.podcastStack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .podcastMiniCard {
-  background: rgba(10, 79, 146, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 18px;
-  padding: 12px;
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 6px 10px;
   display: flex;
   align-items: center;
-  gap: 16px;
-  transition: transform var(--transition-fast), border-color var(--transition-fast);
-}
-
-.podcastMiniCard:hover {
-  transform: translateY(-3px);
-  border-color: var(--primary-orange);
+  gap: 10px;
+  box-shadow: 0 2px 8px rgba(0, 78, 104, 0.06);
 }
 
 .podcastThumb {
-  width: 50px;
-  height: 50px;
-  border-radius: var(--radius-sm);
+  width: 36px;
+  height: 36px;
+  border-radius: 2px;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .podcastTitle {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--white);
-}
-
-.copyrightRow {
-  position: relative;
-  z-index: 2;
-  maxWidth: 1200px;
-  margin: 0 auto;
-  padding-top: 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 800;
   font-size: 0.85rem;
-  color: #D1D5DB;
+  color: #0f172a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 900px) {
   .footerGrid {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 28px;
   }
-  .copyrightRow {
-    flex-direction: column;
-    gap: 12px;
-    text-align: center;
+}
+
+@media (max-width: 600px) {
+  .footerSection {
+    padding: 40px 16px 80px;
   }
 }

@@ -20,7 +20,7 @@ export const SubscribeForm = () => {
       <div className={styles.overlay} />
 
       <div className={styles.contentContainer}>
-        {/* Left Column */}
+        {/* Left Column: Title & Description */}
         <motion.div 
           className={styles.leftCol}
           initial={{ opacity: 0, x: -30 }}
@@ -34,7 +34,7 @@ export const SubscribeForm = () => {
           </p>
         </motion.div>
 
-        {/* Right Column */}
+        {/* Right Column: Subscribe Input & Button */}
         <motion.div 
           className={styles.rightCol}
           initial={{ opacity: 0, x: 30 }}
@@ -42,9 +42,12 @@ export const SubscribeForm = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <span className="section-label">SUBSCRIBE FORM</span>
+          <div className={styles.formHeader}>
+            <span className={styles.formLabel}>SUBSCRIBE FORM</span>
+            <span className={styles.formAccentLine} />
+          </div>
 
-          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <form onSubmit={handleSubmit} className={styles.formStack}>
             <input
               type="email"
               placeholder="Your email here"

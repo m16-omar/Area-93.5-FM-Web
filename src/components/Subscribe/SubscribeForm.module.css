@@ -1,6 +1,6 @@
 .subscribeSection {
   position: relative;
-  min-height: 400px;
+  min-height: 380px;
   background-image: url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1600&q=80');
   background-size: cover;
   background-position: center;
@@ -8,109 +8,145 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(0, 78, 104, 0.94) 0%, rgba(0, 107, 141, 0.88) 100%);
+  background: linear-gradient(90deg, rgba(15, 10, 5, 0.78) 0%, rgba(20, 15, 8, 0.55) 50%, rgba(10, 5, 2, 0.82) 100%);
 }
 
 .contentContainer {
   position: relative;
   z-index: 2;
-  max-width: 1200px;
+  max-width: 1140px;
   margin: 0 auto;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 56px;
   align-items: center;
-  color: var(--white);
+  color: #ffffff;
 }
 
 .leftCol {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .title {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.6rem, 5vw, 3.8rem);
   text-transform: uppercase;
-  color: var(--primary-orange);
+  color: #facc15;
   line-height: 0.95;
   letter-spacing: -0.02em;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  margin: 0;
 }
 
 .description {
-  font-size: 1rem;
-  color: #F5F7FA;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.82);
   line-height: 1.6;
+  margin: 0;
 }
 
 .rightCol {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  max-width: 480px;
+  gap: 12px;
+  max-width: 440px;
+}
+
+.formHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.formLabel {
+  background: #a3e635;
+  color: #0f172a;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.formAccentLine {
+  flex: 1;
+  height: 2px;
+  background: #a3e635;
+}
+
+.formStack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .emailInput {
   width: 100%;
-  padding: 16px 20px;
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 3px;
   font-family: inherit;
-  font-size: 1rem;
-  color: var(--text-dark);
+  font-size: 0.95rem;
+  color: #0f172a;
   outline: none;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-sizing: border-box;
+  transition: background 0.2s, border-color 0.2s;
 }
 
 .emailInput::placeholder {
-  color: var(--text-muted);
+  color: #64748b;
 }
 
 .emailInput:focus {
   background: #ffffff;
-  border-color: var(--primary-orange);
-  box-shadow: 0 0 0 3px rgba(0, 107, 141, 0.25);
+  border-color: #a3e635;
 }
 
 .submitBtn {
-  background: var(--primary-orange);
-  color: var(--white);
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 0.85rem;
+  background: #000000;
+  color: #ffffff;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 0.88rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 16px;
-  border-radius: var(--radius-sm);
+  padding: 13px 20px;
+  border-radius: 3px;
   border: none;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(229, 9, 20, 0.35);
-  transition: background var(--transition-fast), transform var(--transition-fast);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transition: background 0.2s, transform 0.2s;
 }
 
 .submitBtn:hover {
-  background: var(--orange-hover);
-  transform: translateY(-1px);
+  background: #a3e635;
+  color: #0f172a;
+  transform: translateY(-2px);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .contentContainer {
     grid-template-columns: 1fr;
+    gap: 32px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .subscribeSection {
-    padding: 60px 20px;
+    padding: 50px 16px;
   }
 }
