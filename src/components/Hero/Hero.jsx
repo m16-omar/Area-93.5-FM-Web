@@ -6,66 +6,42 @@ import { useAudioPlayer, LIVE_STREAM_URL } from '../../context/AudioPlayerContex
 import heroPresenterImg from '../../assets/Here Presenters.png';
 import styles from './Hero.module.css';
 
-const todayShows = [
+const nextEvents = [
   {
-    id: "s1",
-    title: "The Fan Zone",
-    dj: "Simi Ogunleye",
-    time: "11:00",
-    period: "AM",
-    genre: "INTERVIEWS",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
-    nowPlaying: true
-  },
-  {
-    id: "s2",
-    title: "Lagos Morning Rush",
+    id: "e1",
+    tag: "03",
+    subtitle: "ELECTRO",
+    title: "The Buzz Hour",
     dj: "Olamide Okafor",
-    time: "06:00",
-    period: "AM",
-    genre: "MUSIC",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
-    nowPlaying: false
+    badge: "LIVE SHOW",
+    image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80"
   },
   {
-    id: "s3",
-    title: "Afrobeats Reloaded",
+    id: "e2",
+    tag: "25.08.19",
+    subtitle: "MUSIC FESTIVAL",
+    title: "Vibe Makers Live",
+    dj: "Simi Ogunleye",
+    badge: "INTERVIEWS",
+    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "e3",
+    tag: "11.08",
+    subtitle: "SPECIAL EVENT",
+    title: "Pop Picks Spotlight",
     dj: "DJ Tobi",
-    time: "04:00",
-    period: "PM",
-    genre: "CLUB MIX",
-    image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80",
-    nowPlaying: false
+    badge: "POP PICKS",
+    image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80"
   },
   {
-    id: "s4",
+    id: "e4",
+    tag: "04",
+    subtitle: "R&B SESSIONS",
     title: "Midnight Vibes",
     dj: "Kemi Adetiba",
-    time: "10:00",
-    period: "PM",
-    genre: "R&B",
-    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
-    nowPlaying: false
-  },
-  {
-    id: "s5",
-    title: "Pop Culture Replay",
-    dj: "Funke Akindele",
-    time: "02:30",
-    period: "PM",
-    genre: "TRENDS",
-    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
-    nowPlaying: false
-  },
-  {
-    id: "s6",
-    title: "The Founders Hour",
-    dj: "Babalola Alabi",
-    time: "08:00",
-    period: "PM",
-    genre: "TALK SHOW",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
-    nowPlaying: false
+    badge: "R&B",
+    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
   }
 ];
 
@@ -73,12 +49,12 @@ export const Hero = () => {
   const { isPlaying, togglePlayPause, currentTrack, playTrack } = useAudioPlayer();
   const [slideIndex, setSlideIndex] = useState(0);
 
-  const maxIndex = Math.max(0, todayShows.length - 3);
+  const maxIndex = Math.max(0, nextEvents.length - 3);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setSlideIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-    }, 3800);
+    }, 4000);
     return () => clearInterval(interval);
   }, [maxIndex]);
 
@@ -103,19 +79,23 @@ export const Hero = () => {
     <section className={styles.heroSection}>
       {/* Background Graphic Orbs */}
       <div className={styles.bgCircleTopLime} />
-      <div className={styles.bgCircleBottomTeal} />
+      <div className={styles.bgCircleLeftGreen} />
 
-      {/* Top Right Current Host Credit */}
-      <div className={styles.topRightHost}>
-        <span className={styles.topRightTrack}>The Fan Zone - Right Now</span>
-        <span className={styles.topRightHostName}>Simi Ogunleye</span>
+      {/* Top Right Current Track Text */}
+      <div className={styles.topRightTrackInfo}>
+        <span className={styles.topRightSongTitle}>
+          {currentTrack.showName || currentTrack.title || 'The Fan Zone'}
+        </span>
+        <span className={styles.topRightArtist}>
+          {currentTrack.presenterName || currentTrack.artist || 'Simi Ogunleye'}
+        </span>
       </div>
 
-      {/* Hero Presenter Image Overlay */}
+      {/* Hero DJ Image */}
       <div className={styles.heroImageContainer}>
         <img 
           src={heroPresenterImg} 
-          alt="93.5 Area FM Presenter" 
+          alt="Area 93.5 FM Presenter" 
           className={styles.heroDjImage} 
         />
         <div className={styles.heroImageOverlay} />
@@ -123,19 +103,19 @@ export const Hero = () => {
 
       {/* Hero Content Grid */}
       <div className={styles.heroContent}>
-        {/* Left Column: Station Typography & Play Button */}
+        {/* Left Column: Typography & Play Button */}
         <motion.div 
           className={styles.leftCol}
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className={styles.stationLogoBlock}>
+          <div className={styles.brandTitleWrap}>
             <span className={styles.logoNumber}>93.5</span>
             <span className={styles.logoText}>AREA</span>
             <span className={styles.logoSub}>FM</span>
           </div>
-          
+
           <h1 className={styles.heroHeadline}>
             ONE VOICE,<br />
             EVERY AREA
@@ -147,18 +127,12 @@ export const Hero = () => {
               onClick={handleLivePlay} 
               aria-label="Play Live Radio"
             >
-              {isPlaying ? <FaPause size={28} /> : <FaPlay size={28} style={{ marginLeft: '4px' }} />}
+              {isPlaying ? <FaPause size={24} /> : <FaPlay size={24} style={{ marginLeft: '4px' }} />}
             </button>
-            <div className={styles.trackMeta}>
-              <span className={styles.trackMetaTitle}>LISTEN LIVE</span>
-              <span className={styles.trackMetaArtist}>
-                {currentTrack.showName || currentTrack.title || 'The Fan Zone'} — {currentTrack.presenterName || currentTrack.artist || 'Simi Ogunleye'}
-              </span>
-            </div>
           </div>
         </motion.div>
 
-        {/* Right Column: Floating 3-Card Shows Slider */}
+        {/* Right Column: NEXT EVENTS 3-Card Poster Stream */}
         <motion.div 
           className={styles.rightCol}
           initial={{ opacity: 0, y: 30 }}
@@ -176,32 +150,33 @@ export const Hero = () => {
               animate={{ x: `calc(-${slideIndex} * (33.333% + 4.66px))` }}
               transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
             >
-              {todayShows.map((show) => (
-                <div key={show.id} className={styles.eventCardItem}>
+              {nextEvents.map((evt) => (
+                <div key={evt.id} className={styles.eventCardItem}>
                   <div className={styles.eventCard}>
                     <img 
-                      src={show.image} 
-                      alt={show.title} 
+                      src={evt.image} 
+                      alt={evt.title} 
                       className={styles.eventImage} 
                       loading="lazy" 
                     />
                     
-                    {/* Top Right Badge Icon */}
+                    {/* Top Right Radio Icon Badge */}
                     <div className={styles.cardTopIcon}>
-                      <FiRadio size={12} />
+                      <FiRadio size={11} />
                     </div>
 
                     <div className={styles.eventOverlay}>
-                      {/* Date / Time Circle */}
-                      <div className={styles.dateCircle}>
-                        <span>{show.time}</span>
-                        <span>{show.period}</span>
+                      {/* Top Tag / Subtitle */}
+                      <div className={styles.cardTopMeta}>
+                        <span className={styles.cardTag}>{evt.tag}</span>
+                        <span className={styles.cardSubtitle}>{evt.subtitle}</span>
                       </div>
 
+                      {/* Bottom Info */}
                       <div className={styles.cardBottomInfo}>
-                        <span className={styles.genreBadge}>{show.genre}</span>
-                        <h3 className={styles.eventTitle}>{show.title}</h3>
-                        <p className={styles.eventDj}>{show.dj}</p>
+                        <span className={styles.genreBadge}>{evt.badge}</span>
+                        <h3 className={styles.eventTitle}>{evt.title}</h3>
+                        <p className={styles.eventDj}>{evt.dj}</p>
                       </div>
                     </div>
                   </div>

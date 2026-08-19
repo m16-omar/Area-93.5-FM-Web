@@ -1,80 +1,96 @@
 .tracksSection {
   position: relative;
-  background: var(--gradient-dark), var(--secondary-blue);
-  padding: 100px 48px;
-  color: var(--white);
+  background: linear-gradient(135deg, #1c0a1a 0%, #2a1128 35%, #0f172a 75%, #022c22 100%);
+  padding: 80px 48px 90px;
+  color: #ffffff;
   overflow: hidden;
   width: 100%;
   box-sizing: border-box;
 }
 
+.bgGlowOrb {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: #a3e635;
+  opacity: 0.55;
+  filter: blur(55px);
+  z-index: 0;
+  pointer-events: none;
+}
+
 .tracksGrid {
-  max-width: 1200px;
+  position: relative;
+  z-index: 1;
+  max-width: 1140px;
   width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  grid-template-columns: 1fr 1.1fr 1.1fr;
+  gap: 36px;
   align-items: center;
-  box-sizing: border-box;
 }
 
-.leftCol {
+/* Column 1: Intro */
+.introCol {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  width: 100%;
-  box-sizing: border-box;
-  min-width: 0;
+  gap: 14px;
 }
 
 .mainTitle {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
-  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-size: clamp(2.6rem, 4.5vw, 3.6rem);
   text-transform: uppercase;
-  color: var(--primary-orange);
-  line-height: 0.9;
+  color: #fb7185;
+  line-height: 0.92;
   letter-spacing: -0.02em;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  word-break: break-word;
-}
-
-.subTitle {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 1.8rem;
-  color: var(--white);
-  margin-top: 8px;
+  margin: 0;
 }
 
 .description {
-  font-size: 1rem;
-  color: #D1D5DB;
-  line-height: 1.6;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.subTitle {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: #ffffff;
+  margin: 6px 0 0;
+}
+
+/* Column 2: Featured Single Large Square Card */
+.featuredCol {
+  display: flex;
+  justify-content: center;
 }
 
 .featuredCard {
   background: #ffffff;
-  border-radius: 18px;
+  border-radius: 6px;
   overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: 0 8px 24px rgba(10, 79, 146, 0.15);
-  max-width: 450px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
   width: 100%;
-  box-sizing: border-box;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  max-width: 320px;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .featuredCard:hover {
-  transform: translateY(-6px);
-  border-color: var(--primary-orange);
-  box-shadow: 0 16px 36px rgba(10, 79, 146, 0.25);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
 }
 
 .featuredArtWrapper {
   position: relative;
-  height: 280px;
+  aspect-ratio: 1 / 1;
   width: 100%;
   overflow: hidden;
 }
@@ -87,249 +103,170 @@
 
 .featuredBadge {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  background: var(--primary-orange);
-  color: var(--white);
+  top: 12px;
+  right: 12px;
+  background: #000000;
+  color: #ffffff;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 800;
-  font-size: 0.8rem;
-  padding: 4px 12px;
-  border-radius: var(--radius-sm);
-  box-shadow: 0 4px 10px rgba(239, 75, 0, 0.3);
-  max-width: calc(100% - 32px);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  z-index: 2;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
 }
 
 .featuredFooter {
-  padding: 20px;
+  padding: 12px 14px;
   background: #ffffff;
-  color: var(--text-dark);
+  color: #0f172a;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  width: 100%;
-  box-sizing: border-box;
+  gap: 10px;
 }
 
 .featuredMeta {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
   min-width: 0;
 }
 
 .featuredTitle {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 1.2rem;
-  color: var(--primary-blue);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 1.05rem;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.2;
 }
 
 .featuredArtist {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 0.78rem;
+  color: #64748b;
+  margin: 0;
 }
 
-.rightCol {
+.featuredVoteBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.06);
+  color: #64748b;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.featuredVoteBtn:hover {
+  background: #f43f5e;
+  color: #ffffff;
+}
+
+.featuredVoteBtn.voted {
+  background: #f43f5e;
+  color: #ffffff;
+}
+
+/* Column 3: Stacked List of 5 Tracks */
+.listCol {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  width: 100%;
-  box-sizing: border-box;
-  min-width: 0;
+  gap: 8px;
 }
 
 .trackRowCard {
   background: #ffffff;
-  color: var(--text-dark);
-  border-radius: 18px;
-  border: 1px solid var(--border);
-  padding: 12px 20px;
+  border-radius: 4px;
+  padding: 6px 12px;
   display: flex;
   align-items: center;
-  gap: 16px;
-  box-shadow: 0 4px 12px rgba(10, 79, 146, 0.08);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
-  width: 100%;
-  box-sizing: border-box;
+  gap: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s;
 }
 
 .trackRowCard:hover {
-  transform: translateY(-4px);
-  border-color: var(--primary-orange);
-  box-shadow: 0 8px 24px rgba(10, 79, 146, 0.18);
+  transform: translateX(4px);
 }
 
 .trackThumb {
-  width: 60px;
-  height: 60px;
-  min-width: 60px;
-  flex-shrink: 0;
-  border-radius: var(--radius-sm);
+  width: 44px;
+  height: 44px;
+  border-radius: 3px;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .trackMeta {
   flex: 1;
+  display: flex;
+  flex-direction: column;
   min-width: 0;
 }
 
 .trackTitle {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 1.05rem;
-  color: var(--primary-blue);
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 0.95rem;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.15;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .trackArtist {
-  font-size: 0.85rem;
-  color: var(--text-muted);
+  font-size: 0.72rem;
+  color: #64748b;
+  margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .voteBtn {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
-  min-height: 44px;
-  aspect-ratio: 1 / 1;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  background: var(--primary-orange);
-  color: var(--white);
+  background: rgba(0, 0, 0, 0.05);
+  color: #64748b;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
-  box-shadow: 0 4px 12px rgba(239, 75, 0, 0.25);
-  transition: all var(--transition-fast);
-  border: none;
   cursor: pointer;
+  transition: all 0.2s;
   flex-shrink: 0;
-}
-
-.voted {
-  background: var(--orange-hover);
-  color: var(--white);
-  box-shadow: 0 0 15px rgba(239, 75, 0, 0.5);
 }
 
 .voteBtn:hover {
-  transform: scale(1.1);
-  background: var(--orange-hover);
+  background: #f43f5e;
+  color: #ffffff;
 }
 
-.voteCount {
-  font-weight: 700;
-  font-size: 0.85rem;
-  color: var(--primary-blue);
-  min-width: 32px;
-  text-align: right;
-  flex-shrink: 0;
+.voteBtn.voted {
+  background: #f43f5e;
+  color: #ffffff;
 }
 
+/* Responsive */
 @media (max-width: 1024px) {
   .tracksGrid {
     grid-template-columns: 1fr;
-    gap: 36px;
-  }
-}
-
-@media (max-width: 768px) {
-  .tracksSection {
-    padding: 32px 16px;
-  }
-  .leftCol {
-    gap: 14px;
-  }
-  .mainTitle {
-    font-size: 1.6rem;
-  }
-  .subTitle {
-    font-size: 1.2rem;
-    margin-top: 4px;
-  }
-  .description {
-    font-size: 0.85rem;
-    line-height: 1.5;
+    gap: 32px;
   }
   .featuredCard {
     max-width: 100%;
   }
-  .featuredArtWrapper {
-    height: 180px;
-  }
-  .featuredBadge {
-    top: 10px;
-    right: 10px;
-    font-size: 0.75rem;
-    padding: 3px 10px;
-  }
-  .featuredFooter {
-    padding: 12px 14px;
-  }
-  .featuredTitle {
-    font-size: 1.0rem;
-  }
-  .featuredArtist {
-    font-size: 0.8rem;
-  }
-  .trackRowCard {
-    padding: 10px 12px;
-    gap: 10px;
-  }
-  .trackThumb {
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-  }
-  .trackTitle {
-    font-size: 0.9rem;
-  }
-  .trackArtist {
-    font-size: 0.75rem;
-  }
-  .voteBtn {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    min-height: 36px;
-    font-size: 0.85rem;
-  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .tracksSection {
-    padding: 24px 14px;
-  }
-  .mainTitle {
-    font-size: 1.3rem;
-  }
-  .subTitle {
-    font-size: 1.05rem;
-  }
-  .description {
-    font-size: 0.8rem;
-  }
-  .featuredArtWrapper {
-    height: 140px;
-  }
-  .featuredBadge {
-    top: 8px;
-    right: 8px;
-    font-size: 0.7rem;
-    padding: 2px 8px;
+    padding: 50px 16px 60px;
   }
 }

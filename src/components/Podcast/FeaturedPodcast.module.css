@@ -1,344 +1,332 @@
 .podcastSection {
   position: relative;
-  background: var(--color-light-bg);
-  padding: 100px 48px;
+  background: #EAF3F7;
+  padding: 90px 48px 100px;
   overflow: hidden;
+  box-sizing: border-box;
+}
+
+.bgCircleGreen {
+  position: absolute;
+  top: -60px;
+  left: 36%;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: #10b981;
+  opacity: 0.65;
+  filter: blur(45px);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .podcastGrid {
-  max-width: 1200px;
+  position: relative;
+  z-index: 1;
+  max-width: 1140px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 56px;
   align-items: start;
 }
 
 .leftCol {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 24px;
 }
 
 .mainTitle {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.4rem, 4.5vw, 3.4rem);
   text-transform: uppercase;
-  color: var(--secondary-blue);
+  color: #111827;
   line-height: 0.95;
   letter-spacing: -0.02em;
+  margin: 0;
 }
 
 .description {
-  font-size: 1rem;
-  color: var(--text-dark);
+  font-size: 0.92rem;
+  color: #4b5563;
   line-height: 1.6;
+  margin: 0;
 }
 
+.sectionLabel {
+  display: inline-block;
+  background: #a3e635;
+  color: #0f172a;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+/* Listen Live Table */
 .listenLiveSection {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .tableHeader {
   display: flex;
-  margin-bottom: 4px;
 }
 
 .scheduleTable {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .scheduleRow {
   display: flex;
-  align-items: center;
-  border-radius: var(--radius-sm);
+  align-items: stretch;
+  border-radius: 3px;
   overflow: hidden;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.85rem;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
 }
 
 .dayCell {
-  background: var(--primary-blue);
-  color: var(--white);
-  padding: 14px 20px;
-  width: 120px;
+  background: #10b981;
+  color: #ffffff;
+  padding: 10px 14px;
+  width: 90px;
+  display: flex;
+  align-items: center;
   text-transform: uppercase;
 }
 
 .timeCell {
-  background: #E5E7EB;
-  color: var(--text-dark);
-  padding: 14px 20px;
+  background: #cbd5e1;
+  color: #1e293b;
+  padding: 10px 14px;
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+.arrowIcon {
+  color: #64748b;
+}
+
+/* Hosted By Card */
 .hostedSection {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .hostCard {
   position: relative;
-  height: 240px;
-  border-radius: 18px;
+  height: 200px;
+  border-radius: 8px;
   overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: 0 4px 12px rgba(10, 79, 146, 0.08);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
-}
-
-.hostCard:hover {
-  transform: translateY(-6px);
-  border-color: var(--primary-orange);
-  box-shadow: 0 12px 30px rgba(10, 79, 146, 0.18);
+  box-shadow: 0 6px 18px rgba(0, 78, 104, 0.12);
+  background: #002230;
 }
 
 .hostImage {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+.avatarIconBadge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
 .hostOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(8, 59, 110, 0.2) 0%, rgba(8, 59, 110, 0.9) 100%);
-  padding: 20px;
+  background: linear-gradient(180deg, transparent 40%, rgba(0, 20, 30, 0.95) 100%);
+  padding: 14px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  color: var(--white);
+  color: #ffffff;
+  z-index: 1;
+}
+
+.hostRoleBadge {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid #a3e635;
+  color: #a3e635;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 1px 6px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
 }
 
 .hostName {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 1.5rem;
-  margin-top: 6px;
-  color: var(--white);
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 1.25rem;
+  color: #ffffff;
+  margin: 0;
 }
 
 .hostSocials {
   display: flex;
-  gap: 12px;
-  margin-top: 10px;
+  gap: 6px;
+  margin-top: 6px;
 }
 
 .socialIconBtn {
-  width: 32px;
-  height: 32px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  background: var(--primary-orange);
-  color: var(--white);
+  background: #10b981;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
-  transition: background var(--transition-fast), transform var(--transition-fast);
+  font-size: 0.65rem;
+  text-decoration: none;
+  transition: transform 0.2s;
 }
 
 .socialIconBtn:hover {
-  background: var(--primary-blue);
-  color: var(--white);
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
 
+/* Right Column - 2x2 Podcast Episode Cards */
 .rightCol {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 20px;
 }
 
 .episodeCard {
   background: #ffffff;
-  border-radius: 18px;
+  border-radius: 6px;
   overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: 0 4px 12px rgba(10, 79, 146, 0.08);
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+  box-shadow: 0 6px 18px rgba(0, 78, 104, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .episodeCard:hover {
-  transform: translateY(-6px);
-  border-color: var(--primary-orange);
-  box-shadow: 0 12px 30px rgba(10, 79, 146, 0.18);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 78, 104, 0.16);
 }
 
-.episodeArtWrapper {
-  position: relative;
-  height: 240px;
-  background: var(--secondary-blue);
+/* Yellow Header Box with Circular Cutout */
+.episodeHeaderBg {
+  background: #facc15;
+  padding: 24px 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 
-.episodeArtBg {
-  position: absolute;
-  width: 180px;
-  height: 180px;
+.avatarCircleWrap {
+  position: relative;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.avatarCircleImg {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
 .playCircleBtn {
-  position: relative;
-  z-index: 2;
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  background: var(--primary-orange);
-  border: 2px solid var(--white);
-  color: var(--white);
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  border: none;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
-  padding-left: 3px;
-  box-shadow: 0 4px 12px rgba(239, 75, 0, 0.4);
-  transition: transform var(--transition-fast), background var(--transition-fast);
+  cursor: pointer;
+  opacity: 0.9;
+  transition: opacity 0.2s, background 0.2s;
 }
 
-.episodeCard:hover .playCircleBtn {
-  transform: scale(1.1);
-  background: var(--orange-hover);
-  color: var(--white);
+.playCircleBtn:hover {
+  opacity: 1;
+  background: rgba(229, 9, 20, 0.7);
 }
 
+/* White Card Info */
 .episodeInfo {
-  padding: 20px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .episodeTitle {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 1.1rem;
-  color: var(--primary-blue);
-  margin-bottom: 8px;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 1.05rem;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.2;
 }
 
 .episodeDate {
-  font-size: 0.8rem;
-  color: var(--text-muted);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 500;
 }
 
-@media (max-width: 1024px) {
+.calendarIcon {
+  color: #10b981;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
   .podcastGrid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .podcastSection {
-    padding: 36px 16px;
-  }
-  .leftCol {
-    gap: 18px;
-  }
-  .mainTitle {
-    font-size: 1.6rem;
-  }
-  .description {
-    font-size: 0.88rem;
-    line-height: 1.5;
-  }
-  .dayCell {
-    padding: 10px 14px;
-    width: 100px;
-    font-size: 0.75rem;
-  }
-  .timeCell {
-    padding: 10px 14px;
-    font-size: 0.75rem;
-  }
-  .hostOverlay {
-    align-items: flex-start;
-    padding: 14px;
-  }
-  .hostRoleBadge {
-    display: inline-block;
-    width: auto;
-    max-width: fit-content;
-  }
-  .hostCard {
-    height: 180px;
-  }
-  .hostName {
-    font-size: 1.25rem;
-  }
-  .socialIconBtn {
-    width: 28px;
-    height: 28px;
-    font-size: 0.8rem;
-  }
-  .episodeArtWrapper {
-    height: 160px;
-  }
-  .episodeArtBg {
-    width: 120px;
-    height: 120px;
-  }
-  .playCircleBtn {
-    width: 44px;
-    height: 44px;
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .podcastSection {
-    padding: 24px 14px;
-  }
-  .mainTitle {
-    font-size: 1.3rem;
-  }
-  .description {
-    font-size: 0.82rem;
-  }
-  .dayCell {
-    padding: 8px 12px;
-    width: 85px;
-    font-size: 0.7rem;
-  }
-  .timeCell {
-    padding: 8px 12px;
-    font-size: 0.7rem;
-  }
-  .hostCard {
-    height: 150px;
-  }
-  .hostName {
-    font-size: 1.1rem;
-  }
-  .episodeArtWrapper {
-    height: 140px;
-  }
-  .episodeArtBg {
-    width: 100px;
-    height: 100px;
-  }
-  .playCircleBtn {
-    width: 38px;
-    height: 38px;
-    font-size: 0.85rem;
+    padding: 50px 16px 60px;
   }
   .rightCol {
     grid-template-columns: 1fr;
-    gap: 16px;
   }
 }

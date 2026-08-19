@@ -1,16 +1,55 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaPlay, FaPause, FaInstagram, FaTwitter, FaYoutube, FaSpotify, FaTiktok } from 'react-icons/fa';
-import { FiCalendar, FiArrowRight } from 'react-icons/fi';
+import { FiCalendar, FiArrowRight, FiUser } from 'react-icons/fi';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
-import podcastData from '../../data/podcastData.json';
 import styles from './FeaturedPodcast.module.css';
+
+const podcastEpisodes = [
+  {
+    id: "ep1",
+    title: "Top 10 Countdown #4",
+    date: "March 4, 2026",
+    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80",
+    audioUrl: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+  },
+  {
+    id: "ep2",
+    title: "Top 10 Countdown #3",
+    date: "March 4, 2026",
+    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80",
+    audioUrl: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+  },
+  {
+    id: "ep3",
+    title: "Top 10 Countdown #2",
+    date: "March 4, 2026",
+    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80",
+    audioUrl: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+  },
+  {
+    id: "ep4",
+    title: "Top 10 Countdown #1",
+    date: "January 3, 2026",
+    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80",
+    audioUrl: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+  }
+];
+
+const listenLiveSchedule = [
+  { day: "TUESDAY", start: "3:00 PM", end: "9:00 PM" },
+  { day: "FRIDAY", start: "12:00 AM", end: "4:30 AM" },
+  { day: "SUNDAY", start: "5:00 PM", end: "9:30 PM" }
+];
 
 export const FeaturedPodcast = () => {
   const { playTrack, currentTrack, isPlaying } = useAudioPlayer();
 
   return (
     <section className={styles.podcastSection} id="podcast">
+      {/* Background Graphic Orb matching screenshot 3 */}
+      <div className={styles.bgCircleGreen} />
+
       <div className={styles.podcastGrid}>
         {/* Left Column */}
         <motion.div 
@@ -26,22 +65,22 @@ export const FeaturedPodcast = () => {
           </h2>
 
           <p className={styles.description}>
-            Tune in to our weekly flagship podcast sessions exploring the hottest music trends, exclusive artist interviews, and top 10 chart breakdowns with your favorite hosts.
+            Catch up on exclusive behind-the-scenes conversations, countdown specials, and unfiltered interviews with Africa's biggest afrobeat stars.
           </p>
 
           {/* Listen Live Table */}
           <div className={styles.listenLiveSection}>
             <div className={styles.tableHeader}>
-              <span className="section-label">LISTEN LIVE</span>
+              <span className={styles.sectionLabel}>LISTEN LIVE</span>
             </div>
 
             <div className={styles.scheduleTable}>
-              {podcastData.listenLive.map((item, idx) => (
+              {listenLiveSchedule.map((item, idx) => (
                 <div key={idx} className={styles.scheduleRow}>
                   <div className={styles.dayCell}>{item.day}</div>
                   <div className={styles.timeCell}>
                     <span>{item.start}</span>
-                    <FiArrowRight size={14} />
+                    <FiArrowRight size={13} className={styles.arrowIcon} />
                     <span>{item.end}</span>
                   </div>
                 </div>
@@ -49,19 +88,27 @@ export const FeaturedPodcast = () => {
             </div>
           </div>
 
-          {/* Hosted By */}
+          {/* Hosted By Host Card */}
           <div className={styles.hostedSection}>
             <div className={styles.tableHeader}>
-              <span className="section-label">HOSTED BY</span>
+              <span className={styles.sectionLabel}>HOSTED BY</span>
             </div>
 
             <div className={styles.hostCard}>
-              <img src={podcastData.host.image} alt={podcastData.host.name} className={styles.hostImage} loading="lazy" />
+              <img 
+                src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80" 
+                alt="Tobi Adebayo" 
+                className={styles.hostImage} 
+                loading="lazy" 
+              />
+              
+              <div className={styles.avatarIconBadge}>
+                <FiUser size={13} />
+              </div>
+
               <div className={styles.hostOverlay}>
-                <span className={`${styles.hostRoleBadge} badge-neon`}>
-                  {podcastData.host.role}
-                </span>
-                <h3 className={styles.hostName}>{podcastData.host.name}</h3>
+                <span className={styles.hostRoleBadge}>Host</span>
+                <h3 className={styles.hostName}>Tobi Adebayo</h3>
                 <div className={styles.hostSocials}>
                   <a href="#" className={styles.socialIconBtn} aria-label="Instagram"><FaInstagram /></a>
                   <a href="#" className={styles.socialIconBtn} aria-label="Twitter"><FaTwitter /></a>
@@ -74,7 +121,7 @@ export const FeaturedPodcast = () => {
           </div>
         </motion.div>
 
-        {/* Right Column - Podcast Episode Cards */}
+        {/* Right Column - 2x2 Podcast Episode Cards with Yellow Header & Circular Cutout */}
         <motion.div 
           className={styles.rightCol}
           initial={{ opacity: 0, x: 30 }}
@@ -82,25 +129,30 @@ export const FeaturedPodcast = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {podcastData.episodes.map((ep) => {
+          {podcastEpisodes.map((ep) => {
             const isSelected = currentTrack?.id === ep.id && isPlaying;
+
             return (
               <div key={ep.id} className={styles.episodeCard}>
-                <div className={styles.episodeArtWrapper}>
-                  <img src={ep.image} alt={ep.title} className={styles.episodeArtBg} loading="lazy" />
-                  <button 
-                    className={styles.playCircleBtn} 
-                    onClick={() => playTrack(ep)}
-                    aria-label={`Play ${ep.title}`}
-                  >
-                    {isSelected ? <FaPause /> : <FaPlay />}
-                  </button>
+                {/* Yellow Header with Circular Avatar Cutout */}
+                <div className={styles.episodeHeaderBg}>
+                  <div className={styles.avatarCircleWrap}>
+                    <img src={ep.avatar} alt={ep.title} className={styles.avatarCircleImg} />
+                    <button 
+                      className={styles.playCircleBtn} 
+                      onClick={() => playTrack(ep)}
+                      aria-label={`Play ${ep.title}`}
+                    >
+                      {isSelected ? <FaPause size={14} /> : <FaPlay size={14} style={{ marginLeft: '2px' }} />}
+                    </button>
+                  </div>
                 </div>
 
+                {/* White Card Body */}
                 <div className={styles.episodeInfo}>
                   <h3 className={styles.episodeTitle}>{ep.title}</h3>
                   <div className={styles.episodeDate}>
-                    <FiCalendar size={13} />
+                    <FiCalendar size={12} className={styles.calendarIcon} />
                     <span>{ep.date}</span>
                   </div>
                 </div>

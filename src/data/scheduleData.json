@@ -1,12 +1,68 @@
 {
   "days": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"],
   "shows": {
+    "WEDNESDAY": [
+      {
+        "id": "w1",
+        "title": "The Fan Zone",
+        "time": "11:00 am - 02:30 pm",
+        "category": "TRENDS",
+        "dj": "Simi Ogunleye",
+        "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "w2",
+        "title": "Pop Pulse",
+        "time": "03:00 pm - 06:00 pm",
+        "category": "MUSIC",
+        "dj": "Funke Akindele",
+        "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "w3",
+        "title": "The Sound Session",
+        "time": "07:00 pm - 10:00 pm",
+        "category": "CLUB MIX",
+        "dj": "DJ Tobi",
+        "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": true
+      },
+      {
+        "id": "w4",
+        "title": "Throwback Jam",
+        "time": "10:00 am - 01:00 pm",
+        "category": "CLASSIC",
+        "dj": "Olamide Okafor",
+        "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "w5",
+        "title": "After Hours Mix",
+        "time": "01:00 pm - 04:00 pm",
+        "category": "BEATS",
+        "dj": "Kemi Adetiba",
+        "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "w6",
+        "title": "Hitmakers Live",
+        "time": "04:00 pm - 07:00 pm",
+        "category": "INTERVIEWS",
+        "dj": "Babalola Alabi",
+        "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      }
+    ],
     "MONDAY": [
       {
         "id": "m1",
         "title": "Lagos Morning Rush",
         "time": "06:00 am - 10:00 am",
-        "category": "Interviews",
+        "category": "INTERVIEWS",
         "dj": "Olamide Okafor",
         "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": false
@@ -15,7 +71,7 @@
         "id": "m2",
         "title": "The Fan Zone",
         "time": "11:00 am - 02:30 pm",
-        "category": "Trends",
+        "category": "TRENDS",
         "dj": "Simi Ogunleye",
         "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": true
@@ -24,9 +80,36 @@
         "id": "m3",
         "title": "Afrobeats Reloaded",
         "time": "04:00 pm - 08:00 pm",
-        "category": "Music",
+        "category": "MUSIC",
         "dj": "DJ Tobi",
         "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "m4",
+        "title": "Pop Pulse",
+        "time": "08:00 pm - 11:00 pm",
+        "category": "TRENDS",
+        "dj": "Funke Akindele",
+        "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "m5",
+        "title": "Midnight Vibes",
+        "time": "11:00 pm - 02:00 am",
+        "category": "R&B",
+        "dj": "Kemi Adetiba",
+        "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "m6",
+        "title": "The Sound Session",
+        "time": "02:00 am - 05:00 am",
+        "category": "CLUB MIX",
+        "dj": "DJ Tobi",
+        "image": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": false
       }
     ],
@@ -35,7 +118,7 @@
         "id": "t1",
         "title": "Pop Culture Replay",
         "time": "10:00 am - 01:00 pm",
-        "category": "Trends",
+        "category": "TRENDS",
         "dj": "Funke Akindele",
         "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": false
@@ -44,7 +127,7 @@
         "id": "t2",
         "title": "The Fan Zone",
         "time": "11:00 am - 02:30 pm",
-        "category": "Trends",
+        "category": "TRENDS",
         "dj": "Simi Ogunleye",
         "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": true
@@ -57,34 +140,32 @@
         "dj": "Kemi Adetiba",
         "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": false
-      }
-    ],
-    "WEDNESDAY": [
-      {
-        "id": "w1",
-        "title": "The Fan Zone",
-        "time": "11:00 am - 02:30 pm",
-        "category": "Trends",
-        "dj": "Simi Ogunleye",
-        "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
-        "nowPlaying": true
       },
       {
-        "id": "w2",
-        "title": "Pop Pulse",
-        "time": "03:00 pm - 06:00 pm",
-        "category": "Music",
-        "dj": "Funke Akindele",
-        "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+        "id": "t4",
+        "title": "Lagos Morning Rush",
+        "time": "06:00 am - 10:00 am",
+        "category": "INTERVIEWS",
+        "dj": "Olamide Okafor",
+        "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": false
       },
       {
-        "id": "w3",
-        "title": "The Sound Session",
-        "time": "07:00 pm - 10:00 pm",
-        "category": "Club Mix",
+        "id": "t5",
+        "title": "Throwback Jam",
+        "time": "02:30 pm - 06:00 pm",
+        "category": "CLASSIC",
         "dj": "DJ Tobi",
         "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "t6",
+        "title": "The Founders Hour",
+        "time": "07:00 pm - 10:00 pm",
+        "category": "TALK SHOW",
+        "dj": "Babalola Alabi",
+        "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": false
       }
     ],
@@ -93,7 +174,7 @@
         "id": "th1",
         "title": "Lagos Morning Rush",
         "time": "06:00 am - 10:00 am",
-        "category": "Interviews",
+        "category": "INTERVIEWS",
         "dj": "Olamide Okafor",
         "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": false
@@ -102,7 +183,7 @@
         "id": "th2",
         "title": "The Fan Zone",
         "time": "11:00 am - 02:30 pm",
-        "category": "Trends",
+        "category": "TRENDS",
         "dj": "Simi Ogunleye",
         "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": true
@@ -111,9 +192,36 @@
         "id": "th3",
         "title": "The Founders Hour",
         "time": "08:00 pm - 10:00 pm",
-        "category": "Talk Show",
+        "category": "TALK SHOW",
         "dj": "Babalola Alabi",
         "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "th4",
+        "title": "Afrobeats Reloaded",
+        "time": "04:00 pm - 08:00 pm",
+        "category": "MUSIC",
+        "dj": "DJ Tobi",
+        "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "th5",
+        "title": "Midnight Vibes",
+        "time": "10:00 pm - 01:00 am",
+        "category": "R&B",
+        "dj": "Kemi Adetiba",
+        "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "th6",
+        "title": "The Sound Session",
+        "time": "01:00 am - 04:00 am",
+        "category": "CLUB MIX",
+        "dj": "DJ Tobi",
+        "image": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": false
       }
     ],
@@ -122,7 +230,7 @@
         "id": "f1",
         "title": "Friday Party Starter",
         "time": "04:00 pm - 08:00 pm",
-        "category": "Club Mix",
+        "category": "CLUB MIX",
         "dj": "DJ Tobi",
         "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": false
@@ -131,7 +239,7 @@
         "id": "f2",
         "title": "The Fan Zone Special",
         "time": "11:00 am - 02:30 pm",
-        "category": "Trends",
+        "category": "TRENDS",
         "dj": "Simi Ogunleye",
         "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": true
@@ -144,6 +252,33 @@
         "dj": "Kemi Adetiba",
         "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": false
+      },
+      {
+        "id": "f4",
+        "title": "Lagos Morning Rush",
+        "time": "06:00 am - 10:00 am",
+        "category": "INTERVIEWS",
+        "dj": "Olamide Okafor",
+        "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "f5",
+        "title": "Pop Pulse",
+        "time": "02:30 pm - 04:00 pm",
+        "category": "MUSIC",
+        "dj": "Funke Akindele",
+        "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "f6",
+        "title": "Saturday Warmup",
+        "time": "02:00 am - 05:00 am",
+        "category": "CLUB MIX",
+        "dj": "DJ Tobi",
+        "image": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
       }
     ],
     "SATURDAY": [
@@ -151,7 +286,7 @@
         "id": "sa1",
         "title": "Afrobeats Top 20 Countdown",
         "time": "10:00 am - 02:00 pm",
-        "category": "Charts",
+        "category": "CHARTS",
         "dj": "Simi Ogunleye",
         "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": false
@@ -160,7 +295,7 @@
         "id": "sa2",
         "title": "Weekend Street Jam",
         "time": "03:00 pm - 07:00 pm",
-        "category": "Music",
+        "category": "MUSIC",
         "dj": "Olamide Okafor",
         "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": false
@@ -169,9 +304,36 @@
         "id": "sa3",
         "title": "Saturday Night Live Mix",
         "time": "08:00 pm - 12:00 am",
-        "category": "Club Mix",
+        "category": "CLUB MIX",
         "dj": "DJ Tobi",
         "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "sa4",
+        "title": "Early Weekend Beats",
+        "time": "06:00 am - 10:00 am",
+        "category": "BEATS",
+        "dj": "Kemi Adetiba",
+        "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "sa5",
+        "title": "The Fan Zone Weekend",
+        "time": "02:00 pm - 03:00 pm",
+        "category": "TRENDS",
+        "dj": "Simi Ogunleye",
+        "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": true
+      },
+      {
+        "id": "sa6",
+        "title": "Midnight Club Session",
+        "time": "12:00 am - 04:00 am",
+        "category": "CLUB MIX",
+        "dj": "DJ Tobi",
+        "image": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": false
       }
     ],
@@ -180,7 +342,7 @@
         "id": "su1",
         "title": "Soulful Sunday Morning",
         "time": "08:00 am - 12:00 pm",
-        "category": "Gospel / Soul",
+        "category": "GOSPEL / SOUL",
         "dj": "Funke Akindele",
         "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": false
@@ -189,7 +351,7 @@
         "id": "su2",
         "title": "The Sunday Chillout",
         "time": "01:00 pm - 05:00 pm",
-        "category": "Trends",
+        "category": "TRENDS",
         "dj": "Simi Ogunleye",
         "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": false
@@ -198,9 +360,36 @@
         "id": "su3",
         "title": "Old School Classics",
         "time": "06:00 pm - 10:00 pm",
-        "category": "Classic",
+        "category": "CLASSIC",
         "dj": "Babalola Alabi",
         "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "su4",
+        "title": "Sunday Afternoon Vibes",
+        "time": "12:00 pm - 01:00 pm",
+        "category": "MUSIC",
+        "dj": "Olamide Okafor",
+        "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "su5",
+        "title": "Evening Slow Jam",
+        "time": "10:00 pm - 01:00 am",
+        "category": "R&B",
+        "dj": "Kemi Adetiba",
+        "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+        "nowPlaying": false
+      },
+      {
+        "id": "su6",
+        "title": "Late Night Serenade",
+        "time": "01:00 am - 04:00 am",
+        "category": "BEATS",
+        "dj": "DJ Tobi",
+        "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
         "nowPlaying": false
       }
     ]

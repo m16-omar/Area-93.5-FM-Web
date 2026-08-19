@@ -1,91 +1,156 @@
 .onAirSection {
   position: relative;
-  background: var(--gradient-hero), var(--secondary-blue);
-  padding: 100px 48px;
+  background: #EAF3F7;
+  padding: 60px 48px 90px;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
+.bgGlowOrb {
+  position: absolute;
+  top: 40px;
+  left: 20%;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: #a3e635;
+  opacity: 0.65;
+  filter: blur(50px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Watermark Row matching screenshot 5 */
 .watermarkRow {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 32px;
-  margin-bottom: 60px;
+  gap: 36px;
+  margin-bottom: 50px;
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.logoWatermark {
-  font-family: var(--font-heading);
+.stationBrandLogo {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  line-height: 1;
+}
+
+.brandNum {
+  font-size: 2.8rem;
   font-weight: 900;
-  font-size: clamp(3rem, 7vw, 5rem);
+  color: #0f172a;
   letter-spacing: -0.04em;
-  color: var(--primary-orange);
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.brandText {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--primary-orange, #E50914);
+  letter-spacing: -0.02em;
+  margin-left: 2px;
+}
+
+.brandSub {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin-left: 3px;
 }
 
 .mottoWatermark {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
-  font-size: clamp(2rem, 5vw, 4rem);
-  line-height: 0.95;
-  color: rgba(255, 255, 255, 0.85);
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  line-height: 0.92;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   letter-spacing: -0.02em;
   text-transform: uppercase;
 }
 
 .giantPlayCircle {
-  width: 90px;
-  height: 90px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  background: var(--primary-orange);
-  color: var(--white);
+  background: #000000;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
-  box-shadow: 0 15px 30px rgba(239, 75, 0, 0.4);
-  padding-left: 5px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 0 6px rgba(16, 185, 129, 0.25);
   flex-shrink: 0;
   cursor: pointer;
-  transition: transform var(--transition-fast), background var(--transition-fast);
+  border: none;
+  transition: transform 0.2s, background 0.2s;
 }
 
 .giantPlayCircle:hover {
   transform: scale(1.08);
-  background: var(--orange-hover);
+  background: var(--primary-orange, #E50914);
 }
 
+/* Grid Layout: SHOW ON AIR & PLAYLIST */
 .contentGrid {
-  max-width: 1200px;
+  position: relative;
+  z-index: 1;
+  max-width: 1140px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 36px;
   align-items: start;
 }
 
-.leftCol {
+.leftCol, .rightCol {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
+.headerLabelWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sectionBadge {
+  background: #a3e635;
+  color: #0f172a;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.sectionLine {
+  flex: 1;
+  height: 1.5px;
+  background: #cbd5e1;
+}
+
+/* SHOW ON AIR Card */
 .onAirCard {
   position: relative;
-  height: 380px;
-  border-radius: 18px;
+  height: 280px;
+  border-radius: 8px;
   overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: 0 8px 24px rgba(10, 79, 146, 0.15);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
-}
-
-.onAirCard:hover {
-  transform: translateY(-6px);
-  border-color: var(--primary-orange);
-  box-shadow: 0 16px 36px rgba(10, 79, 146, 0.25);
+  box-shadow: 0 6px 20px rgba(0, 78, 104, 0.15);
+  background: #002230;
 }
 
 .onAirImage {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -94,134 +159,169 @@
 .onAirOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(8, 59, 110, 0.3) 0%, rgba(8, 59, 110, 0.92) 100%);
-  padding: 32px;
+  background: linear-gradient(180deg, transparent 40%, rgba(0, 20, 30, 0.95) 100%);
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  color: var(--white);
+  color: #ffffff;
 }
 
 .badgeRow {
   display: flex;
   gap: 8px;
-  margin-bottom: 12px;
-}
-
-.showTitleHighlight {
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-size: clamp(2rem, 4vw, 3rem);
-  color: var(--white);
-  background: var(--primary-orange);
-  padding: 4px 16px;
-  border-radius: 6px;
-  display: inline-block;
-  align-self: flex-start;
   margin-bottom: 8px;
 }
 
-.presenterText {
-  font-family: var(--font-heading);
+.genreBadge {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: 0.6rem;
   font-weight: 800;
-  font-size: 1.4rem;
-  color: var(--white);
+  letter-spacing: 0.08em;
+  padding: 2px 6px;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.livePill {
+  background: #000000;
+  color: #a3e635;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 2px 6px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.showTitleHighlight {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin: 0 0 2px;
+}
+
+.presenterText {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 4px;
 }
 
 .showTimeText {
-  font-size: 0.9rem;
-  opacity: 0.9;
+  font-size: 0.78rem;
+  color: #a3e635;
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-top: 6px;
-  color: #F5F7FA;
+  gap: 5px;
 }
 
-.rightCol {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
+/* PLAYLIST Stack */
 .playlistStack {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .playlistItem {
   background: #ffffff;
-  border-radius: 18px;
-  border: 1px solid var(--border);
-  padding: 12px 16px;
+  border-radius: 4px;
+  padding: 8px 12px;
   display: flex;
   align-items: center;
-  gap: 16px;
-  box-shadow: 0 4px 12px rgba(10, 79, 146, 0.08);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  gap: 12px;
+  box-shadow: 0 3px 10px rgba(0, 78, 104, 0.06);
+  transition: transform 0.2s;
 }
 
 .playlistItem:hover {
-  transform: translateY(-4px);
-  border-color: var(--primary-orange);
-  box-shadow: 0 8px 24px rgba(10, 79, 146, 0.18);
+  transform: translateX(3px);
 }
 
 .playlistThumb {
-  width: 54px;
-  height: 54px;
-  border-radius: var(--radius-sm);
+  width: 42px;
+  height: 42px;
+  border-radius: 3px;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .playlistMeta {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
 
 .playlistTitle {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 1rem;
-  color: var(--primary-blue);
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 0.95rem;
+  color: #0f172a;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .playlistArtist {
-  font-size: 0.85rem;
-  color: var(--text-muted);
+  font-size: 0.72rem;
+  color: #64748b;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .actionCircle {
-  width: 36px;
-  height: 36px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  background: var(--primary-orange);
-  color: var(--white);
+  background: rgba(0, 0, 0, 0.06);
+  color: #0f172a;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
-  transition: background var(--transition-fast), transform var(--transition-fast);
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
 .actionCircle:hover {
-  background: var(--primary-blue);
-  color: var(--white);
-  transform: scale(1.05);
+  background: var(--primary-orange, #E50914);
+  color: #ffffff;
 }
 
-@media (max-width: 1024px) {
-  .contentGrid {
-    grid-template-columns: 1fr;
-  }
+.moreCircle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: none;
+  color: #94a3b8;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  .onAirSection {
-    padding: 60px 20px;
-  }
+@media (max-width: 900px) {
   .watermarkRow {
     flex-direction: column;
+    gap: 16px;
     text-align: center;
+  }
+  .contentGrid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .onAirSection {
+    padding: 40px 16px 60px;
   }
 }

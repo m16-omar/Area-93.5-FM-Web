@@ -25,10 +25,13 @@ export const TopTracks = () => {
 
   return (
     <section className={styles.tracksSection} id="charts">
+      {/* Background Glow Orb */}
+      <div className={styles.bgGlowOrb} />
+
       <div className={styles.tracksGrid}>
-        {/* Left Column */}
+        {/* Column 1: Title & Voting Intro */}
         <motion.div 
-          className={styles.leftCol}
+          className={styles.introCol}
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -40,12 +43,20 @@ export const TopTracks = () => {
           </h2>
 
           <p className={styles.description}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+            Have your say in the weekly Area 93.5 FM charts! Vote for your favorite tracks and hear them spun during our flagship weekend countdown.
           </p>
 
           <h3 className={styles.subTitle}>Vote for your favourite song!</h3>
+        </motion.div>
 
-          {/* Featured Single Card */}
+        {/* Column 2: Featured Single Large Square Card */}
+        <motion.div 
+          className={styles.featuredCol}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
           <div className={styles.featuredCard}>
             <div className={styles.featuredArtWrapper}>
               <img 
@@ -56,57 +67,53 @@ export const TopTracks = () => {
               />
               <span className={styles.featuredBadge}>{topTracksData.featuredTrack.badge}</span>
             </div>
+            
             <div className={styles.featuredFooter}>
               <div className={styles.featuredMeta}>
                 <h4 className={styles.featuredTitle}>{topTracksData.featuredTrack.title}</h4>
                 <p className={styles.featuredArtist}>{topTracksData.featuredTrack.artist}</p>
               </div>
               <button 
-                className={`${styles.voteBtn} ${votedMap[topTracksData.featuredTrack.id] ? styles.voted : ''}`}
+                className={`${styles.featuredVoteBtn} ${votedMap[topTracksData.featuredTrack.id] ? styles.voted : ''}`}
                 onClick={() => handleVote(topTracksData.featuredTrack.id)}
-                aria-label="Vote Track"
+                aria-label="Vote Featured Track"
               >
-                <FaHeart />
+                <FaHeart size={14} />
               </button>
             </div>
           </div>
         </motion.div>
 
-        {/* Right Column - Track List */}
+        {/* Column 3: Stacked List of 5 Tracks */}
         <motion.div 
-          className={styles.rightCol}
+          className={styles.listCol}
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {tracks.map((track) => {
+          {tracks.slice(0, 5).map((track) => {
             const isCurrentPlaying = currentTrack?.id === track.id && isPlaying;
             return (
               <div key={track.id} className={styles.trackRowCard}>
-                <img src={track.image} alt={track.title} className={styles.trackThumb} loading="lazy" />
+                <img 
+                  src={track.image} 
+                  alt={track.title} 
+                  className={styles.trackThumb} 
+                  loading="lazy" 
+                />
 
                 <div className={styles.trackMeta}>
                   <h4 className={styles.trackTitle}>{track.title}</h4>
                   <p className={styles.trackArtist}>{track.artist}</p>
                 </div>
 
-                <span className={styles.voteCount}>{track.votes}</span>
-
                 <button 
                   className={`${styles.voteBtn} ${votedMap[track.id] ? styles.voted : ''}`}
                   onClick={() => handleVote(track.id)}
                   aria-label="Vote Track"
                 >
-                  <FaHeart />
-                </button>
-
-                <button 
-                  className={styles.voteBtn}
-                  onClick={() => playTrack(track)}
-                  aria-label="Play Track"
-                >
-                  {isCurrentPlaying ? <FaPause size={12} /> : <FaPlay size={12} />}
+                  <FaHeart size={13} />
                 </button>
               </div>
             );

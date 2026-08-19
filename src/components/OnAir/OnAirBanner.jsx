@@ -1,29 +1,57 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaPlay, FaPause, FaHeart } from 'react-icons/fa';
+import { FaPlay, FaPause } from 'react-icons/fa';
 import { FiMoreHorizontal, FiClock } from 'react-icons/fi';
-import { useAudioPlayer } from '../../context/AudioPlayerContext';
+import { useAudioPlayer, LIVE_STREAM_URL } from '../../context/AudioPlayerContext';
 import playlistData from '../../data/playlistData.json';
 import styles from './OnAirBanner.module.css';
 
 export const OnAirBanner = () => {
   const { playTrack, currentTrack, isPlaying, togglePlayPause } = useAudioPlayer();
 
+  const handleLivePlay = () => {
+    if (currentTrack?.audioUrl === LIVE_STREAM_URL) {
+      togglePlayPause();
+    } else {
+      playTrack({
+        id: "area_fm_live",
+        title: "The Fan Zone",
+        artist: "Simi Ogunleye",
+        showName: "The Fan Zone",
+        presenterName: "Simi Ogunleye",
+        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+        audioUrl: LIVE_STREAM_URL,
+        isLive: true
+      });
+    }
+  };
+
   return (
     <section className={styles.onAirSection}>
-      {/* Top Watermark Row */}
+      {/* Background Glowing Green Orb */}
+      <div className={styles.bgGlowOrb} />
+
+      {/* Top Watermark / Brand Banner Row matching Screenshot 5 */}
       <div className={styles.watermarkRow}>
-        <div className={styles.logoWatermark}>93.5 AREA FM</div>
+        <div className={styles.stationBrandLogo}>
+          <span className={styles.brandNum}>93.5</span>
+          <span className={styles.brandText}>AREA</span>
+          <span className={styles.brandSub}>FM</span>
+        </div>
         <div className={styles.mottoWatermark}>
           ONE VOICE,<br />
           EVERY AREA
         </div>
-        <button className={styles.giantPlayCircle} onClick={togglePlayPause} aria-label="Play Stream">
-          {isPlaying ? <FaPause /> : <FaPlay />}
+        <button 
+          className={styles.giantPlayCircle} 
+          onClick={handleLivePlay} 
+          aria-label="Play Live Radio"
+        >
+          {isPlaying ? <FaPause size={24} /> : <FaPlay size={24} style={{ marginLeft: '4px' }} />}
         </button>
       </div>
 
-      {/* Grid Content */}
+      {/* Grid Content: SHOW ON AIR & PLAYLIST */}
       <div className={styles.contentGrid}>
         {/* Left Column: SHOW ON AIR */}
         <motion.div 
@@ -33,25 +61,28 @@ export const OnAirBanner = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="section-label">SHOW ON AIR</span>
+          <div className={styles.headerLabelWrap}>
+            <span className={styles.sectionBadge}>SHOW ON AIR</span>
+            <span className={styles.sectionLine} />
+          </div>
 
           <div className={styles.onAirCard}>
             <img 
-              src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80" 
-              alt="Hitmakers Live" 
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" 
+              alt="The Fan Zone" 
               className={styles.onAirImage} 
               loading="lazy" 
             />
             <div className={styles.onAirOverlay}>
               <div className={styles.badgeRow}>
-                <span className="badge-outline">interviews</span>
-                <span className="badge-neon" style={{ background: '#ffffff', color: '#000' }}>Now on air</span>
+                <span className={styles.genreBadge}>INTERVIEWS</span>
+                <span className={styles.livePill}>NOW ON AIR</span>
               </div>
 
               <h3 className={styles.showTitleHighlight}>The Fan Zone</h3>
               <p className={styles.presenterText}>Presented by Simi Ogunleye</p>
               <div className={styles.showTimeText}>
-                <FiClock size={14} />
+                <FiClock size={13} />
                 <span>11:00 am - 02:30 pm</span>
               </div>
             </div>
@@ -66,10 +97,13 @@ export const OnAirBanner = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <span className="section-label">PLAYLIST</span>
+          <div className={styles.headerLabelWrap}>
+            <span className={styles.sectionBadge}>PLAYLIST</span>
+            <span className={styles.sectionLine} />
+          </div>
 
           <div className={styles.playlistStack}>
-            {playlistData.map((item) => {
+            {playlistData.slice(0, 4).map((item) => {
               const isSelected = currentTrack?.id === item.id && isPlaying;
               return (
                 <div key={item.id} className={styles.playlistItem}>
@@ -85,10 +119,10 @@ export const OnAirBanner = () => {
                     onClick={() => playTrack(item)}
                     aria-label={`Play ${item.title}`}
                   >
-                    {isSelected ? <FaPause size={10} /> : <FaPlay size={10} />}
+                    {isSelected ? <FaPause size={10} /> : <FaPlay size={10} style={{ marginLeft: '1px' }} />}
                   </button>
 
-                  <button className={styles.actionCircle} aria-label="More Options">
+                  <button className={styles.moreCircle} aria-label="More Options">
                     <FiMoreHorizontal />
                   </button>
                 </div>
