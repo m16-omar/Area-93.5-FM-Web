@@ -5,6 +5,7 @@ import { FaTwitter, FaInstagram, FaFacebookF, FaYoutube, FaTiktok, FaPlay, FaPau
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 import logoImg from '../../assets/area-logo.png';
 import topTracksData from '../../data/topTracksData.json';
+import { SearchModal } from '../SearchModal/SearchModal';
 import styles from './Navbar.module.css';
 
 export const Navbar = () => {
@@ -129,9 +130,18 @@ export const Navbar = () => {
         <div className={styles.drawerOverlay} onClick={() => setMobileMenuOpen(false)}>
           <div className={styles.mobileDrawer} onClick={(e) => e.stopPropagation()}>
             <div className={styles.drawerHeader}>
-              <div className={styles.mobileSearchBox}>
+              <div 
+                className={styles.mobileSearchBox}
+                onClick={() => { setMobileMenuOpen(false); setSearchOpen(true); }}
+                style={{ cursor: 'pointer' }}
+              >
                 <FiSearch className={styles.searchBoxIcon} />
-                <input type="text" placeholder="Search shows, news, podcasts..." className={styles.mobileSearchInput} />
+                <input 
+                  type="text" 
+                  placeholder="Search shows, news, podcasts..." 
+                  className={styles.mobileSearchInput}
+                  readOnly
+                />
               </div>
               <button className={styles.closeDrawerBtn} onClick={() => setMobileMenuOpen(false)} aria-label="Close Drawer">
                 <FiX />
@@ -238,6 +248,8 @@ export const Navbar = () => {
           </div>
         </div>
       )}
+      {/* Global Interactive Search Modal */}
+      <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </div>
   );
 };
