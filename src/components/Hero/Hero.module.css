@@ -1,43 +1,74 @@
 .heroSection {
   position: relative;
-  background: linear-gradient(135deg, rgba(0, 78, 104, 0.92) 0%, rgba(0, 107, 141, 0.88) 60%, rgba(229, 9, 20, 0.75) 100%), var(--secondary-blue);
-  min-height: 680px;
-  max-height: 800px;
-  padding: 60px 48px;
+  background: linear-gradient(135deg, #00374a 0%, #005670 50%, #007494 100%);
+  min-height: 640px;
+  max-height: 780px;
+  padding: 40px 48px 60px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  box-sizing: border-box;
 }
 
-/* 1. Background layer (z-index: 0) */
-.bgCircle1 {
+/* 1. Background glowing accents */
+.bgCircleTopLime {
   position: absolute;
-  top: -100px;
-  left: 35%;
-  width: 500px;
-  height: 500px;
+  top: -120px;
+  left: 42%;
+  width: 480px;
+  height: 480px;
   border-radius: 50%;
-  background: var(--primary-orange);
-  opacity: 0.35;
-  filter: blur(60px);
+  background: #a3e635;
+  opacity: 0.28;
+  filter: blur(80px);
   z-index: 0;
+  pointer-events: none;
 }
 
-.bgCircle2 {
+.bgCircleBottomTeal {
   position: absolute;
-  bottom: -150px;
-  left: 20%;
+  bottom: -160px;
+  left: 15%;
   width: 450px;
   height: 450px;
   border-radius: 50%;
-  background: var(--primary-blue);
-  opacity: 0.6;
-  filter: blur(50px);
+  background: var(--primary-orange, #E50914);
+  opacity: 0.22;
+  filter: blur(75px);
   z-index: 0;
+  pointer-events: none;
 }
 
-/* 2. Hero Image Container (z-index: 1) */
+/* Top-Right On-Air Track Credit */
+.topRightHost {
+  position: absolute;
+  top: 28px;
+  right: 48px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  pointer-events: none;
+}
+
+.topRightTrack {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.topRightHostName {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 500;
+}
+
+/* 2. Hero Image Container */
 .heroImageContainer {
   position: absolute;
   inset: 0;
@@ -48,10 +79,10 @@
 
 .heroDjImage {
   position: absolute;
-  right: 22%;
+  right: 20%;
   bottom: 0;
-  height: 90%;
-  max-width: 58%;
+  height: 94%;
+  max-width: 60%;
   object-fit: contain;
   object-position: center bottom;
   display: block;
@@ -60,53 +91,72 @@
 .heroImageOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(0, 78, 104, 0.6) 0%, rgba(0, 78, 104, 0.1) 40%, transparent 70%);
+  background: linear-gradient(90deg, rgba(0, 55, 74, 0.7) 0%, rgba(0, 55, 74, 0.1) 40%, transparent 70%);
 }
 
-/* Foreground Container */
+/* Foreground Grid Container */
 .heroContent {
   position: relative;
-  max-width: 1240px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 48px;
   align-items: center;
+  z-index: 2;
 }
 
-/* 4 & 5. Left Column: Text (z-index: 3) & Play Button (z-index: 4) */
+/* Left Column: Branding, Title, Play Button */
 .leftCol {
   position: relative;
   z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
+  gap: 14px;
 }
 
-.logoWatermark {
-  font-family: var(--font-heading);
+.stationLogoBlock {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  line-height: 1;
+}
+
+.logoNumber {
+  font-size: 2.4rem;
   font-weight: 900;
-  font-size: 2.8rem;
-  letter-spacing: -0.04em;
   color: #ffffff;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  letter-spacing: -0.04em;
 }
 
-.logoWatermarkAccent {
-  color: var(--primary-orange);
+.logoText {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--primary-orange, #E50914);
+  letter-spacing: -0.02em;
+  margin-left: 2px;
+}
+
+.logoSub {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-left: 3px;
 }
 
 .heroHeadline {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
-  font-size: clamp(2.6rem, 4.5vw, 4.2rem);
-  line-height: 0.95;
-  color: var(--white);
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  font-size: clamp(2.8rem, 5vw, 4.4rem);
+  line-height: 0.92;
+  color: #ffffff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
   letter-spacing: -0.03em;
   text-transform: uppercase;
+  margin: 0;
 }
 
 .giantPlayWrapper {
@@ -114,66 +164,88 @@
   z-index: 4;
   display: flex;
   align-items: center;
-  gap: 20px;
-  margin-top: 14px;
+  gap: 18px;
+  margin-top: 10px;
 }
 
 .giantPlayBtn {
-  width: 88px;
-  height: 88px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  background: var(--primary-orange);
-  color: var(--white);
+  background: var(--primary-orange, #E50914);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
-  box-shadow: 0 12px 30px rgba(229, 9, 20, 0.4);
-  transition: transform var(--transition-normal), background var(--transition-fast), box-shadow var(--transition-normal);
-  padding-left: 4px;
+  box-shadow: 0 10px 28px rgba(229, 9, 20, 0.45);
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
   cursor: pointer;
   border: none;
 }
 
 .giantPlayBtn:hover {
-  transform: scale(1.06);
-  background: var(--orange-hover);
-  box-shadow: 0 16px 40px rgba(229, 9, 20, 0.55);
+  transform: scale(1.08);
+  background: #ff1f2d;
+  box-shadow: 0 14px 36px rgba(229, 9, 20, 0.6);
+}
+
+.giantPlayBtn:active {
+  transform: scale(0.96);
 }
 
 .trackMeta {
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 
 .trackMetaTitle {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 800;
-  font-size: 1.25rem;
-  color: var(--white);
+  font-size: 1.15rem;
+  color: #ffffff;
+  letter-spacing: 0.05em;
 }
 
 .trackMetaArtist {
-  font-size: 0.9rem;
-  color: #D1D5DB;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
   font-weight: 500;
 }
 
-/* 3. Right Column: Floating Current Shows Auto-Slider (z-index: 2) */
+/* Right Column: 3-Card Shows Slider */
 .rightCol {
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 220px;
-  overflow: hidden;
+  gap: 10px;
+  margin-top: 180px;
 }
 
 .nextEventsHeader {
   display: flex;
   align-items: center;
-  margin-bottom: 4px;
+  gap: 10px;
+  margin-bottom: 2px;
+}
+
+.sectionBadge {
+  background: var(--primary-orange, #E50914);
+  color: #ffffff;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.sectionAccentLine {
+  flex: 1;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .sliderTrackViewport {
@@ -194,153 +266,148 @@
 
 .eventCard {
   position: relative;
-  height: 210px;
-  border-radius: 14px;
+  aspect-ratio: 0.72 / 1;
+  border-radius: 12px;
   overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: 0 8px 20px rgba(0, 78, 104, 0.22);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  background: #002230;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
 }
 
 .eventCard:hover {
-  transform: translateY(-5px);
-  border-color: var(--primary-orange);
-  box-shadow: 0 14px 30px rgba(0, 78, 104, 0.32);
+  transform: translateY(-4px);
+  border-color: var(--primary-orange, #E50914);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
 }
 
 .eventImage {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
+.cardTopIcon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
 .eventOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 78, 104, 0.25) 0%, rgba(0, 78, 104, 0.92) 100%);
-  padding: 12px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 30, 45, 0.88) 75%, rgba(0, 20, 30, 0.98) 100%);
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: var(--white);
+  color: #ffffff;
+  z-index: 1;
 }
 
 .dateCircle {
-  align-self: flex-end;
-  width: 38px;
-  height: 38px;
+  align-self: flex-start;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: var(--primary-orange);
-  color: var(--white);
+  background: var(--primary-orange, #E50914);
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 800;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   line-height: 1;
-  box-shadow: 0 4px 10px rgba(229, 9, 20, 0.35);
+  box-shadow: 0 3px 8px rgba(229, 9, 20, 0.4);
+}
+
+.cardBottomInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.genreBadge {
+  align-self: flex-start;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 2px 6px;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 2px;
 }
 
 .eventTitle {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 0.9rem;
-  line-height: 1.25;
-  color: var(--white);
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 0.88rem;
+  line-height: 1.2;
+  color: #ffffff;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Responsive Breakpoints */
-@media (max-width: 1200px) {
+.eventDj {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .heroSection {
+    padding: 40px 24px;
+    max-height: none;
+  }
   .heroContent {
     grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  .heroDjImage {
-    right: 50%;
-    transform: translateX(50%);
-    max-width: 90%;
-    height: 88%;
-    bottom: 0;
-    opacity: 0.85;
-    object-fit: contain;
-    object-position: center bottom;
-  }
-  .eventCardItem {
-    flex: 0 0 calc(33.333% - 9.33px);
-    min-width: calc(33.333% - 9.33px);
-  }
-}
-
-@media (max-width: 768px) {
-  .heroSection {
-    min-height: auto;
-    max-height: none;
-    padding: 32px 16px;
-  }
-  .leftCol {
-    gap: 12px;
-  }
-  .logoWatermark {
-    font-size: 1.8rem;
-  }
-  .heroHeadline {
-    font-size: 2.0rem;
-  }
-  .giantPlayWrapper {
-    gap: 14px;
-    margin-top: 8px;
-  }
-  .giantPlayBtn {
-    width: 60px;
-    height: 60px;
-    font-size: 1.3rem;
-  }
-  .trackMetaTitle {
-    font-size: 1.05rem;
-  }
-  .trackMetaArtist {
-    font-size: 0.8rem;
+    gap: 32px;
   }
   .rightCol {
-    margin-top: 16px;
+    margin-top: 20px;
   }
-  .eventCardItem {
-    flex: 0 0 100%;
-    min-width: 100%;
+  .topRightHost {
+    display: none;
   }
   .heroDjImage {
-    opacity: 0.85;
-    max-width: 100%;
-    height: 85%;
-    bottom: 0;
-    object-fit: contain;
-    object-position: center bottom;
-  }
-  .heroImageOverlay {
-    background: linear-gradient(180deg, rgba(0, 78, 104, 0.45) 0%, rgba(0, 78, 104, 0.85) 100%);
+    right: 5%;
+    opacity: 0.4;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .heroSection {
-    padding: 24px 14px;
-  }
-  .logoWatermark {
-    font-size: 1.45rem;
-  }
-  .heroHeadline {
-    font-size: 1.6rem;
+    padding: 30px 16px 40px;
   }
   .giantPlayBtn {
-    width: 52px;
-    height: 52px;
-    font-size: 1.1rem;
+    width: 64px;
+    height: 64px;
   }
-  .trackMetaTitle {
-    font-size: 0.95rem;
-  }
-  .trackMetaArtist {
-    font-size: 0.75rem;
+  .heroHeadline {
+    font-size: 2.4rem;
   }
 }

@@ -48,11 +48,11 @@ export const OnAirBanner = () => {
                 <span className="badge-neon" style={{ background: '#ffffff', color: '#000' }}>Now on air</span>
               </div>
 
-              <h3 className={styles.showTitleHighlight}>Hitmakers Live</h3>
-              <p className={styles.presenterText}>Presented by Jordan Carter</p>
+              <h3 className={styles.showTitleHighlight}>The Fan Zone</h3>
+              <p className={styles.presenterText}>Presented by Simi Ogunleye</p>
               <div className={styles.showTimeText}>
                 <FiClock size={14} />
-                <span>12:00 pm - 3:00 pm</span>
+                <span>11:00 am - 02:30 pm</span>
               </div>
             </div>
           </div>
