@@ -1,55 +1,71 @@
-import React, { createContext, useContext, useState, useRef, useEffect } from 'react';
+import React, { createContext, useContext, useState, useRef, useEffect, useCallback } from 'react';
 
 const AudioPlayerContext = createContext();
 
-const DEFAULT_TRACK = {
-  id: 'def1',
-  title: 'The Fan Zone',
-  artist: 'Simi Ogunleye',
+export const LIVE_STREAM_URL = 'https://city1051-atunwadigital.streamguys1.com/city1051';
+
+export const DEFAULT_LIVE_TRACK = {
+  id: 'area_fm_live',
+  title: '93.5 Area FM Live',
+  artist: 'One Voice, Every Area',
   showName: 'The Fan Zone',
   presenterName: 'Simi Ogunleye',
   image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
-  audioUrl: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3'
+  audioUrl: LIVE_STREAM_URL,
+  isLive: true
 };
 
 export const AudioPlayerProvider = ({ children }) => {
-  const audioRef = useRef(new Audio(DEFAULT_TRACK.audioUrl));
-  const [currentTrack, setCurrentTrack] = useState(DEFAULT_TRACK);
+  const audioRef = useRef(new Audio(DEFAULT_LIVE_TRACK.audioUrl));
+  const [currentTrack, setCurrentTrack] = useState(DEFAULT_LIVE_TRACK);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [volume, setVolumeState] = useState(0.8);
+  const [volume, setVolumeState] = useState(0.85);
   const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     const audio = audioRef.current;
+    audio.preload = 'none';
 
     const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
     const handleLoadedMetadata = () => setDuration(audio.duration || 0);
     const handleEnded = () => setIsPlaying(false);
+    const handleError = (e) => {
+      console.warn('Audio streaming notice/error:', e);
+    };
 
     audio.addEventListener('timeupdate', handleTimeUpdate);
     audio.addEventListener('loadedmetadata', handleLoadedMetadata);
     audio.addEventListener('ended', handleEnded);
+    audio.addEventListener('error', handleError);
 
     return () => {
       audio.removeEventListener('timeupdate', handleTimeUpdate);
       audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
       audio.removeEventListener('ended', handleEnded);
+      audio.removeEventListener('error', handleError);
     };
   }, []);
 
-  const togglePlayPause = () => {
+  const togglePlayPause = useCallback(() => {
     const audio = audioRef.current;
     if (isPlaying) {
       audio.pause();
       setIsPlaying(false);
     } else {
-      audio.play().then(() => setIsPlaying(true)).catch((err) => console.log('Audio playback prevented:', err));
+      // If playing live stream, reload to get real-time stream without buffer lag
+      if (currentTrack?.isLive || currentTrack?.audioUrl === LIVE_STREAM_URL) {
+        audio.src = LIVE_STREAM_URL;
+        audio.load();
+      }
+      audio.play()
+        .then(() => setIsPlaying(true))
+        .catch((err) => console.log('Audio playback prevented:', err));
     }
-  };
+  }, [isPlaying, currentTrack]);
 
-  const playTrack = (track) => {
+  const playTrack = useCallback((track) => {
     const audio = audioRef.current;
     if (currentTrack?.id === track.id) {
       togglePlayPause();
@@ -58,15 +74,23 @@ export const AudioPlayerProvider = ({ children }) => {
     
     audio.pause();
     setCurrentTrack(track);
-    audio.src = track.audioUrl || DEFAULT_TRACK.audioUrl;
+    audio.src = track.audioUrl || LIVE_STREAM_URL;
     audio.load();
-    audio.play().then(() => setIsPlaying(true)).catch(err => console.log(err));
-  };
+    audio.play()
+      .then(() => setIsPlaying(true))
+      .catch(err => console.log('Play track error:', err));
+  }, [currentTrack, togglePlayPause]);
+
+  const playLiveStream = useCallback(() => {
+    playTrack(DEFAULT_LIVE_TRACK);
+  }, [playTrack]);
 
   const seek = (time) => {
     const audio = audioRef.current;
-    audio.currentTime = time;
-    setCurrentTime(time);
+    if (!currentTrack?.isLive && isFinite(time)) {
+      audio.currentTime = time;
+      setCurrentTime(time);
+    }
   };
 
   const setVolume = (val) => {
@@ -79,7 +103,7 @@ export const AudioPlayerProvider = ({ children }) => {
   const toggleMute = () => {
     const audio = audioRef.current;
     if (isMuted) {
-      audio.volume = volume || 0.8;
+      audio.volume = volume || 0.85;
       setIsMuted(false);
     } else {
       audio.volume = 0;
@@ -98,9 +122,11 @@ export const AudioPlayerProvider = ({ children }) => {
         isMuted,
         togglePlayPause,
         playTrack,
+        playLiveStream,
         seek,
         setVolume,
-        toggleMute
+        toggleMute,
+        LIVE_STREAM_URL
       }}
     >
       {children}

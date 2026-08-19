@@ -87,6 +87,68 @@
   text-overflow: ellipsis;
 }
 
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.livePill {
+  background: var(--primary-orange);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 900;
+  padding: 1px 6px;
+  border-radius: 3px;
+  letter-spacing: 0.08em;
+}
+
+.liveStreamCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.radioIcon {
+  font-size: 1.1rem;
+  color: var(--primary-orange);
+}
+
+.liveStreamText {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #F5F7FA;
+}
+
+.liveEq {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 14px;
+}
+
+.liveEq span {
+  width: 3px;
+  background: var(--primary-orange);
+  border-radius: 2px;
+  animation: liveBounce 0.8s ease-in-out infinite alternate;
+}
+
+.liveEq .eq1 { height: 40%; animation-delay: 0.1s; }
+.liveEq .eq2 { height: 100%; animation-delay: 0.25s; }
+.liveEq .eq3 { height: 60%; animation-delay: 0.15s; }
+.liveEq .eq4 { height: 80%; animation-delay: 0.35s; }
+
+@keyframes liveBounce {
+  0% { height: 25%; }
+  100% { height: 100%; }
+}
+
 .centerControls {
   display: flex;
   align-items: center;

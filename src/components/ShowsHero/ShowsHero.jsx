@@ -2,22 +2,23 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FiClock } from 'react-icons/fi';
-import { useAudioPlayer } from '../../context/AudioPlayerContext';
+import { useAudioPlayer, LIVE_STREAM_URL } from '../../context/AudioPlayerContext';
 import styles from './ShowsHero.module.css';
 
 export const ShowsHero = () => {
   const { playTrack, currentTrack, isPlaying } = useAudioPlayer();
 
   const featured = {
-    id: "feat-shows-hero",
+    id: "area_fm_live",
     title: "The Fan Zone",
-    presenter: "Mixed by Simi Ogunleye",
+    presenter: "Simi Ogunleye",
     time: "11:00 am - 02:30 pm",
     thumbnail: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
-    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+    audioUrl: LIVE_STREAM_URL,
+    isLive: true
   };
 
-  const isSelected = currentTrack?.id === featured.id && isPlaying;
+  const isSelected = (currentTrack?.id === featured.id || currentTrack?.audioUrl === LIVE_STREAM_URL) && isPlaying;
 
   const handlePlayClick = () => {
     playTrack({
@@ -26,7 +27,9 @@ export const ShowsHero = () => {
       artist: featured.presenter,
       showName: featured.title,
       presenterName: featured.presenter,
-      audioUrl: featured.audioUrl
+      image: featured.thumbnail,
+      audioUrl: featured.audioUrl,
+      isLive: true
     });
   };
 
