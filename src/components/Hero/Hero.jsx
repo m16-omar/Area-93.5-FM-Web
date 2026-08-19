@@ -6,20 +6,11 @@ import { useAudioPlayer, LIVE_STREAM_URL } from '../../context/AudioPlayerContex
 import heroPresenterImg from '../../assets/Here Presenters.png';
 import styles from './Hero.module.css';
 
-// Generate dynamic dates for event cards
-const getUpcomingDateTag = (offsetDays = 0) => {
-  const d = new Date();
-  d.setDate(d.getDate() + offsetDays);
-  const day = String(d.getDate()).padStart(2, '0');
-  const month = String(d.getMonth() + 1).padStart(2, '0');
-  return `${day}.${month}`;
-};
-
-const nextEvents = [
+const todayShows = [
   {
     id: "e1",
-    tag: "TODAY",
-    subtitle: "ELECTRO",
+    tag: "06:00 PM",
+    subtitle: "ELECTRO / AFRO",
     title: "The Buzz Hour",
     dj: "Olamide Okafor",
     badge: "LIVE SHOW",
@@ -27,8 +18,8 @@ const nextEvents = [
   },
   {
     id: "e2",
-    tag: getUpcomingDateTag(1),
-    subtitle: "MUSIC FESTIVAL",
+    tag: "08:00 PM",
+    subtitle: "MUSIC & CULTURE",
     title: "Vibe Makers Live",
     dj: "Simi Ogunleye",
     badge: "INTERVIEWS",
@@ -36,8 +27,8 @@ const nextEvents = [
   },
   {
     id: "e3",
-    tag: getUpcomingDateTag(2),
-    subtitle: "SPECIAL EVENT",
+    tag: "10:00 PM",
+    subtitle: "SPECIAL COUNTDOWN",
     title: "Pop Picks Spotlight",
     dj: "DJ Tobi",
     badge: "POP PICKS",
@@ -45,7 +36,7 @@ const nextEvents = [
   },
   {
     id: "e4",
-    tag: getUpcomingDateTag(3),
+    tag: "11:30 PM",
     subtitle: "R&B SESSIONS",
     title: "Midnight Vibes",
     dj: "Kemi Adetiba",
@@ -58,15 +49,15 @@ export const Hero = () => {
   const { isPlaying, togglePlayPause, currentTrack, playTrack } = useAudioPlayer();
   const [slideIndex, setSlideIndex] = useState(0);
 
-  // Dynamic formatted today's date for badge
-  const todayFormatted = new Date().toLocaleDateString('en-US', {
-    weekday: 'short',
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric'
-  }).toUpperCase();
+  const maxIndex = Math.max(0, todayShows.length - 3);
 
-  const maxIndex = Math.max(0, nextEvents.length - 3);
+  // Format today's date (e.g., "19.08.2026" or "WED, AUG 19")
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  }).replace(/\//g, '.');
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -115,7 +106,6 @@ export const Hero = () => {
           alt="Area 93.5 FM Presenter" 
           className={styles.heroDjImage} 
         />
-        <div className={styles.heroImageOverlay} />
       </div>
 
       {/* Hero Content Grid */}
@@ -149,7 +139,7 @@ export const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Right Column: Dynamic Today's Date Badge & Event Cards */}
+        {/* Right Column: TODAY'S SHOWS 3-Card Poster Stream */}
         <motion.div 
           className={styles.rightCol}
           initial={{ opacity: 0, y: 30 }}
@@ -157,9 +147,7 @@ export const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <div className={styles.nextEventsHeader}>
-            <span className={styles.sectionBadge}>
-              TODAY • {todayFormatted}
-            </span>
+            <span className={styles.sectionBadge}>TODAY'S SHOWS • {formattedDate}</span>
             <span className={styles.sectionAccentLine} />
           </div>
 
@@ -169,7 +157,7 @@ export const Hero = () => {
               animate={{ x: `calc(-${slideIndex} * (33.333% + 4.66px))` }}
               transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
             >
-              {nextEvents.map((evt) => (
+              {todayShows.map((evt) => (
                 <div key={evt.id} className={styles.eventCardItem}>
                   <div className={styles.eventCard}>
                     <img 
