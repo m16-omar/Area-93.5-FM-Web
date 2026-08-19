@@ -1,6 +1,6 @@
 .heroSection {
   position: relative;
-  background: linear-gradient(135deg, #a7f3d0 0%, #bbf7d0 25%, #ccfbf1 50%, #fef08a 85%, #fde047 100%);
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 30%, #eaf3f7 65%, #ffedd5 100%);
   min-height: 560px;
   padding: 40px 48px 50px;
   overflow: hidden;
@@ -10,7 +10,7 @@
   box-sizing: border-box;
 }
 
-/* 1. Solid Graphic Circles matching the screenshot */
+/* 1. Solid Graphic Circles matching 93.5 Area FM Brand Colors (Teal + Orange/Red) */
 .bgCircleTopLime {
   position: absolute;
   top: -60px;
@@ -18,7 +18,8 @@
   width: 380px;
   height: 380px;
   border-radius: 50%;
-  background: #a3e635;
+  background: #006B8D;
+  opacity: 0.85;
   z-index: 0;
   pointer-events: none;
 }
@@ -30,8 +31,8 @@
   width: 220px;
   height: 220px;
   border-radius: 50%;
-  background: #22c55e;
-  opacity: 0.85;
+  background: #E50914;
+  opacity: 0.8;
   z-index: 0;
   pointer-events: none;
 }
@@ -54,7 +55,7 @@
   font-size: 1.35rem;
   font-weight: 900;
   letter-spacing: 0.02em;
-  color: #0f172a;
+  color: #004E68;
   line-height: 1.1;
 }
 
@@ -119,14 +120,14 @@
 }
 
 .logoNumber {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   font-weight: 900;
-  color: #0f172a;
+  color: #004E68;
   letter-spacing: -0.04em;
 }
 
 .logoText {
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   font-weight: 900;
   color: var(--primary-orange, #E50914);
   letter-spacing: -0.02em;
@@ -134,9 +135,9 @@
 }
 
 .logoSub {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 900;
-  color: #0f172a;
+  color: #004E68;
   margin-left: 2px;
 }
 
@@ -146,7 +147,7 @@
   font-size: clamp(2.8rem, 5.2vw, 4.4rem);
   line-height: 0.92;
   color: #ffffff;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.12);
+  text-shadow: 0 2px 14px rgba(0, 78, 104, 0.25);
   letter-spacing: -0.02em;
   text-transform: uppercase;
   margin: 0;
@@ -162,12 +163,12 @@
   width: 68px;
   height: 68px;
   border-radius: 50%;
-  background: #000000;
+  background: var(--primary-orange, #E50914);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35), 0 0 0 8px rgba(16, 185, 129, 0.25);
+  box-shadow: 0 10px 24px rgba(229, 9, 20, 0.4), 0 0 0 8px rgba(229, 9, 20, 0.2);
   transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
   cursor: pointer;
   border: none;
@@ -175,8 +176,8 @@
 
 .giantPlayBtn:hover {
   transform: scale(1.08);
-  background: var(--primary-orange, #E50914);
-  box-shadow: 0 12px 30px rgba(229, 9, 20, 0.45), 0 0 0 10px rgba(229, 9, 20, 0.2);
+  background: #C40812;
+  box-shadow: 0 12px 30px rgba(229, 9, 20, 0.55), 0 0 0 10px rgba(229, 9, 20, 0.3);
 }
 
 .giantPlayBtn:active {
@@ -201,8 +202,8 @@
 }
 
 .sectionBadge {
-  background: #a3e635;
-  color: #0f172a;
+  background: var(--primary-orange, #E50914);
+  color: #ffffff;
   font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
   font-size: 0.72rem;
@@ -215,7 +216,7 @@
 .sectionAccentLine {
   flex: 1;
   height: 2px;
-  background: #a3e635;
+  background: var(--primary-orange, #E50914);
   opacity: 0.9;
 }
 
@@ -240,14 +241,14 @@
   aspect-ratio: 0.68 / 1;
   border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 24px rgba(0, 78, 104, 0.25);
   background: #002230;
   transition: transform 0.25s, box-shadow 0.25s;
 }
 
 .eventCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.38);
+  box-shadow: 0 12px 30px rgba(0, 78, 104, 0.38);
 }
 
 .eventImage {
@@ -265,7 +266,7 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 78, 104, 0.65);
   backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.4);
   color: #ffffff;
@@ -278,7 +279,7 @@
 .eventOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.92) 85%);
+  background: linear-gradient(180deg, rgba(0, 45, 61, 0.15) 0%, rgba(0, 45, 61, 0.45) 40%, rgba(0, 25, 35, 0.94) 85%);
   padding: 10px;
   display: flex;
   flex-direction: column;

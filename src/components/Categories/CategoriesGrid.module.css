@@ -14,8 +14,8 @@
 
 .categoryLabel {
   display: inline-block;
-  background: #a3e635;
-  color: #0f172a;
+  background: var(--primary-orange, #E50914);
+  color: #ffffff;
   font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
   font-size: 0.68rem;
@@ -78,7 +78,7 @@
   color: #ffffff;
   letter-spacing: 0.05em;
   margin: 0;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 @media (max-width: 900px) {

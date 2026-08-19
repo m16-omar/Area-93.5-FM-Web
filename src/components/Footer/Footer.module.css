@@ -15,7 +15,7 @@
   font-weight: 900;
   font-size: clamp(3.5rem, 9.5vw, 7.5rem);
   line-height: 0.88;
-  color: rgba(0, 107, 141, 0.05);
+  color: rgba(0, 78, 104, 0.05);
   pointer-events: none;
   text-transform: uppercase;
   letter-spacing: -0.04em;
@@ -52,7 +52,7 @@
 .logoNumber {
   font-size: 2.6rem;
   font-weight: 900;
-  color: #0f172a;
+  color: #004E68;
   letter-spacing: -0.04em;
 }
 
@@ -67,7 +67,7 @@
 .logoSub {
   font-size: 1.7rem;
   font-weight: 900;
-  color: #0f172a;
+  color: #004E68;
   margin-left: 2px;
 }
 
@@ -93,8 +93,8 @@
 
 .sectionBadge {
   align-self: flex-start;
-  background: #a3e635;
-  color: #0f172a;
+  background: var(--primary-orange, #E50914);
+  color: #ffffff;
   font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
   font-size: 0.65rem;
@@ -113,7 +113,7 @@
   width: 32px;
   height: 32px;
   border-radius: 2px;
-  background: #000000;
+  background: #004E68;
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -146,11 +146,11 @@
 }
 
 .contactItem:hover {
-  color: var(--primary-blue, #006B8D);
+  color: var(--primary-orange, #E50914);
 }
 
 .contactIcon {
-  color: #0f172a;
+  color: #004E68;
 }
 
 /* Right Column */
@@ -188,7 +188,7 @@
   font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 800;
   font-size: 0.85rem;
-  color: #0f172a;
+  color: #004E68;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

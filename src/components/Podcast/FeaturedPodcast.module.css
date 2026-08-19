@@ -13,8 +13,8 @@
   width: 380px;
   height: 380px;
   border-radius: 50%;
-  background: #10b981;
-  opacity: 0.65;
+  background: #006B8D;
+  opacity: 0.15;
   filter: blur(45px);
   z-index: 0;
   pointer-events: none;
@@ -42,7 +42,7 @@
   font-weight: 900;
   font-size: clamp(2.4rem, 4.5vw, 3.4rem);
   text-transform: uppercase;
-  color: #111827;
+  color: #004E68;
   line-height: 0.95;
   letter-spacing: -0.02em;
   margin: 0;
@@ -57,8 +57,8 @@
 
 .sectionLabel {
   display: inline-block;
-  background: #a3e635;
-  color: #0f172a;
+  background: var(--primary-orange, #E50914);
+  color: #ffffff;
   font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
   font-size: 0.68rem;
@@ -97,7 +97,7 @@
 }
 
 .dayCell {
-  background: #10b981;
+  background: var(--primary-blue, #006B8D);
   color: #ffffff;
   padding: 10px 14px;
   width: 90px;
@@ -151,7 +151,7 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 78, 104, 0.6);
   backdrop-filter: blur(4px);
   border: 1.5px solid rgba(255, 255, 255, 0.6);
   color: #ffffff;
@@ -164,7 +164,7 @@
 .hostOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(0, 20, 30, 0.95) 100%);
+  background: linear-gradient(180deg, transparent 40%, rgba(0, 45, 61, 0.95) 100%);
   padding: 14px;
   display: flex;
   flex-direction: column;
@@ -175,9 +175,8 @@
 
 .hostRoleBadge {
   align-self: flex-start;
-  background: transparent;
-  border: 1px solid #a3e635;
-  color: #a3e635;
+  background: var(--primary-orange, #E50914);
+  color: #ffffff;
   font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-size: 0.6rem;
   font-weight: 800;
@@ -206,7 +205,7 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: #10b981;
+  background: var(--primary-orange, #E50914);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -218,6 +217,7 @@
 
 .socialIconBtn:hover {
   transform: scale(1.15);
+  background: #C40812;
 }
 
 /* Right Column - 2x2 Podcast Episode Cards */
@@ -240,9 +240,9 @@
   box-shadow: 0 10px 24px rgba(0, 78, 104, 0.16);
 }
 
-/* Yellow Header Box with Circular Cutout */
+/* Brand Blue/Teal Header Box with Circular Cutout */
 .episodeHeaderBg {
-  background: #facc15;
+  background: linear-gradient(135deg, #004E68 0%, #006B8D 100%);
   padding: 24px 16px;
   display: flex;
   align-items: center;
@@ -281,7 +281,7 @@
 
 .playCircleBtn:hover {
   opacity: 1;
-  background: rgba(229, 9, 20, 0.7);
+  background: rgba(229, 9, 20, 0.85);
 }
 
 /* White Card Info */
@@ -296,7 +296,7 @@
   font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
   font-size: 1.05rem;
-  color: #0f172a;
+  color: #004E68;
   margin: 0;
   line-height: 1.2;
 }
@@ -311,7 +311,7 @@
 }
 
 .calendarIcon {
-  color: #10b981;
+  color: var(--primary-orange, #E50914);
 }
 
 /* Responsive */

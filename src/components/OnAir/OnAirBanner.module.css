@@ -13,14 +13,14 @@
   width: 320px;
   height: 320px;
   border-radius: 50%;
-  background: #a3e635;
-  opacity: 0.65;
+  background: #006B8D;
+  opacity: 0.18;
   filter: blur(50px);
   z-index: 0;
   pointer-events: none;
 }
 
-/* Watermark Row matching screenshot 5 */
+/* Watermark Row matching screenshot */
 .watermarkRow {
   position: relative;
   z-index: 1;
@@ -45,7 +45,7 @@
 .brandNum {
   font-size: 2.8rem;
   font-weight: 900;
-  color: #0f172a;
+  color: #004E68;
   letter-spacing: -0.04em;
 }
 
@@ -60,7 +60,7 @@
 .brandSub {
   font-size: 1.8rem;
   font-weight: 900;
-  color: #0f172a;
+  color: #004E68;
   margin-left: 3px;
 }
 
@@ -69,8 +69,7 @@
   font-weight: 900;
   font-size: clamp(2.2rem, 4.5vw, 3.4rem);
   line-height: 0.92;
-  color: #ffffff;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  color: #004E68;
   letter-spacing: -0.02em;
   text-transform: uppercase;
 }
@@ -79,12 +78,12 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: #000000;
+  background: var(--primary-orange, #E50914);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 0 6px rgba(16, 185, 129, 0.25);
+  box-shadow: 0 8px 24px rgba(229, 9, 20, 0.4), 0 0 0 6px rgba(229, 9, 20, 0.2);
   flex-shrink: 0;
   cursor: pointer;
   border: none;
@@ -93,7 +92,7 @@
 
 .giantPlayCircle:hover {
   transform: scale(1.08);
-  background: var(--primary-orange, #E50914);
+  background: #C40812;
 }
 
 /* Grid Layout: SHOW ON AIR & PLAYLIST */
@@ -121,8 +120,8 @@
 }
 
 .sectionBadge {
-  background: #a3e635;
-  color: #0f172a;
+  background: var(--primary-orange, #E50914);
+  color: #ffffff;
   font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
   font-size: 0.7rem;
@@ -159,7 +158,7 @@
 .onAirOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(0, 20, 30, 0.95) 100%);
+  background: linear-gradient(180deg, transparent 40%, rgba(0, 35, 50, 0.95) 100%);
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -186,8 +185,8 @@
 }
 
 .livePill {
-  background: #000000;
-  color: #a3e635;
+  background: var(--primary-orange, #E50914);
+  color: #ffffff;
   font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-size: 0.6rem;
   font-weight: 800;
@@ -207,13 +206,13 @@
 
 .presenterText {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.85);
   margin: 0 0 4px;
 }
 
 .showTimeText {
   font-size: 0.78rem;
-  color: #a3e635;
+  color: #bae6fd;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -260,7 +259,7 @@
   font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
   font-size: 0.95rem;
-  color: #0f172a;
+  color: #004E68;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -280,8 +279,8 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.06);
-  color: #0f172a;
+  background: rgba(0, 78, 104, 0.08);
+  color: #004E68;
   border: none;
   display: flex;
   align-items: center;

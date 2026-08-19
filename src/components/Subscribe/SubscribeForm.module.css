@@ -14,7 +14,7 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(15, 10, 5, 0.78) 0%, rgba(20, 15, 8, 0.55) 50%, rgba(10, 5, 2, 0.82) 100%);
+  background: linear-gradient(90deg, rgba(0, 45, 61, 0.92) 0%, rgba(0, 78, 104, 0.75) 50%, rgba(0, 45, 61, 0.92) 100%);
 }
 
 .contentContainer {
@@ -41,7 +41,7 @@
   font-weight: 900;
   font-size: clamp(2.6rem, 5vw, 3.8rem);
   text-transform: uppercase;
-  color: #facc15;
+  color: #ffffff;
   line-height: 0.95;
   letter-spacing: -0.02em;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -50,7 +50,7 @@
 
 .description {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.88);
   line-height: 1.6;
   margin: 0;
 }
@@ -69,8 +69,8 @@
 }
 
 .formLabel {
-  background: #a3e635;
-  color: #0f172a;
+  background: var(--primary-orange, #E50914);
+  color: #ffffff;
   font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
   font-size: 0.68rem;
@@ -83,7 +83,7 @@
 .formAccentLine {
   flex: 1;
   height: 2px;
-  background: #a3e635;
+  background: var(--primary-orange, #E50914);
 }
 
 .formStack {
@@ -95,7 +95,7 @@
 .emailInput {
   width: 100%;
   padding: 14px 18px;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 3px;
@@ -113,11 +113,11 @@
 
 .emailInput:focus {
   background: #ffffff;
-  border-color: #a3e635;
+  border-color: var(--primary-orange, #E50914);
 }
 
 .submitBtn {
-  background: #000000;
+  background: var(--primary-orange, #E50914);
   color: #ffffff;
   font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
@@ -128,13 +128,12 @@
   border-radius: 3px;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 14px rgba(229, 9, 20, 0.4);
   transition: background 0.2s, transform 0.2s;
 }
 
 .submitBtn:hover {
-  background: #a3e635;
-  color: #0f172a;
+  background: #C40812;
   transform: translateY(-2px);
 }
 

@@ -1,6 +1,6 @@
 .tracksSection {
   position: relative;
-  background: linear-gradient(135deg, #1c0a1a 0%, #2a1128 35%, #0f172a 75%, #022c22 100%);
+  background: linear-gradient(135deg, #002D3D 0%, #004E68 50%, #006B8D 100%);
   padding: 80px 48px 90px;
   color: #ffffff;
   overflow: hidden;
@@ -15,8 +15,8 @@
   width: 320px;
   height: 320px;
   border-radius: 50%;
-  background: #a3e635;
-  opacity: 0.55;
+  background: #E50914;
+  opacity: 0.25;
   filter: blur(55px);
   z-index: 0;
   pointer-events: none;
@@ -46,7 +46,7 @@
   font-weight: 900;
   font-size: clamp(2.6rem, 4.5vw, 3.6rem);
   text-transform: uppercase;
-  color: #fb7185;
+  color: var(--primary-orange, #E50914);
   line-height: 0.92;
   letter-spacing: -0.02em;
   margin: 0;
@@ -54,7 +54,7 @@
 
 .description {
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.5;
   margin: 0;
 }
@@ -75,7 +75,7 @@
 
 .featuredCard {
   background: #ffffff;
-  border-radius: 6px;
+  border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
   width: 100%;
@@ -105,7 +105,7 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  background: #000000;
+  background: var(--primary-orange, #E50914);
   color: #ffffff;
   font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 800;
@@ -119,7 +119,7 @@
 .featuredFooter {
   padding: 12px 14px;
   background: #ffffff;
-  color: #0f172a;
+  color: #004E68;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -136,7 +136,7 @@
   font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
   font-size: 1.05rem;
-  color: #0f172a;
+  color: #004E68;
   margin: 0;
   line-height: 1.2;
 }
@@ -151,7 +151,7 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.06);
+  background: rgba(0, 78, 104, 0.08);
   color: #64748b;
   border: none;
   display: flex;
@@ -161,13 +161,8 @@
   transition: all 0.2s;
 }
 
-.featuredVoteBtn:hover {
-  background: #f43f5e;
-  color: #ffffff;
-}
-
-.featuredVoteBtn.voted {
-  background: #f43f5e;
+.featuredVoteBtn:hover, .featuredVoteBtn.voted {
+  background: var(--primary-orange, #E50914);
   color: #ffffff;
 }
 
@@ -180,7 +175,7 @@
 
 .trackRowCard {
   background: #ffffff;
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 6px 12px;
   display: flex;
   align-items: center;
@@ -196,7 +191,7 @@
 .trackThumb {
   width: 44px;
   height: 44px;
-  border-radius: 3px;
+  border-radius: 4px;
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -212,7 +207,7 @@
   font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
   font-size: 0.95rem;
-  color: #0f172a;
+  color: #004E68;
   margin: 0;
   line-height: 1.15;
   white-space: nowrap;
@@ -233,7 +228,7 @@
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(0, 78, 104, 0.08);
   color: #64748b;
   border: none;
   display: flex;
@@ -244,13 +239,8 @@
   flex-shrink: 0;
 }
 
-.voteBtn:hover {
-  background: #f43f5e;
-  color: #ffffff;
-}
-
-.voteBtn.voted {
-  background: #f43f5e;
+.voteBtn:hover, .voteBtn.voted {
+  background: var(--primary-orange, #E50914);
   color: #ffffff;
 }
 
