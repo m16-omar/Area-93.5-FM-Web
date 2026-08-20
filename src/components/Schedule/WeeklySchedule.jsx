@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMoreVertical } from 'react-icons/fi';
 import { useAudioPlayer, LIVE_STREAM_URL } from '../../context/AudioPlayerContext';
@@ -7,8 +8,13 @@ import styles from './WeeklySchedule.module.css';
 
 export const WeeklySchedule = () => {
   const [selectedDay, setSelectedDay] = useState('WEDNESDAY');
+  const navigate = useNavigate();
   const { playTrack, currentTrack, isPlaying } = useAudioPlayer();
   const shows = scheduleData.shows[selectedDay] || [];
+
+  const getSlug = (title) => {
+    return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  };
 
   const handleCardClick = (show) => {
     playTrack({
@@ -21,6 +27,11 @@ export const WeeklySchedule = () => {
       audioUrl: show.nowPlaying ? LIVE_STREAM_URL : 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3',
       isLive: show.nowPlaying
     });
+  };
+
+  const handleShowDetails = (e, show) => {
+    e.stopPropagation();
+    navigate(`/shows/${getSlug(show.title)}`);
   };
 
   return (
@@ -82,7 +93,7 @@ export const WeeklySchedule = () => {
                   </div>
 
                   <div className={styles.showDetails}>
-                    <div className={styles.showTextInfo}>
+                    <div className={styles.showTextInfo} onClick={(e) => handleShowDetails(e, show)}>
                       <span className={styles.genrePill}>{show.category}</span>
                       <h3 className={styles.showTitle}>{show.title}</h3>
                       <p className={styles.showTime}>{show.time}</p>
@@ -91,7 +102,7 @@ export const WeeklySchedule = () => {
                     <button 
                       className={styles.moreBtn} 
                       aria-label="Show Options"
-                      onClick={(e) => e.stopPropagation()}
+                      onClick={(e) => handleShowDetails(e, show)}
                     >
                       <FiMoreVertical />
                     </button>
