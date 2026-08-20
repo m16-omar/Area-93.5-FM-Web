@@ -3,7 +3,7 @@
   inset: 0;
   background: rgba(0, 45, 61, 0.7);
   backdrop-filter: blur(6px);
-  z-index: 9999;
+  z-index: 99999;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,6 +22,7 @@
   display: flex;
   flex-direction: column;
   animation: slideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 100000;
 }
 
 @keyframes slideDown {
@@ -122,6 +123,51 @@
   overflow-y: auto;
 }
 
+/* Trending / Popular Searches */
+.trendingBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 10px 0 16px;
+}
+
+.trendingTitle {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.trendingPillsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.trendingPill {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #004E68;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.trendingPill:hover {
+  background: var(--primary-blue, #006B8D);
+  color: #ffffff;
+  border-color: var(--primary-blue, #006B8D);
+}
+
 .tabsRow {
   display: flex;
   gap: 8px;
@@ -159,10 +205,32 @@
 }
 
 .noResultsBox {
-  padding: 40px 20px;
+  padding: 30px 20px;
   text-align: center;
   color: #64748b;
   font-size: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.browseNewsBtn {
+  background: var(--primary-blue, #006B8D);
+  color: #ffffff;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  padding: 8px 18px;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.browseNewsBtn:hover {
+  background: var(--primary-orange, #E50914);
 }
 
 .resultsGrid {

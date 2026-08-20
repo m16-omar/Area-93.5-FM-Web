@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FiSearch, FiX, FiRadio, FiUser, FiMic, FiFileText } from 'react-icons/fi';
+import { FiSearch, FiX, FiRadio, FiUser, FiMic, FiFileText, FiTrendingUp } from 'react-icons/fi';
 import { FaPlay } from 'react-icons/fa';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 import scheduleData from '../../data/scheduleData.json';
@@ -8,6 +8,17 @@ import teamData from '../../data/teamData.json';
 import podcastsData from '../../data/podcastsFullData.json';
 import newsData from '../../data/newsData.json';
 import styles from './SearchModal.module.css';
+
+const popularKeywords = [
+  "The Fan Zone",
+  "Lagos Morning Rush",
+  "Afrobeats Reloaded",
+  "Pop Pulse",
+  "Simi Ogunleye",
+  "Funke Akindele",
+  "DJ Tobi",
+  "Listener’s Choice Awards"
+];
 
 export const SearchModal = ({ isOpen, onClose }) => {
   const [query, setQuery] = useState('');
@@ -18,7 +29,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 50);
+      setTimeout(() => inputRef.current?.focus(), 80);
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -82,11 +93,33 @@ export const SearchModal = ({ isOpen, onClose }) => {
   };
 
   const handleSearchSubmit = (e) => {
-    e?.preventDefault();
-    if (query.trim()) {
-      onClose();
-      navigate(`/news?q=${encodeURIComponent(query.trim())}`);
+    if (e) e.preventDefault();
+    const term = query.trim();
+    if (!term) return;
+
+    // Check if best match is a show
+    const matchedShow = allShows.find(s => s.title.toLowerCase().includes(term.toLowerCase()));
+    if (matchedShow) {
+      handleNavigate(`/shows/${getSlug(matchedShow.title)}`);
+      return;
     }
+
+    // Check if best match is a host
+    const matchedHost = allHosts.find(h => h.name.toLowerCase().includes(term.toLowerCase()));
+    if (matchedHost) {
+      handleNavigate(`/hosts/${matchedHost.slug}`);
+      return;
+    }
+
+    // Check if best match is news
+    const matchedNews = allNews.find(n => n.title.toLowerCase().includes(term.toLowerCase()));
+    if (matchedNews) {
+      handleNavigate(`/news/${getSlug(matchedNews.title)}`);
+      return;
+    }
+
+    // Default fallback to news search page
+    handleNavigate(`/news?q=${encodeURIComponent(term)}`);
   };
 
   const handlePlayPodcast = (e, pod) => {
@@ -110,7 +143,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
     <div className={styles.topSearchOverlay} onClick={onClose}>
       <div className={styles.topSearchWrapper} onClick={(e) => e.stopPropagation()}>
         
-        {/* Top Expandable Search Header Bar (matching screenshot) */}
+        {/* Top Expandable Search Header Bar */}
         <form onSubmit={handleSearchSubmit} className={styles.searchBarRow}>
           <input
             ref={inputRef}
@@ -122,7 +155,11 @@ export const SearchModal = ({ isOpen, onClose }) => {
           />
 
           <div className={styles.searchActionsGroup}>
-            <button type="submit" className={styles.searchSubmitBtn}>
+            <button 
+              type="submit" 
+              className={styles.searchSubmitBtn}
+              onClick={handleSearchSubmit}
+            >
               <FiSearch className={styles.btnSearchIcon} />
               <span>SEARCH</span>
             </button>
@@ -133,141 +170,168 @@ export const SearchModal = ({ isOpen, onClose }) => {
               onClick={onClose}
               aria-label="Close search"
             >
-              <FiX size={18} />
+              <FiX size={20} />
             </button>
           </div>
         </form>
 
-        {/* Live Instant Results Dropdown Container */}
-        {cleanQuery && (
-          <div className={styles.resultsDropdown}>
-            {/* Filter Tabs */}
-            <div className={styles.tabsRow}>
-              {['ALL', 'SHOWS', 'HOSTS', 'PODCASTS', 'NEWS'].map((tab) => (
-                <button
-                  key={tab}
-                  type="button"
-                  className={`${styles.tabBtn} ${activeTab === tab ? styles.activeTabBtn : ''}`}
-                  onClick={() => setActiveTab(tab)}
-                >
-                  {tab}
-                </button>
-              ))}
+        {/* Results Dropdown */}
+        <div className={styles.resultsDropdown}>
+          {/* If no search query typed yet, show Trending / Quick Suggestions */}
+          {!cleanQuery ? (
+            <div className={styles.trendingBlock}>
+              <h4 className={styles.trendingTitle}>
+                <FiTrendingUp /> POPULAR SEARCHES
+              </h4>
+              <div className={styles.trendingPillsRow}>
+                {popularKeywords.map((kw, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    className={styles.trendingPill}
+                    onClick={() => setQuery(kw)}
+                  >
+                    {kw}
+                  </button>
+                ))}
+              </div>
             </div>
+          ) : (
+            <>
+              {/* Filter Tabs */}
+              <div className={styles.tabsRow}>
+                {['ALL', 'SHOWS', 'HOSTS', 'PODCASTS', 'NEWS'].map((tab) => (
+                  <button
+                    key={tab}
+                    type="button"
+                    className={`${styles.tabBtn} ${activeTab === tab ? styles.activeTabBtn : ''}`}
+                    onClick={() => setActiveTab(tab)}
+                  >
+                    {tab}
+                  </button>
+                ))}
+              </div>
 
-            {/* Results Grid */}
-            <div className={styles.resultsScrollArea}>
-              {totalResults === 0 ? (
-                <div className={styles.noResultsBox}>
-                  <p>No results found for "<strong>{query}</strong>"</p>
-                </div>
-              ) : (
-                <div className={styles.resultsGrid}>
-                  
-                  {/* SHOWS */}
-                  {(activeTab === 'ALL' || activeTab === 'SHOWS') && filteredShows.length > 0 && (
-                    <div className={styles.categoryBlock}>
-                      <h4 className={styles.categoryTitle}><FiRadio /> SHOWS ({filteredShows.length})</h4>
-                      <div className={styles.itemsList}>
-                        {filteredShows.slice(0, 4).map((show, idx) => (
-                          <div 
-                            key={idx} 
-                            className={styles.resultItem} 
-                            onClick={() => handleNavigate(`/shows/${getSlug(show.title)}`)}
-                          >
-                            <img src={show.image} alt={show.title} className={styles.itemThumb} />
-                            <div className={styles.itemMeta}>
-                              <span className={styles.itemBadge}>{show.category || 'SHOW'}</span>
-                              <h5 className={styles.itemTitle}>{show.title}</h5>
-                              <p className={styles.itemSub}>{show.time} • {show.dj}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* HOSTS */}
-                  {(activeTab === 'ALL' || activeTab === 'HOSTS') && filteredHosts.length > 0 && (
-                    <div className={styles.categoryBlock}>
-                      <h4 className={styles.categoryTitle}><FiUser /> HOSTS ({filteredHosts.length})</h4>
-                      <div className={styles.itemsList}>
-                        {filteredHosts.slice(0, 4).map((host, idx) => (
-                          <div 
-                            key={idx} 
-                            className={styles.resultItem} 
-                            onClick={() => handleNavigate(`/hosts/${host.slug}`)}
-                          >
-                            <img src={host.photo} alt={host.name} className={`${styles.itemThumb} ${styles.circleThumb}`} />
-                            <div className={styles.itemMeta}>
-                              <span className={styles.itemBadge}>{host.badge || 'HOST'}</span>
-                              <h5 className={styles.itemTitle}>{host.name}</h5>
-                              <p className={styles.itemSub}>{host.role}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* PODCASTS */}
-                  {(activeTab === 'ALL' || activeTab === 'PODCASTS') && filteredPodcasts.length > 0 && (
-                    <div className={styles.categoryBlock}>
-                      <h4 className={styles.categoryTitle}><FiMic /> PODCASTS ({filteredPodcasts.length})</h4>
-                      <div className={styles.itemsList}>
-                        {filteredPodcasts.slice(0, 4).map((pod, idx) => (
-                          <div 
-                            key={idx} 
-                            className={styles.resultItem} 
-                            onClick={() => handleNavigate(`/podcasts`)}
-                          >
-                            <img src={pod.image} alt={pod.title} className={styles.itemThumb} />
-                            <div className={styles.itemMeta}>
-                              <span className={styles.itemBadge}>{pod.category || 'PODCAST'}</span>
-                              <h5 className={styles.itemTitle}>{pod.title}</h5>
-                              <p className={styles.itemSub}>{pod.host}</p>
-                            </div>
-                            <button 
-                              className={styles.playMiniBtn} 
-                              onClick={(e) => handlePlayPodcast(e, pod)}
-                              aria-label="Play Podcast"
+              {/* Results Grid */}
+              <div className={styles.resultsScrollArea}>
+                {totalResults === 0 ? (
+                  <div className={styles.noResultsBox}>
+                    <p>No matches found for "<strong>{query}</strong>"</p>
+                    <button 
+                      className={styles.browseNewsBtn}
+                      onClick={() => handleNavigate('/news')}
+                    >
+                      BROWSE ALL NEWS
+                    </button>
+                  </div>
+                ) : (
+                  <div className={styles.resultsGrid}>
+                    
+                    {/* SHOWS */}
+                    {(activeTab === 'ALL' || activeTab === 'SHOWS') && filteredShows.length > 0 && (
+                      <div className={styles.categoryBlock}>
+                        <h4 className={styles.categoryTitle}><FiRadio /> SHOWS ({filteredShows.length})</h4>
+                        <div className={styles.itemsList}>
+                          {filteredShows.slice(0, 4).map((show, idx) => (
+                            <div 
+                              key={idx} 
+                              className={styles.resultItem} 
+                              onClick={() => handleNavigate(`/shows/${getSlug(show.title)}`)}
                             >
-                              <FaPlay size={10} />
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* NEWS */}
-                  {(activeTab === 'ALL' || activeTab === 'NEWS') && filteredNews.length > 0 && (
-                    <div className={styles.categoryBlock}>
-                      <h4 className={styles.categoryTitle}><FiFileText /> NEWS ({filteredNews.length})</h4>
-                      <div className={styles.itemsList}>
-                        {filteredNews.slice(0, 4).map((item, idx) => (
-                          <div 
-                            key={idx} 
-                            className={styles.resultItem} 
-                            onClick={() => handleNavigate(`/news/${getSlug(item.title)}`)}
-                          >
-                            <img src={item.image} alt={item.title} className={styles.itemThumb} />
-                            <div className={styles.itemMeta}>
-                              <span className={styles.itemBadge}>{item.category || 'NEWS'}</span>
-                              <h5 className={styles.itemTitle}>{item.title}</h5>
-                              <p className={styles.itemSub}>{item.date || 'Latest News'}</p>
+                              <img src={show.image} alt={show.title} className={styles.itemThumb} />
+                              <div className={styles.itemMeta}>
+                                <span className={styles.itemBadge}>{show.category || 'SHOW'}</span>
+                                <h5 className={styles.itemTitle}>{show.title}</h5>
+                                <p className={styles.itemSub}>{show.time} • {show.dj}</p>
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
 
-                </div>
-              )}
-            </div>
-          </div>
-        )}
+                    {/* HOSTS */}
+                    {(activeTab === 'ALL' || activeTab === 'HOSTS') && filteredHosts.length > 0 && (
+                      <div className={styles.categoryBlock}>
+                        <h4 className={styles.categoryTitle}><FiUser /> HOSTS ({filteredHosts.length})</h4>
+                        <div className={styles.itemsList}>
+                          {filteredHosts.slice(0, 4).map((host, idx) => (
+                            <div 
+                              key={idx} 
+                              className={styles.resultItem} 
+                              onClick={() => handleNavigate(`/hosts/${host.slug}`)}
+                            >
+                              <img src={host.photo} alt={host.name} className={`${styles.itemThumb} ${styles.circleThumb}`} />
+                              <div className={styles.itemMeta}>
+                                <span className={styles.itemBadge}>{host.badge || 'HOST'}</span>
+                                <h5 className={styles.itemTitle}>{host.name}</h5>
+                                <p className={styles.itemSub}>{host.role}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* PODCASTS */}
+                    {(activeTab === 'ALL' || activeTab === 'PODCASTS') && filteredPodcasts.length > 0 && (
+                      <div className={styles.categoryBlock}>
+                        <h4 className={styles.categoryTitle}><FiMic /> PODCASTS ({filteredPodcasts.length})</h4>
+                        <div className={styles.itemsList}>
+                          {filteredPodcasts.slice(0, 4).map((pod, idx) => (
+                            <div 
+                              key={idx} 
+                              className={styles.resultItem} 
+                              onClick={() => handleNavigate(`/podcasts`)}
+                            >
+                              <img src={pod.image} alt={pod.title} className={styles.itemThumb} />
+                              <div className={styles.itemMeta}>
+                                <span className={styles.itemBadge}>{pod.category || 'PODCAST'}</span>
+                                <h5 className={styles.itemTitle}>{pod.title}</h5>
+                                <p className={styles.itemSub}>{pod.host}</p>
+                              </div>
+                              <button 
+                                className={styles.playMiniBtn} 
+                                onClick={(e) => handlePlayPodcast(e, pod)}
+                                aria-label="Play Podcast"
+                              >
+                                <FaPlay size={10} />
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* NEWS */}
+                    {(activeTab === 'ALL' || activeTab === 'NEWS') && filteredNews.length > 0 && (
+                      <div className={styles.categoryBlock}>
+                        <h4 className={styles.categoryTitle}><FiFileText /> NEWS ({filteredNews.length})</h4>
+                        <div className={styles.itemsList}>
+                          {filteredNews.slice(0, 4).map((item, idx) => (
+                            <div 
+                              key={idx} 
+                              className={styles.resultItem} 
+                              onClick={() => handleNavigate(`/news/${getSlug(item.title)}`)}
+                            >
+                              <img src={item.image} alt={item.title} className={styles.itemThumb} />
+                              <div className={styles.itemMeta}>
+                                <span className={styles.itemBadge}>{item.category || 'NEWS'}</span>
+                                <h5 className={styles.itemTitle}>{item.title}</h5>
+                                <p className={styles.itemSub}>{item.date || 'Latest News'}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                  </div>
+                )}
+              </div>
+            </>
+          )}
+        </div>
 
       </div>
     </div>
