@@ -13,6 +13,7 @@ import { ContactPage } from './pages/ContactPage';
 import { PromotePage } from './pages/PromotePage';
 import { HostDetailPage } from './pages/HostDetailPage';
 import { ShowDetailPage } from './pages/ShowDetailPage';
+import { NewsDetailPage } from './pages/NewsDetailPage';
 import { PopUpPlayerPage } from './pages/PopUpPlayerPage';
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
           <Route path="/shows/:slug" element={<ShowDetailPage />} />
           <Route path="/podcasts" element={<Podcasts />} />
           <Route path="/news" element={<NewsPage />} />
+          <Route path="/news/:slug" element={<NewsDetailPage />} />
+          <Route path="/blog/:slug" element={<NewsDetailPage />} />
           <Route path="/blog-sidebar" element={<NewsPage />} />
           <Route path="/charts" element={<ChartsPage />} />
           <Route path="/hosts" element={<HostsPage />} />

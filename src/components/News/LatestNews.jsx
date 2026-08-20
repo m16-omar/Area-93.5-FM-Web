@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiEye, FiHeart, FiShare2, FiCalendar } from 'react-icons/fi';
 import newsData from '../../data/newsData.json';
@@ -6,6 +7,15 @@ import styles from './LatestNews.module.css';
 
 export const LatestNews = () => {
   const [activeCategory, setActiveCategory] = useState('ALL');
+  const navigate = useNavigate();
+
+  const getSlug = (title) => {
+    return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  };
+
+  const handleArticleClick = (title) => {
+    navigate(`/news/${getSlug(title)}`);
+  };
 
   return (
     <section className={styles.newsSection} id="news">
@@ -41,6 +51,8 @@ export const LatestNews = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          onClick={() => handleArticleClick(newsData.featuredBig.title)}
+          style={{ cursor: 'pointer' }}
         >
           <div className={styles.bigImageWrapper}>
             <img 
@@ -57,7 +69,7 @@ export const LatestNews = () => {
               <span><FiCalendar size={13} /> {newsData.featuredBig.date}</span>
               <span><FiEye size={13} /> {newsData.featuredBig.views}</span>
               <span><FiHeart size={13} /> {newsData.featuredBig.likes}</span>
-              <FiShare2 size={13} style={{ cursor: 'pointer' }} />
+              <FiShare2 size={13} style={{ cursor: 'pointer' }} onClick={(e) => e.stopPropagation()} />
             </div>
           </div>
         </motion.div>
@@ -69,6 +81,8 @@ export const LatestNews = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
+          onClick={() => handleArticleClick(newsData.featuredMedium.title)}
+          style={{ cursor: 'pointer' }}
         >
           <img 
             src={newsData.featuredMedium.image} 
@@ -98,7 +112,12 @@ export const LatestNews = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           {newsData.newsList.map((item) => (
-            <div key={item.id} className={styles.smallItem}>
+            <div 
+              key={item.id} 
+              className={styles.smallItem}
+              onClick={() => handleArticleClick(item.title)}
+              style={{ cursor: 'pointer' }}
+            >
               <img src={item.image} alt={item.title} className={styles.smallThumb} loading="lazy" />
               <div>
                 <h4 className={styles.smallTitle}>{item.title}</h4>

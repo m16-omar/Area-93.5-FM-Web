@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FiSearch, FiEye, FiHeart, FiShare2, FiLink, FiMousePointer, FiMusic } from 'react-icons/fi';
 import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
@@ -24,6 +24,7 @@ const mostListenedTracks = [
 ];
 
 export const NewsPage = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
 
   const blogStreamPosts = [
@@ -62,6 +63,10 @@ export const NewsPage = () => {
     }
   ];
 
+  const getSlug = (title) => {
+    return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  };
+
   return (
     <main className={styles.newsPageContainer}>
       <Navbar />
@@ -82,7 +87,7 @@ export const NewsPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            BLOG SIDEBAR
+            BLOG & NEWS
           </motion.h1>
 
           <div className={styles.scrollIndicator}>
@@ -103,6 +108,8 @@ export const NewsPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
+              onClick={() => navigate(`/news/${getSlug(post.title)}`)}
+              style={{ cursor: 'pointer' }}
             >
               <div className={styles.cardImgWrapper}>
                 <img src={post.image} alt={post.title} className={styles.cardImg} />
@@ -113,14 +120,18 @@ export const NewsPage = () => {
 
               <div className={styles.cardBody}>
                 <span className={styles.catBadge}>{post.category}</span>
-                <h2 className={styles.cardTitle}>{post.title}</h2>
+                <h2 className={styles.cardTitle}>
+                  <Link to={`/news/${getSlug(post.title)}`} className={styles.titleLink}>
+                    {post.title}
+                  </Link>
+                </h2>
                 <p className={styles.cardExcerpt}>{post.excerpt}</p>
 
                 <div className={styles.cardMetaRow}>
                   <span className={styles.metaItem}>📅 {post.date}</span>
                   <span className={styles.metaItem}><FiEye /> {post.views}</span>
-                  <button className={styles.iconBtn}><FiHeart /> {post.likes}</button>
-                  <button className={styles.iconBtn}><FiShare2 /></button>
+                  <button className={styles.iconBtn} onClick={(e) => e.stopPropagation()}><FiHeart /> {post.likes}</button>
+                  <button className={styles.iconBtn} onClick={(e) => e.stopPropagation()}><FiShare2 /></button>
                 </div>
               </div>
             </motion.article>
