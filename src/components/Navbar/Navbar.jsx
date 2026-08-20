@@ -82,12 +82,19 @@ export const Navbar = () => {
     return title ? title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : '';
   };
 
-  // Search filtering logic
-  const allShows = Object.values(scheduleData.shows || {}).flat().filter(
-    (show, index, self) => index === self.findIndex((s) => s.title === show.title)
+  // Search filtering logic (safely extracted arrays)
+  const allShows = (Object.values(scheduleData.shows || {}).flat() || []).filter(
+    (show, index, self) => show && index === self.findIndex((s) => s?.title === show?.title)
   );
-  const allHosts = teamData || [];
-  const allPodcasts = podcastsData || [];
+
+  const allHosts = Array.isArray(teamData) ? teamData : [];
+  
+  const allPodcasts = [
+    podcastsData.featured,
+    ...(podcastsData.trending || []),
+    ...(podcastsData.latestEpisodes || [])
+  ].filter(Boolean);
+
   const allNews = [
     newsData.featuredBig,
     newsData.featuredMedium,
@@ -105,7 +112,7 @@ export const Navbar = () => {
   );
 
   const filteredPodcasts = allPodcasts.filter(p =>
-    !cleanQuery || p.title?.toLowerCase().includes(cleanQuery) || p.host?.toLowerCase().includes(cleanQuery) || p.category?.toLowerCase().includes(cleanQuery)
+    !cleanQuery || p.title?.toLowerCase().includes(cleanQuery) || p.host?.toLowerCase().includes(cleanQuery) || p.presenter?.toLowerCase().includes(cleanQuery) || p.category?.toLowerCase().includes(cleanQuery)
   );
 
   const filteredNews = allNews.filter(n =>
@@ -124,21 +131,21 @@ export const Navbar = () => {
     if (!term) return;
 
     // Check direct show match
-    const matchedShow = allShows.find(s => s.title.toLowerCase().includes(term.toLowerCase()));
+    const matchedShow = allShows.find(s => s?.title?.toLowerCase().includes(term.toLowerCase()));
     if (matchedShow) {
       handleNavigate(`/shows/${getSlug(matchedShow.title)}`);
       return;
     }
 
     // Check direct host match
-    const matchedHost = allHosts.find(h => h.name.toLowerCase().includes(term.toLowerCase()));
+    const matchedHost = allHosts.find(h => h?.name?.toLowerCase().includes(term.toLowerCase()));
     if (matchedHost) {
       handleNavigate(`/hosts/${matchedHost.slug}`);
       return;
     }
 
     // Check direct news match
-    const matchedNews = allNews.find(n => n.title.toLowerCase().includes(term.toLowerCase()));
+    const matchedNews = allNews.find(n => n?.title?.toLowerCase().includes(term.toLowerCase()));
     if (matchedNews) {
       handleNavigate(`/news/${getSlug(matchedNews.title)}`);
       return;
@@ -153,8 +160,8 @@ export const Navbar = () => {
     playTrack({
       id: pod.id || `pod-${Date.now()}`,
       title: pod.title,
-      artist: pod.host || 'Area FM Host',
-      image: pod.image,
+      artist: pod.host || pod.presenter || 'Area FM Host',
+      image: pod.image || pod.artwork,
       audioUrl: pod.audioUrl || "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
     });
   };
@@ -165,6 +172,9 @@ export const Navbar = () => {
     (activeTab === 'ALL' || activeTab === 'PODCASTS' ? filteredPodcasts.length : 0) +
     (activeTab === 'ALL' || activeTab === 'NEWS' ? filteredNews.length : 0);
 
+  const currentTrackTitle = currentTrack?.showName || currentTrack?.title || "93.5 AREA FM LIVE";
+  const currentTrackArtist = currentTrack?.presenterName || currentTrack?.artist || "ONE VOICE, EVERY AREA";
+
   return (
     <div className={styles.stickyHeaderWrapper}>
       {/* Top Ticker / Social Bar */}
@@ -172,7 +182,7 @@ export const Navbar = () => {
         <div className={styles.nowPlayingTrack}>
           <FiMusic className={styles.musicIcon} />
           <span className={styles.tickerText}>
-            {(currentTrack.showName || currentTrack.title).toUpperCase()} - {(currentTrack.presenterName || currentTrack.artist).toUpperCase()}
+            {currentTrackTitle.toUpperCase()} - {currentTrackArtist.toUpperCase()}
           </span>
         </div>
         <div className={styles.topSocials}>
