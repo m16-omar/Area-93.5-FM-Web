@@ -359,6 +359,131 @@ const showsCatalog = {
         image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80"
       }
     ]
+  },
+  "lagos-morning-rush": {
+    slug: "lagos-morning-rush",
+    title: "Lagos Morning Rush",
+    category: "INTERVIEWS & NEWS",
+    host: "Olamide Okafor",
+    hostSlug: "olamide-okafor",
+    hostRole: "Senior Morning Anchor",
+    hostPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    bannerPhoto: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80",
+    description: "Wake up with the pulse of Lagos! From 6:00 AM to 10:00 AM every weekday, Lagos Morning Rush delivers breaking traffic alerts, metro news, political debate, humor, and high-energy music to get commuters moving across the city.",
+    timetable: [
+      { day: "MONDAY", start: "06:00 AM", end: "10:00 AM" },
+      { day: "TUESDAY", start: "06:00 AM", end: "10:00 AM" },
+      { day: "WEDNESDAY", start: "06:00 AM", end: "10:00 AM" },
+      { day: "THURSDAY", start: "06:00 AM", end: "10:00 AM" },
+      { day: "FRIDAY", start: "06:00 AM", end: "10:00 AM" }
+    ],
+    crew: [
+      {
+        name: "Olamide Okafor",
+        slug: "olamide-okafor",
+        role: "HEAD ANCHOR",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        name: "Simi Ogunleye",
+        slug: "simi-ogunleye",
+        role: "CO-HOST & TRAFFIC",
+        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        name: "Babalola Alabi",
+        slug: "babalola-alabi",
+        role: "SPORTS CORRESPONDENT",
+        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80"
+      }
+    ],
+    events: [
+      {
+        day: "08",
+        monthYear: "OCT 2026",
+        title: "Lagos Morning Rush Town Hall",
+        artists: "LIVE CITIZENS FORUM & CIVIC LEADERS",
+        image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80"
+      }
+    ]
+  },
+  "afrobeats-reloaded": {
+    slug: "afrobeats-reloaded",
+    title: "Afrobeats Reloaded",
+    category: "MUSIC",
+    host: "DJ Tobi",
+    hostSlug: "tobi-adebayo",
+    hostRole: "Music Specialist & DJ",
+    hostPhoto: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
+    bannerPhoto: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
+    description: "The official drive-time Afrobeats destination. Non-stop high-energy mixes of top African hits, exclusive world premieres, remix debuts, and street anthems to soundtrack your afternoon.",
+    timetable: [
+      { day: "MONDAY", start: "04:00 PM", end: "08:00 PM" },
+      { day: "WEDNESDAY", start: "04:00 PM", end: "08:00 PM" },
+      { day: "FRIDAY", start: "04:00 PM", end: "08:00 PM" }
+    ],
+    crew: [
+      {
+        name: "DJ Tobi",
+        slug: "tobi-adebayo",
+        role: "HOST & DJ",
+        image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        name: "Funke Akindele",
+        slug: "funke-akindele",
+        role: "CO-HOST",
+        image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80"
+      }
+    ],
+    events: [
+      {
+        day: "27",
+        monthYear: "NOV 2026",
+        title: "Afrobeats Reloaded Live Festival",
+        artists: "TOP 20 AFROBEATS ICONS LIVE ON STAGE",
+        image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80"
+      }
+    ]
+  },
+  "midnight-vibes": {
+    slug: "midnight-vibes",
+    title: "Midnight Vibes",
+    category: "R&B & SOUL",
+    host: "Kemi Adetiba",
+    hostSlug: "kemi-adetiba",
+    hostRole: "Late Night Host",
+    hostPhoto: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+    bannerPhoto: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80",
+    description: "Wind down your night with soulful R&B, slow jams, acoustic Afrobeats, and intimate confessions. Kemi Adetiba hosts heartfelt discussions, late-night dedications, and mellow grooves.",
+    timetable: [
+      { day: "MONDAY", start: "11:00 PM", end: "02:00 AM" },
+      { day: "WEDNESDAY", start: "11:00 PM", end: "02:00 AM" },
+      { day: "FRIDAY", start: "11:00 PM", end: "03:00 AM" }
+    ],
+    crew: [
+      {
+        name: "Kemi Adetiba",
+        slug: "kemi-adetiba",
+        role: "HOST",
+        image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        name: "Olamide Okafor",
+        slug: "olamide-okafor",
+        role: "CO-HOST",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
+      }
+    ],
+    events: [
+      {
+        day: "14",
+        monthYear: "FEB 2027",
+        title: "Midnight Vibes Acoustic Love Special",
+        artists: "CHIKE, SIMI, JOHNNY DRILLE & SPECIAL GUESTS",
+        image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80"
+      }
+    ]
   }
 };
 
