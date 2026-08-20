@@ -5,14 +5,16 @@ import {
   FaInstagram, FaTwitter, FaYoutube, FaSpotify, FaFacebookF, 
   FaPinterest, FaLinkedinIn, FaWhatsapp, FaTelegramPlane, FaStar, FaShareAlt
 } from 'react-icons/fa';
-import { FiArrowRight, FiUser, FiCalendar, FiClock, FiVolume2 } from 'react-icons/fi';
+import { FiArrowRight, FiUser, FiCalendar, FiClock, FiVolume2, FiPlay, FiPause } from 'react-icons/fi';
 import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import { useAudioPlayer, LIVE_STREAM_URL } from '../context/AudioPlayerContext';
+import teamData from '../data/teamData.json';
+import scheduleData from '../data/scheduleData.json';
 import styles from './ShowDetailPage.module.css';
 
-// Show details catalog mapping by slug
+// Show details catalog mapping
 const showsCatalog = {
   "pop-culture-replay": {
     slug: "pop-culture-replay",
@@ -63,10 +65,10 @@ const showsCatalog = {
   "the-fan-zone": {
     slug: "the-fan-zone",
     title: "The Fan Zone",
-    category: "INTERVIEWS",
+    category: "TRENDS",
     host: "Simi Ogunleye",
     hostSlug: "simi-ogunleye",
-    hostRole: "Senior Broadcaster",
+    hostRole: "Senior Sports & Lifestyle Broadcaster",
     hostPhoto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
     bannerPhoto: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80",
     description: "The Fan Zone is 93.5 Area FM's midday home for sports banter, football fever, athlete phone-ins, and entertainment showdowns. Simi Ogunleye keeps listeners energized with breaking sports news, premier league debriefs, and exclusive artist gossip.",
@@ -106,6 +108,180 @@ const showsCatalog = {
       }
     ]
   },
+  "hitmakers-live": {
+    slug: "hitmakers-live",
+    title: "Hitmakers Live",
+    category: "INTERVIEWS",
+    host: "Olamide Okafor",
+    hostSlug: "olamide-okafor",
+    hostRole: "Music Producer & Radio Host",
+    hostPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    bannerPhoto: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
+    description: "Hitmakers Live brings you behind the scenes with Nigeria's hottest producers, songwriters, and chart-topping artists. Exclusive studio sessions, breakdown of hit records, acoustic live sets, and industry insights broadcast straight across the nation.",
+    timetable: [
+      { day: "MONDAY", start: "11:00 AM", end: "01:00 PM" },
+      { day: "WEDNESDAY", start: "04:00 PM", end: "07:00 PM" },
+      { day: "FRIDAY", start: "02:00 PM", end: "06:00 PM" }
+    ],
+    crew: [
+      {
+        name: "Olamide Okafor",
+        slug: "olamide-okafor",
+        role: "HOST",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        name: "DJ Tobi",
+        slug: "tobi-adebayo",
+        role: "CO-HOST / DJ",
+        image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        name: "Babalola Alabi",
+        slug: "babalola-alabi",
+        role: "MUSIC CURATOR",
+        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80"
+      }
+    ],
+    events: [
+      {
+        day: "28",
+        monthYear: "OCT 2026",
+        title: "Hitmakers Live Unplugged Session",
+        artists: "ASAKE, FIREBOY DML, AYRA STARR",
+        image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80"
+      }
+    ]
+  },
+  "after-hours-mix": {
+    slug: "after-hours-mix",
+    title: "After Hours Mix",
+    category: "CLUB MIX",
+    host: "Simi Ogunleye",
+    hostSlug: "simi-ogunleye",
+    hostRole: "Late Night Tastemaker",
+    hostPhoto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+    bannerPhoto: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80",
+    description: "The After Hours Mix is your late-night sonic sanctuary. Packed with deep Afro-house grooves, chill Amapiano melodies, and smooth neo-soul mixes curated by our resident tastemakers for night owls, creatives, and late-night drivers.",
+    timetable: [
+      { day: "MONDAY", start: "01:00 PM", end: "04:00 PM" },
+      { day: "WEDNESDAY", start: "01:00 PM", end: "04:00 PM" },
+      { day: "SATURDAY", start: "10:00 PM", end: "02:00 AM" }
+    ],
+    crew: [
+      {
+        name: "Simi Ogunleye",
+        slug: "simi-ogunleye",
+        role: "HOST",
+        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        name: "Kemi Adetiba",
+        slug: "kemi-adetiba",
+        role: "CO-HOST",
+        image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        name: "DJ Tobi",
+        slug: "tobi-adebayo",
+        role: "MIX DJ",
+        image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80"
+      }
+    ],
+    events: [
+      {
+        day: "12",
+        monthYear: "DEC 2026",
+        title: "After Hours Rooftop Session",
+        artists: "SPECIAL GUEST AFRO-HOUSE DJS",
+        image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80"
+      }
+    ]
+  },
+  "throwback-jam": {
+    slug: "throwback-jam",
+    title: "Throwback Jam",
+    category: "RETRO HITS",
+    host: "Tobi Adebayo",
+    hostSlug: "tobi-adebayo",
+    hostRole: "Vintage Music Specialist",
+    hostPhoto: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
+    bannerPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80",
+    description: "Relive golden eras with classic highlife, 90s/2000s Afrobeats pioneers, old-school R&B, and hip-hop anthems. Nostalgic storytelling, vinyl appreciation, and listener requests guaranteed to bring back memories.",
+    timetable: [
+      { day: "MONDAY", start: "04:30 PM", end: "07:30 PM" },
+      { day: "WEDNESDAY", start: "10:00 AM", end: "01:00 PM" },
+      { day: "FRIDAY", start: "06:00 PM", end: "09:00 PM" }
+    ],
+    crew: [
+      {
+        name: "Tobi Adebayo",
+        slug: "tobi-adebayo",
+        role: "HOST",
+        image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        name: "Funke Akindele",
+        slug: "funke-akindele",
+        role: "CO-HOST",
+        image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80"
+      }
+    ],
+    events: [
+      {
+        day: "05",
+        monthYear: "NOV 2026",
+        title: "90s Retro Afrobeats Night",
+        artists: "PLANTASHUN BOIZ, REMEDIES, 2BABA TRIBUTES",
+        image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80"
+      }
+    ]
+  },
+  "vibe-check": {
+    slug: "vibe-check",
+    title: "Vibe Check",
+    category: "AFROBEATS",
+    host: "Kemi Adetiba",
+    hostSlug: "kemi-adetiba",
+    hostRole: "Drive Time Host",
+    hostPhoto: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+    bannerPhoto: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
+    description: "Vibe Check takes the pulse of contemporary African music. From Lagos street anthems to continental chart-toppers, Kemi Adetiba brings you fresh releases, artist spotlight interviews, and infectious positive energy during evening prime time.",
+    timetable: [
+      { day: "MONDAY", start: "07:30 PM", end: "11:30 PM" },
+      { day: "THURSDAY", start: "08:00 PM", end: "11:00 PM" },
+      { day: "SATURDAY", start: "06:00 PM", end: "09:00 PM" }
+    ],
+    crew: [
+      {
+        name: "Kemi Adetiba",
+        slug: "kemi-adetiba",
+        role: "HOST",
+        image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        name: "Olamide Okafor",
+        slug: "olamide-okafor",
+        role: "CO-HOST",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        name: "DJ Tobi",
+        slug: "tobi-adebayo",
+        role: "RESIDENT DJ",
+        image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80"
+      }
+    ],
+    events: [
+      {
+        day: "18",
+        monthYear: "DEC 2026",
+        title: "Vibe Check Festival Lagos",
+        artists: "RUGER, AYRA STARR, BNXN, ODUMODUBLVCK",
+        image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80"
+      }
+    ]
+  },
   "the-sound-session": {
     slug: "the-sound-session",
     title: "The Sound Session",
@@ -131,7 +307,7 @@ const showsCatalog = {
       {
         name: "Kemi Adetiba",
         slug: "kemi-adetiba",
-        role: "VOCALIST / CO-HOST",
+        role: "CO-HOST",
         image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
       }
     ],
@@ -144,18 +320,107 @@ const showsCatalog = {
         image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80"
       }
     ]
+  },
+  "pop-pulse": {
+    slug: "pop-pulse",
+    title: "Pop Pulse",
+    category: "MUSIC",
+    host: "Funke Akindele",
+    hostSlug: "funke-akindele",
+    hostRole: "Music Host",
+    hostPhoto: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+    bannerPhoto: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80",
+    description: "Pop Pulse counts down the biggest records locally and globally. Listener voting, artist gossip, debut records, and live interviews with rising pop talents.",
+    timetable: [
+      { day: "TUESDAY", start: "02:00 PM", end: "05:00 PM" },
+      { day: "WEDNESDAY", start: "03:00 PM", end: "06:00 PM" },
+      { day: "SATURDAY", start: "02:00 PM", end: "05:00 PM" }
+    ],
+    crew: [
+      {
+        name: "Funke Akindele",
+        slug: "funke-akindele",
+        role: "HOST",
+        image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        name: "Simi Ogunleye",
+        slug: "simi-ogunleye",
+        role: "CO-HOST",
+        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+      }
+    ],
+    events: [
+      {
+        day: "20",
+        monthYear: "NOV 2026",
+        title: "Pop Pulse Top 40 Live Countdown",
+        artists: "TOP 10 NIGERIAN HITMAKERS LIVE",
+        image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80"
+      }
+    ]
   }
+};
+
+// Helper to construct fallback show dynamically
+const buildFallbackShow = (slug) => {
+  const cleanTitle = slug
+    ? slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+    : "The Fan Zone";
+
+  return {
+    slug: slug || "the-fan-zone",
+    title: cleanTitle,
+    category: "TALK & MUSIC",
+    host: "Simi Ogunleye",
+    hostSlug: "simi-ogunleye",
+    hostRole: "Resident Broadcaster",
+    hostPhoto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+    bannerPhoto: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80",
+    description: `${cleanTitle} delivers prime-time radio entertainment across 93.5 Area FM. Packed with urban music, local news updates, viral stories, listener phone-ins, and high energy.`,
+    timetable: [
+      { day: "MONDAY", start: "11:00 AM", end: "02:30 PM" },
+      { day: "WEDNESDAY", start: "11:00 AM", end: "02:30 PM" },
+      { day: "FRIDAY", start: "11:00 AM", end: "02:30 PM" },
+      { day: "SATURDAY", start: "02:00 PM", end: "06:00 PM" }
+    ],
+    crew: [
+      {
+        name: "Simi Ogunleye",
+        slug: "simi-ogunleye",
+        role: "HOST",
+        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        name: "DJ Tobi",
+        slug: "tobi-adebayo",
+        role: "RESIDENT DJ",
+        image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80"
+      }
+    ],
+    events: [
+      {
+        day: "15",
+        monthYear: "NOV 2026",
+        title: `${cleanTitle} Live Concert`,
+        artists: "LIVE MUSIC & SPECIAL GUESTS",
+        image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80"
+      }
+    ]
+  };
 };
 
 export const ShowDetailPage = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const { playTrack } = useAudioPlayer();
+  const { playTrack, currentTrack, isPlaying } = useAudioPlayer();
   const [rating, setRating] = useState(5);
   const [hoverRating, setHoverRating] = useState(0);
 
-  // Fallback to pop-culture-replay if slug not found
-  const show = showsCatalog[slug] || showsCatalog["pop-culture-replay"];
+  // Match show from catalog or build dynamically
+  const show = showsCatalog[slug] || buildFallbackShow(slug);
+
+  const isCurrentLive = (currentTrack?.title === show.title || currentTrack?.showName === show.title) && isPlaying;
 
   const handlePlayLive = () => {
     playTrack({
@@ -252,7 +517,12 @@ export const ShowDetailPage = () => {
 
           <div className={styles.crewGrid}>
             {show.crew.map((member, idx) => (
-              <div key={idx} className={styles.crewCard}>
+              <div 
+                key={idx} 
+                className={styles.crewCard}
+                onClick={() => navigate(`/hosts/${member.slug}`)}
+                style={{ cursor: 'pointer' }}
+              >
                 <img src={member.image} alt={member.name} className={styles.crewPhoto} />
                 
                 <div className={styles.crewUserBadge}>
@@ -264,10 +534,10 @@ export const ShowDetailPage = () => {
                   <h3 className={styles.crewName}>{member.name}</h3>
                   
                   <div className={styles.crewSocials}>
-                    <a href="#" className={styles.miniSocialBtn} aria-label="Instagram"><FaInstagram /></a>
-                    <a href="#" className={styles.miniSocialBtn} aria-label="Twitter"><FaTwitter /></a>
-                    <a href="#" className={styles.miniSocialBtn} aria-label="YouTube"><FaYoutube /></a>
-                    <a href="#" className={styles.miniSocialBtn} aria-label="Spotify"><FaSpotify /></a>
+                    <span className={styles.miniSocialBtn} aria-label="Instagram"><FaInstagram /></span>
+                    <span className={styles.miniSocialBtn} aria-label="Twitter"><FaTwitter /></span>
+                    <span className={styles.miniSocialBtn} aria-label="YouTube"><FaYoutube /></span>
+                    <span className={styles.miniSocialBtn} aria-label="Spotify"><FaSpotify /></span>
                   </div>
                 </div>
               </div>

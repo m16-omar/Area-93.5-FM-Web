@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMoreVertical } from 'react-icons/fi';
+import { FiMoreVertical, FiPlay, FiPause } from 'react-icons/fi';
 import { useAudioPlayer, LIVE_STREAM_URL } from '../../context/AudioPlayerContext';
 import scheduleData from '../../data/scheduleData.json';
 import styles from './WeeklySchedule.module.css';
 
 export const WeeklySchedule = () => {
-  const [selectedDay, setSelectedDay] = useState('WEDNESDAY');
+  const [selectedDay, setSelectedDay] = useState('MONDAY');
   const navigate = useNavigate();
   const { playTrack, currentTrack, isPlaying } = useAudioPlayer();
   const shows = scheduleData.shows[selectedDay] || [];
@@ -16,7 +16,8 @@ export const WeeklySchedule = () => {
     return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   };
 
-  const handleCardClick = (show) => {
+  const handlePlayAudio = (e, show) => {
+    e.stopPropagation();
     playTrack({
       id: show.id,
       title: show.title,
@@ -29,8 +30,7 @@ export const WeeklySchedule = () => {
     });
   };
 
-  const handleShowDetails = (e, show) => {
-    e.stopPropagation();
+  const handleShowDetails = (show) => {
     navigate(`/shows/${getSlug(show.title)}`);
   };
 
@@ -73,7 +73,7 @@ export const WeeklySchedule = () => {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
                 className={styles.showCard}
-                onClick={() => handleCardClick(show)}
+                onClick={() => handleShowDetails(show)}
               >
                 <img 
                   src={show.image} 
@@ -83,26 +83,39 @@ export const WeeklySchedule = () => {
                 />
 
                 <div className={styles.showOverlay}>
-                  <div className={styles.badgeGroup}>
-                    {show.nowPlaying && (
-                      <span className={styles.nowPlayingBadge}>
-                        <span className={styles.greenDot} />
-                        NOW PLAYING
-                      </span>
-                    )}
+                  {/* Top Row: Category badge & Play button */}
+                  <div className={styles.cardTopRow}>
+                    <div className={styles.badgeGroup}>
+                      {show.nowPlaying ? (
+                        <span className={styles.nowPlayingBadge}>
+                          <span className={styles.greenDot} />
+                          NOW PLAYING
+                        </span>
+                      ) : (
+                        <span className={styles.genrePill}>{show.category}</span>
+                      )}
+                    </div>
+
+                    <button 
+                      className={styles.playCircleBtn}
+                      onClick={(e) => handlePlayAudio(e, show)}
+                      aria-label="Play show audio"
+                    >
+                      {isCurrentPlaying ? <FiPause size={12} /> : <FiPlay size={12} style={{ marginLeft: '1px' }} />}
+                    </button>
                   </div>
 
+                  {/* Bottom Row: Title, Meta and 3-dots */}
                   <div className={styles.showDetails}>
-                    <div className={styles.showTextInfo} onClick={(e) => handleShowDetails(e, show)}>
-                      <span className={styles.genrePill}>{show.category}</span>
+                    <div className={styles.showTextInfo}>
                       <h3 className={styles.showTitle}>{show.title}</h3>
-                      <p className={styles.showTime}>{show.time}</p>
+                      <p className={styles.showTime}>{show.time} • {show.dj}</p>
                     </div>
 
                     <button 
                       className={styles.moreBtn} 
                       aria-label="Show Options"
-                      onClick={(e) => handleShowDetails(e, show)}
+                      onClick={(e) => { e.stopPropagation(); handleShowDetails(show); }}
                     >
                       <FiMoreVertical />
                     </button>
