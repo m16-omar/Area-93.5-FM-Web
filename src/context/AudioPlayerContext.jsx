@@ -16,7 +16,7 @@ export const DEFAULT_LIVE_TRACK = {
 };
 
 export const AudioPlayerProvider = ({ children }) => {
-  const audioRef = useRef(new Audio(DEFAULT_LIVE_TRACK.audioUrl));
+  const audioRef = useRef(null);
   const [currentTrack, setCurrentTrack] = useState(DEFAULT_LIVE_TRACK);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -24,10 +24,16 @@ export const AudioPlayerProvider = ({ children }) => {
   const [volume, setVolumeState] = useState(0.85);
   const [isMuted, setIsMuted] = useState(false);
 
+  // Initialize audio element
   useEffect(() => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio();
+      audioRef.current.crossOrigin = "anonymous";
+    }
     const audio = audioRef.current;
+    audio.src = DEFAULT_LIVE_TRACK.audioUrl;
+    audio.volume = 0.85;
     audio.preload = 'auto';
-    audio.volume = volume;
 
     const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
     const handleLoadedMetadata = () => setDuration(audio.duration || 0);
@@ -45,40 +51,57 @@ export const AudioPlayerProvider = ({ children }) => {
     audio.addEventListener('pause', handlePause);
     audio.addEventListener('error', handleError);
 
-    // Auto-stream playback logic
-    const unlockEvents = ['click', 'touchstart', 'pointerdown', 'keydown', 'scroll'];
-    
-    const handleFirstInteraction = () => {
-      if (audio.paused) {
-        audio.src = LIVE_STREAM_URL;
+    // Auto-stream starter: attempts direct unmuted play first, falls back to muted stream + unlock on first gesture
+    const unlockUserAudio = () => {
+      if (audio.paused || audio.muted) {
+        audio.muted = false;
+        audio.volume = 0.85;
         audio.play()
-          .then(() => setIsPlaying(true))
-          .catch((err) => console.log('Autoplay after interaction notice:', err));
+          .then(() => {
+            setIsPlaying(true);
+            setIsMuted(false);
+          })
+          .catch((err) => console.log('Audio unlock notice:', err));
       }
-      removeUnlockListeners();
+      removeListeners();
     };
 
-    const addUnlockListeners = () => {
+    const unlockEvents = ['click', 'touchstart', 'touchend', 'pointerdown', 'mousedown', 'keydown', 'scroll'];
+
+    const addListeners = () => {
       unlockEvents.forEach(evt => {
-        window.addEventListener(evt, handleFirstInteraction, { once: true, passive: true });
+        window.addEventListener(evt, unlockUserAudio, { once: true, capture: true, passive: true });
+        document.addEventListener(evt, unlockUserAudio, { once: true, capture: true, passive: true });
       });
     };
 
-    const removeUnlockListeners = () => {
+    const removeListeners = () => {
       unlockEvents.forEach(evt => {
-        window.removeEventListener(evt, handleFirstInteraction);
+        window.removeEventListener(evt, unlockUserAudio, { capture: true });
+        document.removeEventListener(evt, unlockUserAudio, { capture: true });
       });
     };
 
-    // 1. Attempt immediate autoplay
-    audio.play()
-      .then(() => {
-        setIsPlaying(true);
-      })
-      .catch(() => {
-        // Browser autoplay restriction in effect; auto-stream on the very first user touch/scroll/click
-        addUnlockListeners();
-      });
+    // 1. Try immediate unmuted play
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          setIsPlaying(true);
+        })
+        .catch(() => {
+          // If browser Autoplay policy blocks unmuted audio, start playing muted & immediately attach global gesture unlock
+          audio.muted = true;
+          audio.play()
+            .then(() => {
+              setIsPlaying(true);
+              setIsMuted(true);
+            })
+            .catch(() => {});
+          
+          addListeners();
+        });
+    }
 
     return () => {
       audio.removeEventListener('timeupdate', handleTimeUpdate);
@@ -87,29 +110,37 @@ export const AudioPlayerProvider = ({ children }) => {
       audio.removeEventListener('playing', handlePlaying);
       audio.removeEventListener('pause', handlePause);
       audio.removeEventListener('error', handleError);
-      removeUnlockListeners();
+      removeListeners();
     };
   }, []);
 
   const togglePlayPause = useCallback(() => {
     const audio = audioRef.current;
-    if (isPlaying) {
+    if (!audio) return;
+
+    if (isPlaying && !audio.paused) {
       audio.pause();
       setIsPlaying(false);
     } else {
-      // If playing live stream, reload to get real-time stream without buffer lag
+      audio.muted = false;
+      setIsMuted(false);
+      audio.volume = volume;
+
+      // Reload live stream to eliminate buffer delay
       if (currentTrack?.isLive || currentTrack?.audioUrl === LIVE_STREAM_URL) {
         audio.src = LIVE_STREAM_URL;
         audio.load();
       }
       audio.play()
         .then(() => setIsPlaying(true))
-        .catch((err) => console.log('Audio playback prevented:', err));
+        .catch((err) => console.log('Audio play error:', err));
     }
-  }, [isPlaying, currentTrack]);
+  }, [isPlaying, currentTrack, volume]);
 
   const playTrack = useCallback((track) => {
     const audio = audioRef.current;
+    if (!audio) return;
+
     if (currentTrack?.id === track.id) {
       togglePlayPause();
       return;
@@ -117,6 +148,8 @@ export const AudioPlayerProvider = ({ children }) => {
     
     audio.pause();
     setCurrentTrack(track);
+    audio.muted = false;
+    setIsMuted(false);
     audio.src = track.audioUrl || LIVE_STREAM_URL;
     audio.load();
     audio.play()
@@ -130,7 +163,7 @@ export const AudioPlayerProvider = ({ children }) => {
 
   const seek = (time) => {
     const audio = audioRef.current;
-    if (!currentTrack?.isLive && isFinite(time)) {
+    if (audio && !currentTrack?.isLive && isFinite(time)) {
       audio.currentTime = time;
       setCurrentTime(time);
     }
@@ -138,14 +171,20 @@ export const AudioPlayerProvider = ({ children }) => {
 
   const setVolume = (val) => {
     const audio = audioRef.current;
-    audio.volume = val;
+    if (audio) {
+      audio.volume = val;
+    }
     setVolumeState(val);
-    if (val > 0) setIsMuted(false);
+    if (val > 0) {
+      if (audio) audio.muted = false;
+      setIsMuted(false);
+    }
   };
 
   const toggleMute = () => {
     const audio = audioRef.current;
-    if (isMuted) {
+    if (!audio) return;
+    if (isMuted || audio.muted) {
       audio.muted = false;
       setIsMuted(false);
     } else {
