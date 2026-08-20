@@ -9,7 +9,10 @@
 }
 
 .headerBadge {
-  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
 }
 
 .categoryLabel {
@@ -23,6 +26,12 @@
   padding: 2px 8px;
   border-radius: 2px;
   text-transform: uppercase;
+}
+
+.accentLine {
+  flex: 1;
+  height: 1.5px;
+  background: #cbd5e1;
 }
 
 .grid {
