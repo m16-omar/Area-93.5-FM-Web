@@ -70,7 +70,7 @@ export const WeeklySchedule = () => {
                     {show.nowPlaying ? (
                       <span className={styles.nowPlayingBadge}>
                         <span className={styles.greenDot} />
-                        NOW PLAYING
+                        NOW STREAMING
                       </span>
                     ) : (
                       <span className={styles.genrePill}>{show.category}</span>

@@ -82,7 +82,7 @@ export const ShowsSchedulePage = () => {
                 {show.nowPlaying && (
                   <span className={styles.nowPlayingTag}>
                     <span className={styles.greenPulseDot} />
-                    NOW PLAYING
+                    NOW STREAMING
                   </span>
                 )}
                 

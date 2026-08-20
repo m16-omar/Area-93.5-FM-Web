@@ -55,7 +55,7 @@ export const UpcomingShows = () => {
               onClick={() => handleNavigateDetail(item)}
             >
               {item.nowPlaying && (
-                <span className={styles.nowPlayingTag}>NOW PLAYING</span>
+                <span className={styles.nowPlayingTag}>NOW STREAMING</span>
               )}
               
               <img src={item.image} alt={item.name} className={styles.cardImg} />
