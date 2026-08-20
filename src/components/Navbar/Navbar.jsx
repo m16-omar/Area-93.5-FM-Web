@@ -1,19 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { FiSearch, FiMenu, FiVolume2, FiVolumeX, FiMusic, FiX } from 'react-icons/fi';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { FiSearch, FiMenu, FiVolume2, FiVolumeX, FiMusic, FiX, FiRadio, FiUser, FiMic, FiFileText, FiTrendingUp } from 'react-icons/fi';
 import { FaTwitter, FaInstagram, FaFacebookF, FaYoutube, FaTiktok, FaPlay, FaPause } from 'react-icons/fa';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 import logoImg from '../../assets/area-logo.png';
 import topTracksData from '../../data/topTracksData.json';
-import { SearchModal } from '../SearchModal/SearchModal';
+import scheduleData from '../../data/scheduleData.json';
+import teamData from '../../data/teamData.json';
+import podcastsData from '../../data/podcastsFullData.json';
+import newsData from '../../data/newsData.json';
 import styles from './Navbar.module.css';
+
+const popularKeywords = [
+  "The Fan Zone",
+  "Lagos Morning Rush",
+  "Afrobeats Reloaded",
+  "Pop Pulse",
+  "Simi Ogunleye",
+  "Funke Akindele",
+  "DJ Tobi",
+  "Listener’s Choice Awards"
+];
 
 export const Navbar = () => {
   const location = useLocation();
-  const { isPlaying, togglePlayPause, currentTrack, isMuted, toggleMute } = useAudioPlayer();
+  const navigate = useNavigate();
+  const { isPlaying, togglePlayPause, currentTrack, isMuted, toggleMute, playTrack } = useAudioPlayer();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeTab, setActiveTab] = useState('ALL');
   const [isScrolled, setIsScrolled] = useState(false);
+  const searchInputRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +40,24 @@ export const Navbar = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (searchOpen) {
+      setTimeout(() => searchInputRef.current?.focus(), 50);
+    } else {
+      setSearchQuery('');
+    }
+  }, [searchOpen]);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && searchOpen) {
+        setSearchOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [searchOpen]);
 
   const isActive = (path) => location.pathname === path;
 
@@ -41,6 +77,93 @@ export const Navbar = () => {
       `width=${width},height=${height},top=${top},left=${left},status=no,menubar=no,toolbar=no,resizable=no,scrollbars=no`
     );
   };
+
+  const getSlug = (title) => {
+    return title ? title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : '';
+  };
+
+  // Search filtering logic
+  const allShows = Object.values(scheduleData.shows || {}).flat().filter(
+    (show, index, self) => index === self.findIndex((s) => s.title === show.title)
+  );
+  const allHosts = teamData || [];
+  const allPodcasts = podcastsData || [];
+  const allNews = [
+    newsData.featuredBig,
+    newsData.featuredMedium,
+    ...(newsData.newsList || [])
+  ].filter(Boolean);
+
+  const cleanQuery = searchQuery.toLowerCase().trim();
+
+  const filteredShows = allShows.filter(s =>
+    !cleanQuery || s.title?.toLowerCase().includes(cleanQuery) || s.dj?.toLowerCase().includes(cleanQuery) || s.category?.toLowerCase().includes(cleanQuery)
+  );
+
+  const filteredHosts = allHosts.filter(h =>
+    !cleanQuery || h.name?.toLowerCase().includes(cleanQuery) || h.role?.toLowerCase().includes(cleanQuery) || h.show?.toLowerCase().includes(cleanQuery)
+  );
+
+  const filteredPodcasts = allPodcasts.filter(p =>
+    !cleanQuery || p.title?.toLowerCase().includes(cleanQuery) || p.host?.toLowerCase().includes(cleanQuery) || p.category?.toLowerCase().includes(cleanQuery)
+  );
+
+  const filteredNews = allNews.filter(n =>
+    !cleanQuery || n.title?.toLowerCase().includes(cleanQuery) || n.category?.toLowerCase().includes(cleanQuery)
+  );
+
+  const handleNavigate = (path) => {
+    setSearchOpen(false);
+    setSearchQuery('');
+    navigate(path);
+  };
+
+  const handleExecuteSearch = (e) => {
+    if (e) e.preventDefault();
+    const term = searchQuery.trim();
+    if (!term) return;
+
+    // Check direct show match
+    const matchedShow = allShows.find(s => s.title.toLowerCase().includes(term.toLowerCase()));
+    if (matchedShow) {
+      handleNavigate(`/shows/${getSlug(matchedShow.title)}`);
+      return;
+    }
+
+    // Check direct host match
+    const matchedHost = allHosts.find(h => h.name.toLowerCase().includes(term.toLowerCase()));
+    if (matchedHost) {
+      handleNavigate(`/hosts/${matchedHost.slug}`);
+      return;
+    }
+
+    // Check direct news match
+    const matchedNews = allNews.find(n => n.title.toLowerCase().includes(term.toLowerCase()));
+    if (matchedNews) {
+      handleNavigate(`/news/${getSlug(matchedNews.title)}`);
+      return;
+    }
+
+    // Default fallback to news search page
+    handleNavigate(`/news?q=${encodeURIComponent(term)}`);
+  };
+
+  const handlePlayPodcast = (e, pod) => {
+    e.stopPropagation();
+    playTrack({
+      id: pod.id || `pod-${Date.now()}`,
+      title: pod.title,
+      artist: pod.host || 'Area FM Host',
+      image: pod.image,
+      audioUrl: pod.audioUrl || "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+    });
+  };
+
+  const totalResults =
+    (activeTab === 'ALL' || activeTab === 'SHOWS' ? filteredShows.length : 0) +
+    (activeTab === 'ALL' || activeTab === 'HOSTS' ? filteredHosts.length : 0) +
+    (activeTab === 'ALL' || activeTab === 'PODCASTS' ? filteredPodcasts.length : 0) +
+    (activeTab === 'ALL' || activeTab === 'NEWS' ? filteredNews.length : 0);
 
   return (
     <div className={styles.stickyHeaderWrapper}>
@@ -62,67 +185,271 @@ export const Navbar = () => {
       </div>
 
       {/* Main Navbar Header */}
-      <header className={`${styles.navbarContainer} ${isScrolled ? styles.scrolled : ''}`}>
-        <Link to="/" className={styles.logoLink}>
-          <img src={logoImg} alt="93.5 AREA FM Logo" className={styles.logoImg} />
-        </Link>
+      <header className={`${styles.navbarContainer} ${isScrolled ? styles.scrolled : ''} ${searchOpen ? styles.navbarSearching : ''}`}>
+        
+        {/* If Search is Open: Render the Full-Width White Search Header Bar (matching screenshot) */}
+        {searchOpen ? (
+          <form onSubmit={handleExecuteSearch} className={styles.inHeaderSearchBar}>
+            <input
+              ref={searchInputRef}
+              type="text"
+              className={styles.inHeaderSearchInput}
+              placeholder="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              autoFocus
+            />
 
-        {/* Desktop Navigation */}
-        <nav className={styles.desktopNav}>
-          <ul className={styles.navMenu}>
-            <li className={styles.navItem}>
-              <Link to="/" className={`${styles.navLink} ${isActive('/') ? styles.activeNavLink : ''}`}>HOME</Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/shows" className={`${styles.navLink} ${isActive('/shows') ? styles.activeNavLink : ''}`}>SHOWS</Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/podcasts" className={`${styles.navLink} ${isActive('/podcasts') ? styles.activeNavLink : ''}`}>PODCASTS</Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/news" className={`${styles.navLink} ${isActive('/news') ? styles.activeNavLink : ''}`}>NEWS</Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/charts" className={`${styles.navLink} ${isActive('/charts') ? styles.activeNavLink : ''}`}>CHARTS</Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/hosts" className={`${styles.navLink} ${isActive('/hosts') ? styles.activeNavLink : ''}`}>HOSTS</Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/videos" className={`${styles.navLink} ${isActive('/videos') ? styles.activeNavLink : ''}`}>VIDEOS</Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/promote" className={`${styles.navLink} ${isActive('/promote') ? styles.activeNavLink : ''}`}>PROMOTE</Link>
-            </li>
-            <li className={styles.navItem}>
-              <Link to="/contact" className={`${styles.navLink} ${isActive('/contact') ? styles.activeNavLink : ''}`}>CONTACTS</Link>
-            </li>
-          </ul>
-        </nav>
+            <div className={styles.inHeaderSearchActions}>
+              <button 
+                type="submit" 
+                className={styles.inHeaderSearchBtn}
+                onClick={handleExecuteSearch}
+              >
+                <FiSearch size={14} />
+                <span>SEARCH</span>
+              </button>
 
-        {/* Right Header Action Buttons */}
-        <div className={styles.navActions}>
-          <button className={`${styles.iconBtn} ${styles.hideOnMobile}`} onClick={() => setSearchOpen(!searchOpen)} aria-label="Search">
-            <FiSearch />
-          </button>
-          
-          <button className={styles.iconBtn} onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle Menu">
-            {mobileMenuOpen ? <FiX /> : <FiMenu />}
-          </button>
+              <button 
+                type="button" 
+                className={styles.inHeaderCloseBtn} 
+                onClick={() => { setSearchOpen(false); setSearchQuery(''); }}
+                aria-label="Close search"
+              >
+                <FiX size={18} />
+              </button>
+            </div>
+          </form>
+        ) : (
+          /* Normal Navbar State */
+          <>
+            <Link to="/" className={styles.logoLink}>
+              <img src={logoImg} alt="93.5 AREA FM Logo" className={styles.logoImg} />
+            </Link>
 
-          <button className={styles.playBtn} onClick={togglePlayPause}>
-            {isPlaying ? <FaPause size={12} /> : <FaPlay size={12} />}
-            <span>{isPlaying ? 'PAUSE' : 'LIVE'}</span>
-          </button>
+            {/* Desktop Navigation */}
+            <nav className={styles.desktopNav}>
+              <ul className={styles.navMenu}>
+                <li className={styles.navItem}>
+                  <Link to="/" className={`${styles.navLink} ${isActive('/') ? styles.activeNavLink : ''}`}>HOME</Link>
+                </li>
+                <li className={styles.navItem}>
+                  <Link to="/shows" className={`${styles.navLink} ${isActive('/shows') ? styles.activeNavLink : ''}`}>SHOWS</Link>
+                </li>
+                <li className={styles.navItem}>
+                  <Link to="/podcasts" className={`${styles.navLink} ${isActive('/podcasts') ? styles.activeNavLink : ''}`}>PODCASTS</Link>
+                </li>
+                <li className={styles.navItem}>
+                  <Link to="/news" className={`${styles.navLink} ${isActive('/news') ? styles.activeNavLink : ''}`}>NEWS</Link>
+                </li>
+                <li className={styles.navItem}>
+                  <Link to="/charts" className={`${styles.navLink} ${isActive('/charts') ? styles.activeNavLink : ''}`}>CHARTS</Link>
+                </li>
+                <li className={styles.navItem}>
+                  <Link to="/hosts" className={`${styles.navLink} ${isActive('/hosts') ? styles.activeNavLink : ''}`}>HOSTS</Link>
+                </li>
+                <li className={styles.navItem}>
+                  <Link to="/videos" className={`${styles.navLink} ${isActive('/videos') ? styles.activeNavLink : ''}`}>VIDEOS</Link>
+                </li>
+                <li className={styles.navItem}>
+                  <Link to="/promote" className={`${styles.navLink} ${isActive('/promote') ? styles.activeNavLink : ''}`}>PROMOTE</Link>
+                </li>
+                <li className={styles.navItem}>
+                  <Link to="/contact" className={`${styles.navLink} ${isActive('/contact') ? styles.activeNavLink : ''}`}>CONTACTS</Link>
+                </li>
+              </ul>
+            </nav>
 
-          <button className={`${styles.iconBtn} ${styles.hideOnMobile}`} onClick={toggleMute} aria-label="Toggle Sound">
-            {isMuted ? <FiVolumeX /> : <FiVolume2 />}
-          </button>
+            {/* Right Header Action Buttons */}
+            <div className={styles.navActions}>
+              {/* Sharp Black Search Square Icon Button matching reference screenshot */}
+              <button 
+                className={`${styles.iconBtn} ${styles.searchSquareBtn}`} 
+                onClick={() => setSearchOpen(true)} 
+                aria-label="Search"
+              >
+                <FiSearch size={18} />
+              </button>
+              
+              <button 
+                className={`${styles.iconBtn} ${styles.menuSquareBtn}`} 
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
+                aria-label="Toggle Menu"
+              >
+                {mobileMenuOpen ? <FiX size={18} /> : <FiMenu size={18} />}
+              </button>
 
-          <button className={`${styles.popupBtn} ${styles.hideOnTablet}`} onClick={openPopUpPlayer}>
-            POP UP
-          </button>
-        </div>
+              <button className={styles.playBtn} onClick={togglePlayPause}>
+                {isPlaying ? <FaPause size={12} /> : <FaPlay size={12} />}
+                <span>{isPlaying ? 'PAUSE' : 'LIVE'}</span>
+              </button>
+
+              <button className={`${styles.iconBtn} ${styles.hideOnMobile}`} onClick={toggleMute} aria-label="Toggle Sound">
+                {isMuted ? <FiVolumeX size={18} /> : <FiVolume2 size={18} />}
+              </button>
+
+              <button className={`${styles.popupBtn} ${styles.hideOnTablet}`} onClick={openPopUpPlayer}>
+                POP UP
+              </button>
+            </div>
+          </>
+        )}
+
+        {/* Live Search Results Dropdown Panel (attached right below the search header) */}
+        {searchOpen && (
+          <div className={styles.headerSearchDropdown} onClick={(e) => e.stopPropagation()}>
+            {!cleanQuery ? (
+              <div className={styles.popularSearchBox}>
+                <span className={styles.popularSearchLabel}>
+                  <FiTrendingUp /> POPULAR SEARCHES:
+                </span>
+                <div className={styles.popularPillsList}>
+                  {popularKeywords.map((kw, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      className={styles.popularPillBtn}
+                      onClick={() => setSearchQuery(kw)}
+                    >
+                      {kw}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className={styles.dropdownResultsBody}>
+                {/* Filter Tabs */}
+                <div className={styles.dropdownTabsRow}>
+                  {['ALL', 'SHOWS', 'HOSTS', 'PODCASTS', 'NEWS'].map((tab) => (
+                    <button
+                      key={tab}
+                      type="button"
+                      className={`${styles.dropdownTabBtn} ${activeTab === tab ? styles.activeDropdownTab : ''}`}
+                      onClick={() => setActiveTab(tab)}
+                    >
+                      {tab}
+                    </button>
+                  ))}
+                </div>
+
+                {totalResults === 0 ? (
+                  <div className={styles.noMatchesBox}>
+                    <p>No results found for "<strong>{searchQuery}</strong>"</p>
+                    <button 
+                      type="button" 
+                      className={styles.browseAllNewsBtn}
+                      onClick={() => handleNavigate('/news')}
+                    >
+                      BROWSE ALL NEWS
+                    </button>
+                  </div>
+                ) : (
+                  <div className={styles.dropdownResultsGrid}>
+                    {/* SHOWS */}
+                    {(activeTab === 'ALL' || activeTab === 'SHOWS') && filteredShows.length > 0 && (
+                      <div className={styles.resultsCategoryCol}>
+                        <h4 className={styles.resultsCatTitle}><FiRadio /> SHOWS ({filteredShows.length})</h4>
+                        <div className={styles.resultsItemList}>
+                          {filteredShows.slice(0, 4).map((show, idx) => (
+                            <div 
+                              key={idx} 
+                              className={styles.dropdownResultCard}
+                              onClick={() => handleNavigate(`/shows/${getSlug(show.title)}`)}
+                            >
+                              <img src={show.image} alt={show.title} className={styles.dropdownThumb} />
+                              <div className={styles.dropdownInfo}>
+                                <span className={styles.dropdownBadge}>{show.category || 'SHOW'}</span>
+                                <h5 className={styles.dropdownTitle}>{show.title}</h5>
+                                <p className={styles.dropdownSub}>{show.time} • {show.dj}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* HOSTS */}
+                    {(activeTab === 'ALL' || activeTab === 'HOSTS') && filteredHosts.length > 0 && (
+                      <div className={styles.resultsCategoryCol}>
+                        <h4 className={styles.resultsCatTitle}><FiUser /> HOSTS ({filteredHosts.length})</h4>
+                        <div className={styles.resultsItemList}>
+                          {filteredHosts.slice(0, 4).map((host, idx) => (
+                            <div 
+                              key={idx} 
+                              className={styles.dropdownResultCard}
+                              onClick={() => handleNavigate(`/hosts/${host.slug}`)}
+                            >
+                              <img src={host.photo} alt={host.name} className={`${styles.dropdownThumb} ${styles.circleThumb}`} />
+                              <div className={styles.dropdownInfo}>
+                                <span className={styles.dropdownBadge}>{host.badge || 'HOST'}</span>
+                                <h5 className={styles.dropdownTitle}>{host.name}</h5>
+                                <p className={styles.dropdownSub}>{host.role}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* PODCASTS */}
+                    {(activeTab === 'ALL' || activeTab === 'PODCASTS') && filteredPodcasts.length > 0 && (
+                      <div className={styles.resultsCategoryCol}>
+                        <h4 className={styles.resultsCatTitle}><FiMic /> PODCASTS ({filteredPodcasts.length})</h4>
+                        <div className={styles.resultsItemList}>
+                          {filteredPodcasts.slice(0, 4).map((pod, idx) => (
+                            <div 
+                              key={idx} 
+                              className={styles.dropdownResultCard}
+                              onClick={() => handleNavigate('/podcasts')}
+                            >
+                              <img src={pod.image} alt={pod.title} className={styles.dropdownThumb} />
+                              <div className={styles.dropdownInfo}>
+                                <span className={styles.dropdownBadge}>{pod.category || 'PODCAST'}</span>
+                                <h5 className={styles.dropdownTitle}>{pod.title}</h5>
+                                <p className={styles.dropdownSub}>{pod.host}</p>
+                              </div>
+                              <button 
+                                type="button" 
+                                className={styles.podPlayBtn}
+                                onClick={(e) => handlePlayPodcast(e, pod)}
+                                aria-label="Play Podcast"
+                              >
+                                <FaPlay size={10} />
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* NEWS */}
+                    {(activeTab === 'ALL' || activeTab === 'NEWS') && filteredNews.length > 0 && (
+                      <div className={styles.resultsCategoryCol}>
+                        <h4 className={styles.resultsCatTitle}><FiFileText /> NEWS ({filteredNews.length})</h4>
+                        <div className={styles.resultsItemList}>
+                          {filteredNews.slice(0, 4).map((item, idx) => (
+                            <div 
+                              key={idx} 
+                              className={styles.dropdownResultCard}
+                              onClick={() => handleNavigate(`/news/${getSlug(item.title)}`)}
+                            >
+                              <img src={item.image} alt={item.title} className={styles.dropdownThumb} />
+                              <div className={styles.dropdownInfo}>
+                                <span className={styles.dropdownBadge}>{item.category || 'NEWS'}</span>
+                                <h5 className={styles.dropdownTitle}>{item.title}</h5>
+                                <p className={styles.dropdownSub}>{item.date || 'Latest News'}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
       </header>
 
       {/* Offcanvas Drawer Navigation */}
@@ -248,8 +575,6 @@ export const Navbar = () => {
           </div>
         </div>
       )}
-      {/* Global Interactive Search Modal */}
-      <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </div>
   );
 };
