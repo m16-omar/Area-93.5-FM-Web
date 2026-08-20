@@ -26,11 +26,14 @@ export const AudioPlayerProvider = ({ children }) => {
 
   useEffect(() => {
     const audio = audioRef.current;
-    audio.preload = 'none';
+    audio.preload = 'auto';
+    audio.volume = volume;
 
     const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
     const handleLoadedMetadata = () => setDuration(audio.duration || 0);
     const handleEnded = () => setIsPlaying(false);
+    const handlePlaying = () => setIsPlaying(true);
+    const handlePause = () => setIsPlaying(false);
     const handleError = (e) => {
       console.warn('Audio streaming notice/error:', e);
     };
@@ -38,13 +41,53 @@ export const AudioPlayerProvider = ({ children }) => {
     audio.addEventListener('timeupdate', handleTimeUpdate);
     audio.addEventListener('loadedmetadata', handleLoadedMetadata);
     audio.addEventListener('ended', handleEnded);
+    audio.addEventListener('playing', handlePlaying);
+    audio.addEventListener('pause', handlePause);
     audio.addEventListener('error', handleError);
+
+    // Auto-stream playback logic
+    const unlockEvents = ['click', 'touchstart', 'pointerdown', 'keydown', 'scroll'];
+    
+    const handleFirstInteraction = () => {
+      if (audio.paused) {
+        audio.src = LIVE_STREAM_URL;
+        audio.play()
+          .then(() => setIsPlaying(true))
+          .catch((err) => console.log('Autoplay after interaction notice:', err));
+      }
+      removeUnlockListeners();
+    };
+
+    const addUnlockListeners = () => {
+      unlockEvents.forEach(evt => {
+        window.addEventListener(evt, handleFirstInteraction, { once: true, passive: true });
+      });
+    };
+
+    const removeUnlockListeners = () => {
+      unlockEvents.forEach(evt => {
+        window.removeEventListener(evt, handleFirstInteraction);
+      });
+    };
+
+    // 1. Attempt immediate autoplay
+    audio.play()
+      .then(() => {
+        setIsPlaying(true);
+      })
+      .catch(() => {
+        // Browser autoplay restriction in effect; auto-stream on the very first user touch/scroll/click
+        addUnlockListeners();
+      });
 
     return () => {
       audio.removeEventListener('timeupdate', handleTimeUpdate);
       audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
       audio.removeEventListener('ended', handleEnded);
+      audio.removeEventListener('playing', handlePlaying);
+      audio.removeEventListener('pause', handlePause);
       audio.removeEventListener('error', handleError);
+      removeUnlockListeners();
     };
   }, []);
 
@@ -103,10 +146,10 @@ export const AudioPlayerProvider = ({ children }) => {
   const toggleMute = () => {
     const audio = audioRef.current;
     if (isMuted) {
-      audio.volume = volume || 0.85;
+      audio.muted = false;
       setIsMuted(false);
     } else {
-      audio.volume = 0;
+      audio.muted = true;
       setIsMuted(true);
     }
   };
@@ -125,8 +168,7 @@ export const AudioPlayerProvider = ({ children }) => {
         playLiveStream,
         seek,
         setVolume,
-        toggleMute,
-        LIVE_STREAM_URL
+        toggleMute
       }}
     >
       {children}
