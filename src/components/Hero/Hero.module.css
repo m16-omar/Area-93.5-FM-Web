@@ -26,13 +26,13 @@
 
 .bgCircleLeftGreen {
   position: absolute;
-  bottom: 20px;
-  left: 18%;
-  width: 220px;
-  height: 220px;
+  bottom: -30px;
+  left: 6%;
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
   background: #E50914;
-  opacity: 0.8;
+  opacity: 0.65;
   z-index: 0;
   pointer-events: none;
 }
@@ -91,13 +91,13 @@
 /* Foreground Container */
 .heroContent {
   position: relative;
-  max-width: 1360px;
+  max-width: 1240px;
   width: 100%;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1.1fr 1.2fr;
+  gap: 30px;
   align-items: center;
-  gap: 20px;
   z-index: 3;
 }
 
@@ -108,9 +108,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
-  max-width: 360px;
-  flex-shrink: 0;
+  gap: 14px;
 }
 
 .brandTitleWrap {
@@ -146,19 +144,20 @@
 .heroHeadline {
   font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
-  font-size: clamp(2.8rem, 5.2vw, 4.4rem);
+  font-size: clamp(3rem, 5.5vw, 4.6rem);
   line-height: 0.92;
   color: #ffffff;
   text-shadow: 0 2px 14px rgba(0, 78, 104, 0.25);
   letter-spacing: -0.02em;
   text-transform: uppercase;
   margin: 0;
+  white-space: pre-line;
 }
 
 .giantPlayWrapper {
   position: relative;
   z-index: 4;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .giantPlayBtn {
@@ -186,17 +185,17 @@
   transform: scale(0.95);
 }
 
-/* Right Column: TODAY'S SHOWS Container moved to the right side */
+/* Right Column: TODAY'S SHOWS Container shifted to the right */
 .rightCol {
   position: relative;
   z-index: 4;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 150px;
-  width: 440px;
-  max-width: 40%;
-  margin-left: auto;
+  margin-top: 130px;
+  width: 100%;
+  max-width: 480px;
+  justify-self: end;
 }
 
 .nextEventsHeader {
