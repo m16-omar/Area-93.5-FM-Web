@@ -66,7 +66,7 @@
   letter-spacing: 0.05em;
 }
 
-/* 2. Hero DJ Woman Image — Centered exactly behind the 3 cards */
+/* 2. Hero DJ Woman Image — Positioned gracefully in the center-left area */
 .heroImageContainer {
   position: absolute;
   inset: 0;
@@ -77,12 +77,12 @@
 
 .heroDjImage {
   position: absolute;
-  left: 48%;
-  transform: translateX(-40%);
+  left: 38%;
+  transform: translateX(-50%);
   bottom: 0;
-  height: 100%;
+  height: 98%;
   max-height: 560px;
-  max-width: 65%;
+  max-width: 55%;
   object-fit: contain;
   object-position: center bottom;
   display: block;
@@ -91,13 +91,13 @@
 /* Foreground Grid Container */
 .heroContent {
   position: relative;
-  max-width: 1200px;
+  max-width: 1260px;
   width: 100%;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: 40px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  gap: 30px;
   z-index: 3;
 }
 
@@ -109,6 +109,8 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
+  max-width: 380px;
+  flex-shrink: 0;
 }
 
 .brandTitleWrap {
@@ -144,7 +146,7 @@
 .heroHeadline {
   font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
-  font-size: clamp(2.8rem, 5.2vw, 4.4rem);
+  font-size: clamp(2.6rem, 4.8vw, 4.2rem);
   line-height: 0.92;
   color: #ffffff;
   text-shadow: 0 2px 14px rgba(0, 78, 104, 0.25);
@@ -160,8 +162,8 @@
 }
 
 .giantPlayBtn {
-  width: 68px;
-  height: 68px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   background: var(--primary-orange, #E50914);
   color: #ffffff;
@@ -184,14 +186,17 @@
   transform: scale(0.95);
 }
 
-/* Right Column: NEXT EVENTS 3-Card Poster Slider */
+/* Right Column: TODAY'S SHOWS 3-Card Poster Slider shifted to the far right with compact sizing */
 .rightCol {
   position: relative;
   z-index: 4;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 130px;
+  margin-top: 140px;
+  width: 490px;
+  max-width: 45%;
+  margin-left: auto;
 }
 
 .nextEventsHeader {
@@ -206,11 +211,12 @@
   color: #ffffff;
   font-family: var(--font-heading, 'Bebas Neue', sans-serif);
   font-weight: 900;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   letter-spacing: 0.08em;
   padding: 3px 8px;
   border-radius: 3px;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .sectionAccentLine {
@@ -227,18 +233,18 @@
 
 .sliderTrack {
   display: flex;
-  gap: 14px;
+  gap: 10px;
   width: 100%;
 }
 
 .eventCardItem {
-  flex: 0 0 calc(33.333% - 9.33px);
-  min-width: calc(33.333% - 9.33px);
+  flex: 0 0 calc(33.333% - 6.66px);
+  min-width: calc(33.333% - 6.66px);
 }
 
 .eventCard {
   position: relative;
-  aspect-ratio: 0.68 / 1;
+  aspect-ratio: 0.72 / 1;
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 78, 104, 0.25);
