@@ -59,9 +59,9 @@ export const Footer = () => {
                 <FiPhone size={13} className={styles.contactIcon} />
                 <span>+234 809 935 8000</span>
               </a>
-              <a href="mailto:info@areafm.ng" className={styles.contactItem}>
+              <a href="mailto:info@935areafm.com" className={styles.contactItem}>
                 <FiMail size={13} className={styles.contactIcon} />
-                <span>info@areafm.ng</span>
+                <span>info@935areafm.com</span>
               </a>
             </div>
           </div>

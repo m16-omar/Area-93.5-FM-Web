@@ -41,7 +41,8 @@ Official web application for **Area 93.5 FM**, Lagos' premier urban radio statio
 - **Tagline**: *One Voice, Every Area*
 - **Studio Address**: Plot 11 Lateef Jakande Rd, Agidingbi, Ikeja 101233, Lagos, Nigeria
 - **Studio Lines**: `+234 809 935 8000` / `+234 812 935 8001`
-- **Email**: `info@areafm.ng` | `ads@areafm.ng`
+- **Email**: `info@935areafm.com` | `ads@935areafm.com`
+- **Website**: `https://935areafm.com`
 
 ---
 

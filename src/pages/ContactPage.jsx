@@ -185,7 +185,7 @@ export const ContactPage = () => {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className={styles.inputControl}
-                      placeholder="e.g. tobi@areafm.ng"
+                      placeholder="e.g. tobi@935areafm.com"
                     />
                   </div>
                 </div>
@@ -258,7 +258,7 @@ export const ContactPage = () => {
               <div className={styles.mapDetailsList}>
                 <div><strong>Live Studio Line:</strong> +234 809 935 8000</div>
                 <div><strong>WhatsApp Line:</strong> +234 812 935 8001</div>
-                <div><strong>Email:</strong> contact@areafm.ng</div>
+                <div><strong>Email:</strong> contact@935areafm.com</div>
               </div>
             </div>
           </motion.div>

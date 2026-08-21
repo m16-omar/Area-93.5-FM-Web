@@ -8,8 +8,8 @@
   "contacts": [
     { "type": "Studio Hotline", "value": "+234 809 935 8000", "icon": "phone" },
     { "type": "WhatsApp Studio Line", "value": "+234 812 935 8001", "icon": "phone" },
-    { "type": "General Inquiries", "value": "info@areafm.ng", "icon": "mail" },
-    { "type": "Advertising & Sales", "value": "ads@areafm.ng", "icon": "briefcase" }
+    { "type": "General Inquiries", "value": "info@935areafm.com", "icon": "mail" },
+    { "type": "Advertising & Sales", "value": "ads@935areafm.com", "icon": "briefcase" }
   ],
   "hours": [
     { "day": "Monday - Friday", "time": "06:00 AM - 10:00 PM" },

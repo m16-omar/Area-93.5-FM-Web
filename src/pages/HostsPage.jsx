@@ -78,7 +78,7 @@ export const HostsPage = () => {
             </motion.p>
 
             <motion.a 
-              href="mailto:careers@areafm.ng"
+              href="mailto:careers@935areafm.com"
               className={styles.joinBtn}
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
