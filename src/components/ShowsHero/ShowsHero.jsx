@@ -1,12 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FiClock } from 'react-icons/fi';
 import { useAudioPlayer, LIVE_STREAM_URL } from '../../context/AudioPlayerContext';
 import styles from './ShowsHero.module.css';
 
 export const ShowsHero = () => {
   const { playTrack, currentTrack, isPlaying } = useAudioPlayer();
+  const navigate = useNavigate();
 
   const featured = {
     id: "area_fm_live",
@@ -20,7 +21,8 @@ export const ShowsHero = () => {
 
   const isSelected = (currentTrack?.id === featured.id || currentTrack?.audioUrl === LIVE_STREAM_URL) && isPlaying;
 
-  const handlePlayClick = () => {
+  const handlePlayClick = (e) => {
+    e.stopPropagation();
     playTrack({
       id: featured.id,
       title: featured.title,
@@ -31,6 +33,10 @@ export const ShowsHero = () => {
       audioUrl: featured.audioUrl,
       isLive: true
     });
+  };
+
+  const handleShowClick = () => {
+    navigate('/shows/the-fan-zone');
   };
 
   return (
@@ -44,6 +50,8 @@ export const ShowsHero = () => {
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
+          onClick={handleShowClick}
+          style={{ cursor: 'pointer' }}
         >
           <div className={styles.thumbnailWrapper}>
             <img 

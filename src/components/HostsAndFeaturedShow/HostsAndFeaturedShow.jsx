@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FiUser, FiMoreVertical } from 'react-icons/fi';
 import { FaInstagram, FaYoutube, FaSpotify } from 'react-icons/fa6';
 import { FaTwitter } from 'react-icons/fa';
@@ -16,6 +16,7 @@ const socialIcons = [
 ];
 
 export default function HostsAndFeaturedShow() {
+  const navigate = useNavigate();
   const [offset, setOffset]     = useState(0);
   const [transition, setTrans]  = useState(true);
   const total = teamData.length;
@@ -120,7 +121,11 @@ export default function HostsAndFeaturedShow() {
           </div>
           <h2 className={styles.sectionHeadline}>FEATURED SHOW</h2>
 
-          <div className={styles.featuredCard}>
+          <div 
+            className={styles.featuredCard}
+            onClick={() => navigate('/shows/the-fan-zone')}
+            style={{ cursor: 'pointer' }}
+          >
             <img
               src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
               alt="The Fan Zone"
@@ -130,12 +135,16 @@ export default function HostsAndFeaturedShow() {
               <span className={styles.catBadge}>TRENDS</span>
               <h3 className={styles.featuredTitle}>The Fan Zone</h3>
             </div>
-            <button className={styles.moreBtn} aria-label="More options">
+            <button 
+              className={styles.moreBtn} 
+              aria-label="View Show Details"
+              onClick={(e) => { e.stopPropagation(); navigate('/shows/the-fan-zone'); }}
+            >
               <FiMoreVertical />
             </button>
           </div>
 
-          <Link to="/shows" style={{ textDecoration: 'none' }}>
+          <Link to="/shows/the-fan-zone" style={{ textDecoration: 'none' }}>
             <button className={styles.discoverBtn}>DISCOVER MORE</button>
           </Link>
         </div>
