@@ -26,13 +26,13 @@
 
 .bgCircleLeftGreen {
   position: absolute;
-  bottom: -30px;
-  left: 6%;
-  width: 240px;
-  height: 240px;
+  bottom: 0px;
+  left: 21%;
+  width: 270px;
+  height: 270px;
   border-radius: 50%;
-  background: #E50914;
-  opacity: 0.65;
+  background: #38ef7d;
+  opacity: 0.92;
   z-index: 0;
   pointer-events: none;
 }
@@ -157,19 +157,19 @@
 .giantPlayWrapper {
   position: relative;
   z-index: 4;
-  margin-top: 8px;
+  margin-top: 14px;
 }
 
 .giantPlayBtn {
-  width: 68px;
-  height: 68px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
-  background: var(--primary-orange, #E50914);
+  background: #000000;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 24px rgba(229, 9, 20, 0.4), 0 0 0 8px rgba(229, 9, 20, 0.2);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
   transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
   cursor: pointer;
   border: none;
@@ -177,8 +177,8 @@
 
 .giantPlayBtn:hover {
   transform: scale(1.08);
-  background: #C40812;
-  box-shadow: 0 12px 30px rgba(229, 9, 20, 0.55), 0 0 0 10px rgba(229, 9, 20, 0.3);
+  background: #18181b;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.55);
 }
 
 .giantPlayBtn:active {
