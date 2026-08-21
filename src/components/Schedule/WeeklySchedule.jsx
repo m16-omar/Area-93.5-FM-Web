@@ -23,7 +23,13 @@ export const WeeklySchedule = () => {
       <div className={styles.watermarkTitle}>WEEKLY SCHEDULE</div>
 
       <div className={styles.sectionHeader}>
-        <h2 className={styles.mainTitle}>WEEKLY SCHEDULE</h2>
+        <h2 
+          className={styles.mainTitle} 
+          onClick={() => navigate('/shows')}
+          style={{ cursor: 'pointer' }}
+        >
+          WEEKLY SCHEDULE
+        </h2>
       </div>
 
       {/* Day Selector Tabs */}

@@ -7,6 +7,7 @@ import styles from './LatestNews.module.css';
 
 export const LatestNews = () => {
   const [activeCategory, setActiveCategory] = useState('ALL');
+  const [pageIndex, setPageIndex] = useState(0);
   const navigate = useNavigate();
 
   const getSlug = (title) => {
@@ -15,6 +16,22 @@ export const LatestNews = () => {
 
   const handleArticleClick = (title) => {
     navigate(`/news/${getSlug(title)}`);
+  };
+
+  const itemsPerPage = 3;
+  const filteredList = activeCategory === 'ALL' 
+    ? newsData.newsList 
+    : newsData.newsList.filter(n => n.category?.toUpperCase() === activeCategory);
+
+  const totalPages = Math.max(1, Math.ceil(filteredList.length / itemsPerPage));
+  const currentItems = filteredList.slice(pageIndex * itemsPerPage, (pageIndex + 1) * itemsPerPage);
+
+  const handlePrev = () => {
+    setPageIndex((prev) => (prev > 0 ? prev - 1 : totalPages - 1));
+  };
+
+  const handleNext = () => {
+    setPageIndex((prev) => (prev < totalPages - 1 ? prev + 1 : 0));
   };
 
   return (
@@ -28,19 +45,25 @@ export const LatestNews = () => {
             <button
               key={cat}
               className={`${styles.catBtn} ${activeCategory === cat ? styles.activeCat : ''}`}
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => { setActiveCategory(cat); setPageIndex(0); }}
             >
               {cat}
             </button>
           ))}
         </div>
 
-        <div className={styles.sponsorsBox}>
-          <span className="section-label">SPONSORED BY</span>
+        <div className={styles.sponsorsBox} onClick={() => navigate('/promote')} style={{ cursor: 'pointer' }}>
+          <span className="section-label">SPONSORED BY AREA 93.5 FM</span>
         </div>
       </div>
 
-      <h2 className={styles.mainTitle}>LATEST NEWS</h2>
+      <h2 
+        className={styles.mainTitle} 
+        onClick={() => navigate('/news')}
+        style={{ cursor: 'pointer' }}
+      >
+        LATEST NEWS
+      </h2>
 
       {/* News Grid */}
       <div className={styles.newsGrid}>
@@ -111,7 +134,7 @@ export const LatestNews = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          {newsData.newsList.map((item) => (
+          {(currentItems.length > 0 ? currentItems : newsData.newsList.slice(0, 3)).map((item) => (
             <div 
               key={item.id} 
               className={styles.smallItem}
@@ -126,8 +149,8 @@ export const LatestNews = () => {
           ))}
 
           <div className={styles.navRow}>
-            <button className={styles.navBtn}>PREV</button>
-            <button className={styles.navBtn}>NEXT</button>
+            <button className={styles.navBtn} onClick={handlePrev} aria-label="Previous News">PREV</button>
+            <button className={styles.navBtn} onClick={handleNext} aria-label="Next News">NEXT</button>
           </div>
         </motion.div>
       </div>

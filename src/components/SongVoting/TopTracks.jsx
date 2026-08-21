@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { FaHeart, FaPlay, FaPause } from 'react-icons/fa';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 import topTracksData from '../../data/topTracksData.json';
@@ -9,6 +10,7 @@ export const TopTracks = () => {
   const { playTrack, currentTrack, isPlaying } = useAudioPlayer();
   const [tracks, setTracks] = useState(topTracksData.tracks);
   const [votedMap, setVotedMap] = useState({});
+  const navigate = useNavigate();
 
   const handleVote = (id) => {
     setTracks(prev =>
@@ -22,6 +24,8 @@ export const TopTracks = () => {
     );
     setVotedMap(prev => ({ ...prev, [id]: !prev[id] }));
   };
+
+  const isFeaturedPlaying = currentTrack?.id === topTracksData.featuredTrack.id && isPlaying;
 
   return (
     <section className={styles.tracksSection} id="charts">
@@ -37,7 +41,11 @@ export const TopTracks = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={styles.mainTitle}>
+          <h2 
+            className={styles.mainTitle} 
+            onClick={() => navigate('/charts')}
+            style={{ cursor: 'pointer' }}
+          >
             TOP<br />
             TRACKS
           </h2>
@@ -46,7 +54,13 @@ export const TopTracks = () => {
             Have your say in the weekly Area 93.5 FM charts! Vote for your favorite tracks and hear them spun during our flagship weekend countdown.
           </p>
 
-          <h3 className={styles.subTitle}>Vote for your favourite song!</h3>
+          <h3 
+            className={styles.subTitle}
+            onClick={() => navigate('/charts')}
+            style={{ cursor: 'pointer' }}
+          >
+            Vote for your favourite song!
+          </h3>
         </motion.div>
 
         {/* Column 2: Featured Single Large Square Card */}
@@ -57,7 +71,11 @@ export const TopTracks = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <div className={styles.featuredCard}>
+          <div 
+            className={styles.featuredCard}
+            onClick={() => playTrack(topTracksData.featuredTrack)}
+            style={{ cursor: 'pointer' }}
+          >
             <div className={styles.featuredArtWrapper}>
               <img 
                 src={topTracksData.featuredTrack.image} 
@@ -75,7 +93,7 @@ export const TopTracks = () => {
               </div>
               <button 
                 className={`${styles.featuredVoteBtn} ${votedMap[topTracksData.featuredTrack.id] ? styles.voted : ''}`}
-                onClick={() => handleVote(topTracksData.featuredTrack.id)}
+                onClick={(e) => { e.stopPropagation(); handleVote(topTracksData.featuredTrack.id); }}
                 aria-label="Vote Featured Track"
               >
                 <FaHeart size={14} />
@@ -93,9 +111,13 @@ export const TopTracks = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           {tracks.slice(0, 5).map((track) => {
-            const isCurrentPlaying = currentTrack?.id === track.id && isPlaying;
             return (
-              <div key={track.id} className={styles.trackRowCard}>
+              <div 
+                key={track.id} 
+                className={styles.trackRowCard}
+                onClick={() => playTrack(track)}
+                style={{ cursor: 'pointer' }}
+              >
                 <img 
                   src={track.image} 
                   alt={track.title} 
@@ -110,7 +132,7 @@ export const TopTracks = () => {
 
                 <button 
                   className={`${styles.voteBtn} ${votedMap[track.id] ? styles.voted : ''}`}
-                  onClick={() => handleVote(track.id)}
+                  onClick={(e) => { e.stopPropagation(); handleVote(track.id); }}
                   aria-label="Vote Track"
                 >
                   <FaHeart size={13} />

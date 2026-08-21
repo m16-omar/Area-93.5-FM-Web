@@ -103,8 +103,11 @@ const allChartsCategories = [
 
 export const ChartsPage = () => {
   const { playTrack, currentTrack, isPlaying } = useAudioPlayer();
-  const [tracks, setTracks] = useState(chartsData.slice(0, 5));
+  const [tracks, setTracks] = useState(chartsData);
   const [userVotes, setUserVotes] = useState({});
+  const [showFullTracklist, setShowFullTracklist] = useState(false);
+
+  const displayTracks = showFullTracklist ? tracks : tracks.slice(0, 5);
 
   const handleVoteUp = (id) => {
     setTracks(prev =>
@@ -152,9 +155,9 @@ export const ChartsPage = () => {
 
         {/* 2-Column Content Grid */}
         <div className={styles.chartsGrid}>
-          {/* Left Column: Top 5 Tracks List */}
+          {/* Left Column: Top 5 / Full Tracks List */}
           <div className={styles.trackListCol}>
-            {tracks.map((track, idx) => {
+            {displayTracks.map((track, idx) => {
               const isSelected = currentTrack?.id === track.id && isPlaying;
               const voteState = userVotes[track.id];
 
@@ -215,8 +218,11 @@ export const ChartsPage = () => {
             })}
 
             {/* Centered Full Tracklist Button */}
-            <button className={styles.fullTracklistBtn}>
-              FULL TRACKLIST
+            <button 
+              className={styles.fullTracklistBtn}
+              onClick={() => setShowFullTracklist(prev => !prev)}
+            >
+              {showFullTracklist ? 'SHOW TOP 5' : 'FULL TRACKLIST'}
             </button>
           </div>
 
@@ -245,6 +251,8 @@ export const ChartsPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              onClick={() => playTrack(mostListenedTracks[0])}
+              style={{ cursor: 'pointer' }}
             >
               <div className={styles.topPicksImgWrapper}>
                 <img 

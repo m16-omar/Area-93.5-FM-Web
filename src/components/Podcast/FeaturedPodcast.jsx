@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { FaPlay, FaPause, FaInstagram, FaTwitter, FaYoutube, FaSpotify, FaTiktok } from 'react-icons/fa';
 import { FiCalendar, FiArrowRight, FiUser } from 'react-icons/fi';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
@@ -9,6 +10,7 @@ const podcastEpisodes = [
   {
     id: "ep1",
     title: "Top 10 Countdown #4",
+    artist: "Tobi Adebayo",
     date: "March 4, 2026",
     avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80",
     audioUrl: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
@@ -16,6 +18,7 @@ const podcastEpisodes = [
   {
     id: "ep2",
     title: "Top 10 Countdown #3",
+    artist: "Tobi Adebayo",
     date: "March 4, 2026",
     avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80",
     audioUrl: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
@@ -23,6 +26,7 @@ const podcastEpisodes = [
   {
     id: "ep3",
     title: "Top 10 Countdown #2",
+    artist: "Tobi Adebayo",
     date: "March 4, 2026",
     avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80",
     audioUrl: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
@@ -30,6 +34,7 @@ const podcastEpisodes = [
   {
     id: "ep4",
     title: "Top 10 Countdown #1",
+    artist: "Tobi Adebayo",
     date: "January 3, 2026",
     avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80",
     audioUrl: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
@@ -44,6 +49,7 @@ const listenLiveSchedule = [
 
 export const FeaturedPodcast = () => {
   const { playTrack, currentTrack, isPlaying } = useAudioPlayer();
+  const navigate = useNavigate();
 
   return (
     <section className={styles.podcastSection} id="podcast">
@@ -59,7 +65,11 @@ export const FeaturedPodcast = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={styles.mainTitle}>
+          <h2 
+            className={styles.mainTitle} 
+            onClick={() => navigate('/podcasts')} 
+            style={{ cursor: 'pointer' }}
+          >
             FEATURED<br />
             PODCAST
           </h2>
@@ -70,13 +80,22 @@ export const FeaturedPodcast = () => {
 
           {/* Listen Live Table */}
           <div className={styles.listenLiveSection}>
-            <div className={styles.tableHeader}>
+            <div 
+              className={styles.tableHeader} 
+              onClick={() => navigate('/shows')} 
+              style={{ cursor: 'pointer' }}
+            >
               <span className={styles.sectionLabel}>LISTEN LIVE</span>
             </div>
 
             <div className={styles.scheduleTable}>
               {listenLiveSchedule.map((item, idx) => (
-                <div key={idx} className={styles.scheduleRow}>
+                <div 
+                  key={idx} 
+                  className={styles.scheduleRow} 
+                  onClick={() => navigate('/shows')}
+                  style={{ cursor: 'pointer' }}
+                >
                   <div className={styles.dayCell}>{item.day}</div>
                   <div className={styles.timeCell}>
                     <span>{item.start}</span>
@@ -90,11 +109,19 @@ export const FeaturedPodcast = () => {
 
           {/* Hosted By Host Card */}
           <div className={styles.hostedSection}>
-            <div className={styles.tableHeader}>
+            <div 
+              className={styles.tableHeader} 
+              onClick={() => navigate('/hosts/dj-tobi')} 
+              style={{ cursor: 'pointer' }}
+            >
               <span className={styles.sectionLabel}>HOSTED BY</span>
             </div>
 
-            <div className={styles.hostCard}>
+            <div 
+              className={styles.hostCard}
+              onClick={() => navigate('/hosts/dj-tobi')}
+              style={{ cursor: 'pointer' }}
+            >
               <img 
                 src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80" 
                 alt="Tobi Adebayo" 
@@ -110,11 +137,11 @@ export const FeaturedPodcast = () => {
                 <span className={styles.hostRoleBadge}>Host</span>
                 <h3 className={styles.hostName}>Tobi Adebayo</h3>
                 <div className={styles.hostSocials}>
-                  <a href="#" className={styles.socialIconBtn} aria-label="Instagram"><FaInstagram /></a>
-                  <a href="#" className={styles.socialIconBtn} aria-label="Twitter"><FaTwitter /></a>
-                  <a href="#" className={styles.socialIconBtn} aria-label="YouTube"><FaYoutube /></a>
-                  <a href="#" className={styles.socialIconBtn} aria-label="Spotify"><FaSpotify /></a>
-                  <a href="#" className={styles.socialIconBtn} aria-label="TikTok"><FaTiktok /></a>
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.socialIconBtn} aria-label="Instagram" onClick={(e) => e.stopPropagation()}><FaInstagram /></a>
+                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className={styles.socialIconBtn} aria-label="Twitter" onClick={(e) => e.stopPropagation()}><FaTwitter /></a>
+                  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className={styles.socialIconBtn} aria-label="YouTube" onClick={(e) => e.stopPropagation()}><FaYoutube /></a>
+                  <a href="https://spotify.com" target="_blank" rel="noopener noreferrer" className={styles.socialIconBtn} aria-label="Spotify" onClick={(e) => e.stopPropagation()}><FaSpotify /></a>
+                  <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className={styles.socialIconBtn} aria-label="TikTok" onClick={(e) => e.stopPropagation()}><FaTiktok /></a>
                 </div>
               </div>
             </div>
@@ -133,14 +160,19 @@ export const FeaturedPodcast = () => {
             const isSelected = currentTrack?.id === ep.id && isPlaying;
 
             return (
-              <div key={ep.id} className={styles.episodeCard}>
+              <div 
+                key={ep.id} 
+                className={styles.episodeCard}
+                onClick={() => playTrack(ep)}
+                style={{ cursor: 'pointer' }}
+              >
                 {/* Yellow Header with Circular Avatar Cutout */}
                 <div className={styles.episodeHeaderBg}>
                   <div className={styles.avatarCircleWrap}>
                     <img src={ep.avatar} alt={ep.title} className={styles.avatarCircleImg} />
                     <button 
                       className={styles.playCircleBtn} 
-                      onClick={() => playTrack(ep)}
+                      onClick={(e) => { e.stopPropagation(); playTrack(ep); }}
                       aria-label={`Play ${ep.title}`}
                     >
                       {isSelected ? <FaPause size={14} /> : <FaPlay size={14} style={{ marginLeft: '2px' }} />}

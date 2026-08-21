@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { FiMoreHorizontal, FiClock } from 'react-icons/fi';
 import { useAudioPlayer, LIVE_STREAM_URL } from '../../context/AudioPlayerContext';
@@ -8,6 +9,7 @@ import styles from './OnAirBanner.module.css';
 
 export const OnAirBanner = () => {
   const { playTrack, currentTrack, isPlaying, togglePlayPause } = useAudioPlayer();
+  const navigate = useNavigate();
 
   const handleLivePlay = () => {
     if (currentTrack?.audioUrl === LIVE_STREAM_URL) {
@@ -31,9 +33,9 @@ export const OnAirBanner = () => {
       {/* Background Glowing Green Orb */}
       <div className={styles.bgGlowOrb} />
 
-      {/* Top Watermark / Brand Banner Row matching Screenshot 5 */}
+      {/* Top Watermark / Brand Banner Row */}
       <div className={styles.watermarkRow}>
-        <div className={styles.stationBrandLogo}>
+        <div className={styles.stationBrandLogo} onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
           <span className={styles.brandNum}>93.5</span>
           <span className={styles.brandText}>AREA</span>
           <span className={styles.brandSub}>FM</span>
@@ -61,12 +63,20 @@ export const OnAirBanner = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className={styles.headerLabelWrap}>
+          <div 
+            className={styles.headerLabelWrap}
+            onClick={() => navigate('/shows/the-fan-zone')}
+            style={{ cursor: 'pointer' }}
+          >
             <span className={styles.sectionBadge}>SHOW ON AIR</span>
             <span className={styles.sectionLine} />
           </div>
 
-          <div className={styles.onAirCard}>
+          <div 
+            className={styles.onAirCard}
+            onClick={() => navigate('/shows/the-fan-zone')}
+            style={{ cursor: 'pointer' }}
+          >
             <img 
               src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" 
               alt="The Fan Zone" 
@@ -97,7 +107,11 @@ export const OnAirBanner = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className={styles.headerLabelWrap}>
+          <div 
+            className={styles.headerLabelWrap}
+            onClick={() => navigate('/charts')}
+            style={{ cursor: 'pointer' }}
+          >
             <span className={styles.sectionBadge}>PLAYLIST</span>
             <span className={styles.sectionLine} />
           </div>
@@ -106,7 +120,12 @@ export const OnAirBanner = () => {
             {playlistData.slice(0, 4).map((item) => {
               const isSelected = currentTrack?.id === item.id && isPlaying;
               return (
-                <div key={item.id} className={styles.playlistItem}>
+                <div 
+                  key={item.id} 
+                  className={styles.playlistItem}
+                  onClick={() => playTrack(item)}
+                  style={{ cursor: 'pointer' }}
+                >
                   <img src={item.image} alt={item.title} className={styles.playlistThumb} loading="lazy" />
 
                   <div className={styles.playlistMeta}>
@@ -116,13 +135,17 @@ export const OnAirBanner = () => {
 
                   <button 
                     className={styles.actionCircle}
-                    onClick={() => playTrack(item)}
+                    onClick={(e) => { e.stopPropagation(); playTrack(item); }}
                     aria-label={`Play ${item.title}`}
                   >
                     {isSelected ? <FaPause size={10} /> : <FaPlay size={10} style={{ marginLeft: '1px' }} />}
                   </button>
 
-                  <button className={styles.moreCircle} aria-label="More Options">
+                  <button 
+                    className={styles.moreCircle} 
+                    aria-label="View in Charts"
+                    onClick={(e) => { e.stopPropagation(); navigate('/charts'); }}
+                  >
                     <FiMoreHorizontal />
                   </button>
                 </div>

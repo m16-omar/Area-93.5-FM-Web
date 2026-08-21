@@ -1,9 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FaFacebookF, FaYoutube, FaTiktok, FaInstagram, FaTwitter } from 'react-icons/fa';
 import { FiPhone, FiMail } from 'react-icons/fi';
 import styles from './Footer.module.css';
 
 export const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <footer className={styles.footerSection} id="contacts">
       {/* Background Watermark */}
@@ -15,7 +18,11 @@ export const Footer = () => {
       <div className={styles.footerGrid}>
         {/* Left Column: Logo & Slogan */}
         <div className={styles.leftCol}>
-          <div className={styles.brandTitleWrap}>
+          <div 
+            className={styles.brandTitleWrap} 
+            onClick={() => navigate('/')} 
+            style={{ cursor: 'pointer' }}
+          >
             <span className={styles.logoNumber}>93.5</span>
             <span className={styles.logoText}>AREA</span>
             <span className={styles.logoSub}>FM</span>
@@ -46,7 +53,7 @@ export const Footer = () => {
 
           {/* Contacts */}
           <div className={styles.subBlock}>
-            <span className={styles.sectionBadge}>CONTACTS</span>
+            <span className={styles.sectionBadge} onClick={() => navigate('/contact')} style={{ cursor: 'pointer' }}>CONTACTS</span>
             <div className={styles.contactList}>
               <a href="tel:+2348099358000" className={styles.contactItem}>
                 <FiPhone size={13} className={styles.contactIcon} />
@@ -62,10 +69,20 @@ export const Footer = () => {
 
         {/* Right Column: Latest Podcasts */}
         <div className={styles.rightCol}>
-          <span className={styles.sectionBadge}>LATEST PODCASTS</span>
+          <span 
+            className={styles.sectionBadge} 
+            onClick={() => navigate('/podcasts')} 
+            style={{ cursor: 'pointer' }}
+          >
+            LATEST PODCASTS
+          </span>
 
           <div className={styles.podcastStack}>
-            <div className={styles.podcastMiniCard}>
+            <div 
+              className={styles.podcastMiniCard} 
+              onClick={() => navigate('/podcasts')} 
+              style={{ cursor: 'pointer' }}
+            >
               <img 
                 src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=160&q=80" 
                 alt="Top 10 Countdown #1" 
@@ -75,7 +92,11 @@ export const Footer = () => {
               <span className={styles.podcastTitle}>Top 10 Countdown #1</span>
             </div>
 
-            <div className={styles.podcastMiniCard}>
+            <div 
+              className={styles.podcastMiniCard} 
+              onClick={() => navigate('/podcasts')} 
+              style={{ cursor: 'pointer' }}
+            >
               <img 
                 src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=160&q=80" 
                 alt="Top 10 Countdown #2" 
