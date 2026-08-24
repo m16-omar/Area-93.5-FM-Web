@@ -161,7 +161,7 @@ export const Hero = () => {
             onClick={() => navigate('/shows')}
             style={{ cursor: 'pointer' }}
           >
-            <span className={styles.sectionBadge}>TODAY'S SHOWS • {formattedDate}</span>
+            <span className={styles.sectionBadge}>UPCOMING SHOWS • {formattedDate}</span>
             <span className={styles.sectionAccentLine} />
           </div>
 
