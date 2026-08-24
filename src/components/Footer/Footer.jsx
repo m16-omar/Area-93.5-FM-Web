@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaFacebookF, FaYoutube, FaTiktok, FaInstagram, FaTwitter } from 'react-icons/fa';
-import { FiPhone, FiMail } from 'react-icons/fi';
+import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
 import styles from './Footer.module.css';
 
 export const Footer = () => {
@@ -62,6 +62,15 @@ export const Footer = () => {
               <a href="mailto:info@935areafm.com" className={styles.contactItem}>
                 <FiMail size={13} className={styles.contactIcon} />
                 <span>info@935areafm.com</span>
+              </a>
+              <a 
+                href="https://maps.google.com/?q=Plot+11+Lateef+Jakande+Rd,+Agidingbi,+Ikeja,+Lagos" 
+                target="_blank" 
+                rel="noreferrer" 
+                className={styles.contactItem}
+              >
+                <FiMapPin size={13} className={styles.contactIcon} />
+                <span>Plot 11 Lateef Jakande Rd, Agidingbi, Ikeja, Lagos</span>
               </a>
             </div>
           </div>

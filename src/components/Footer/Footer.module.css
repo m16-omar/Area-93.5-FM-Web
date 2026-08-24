@@ -136,12 +136,13 @@
 
 .contactItem {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
   color: #334155;
   font-size: 0.82rem;
   font-weight: 600;
   text-decoration: none;
+  line-height: 1.35;
   transition: color 0.2s;
 }
 
@@ -151,6 +152,8 @@
 
 .contactIcon {
   color: #004E68;
+  margin-top: 2px;
+  flex-shrink: 0;
 }
 
 /* Right Column */
