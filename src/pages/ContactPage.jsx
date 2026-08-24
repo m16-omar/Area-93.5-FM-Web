@@ -241,13 +241,31 @@ export const ContactPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <img 
-              src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=80" 
-              alt="Studio Location" 
-              className={styles.mapImg}
-            />
+            {/* Real Interactive Google Map */}
+            <div className={styles.mapIframeWrapper}>
+              <iframe
+                title="93.5 Area FM Studio Location"
+                src="https://maps.google.com/maps?q=Plot+11+Lateef+Jakande+Rd,+Agidingbi,+Ikeja+101233,+Lagos,+Nigeria&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                className={styles.googleMapIframe}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+
             <div className={styles.mapOverlay}>
-              <span className={styles.mapBadge}>STUDIO LOCATION</span>
+              <div className={styles.mapHeaderRow}>
+                <span className={styles.mapBadge}>STUDIO LOCATION</span>
+                <a 
+                  href="https://www.google.com/maps/dir/?api=1&destination=Plot+11+Lateef+Jakande+Rd,+Agidingbi,+Ikeja,+Lagos" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className={styles.directionsBtn}
+                >
+                  <FiMapPin size={12} /> GET DIRECTIONS
+                </a>
+              </div>
+
               <h4 className={styles.mapTitle}>
                 93.5 AREA FM HEADQUARTERS
               </h4>
@@ -256,9 +274,9 @@ export const ContactPage = () => {
               </p>
 
               <div className={styles.mapDetailsList}>
-                <div><strong>Live Studio Line:</strong> +234 809 935 8000</div>
-                <div><strong>WhatsApp Line:</strong> +234 812 935 8001</div>
-                <div><strong>Email:</strong> contact@935areafm.com</div>
+                <div><strong>Live Studio Line:</strong> <a href="tel:+2348099358000" className={styles.mapLink}>+234 809 935 8000</a></div>
+                <div><strong>WhatsApp Line:</strong> <a href="https://wa.me/2348129358001" target="_blank" rel="noreferrer" className={styles.mapLink}>+234 812 935 8001</a></div>
+                <div><strong>Email:</strong> <a href="mailto:contact@935areafm.com" className={styles.mapLink}>contact@935areafm.com</a></div>
               </div>
             </div>
           </motion.div>
