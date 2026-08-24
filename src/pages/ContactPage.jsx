@@ -267,7 +267,7 @@ export const ContactPage = () => {
               </div>
 
               <h4 className={styles.mapTitle}>
-                93.5 AREA FM HEADQUARTERS
+                93.5 AREA FM OFFICE
               </h4>
               <p className={styles.mapAddress}>
                 Plot 11 Lateef Jakande Rd, Agidingbi, Ikeja 101233, Lagos, Nigeria
