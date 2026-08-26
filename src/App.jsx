@@ -34,6 +34,7 @@ function App() {
           <Route path="/hosts" element={<HostsPage />} />
           <Route path="/videos" element={<VideosPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/about" element={<ContactPage />} />
           <Route path="/promote" element={<PromotePage />} />
           <Route path="/hosts/:slug" element={<HostDetailPage />} />
           <Route path="/popup-player" element={<PopUpPlayerPage />} />

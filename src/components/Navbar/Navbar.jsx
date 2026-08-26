@@ -265,7 +265,7 @@ export const Navbar = () => {
                   <Link to="/promote" className={`${styles.navLink} ${isActive('/promote') ? styles.activeNavLink : ''}`}>PROMOTE</Link>
                 </li>
                 <li className={styles.navItem}>
-                  <Link to="/contact" className={`${styles.navLink} ${isActive('/contact') ? styles.activeNavLink : ''}`}>CONTACTS</Link>
+                  <Link to="/contact" className={`${styles.navLink} ${isActive('/contact') || isActive('/about') ? styles.activeNavLink : ''}`}>ABOUT US</Link>
                 </li>
               </ul>
             </nav>
@@ -535,7 +535,7 @@ export const Navbar = () => {
                     <Link to="/promote" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/promote') ? styles.activeMobileLink : ''}`}>PROMOTE</Link>
                   </li>
                   <li>
-                    <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/contact') ? styles.activeMobileLink : ''}`}>CONTACTS</Link>
+                    <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className={`${styles.mobileNavLink} ${isActive('/contact') || isActive('/about') ? styles.activeMobileLink : ''}`}>ABOUT US</Link>
                   </li>
                 </ul>
               </div>
