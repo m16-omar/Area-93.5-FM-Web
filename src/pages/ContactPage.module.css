@@ -118,7 +118,305 @@
 }
 
 /* ========================================================
-   2. CONTACT INFO CARDS SECTION
+   2. STATS COUNTER BAR
+   ======================================================== */
+.statsSection {
+  position: relative;
+  max-width: 1140px;
+  margin: -40px auto 40px;
+  padding: 0 48px;
+  z-index: 4;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  background: #ffffff;
+  padding: 30px 36px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 107, 141, 0.12);
+  box-shadow: 0 12px 36px rgba(0, 78, 104, 0.1);
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-right: 1px solid rgba(0, 107, 141, 0.1);
+}
+
+.statItem:last-child {
+  border-right: none;
+}
+
+.statNumber {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 2.8rem;
+  line-height: 1;
+  color: #004E68;
+  letter-spacing: -0.02em;
+}
+
+.statUnit {
+  color: var(--primary-orange, #E50914);
+  font-size: 1.8rem;
+}
+
+.statLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+/* ========================================================
+   3. OUR STORY & BRAND PILLARS SECTION
+   ======================================================== */
+.storySection {
+  position: relative;
+  max-width: 1140px;
+  margin: 60px auto;
+  padding: 0 48px;
+  box-sizing: border-box;
+}
+
+.storyContainer {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 107, 141, 0.12);
+  padding: 48px;
+  box-shadow: 0 10px 30px rgba(0, 78, 104, 0.06);
+}
+
+.storyHeader {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 48px;
+}
+
+.sectionBadge {
+  display: inline-block;
+  background: var(--primary-orange, #E50914);
+  color: #ffffff;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.storyTitle {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  color: #004E68;
+  margin: 0 0 14px;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.storySubtitle {
+  font-size: 1rem;
+  color: #475569;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.pillarCard {
+  background: #F8FAFC;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 107, 141, 0.1);
+  padding: 30px;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.pillarCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary-orange, #E50914);
+  box-shadow: 0 12px 28px rgba(0, 78, 104, 0.1);
+}
+
+.pillarIconWrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #004E68 0%, #002D3D 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 14px rgba(0, 78, 104, 0.25);
+}
+
+.pillarTitle {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 1.35rem;
+  color: #004E68;
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+
+.pillarDesc {
+  font-size: 0.92rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ========================================================
+   4. ON-AIR VOICES SECTION
+   ======================================================== */
+.hostsSection {
+  position: relative;
+  max-width: 1140px;
+  margin: 60px auto;
+  padding: 0 48px;
+  box-sizing: border-box;
+}
+
+.hostsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.hostsHeaderRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.viewAllHostsBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #004E68;
+  color: #ffffff;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.viewAllHostsBtn:hover {
+  background: var(--primary-orange, #E50914);
+  transform: translateY(-2px);
+}
+
+.hostsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.hostCard {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 107, 141, 0.12);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 78, 104, 0.07);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.hostImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/4.5;
+  overflow: hidden;
+  background: #002D3D;
+}
+
+.hostImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.hostCard:hover .hostImg {
+  transform: scale(1.06);
+}
+
+.hostBadge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--primary-orange, #E50914);
+  color: #ffffff;
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 800;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.hostInfo {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hostName {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-weight: 900;
+  font-size: 1.25rem;
+  color: #004E68;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.hostRole {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.hostShows {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.hostShowTag {
+  background: rgba(0, 107, 141, 0.08);
+  color: #004E68;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* ========================================================
+   5. CONTACT INFO CARDS SECTION
    ======================================================== */
 .contactMainSection {
   position: relative;
@@ -126,6 +424,12 @@
   margin: 60px auto 120px;
   padding: 0 48px;
   box-sizing: border-box;
+}
+
+.contactHeaderBlock {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 48px;
 }
 
 .infoCardsGrid {
@@ -453,8 +757,28 @@
     padding: 120px 32px 60px;
   }
 
+  .statsSection,
+  .storySection,
+  .hostsSection,
   .contactMainSection {
     padding: 0 32px;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .statItem:nth-child(2) {
+    border-right: none;
+  }
+
+  .pillarsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .hostsGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .infoCardsGrid {
@@ -472,8 +796,46 @@
     padding: 100px 20px 50px;
   }
 
+  .statsSection,
+  .storySection,
+  .hostsSection,
   .contactMainSection {
     padding: 0 20px;
+  }
+
+  .statsSection {
+    margin-top: -20px;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+
+  .statItem {
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 107, 141, 0.1);
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+
+  .statItem:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .storyContainer {
+    padding: 28px 20px;
+  }
+
+  .hostsHeaderRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hostsGrid {
+    grid-template-columns: 1fr;
   }
 
   .infoCardsGrid {

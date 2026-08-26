@@ -1,13 +1,29 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FiMapPin, FiPhone, FiMail, FiClock, FiSend, FiCheckCircle } from 'react-icons/fi';
+import { 
+  FiMapPin, 
+  FiPhone, 
+  FiMail, 
+  FiClock, 
+  FiSend, 
+  FiCheckCircle, 
+  FiRadio, 
+  FiMusic, 
+  FiUsers, 
+  FiGlobe, 
+  FiZap, 
+  FiArrowRight 
+} from 'react-icons/fi';
 import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import contactInfoData from '../data/contactInfoData.json';
+import teamData from '../data/teamData.json';
 import styles from './ContactPage.module.css';
 
 export const ContactPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -25,6 +41,29 @@ export const ContactPage = () => {
     setFormData({ fullName: '', email: '', phone: '', subject: '', message: '' });
   };
 
+  const corePillars = [
+    {
+      icon: <FiRadio />,
+      title: "Grassroots Voice",
+      desc: "Authentic, unfiltered broadcasting that connects every neighbourhood across Lagos, giving real people and communities an active voice on the airwaves."
+    },
+    {
+      icon: <FiMusic />,
+      title: "Afrobeats & Urban Anthems",
+      desc: "Home to the hottest chart-topping music, street anthems, exclusive artist interviews, and trendsetting daily live DJ sets."
+    },
+    {
+      icon: <FiGlobe />,
+      title: "Global Digital Stream",
+      desc: "Broadcasting on 93.5 FM across Lagos and streaming 24/7 in high-fidelity to millions of listeners worldwide via web and mobile apps."
+    },
+    {
+      icon: <FiUsers />,
+      title: "Youth & Creative Hub",
+      desc: "Empowering upcoming broadcasters, DJs, musicians, and creators through masterclasses, live stage opportunities, and talent showcases."
+    }
+  ];
+
   return (
     <main className={styles.contactPageContainer}>
       <Navbar />
@@ -35,7 +74,7 @@ export const ContactPage = () => {
         <div className={styles.glowCircleTeal} />
 
         <div className={styles.watermarkText}>
-          CONTACT
+          ABOUT US
         </div>
 
         <div className={styles.heroContent}>
@@ -46,7 +85,7 @@ export const ContactPage = () => {
             transition={{ duration: 0.4 }}
           >
             <div className={styles.tagDot} />
-            <span className={styles.tagText}>GET IN TOUCH WITH AREA 93.5 FM</span>
+            <span className={styles.tagText}>ABOUT 93.5 AREA FM</span>
           </motion.div>
 
           <motion.h1 
@@ -55,7 +94,7 @@ export const ContactPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            CONTACT OUR BROADCAST TEAM
+            ONE VOICE, EVERY AREA
           </motion.h1>
 
           <motion.p 
@@ -64,13 +103,146 @@ export const ContactPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Have song requests, press inquiries, advertising partnerships, or listener feedback? Send us a message or reach out via our direct hotlines.
+            93.5 Area FM is Lagos’ premier urban radio powerhouse. We blend high-energy afrobeats, street culture, hard-hitting talk shows, and community empowerment into an electrifying broadcast experience on air and online.
           </motion.p>
         </div>
       </section>
 
-      {/* 2. CONTACT INFO CARDS & FORM SECTION */}
+      {/* 2. STATS COUNTER BAR */}
+      <section className={styles.statsSection}>
+        <div className={styles.statsGrid}>
+          <motion.div 
+            className={styles.statItem}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+          >
+            <div className={styles.statNumber}>93.5 <span className={styles.statUnit}>FM</span></div>
+            <div className={styles.statLabel}>Official Frequency</div>
+          </motion.div>
+
+          <motion.div 
+            className={styles.statItem}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+          >
+            <div className={styles.statNumber}>5M+</div>
+            <div className={styles.statLabel}>Weekly Listeners</div>
+          </motion.div>
+
+          <motion.div 
+            className={styles.statItem}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+          >
+            <div className={styles.statNumber}>24/7</div>
+            <div className={styles.statLabel}>Live Non-Stop Stream</div>
+          </motion.div>
+
+          <motion.div 
+            className={styles.statItem}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+          >
+            <div className={styles.statNumber}>100%</div>
+            <div className={styles.statLabel}>Urban Culture & Hits</div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 3. OUR STORY & BRAND PILLARS SECTION */}
+      <section className={styles.storySection}>
+        <div className={styles.storyContainer}>
+          <div className={styles.storyHeader}>
+            <span className={styles.sectionBadge}>OUR MISSION & STORY</span>
+            <h2 className={styles.storyTitle}>THE HEARTBEAT OF LAGOS URBAN RADIO</h2>
+            <p className={styles.storySubtitle}>
+              Founded with the bold mission to give every neighbourhood a platform, 93.5 Area FM celebrates the resilience, music, and distinct cultural energy of Nigeria. From grassroots discussions to global Afrobeats releases, our studio is where the streets meet the airwaves.
+            </p>
+          </div>
+
+          <div className={styles.pillarsGrid}>
+            {corePillars.map((pillar, idx) => (
+              <motion.div 
+                key={idx}
+                className={styles.pillarCard}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+              >
+                <div className={styles.pillarIconWrapper}>
+                  {pillar.icon}
+                </div>
+                <h3 className={styles.pillarTitle}>{pillar.title}</h3>
+                <p className={styles.pillarDesc}>{pillar.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. MEET THE VOICES (HOSTS PREVIEW) */}
+      <section className={styles.hostsSection}>
+        <div className={styles.hostsContainer}>
+          <div className={styles.hostsHeaderRow}>
+            <div>
+              <span className={styles.sectionBadge}>ON-AIR VOICES</span>
+              <h2 className={styles.storyTitle}>MEET OUR PRESENTERS & DJS</h2>
+            </div>
+            <button 
+              className={styles.viewAllHostsBtn}
+              onClick={() => navigate('/hosts')}
+            >
+              ALL HOSTS & DJS <FiArrowRight />
+            </button>
+          </div>
+
+          <div className={styles.hostsGrid}>
+            {teamData.slice(0, 4).map((host) => (
+              <motion.div 
+                key={host.id}
+                className={styles.hostCard}
+                onClick={() => navigate(`/hosts/${host.slug}`)}
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.25 }}
+              >
+                <div className={styles.hostImageWrapper}>
+                  <img src={host.photo} alt={host.name} className={styles.hostImg} loading="lazy" />
+                  <span className={styles.hostBadge}>{host.badge}</span>
+                </div>
+                <div className={styles.hostInfo}>
+                  <h4 className={styles.hostName}>{host.name}</h4>
+                  <p className={styles.hostRole}>{host.role}</p>
+                  <div className={styles.hostShows}>
+                    {host.shows.slice(0, 2).map((sh, sIdx) => (
+                      <span key={sIdx} className={styles.hostShowTag}>{sh}</span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. CONTACT INFO CARDS & FORM SECTION */}
       <section className={styles.contactMainSection}>
+        <div className={styles.contactHeaderBlock}>
+          <span className={styles.sectionBadge}>GET IN TOUCH</span>
+          <h2 className={styles.storyTitle}>VISIT OUR STUDIO OR DROP A LINE</h2>
+          <p className={styles.storySubtitle}>
+            Have song requests, press releases, sponsorship opportunities, or listener feedback? Reach our team directly.
+          </p>
+        </div>
+
         {/* Top 3 Info Cards */}
         <div className={styles.infoCardsGrid}>
           {/* Card 1: Address */}
