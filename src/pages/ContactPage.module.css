@@ -27,6 +27,7 @@
   height: 280px;
   border-radius: 50%;
   background: var(--primary-orange);
+  opacity: 0.18;
   z-index: 1;
   pointer-events: none;
 }
