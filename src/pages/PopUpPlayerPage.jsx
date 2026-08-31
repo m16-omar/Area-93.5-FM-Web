@@ -96,10 +96,10 @@ export const PopUpPlayerPage = () => {
       <footer className={styles.popupFooter}>
         <span className={styles.stationFreq}>93.5 FM · LAGOS</span>
         <div className={styles.footerActions}>
-          <a href="https://instagram.com" target="_blank" rel="noreferrer" className={styles.socialMiniLink} aria-label="Instagram">
+          <a href="https://www.instagram.com/935areafm/" target="_blank" rel="noreferrer" className={styles.socialMiniLink} aria-label="Instagram">
             <FaInstagram />
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noreferrer" className={styles.socialMiniLink} aria-label="Twitter">
+          <a href="https://x.com/935areafm" target="_blank" rel="noreferrer" className={styles.socialMiniLink} aria-label="Twitter">
             <FaTwitter />
           </a>
           <a href="https://youtube.com" target="_blank" rel="noreferrer" className={styles.socialMiniLink} aria-label="YouTube">

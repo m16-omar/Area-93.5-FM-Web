@@ -42,10 +42,10 @@ export const Footer = () => {
               <a href="https://youtube.com" target="_blank" rel="noreferrer" className={styles.socialSquare} aria-label="YouTube">
                 <FaYoutube />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" className={styles.socialSquare} aria-label="Instagram">
+              <a href="https://www.instagram.com/935areafm/" target="_blank" rel="noreferrer" className={styles.socialSquare} aria-label="Instagram">
                 <FaInstagram />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noreferrer" className={styles.socialSquare} aria-label="Twitter">
+              <a href="https://x.com/935areafm" target="_blank" rel="noreferrer" className={styles.socialSquare} aria-label="Twitter">
                 <FaTwitter />
               </a>
             </div>

@@ -188,9 +188,9 @@ export const Navbar = () => {
         <div className={styles.topSocials}>
           <a href="#" className={styles.topSocialLink} aria-label="YouTube"><FaYoutube /></a>
           <a href="#" className={styles.topSocialLink} aria-label="TikTok"><FaTiktok /></a>
-          <a href="#" className={styles.topSocialLink} aria-label="Instagram"><FaInstagram /></a>
+          <a href="https://www.instagram.com/935areafm/" target="_blank" rel="noreferrer" className={styles.topSocialLink} aria-label="Instagram"><FaInstagram /></a>
           <a href="#" className={styles.topSocialLink} aria-label="Facebook"><FaFacebookF /></a>
-          <a href="#" className={styles.topSocialLink} aria-label="Twitter"><FaTwitter /></a>
+          <a href="https://x.com/935areafm" target="_blank" rel="noreferrer" className={styles.topSocialLink} aria-label="X (Twitter)"><FaTwitter /></a>
         </div>
       </div>
 
@@ -576,9 +576,9 @@ export const Navbar = () => {
                 <div className={styles.mobileSocialsRow}>
                   <a href="#" aria-label="YouTube"><FaYoutube /></a>
                   <a href="#" aria-label="TikTok"><FaTiktok /></a>
-                  <a href="#" aria-label="Instagram"><FaInstagram /></a>
+                  <a href="https://www.instagram.com/935areafm/" target="_blank" rel="noreferrer" aria-label="Instagram"><FaInstagram /></a>
                   <a href="#" aria-label="Facebook"><FaFacebookF /></a>
-                  <a href="#" aria-label="Twitter"><FaTwitter /></a>
+                  <a href="https://x.com/935areafm" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><FaTwitter /></a>
                 </div>
               </div>
             </div>
