@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { FaInstagram, FaTwitter, FaYoutube, FaSpotify, FaTwitch, FaSoundcloud, FaPlay, FaPause, FaUser, FaTiktok } from 'react-icons/fa';
+import { FaInstagram, FaYoutube, FaSpotify, FaTwitch, FaSoundcloud, FaPlay, FaPause, FaUser, FaTiktok } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
@@ -158,7 +158,7 @@ export const HostsPage = () => {
                 <h3 className={styles.featuredHostName}>{featuredHost.name}</h3>
                 <div className={styles.featuredHostSocials}>
                   <a href="#" className={styles.miniSocialCircle} aria-label="Instagram" onClick={(e) => e.stopPropagation()}><FaInstagram /></a>
-                  <a href="#" className={styles.miniSocialCircle} aria-label="Twitter" onClick={(e) => e.stopPropagation()}><FaTwitter /></a>
+                  <a href="#" className={styles.miniSocialCircle} aria-label="X" onClick={(e) => e.stopPropagation()}><FaXTwitter /></a>
                   <a href="https://youtube.com" target="_blank" rel="noreferrer" className={styles.miniSocialCircle} aria-label="YouTube" onClick={(e) => e.stopPropagation()}><FaYoutube /></a>
                   <a href="https://spotify.com" target="_blank" rel="noreferrer" className={styles.miniSocialCircle} aria-label="Spotify" onClick={(e) => e.stopPropagation()}><FaSpotify /></a>
                   <a href="https://tiktok.com" target="_blank" rel="noreferrer" className={styles.miniSocialCircle} aria-label="TikTok" onClick={(e) => e.stopPropagation()}><FaTiktok /></a>
@@ -251,7 +251,7 @@ export const HostsPage = () => {
                   
                   <div className={styles.memberSocialsRow}>
                     <span className={styles.memberSocialCircle} aria-label="Instagram"><FaInstagram /></span>
-                    <span className={styles.memberSocialCircle} aria-label="Twitter"><FaTwitter /></span>
+                    <span className={styles.memberSocialCircle} aria-label="X"><FaXTwitter /></span>
                     <span className={styles.memberSocialCircle} aria-label="YouTube"><FaYoutube /></span>
                     <span className={styles.memberSocialCircle} aria-label="Spotify"><FaSpotify /></span>
                     <span className={styles.memberSocialCircle} aria-label="TikTok"><FaTiktok /></span>

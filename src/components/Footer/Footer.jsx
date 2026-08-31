@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaFacebookF, FaYoutube, FaTiktok, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { FaFacebookF, FaYoutube, FaTiktok, FaInstagram } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
 import styles from './Footer.module.css';
 
@@ -45,8 +46,8 @@ export const Footer = () => {
               <a href="https://www.instagram.com/935areafm/" target="_blank" rel="noreferrer" className={styles.socialSquare} aria-label="Instagram">
                 <FaInstagram />
               </a>
-              <a href="https://x.com/935areafm" target="_blank" rel="noreferrer" className={styles.socialSquare} aria-label="Twitter">
-                <FaTwitter />
+              <a href="https://x.com/935areafm" target="_blank" rel="noreferrer" className={styles.socialSquare} aria-label="X">
+                <FaXTwitter />
               </a>
             </div>
           </div>

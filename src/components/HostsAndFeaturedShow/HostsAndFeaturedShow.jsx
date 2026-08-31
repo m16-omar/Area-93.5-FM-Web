@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiUser, FiMoreVertical } from 'react-icons/fi';
-import { FaInstagram, FaYoutube, FaSpotify } from 'react-icons/fa6';
-import { FaTwitter } from 'react-icons/fa';
+import { FaInstagram, FaYoutube, FaSpotify, FaXTwitter } from 'react-icons/fa6';
 import { SiTiktok } from 'react-icons/si';
 import teamData from '../../data/teamData.json';
 import styles from './HostsAndFeaturedShow.module.css';
 
 const socialIcons = [
   { Icon: FaInstagram, key: 'ig' },
-  { Icon: FaTwitter,   key: 'tw' },
+  { Icon: FaXTwitter,  key: 'tw' },
   { Icon: FaYoutube,   key: 'yt' },
   { Icon: FaSpotify,   key: 'sp' },
   { Icon: SiTiktok,    key: 'tk' },

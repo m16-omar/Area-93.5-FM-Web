@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaInstagram, FaTwitter, FaSpotify } from 'react-icons/fa';
+import { FaInstagram, FaSpotify } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import styles from './PopularHosts.module.css';
 
 export const PopularHosts = ({ hosts }) => {
@@ -31,7 +32,7 @@ export const PopularHosts = ({ hosts }) => {
 
             <div className={styles.socialsRow}>
               {h.socials?.instagram && <a href={h.socials.instagram} aria-label="Instagram"><FaInstagram /></a>}
-              {h.socials?.twitter && <a href={h.socials.twitter} aria-label="Twitter"><FaTwitter /></a>}
+              {h.socials?.twitter && <a href={h.socials.twitter} aria-label="X"><FaXTwitter /></a>}
               {h.socials?.spotify && <a href={h.socials.spotify} aria-label="Spotify"><FaSpotify /></a>}
             </div>
           </motion.div>

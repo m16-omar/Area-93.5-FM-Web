@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
-  FaInstagram, FaTwitter, FaYoutube, FaSpotify, FaFacebookF, 
+  FaInstagram, FaYoutube, FaSpotify, FaFacebookF, 
   FaPinterest, FaLinkedinIn, FaWhatsapp, FaTelegramPlane, FaStar, FaShareAlt, FaHeart, FaComment
 } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import { FiSearch, FiCalendar, FiClock, FiArrowRight, FiMoreVertical, FiShoppingCart } from 'react-icons/fi';
 import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
@@ -298,7 +299,7 @@ export const NewsDetailPage = () => {
               <div className={styles.shareButtonsGroup}>
                 <button className={`${styles.shareBtn} ${styles.pinBtn}`} aria-label="Pinterest"><FaPinterest /></button>
                 <button className={`${styles.shareBtn} ${styles.fbBtn}`} aria-label="Facebook"><FaFacebookF /></button>
-                <button className={`${styles.shareBtn} ${styles.twBtn}`} aria-label="Twitter"><FaTwitter /></button>
+                <button className={`${styles.shareBtn} ${styles.twBtn}`} aria-label="X"><FaXTwitter /></button>
                 <button className={`${styles.shareBtn} ${styles.inBtn}`} aria-label="LinkedIn"><FaLinkedinIn /></button>
                 <button className={`${styles.shareBtn} ${styles.waBtn}`} aria-label="WhatsApp"><FaWhatsapp /></button>
                 <button className={`${styles.shareBtn} ${styles.tgBtn}`} aria-label="Telegram"><FaTelegramPlane /></button>

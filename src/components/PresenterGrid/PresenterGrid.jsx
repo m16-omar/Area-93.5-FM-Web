@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaInstagram, FaTwitter, FaYoutube, FaSpotify } from 'react-icons/fa';
+import { FaInstagram, FaYoutube, FaSpotify } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import styles from './PresenterGrid.module.css';
 
 export const PresenterGrid = ({ presenters }) => {
@@ -31,7 +32,7 @@ export const PresenterGrid = ({ presenters }) => {
 
             <div className={styles.socialsRow}>
               {p.socials?.instagram && <a href={p.socials.instagram} aria-label="Instagram"><FaInstagram /></a>}
-              {p.socials?.twitter && <a href={p.socials.twitter} aria-label="Twitter"><FaTwitter /></a>}
+              {p.socials?.twitter && <a href={p.socials.twitter} aria-label="X"><FaXTwitter /></a>}
               {p.socials?.youtube && <a href={p.socials.youtube} aria-label="YouTube"><FaYoutube /></a>}
               {p.socials?.spotify && <a href={p.socials.spotify} aria-label="Spotify"><FaSpotify /></a>}
             </div>

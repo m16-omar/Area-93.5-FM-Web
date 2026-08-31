@@ -1,5 +1,6 @@
 import React from 'react';
-import { FaPlay, FaPause, FaInstagram, FaTwitter, FaYoutube, FaSpotify } from 'react-icons/fa';
+import { FaPlay, FaPause, FaInstagram, FaYoutube, FaSpotify } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import { FiVolume2, FiVolumeX, FiRadio } from 'react-icons/fi';
 import { useAudioPlayer } from '../context/AudioPlayerContext';
 import styles from './PopUpPlayerPage.module.css';
@@ -99,8 +100,8 @@ export const PopUpPlayerPage = () => {
           <a href="https://www.instagram.com/935areafm/" target="_blank" rel="noreferrer" className={styles.socialMiniLink} aria-label="Instagram">
             <FaInstagram />
           </a>
-          <a href="https://x.com/935areafm" target="_blank" rel="noreferrer" className={styles.socialMiniLink} aria-label="Twitter">
-            <FaTwitter />
+          <a href="https://x.com/935areafm" target="_blank" rel="noreferrer" className={styles.socialMiniLink} aria-label="X">
+            <FaXTwitter />
           </a>
           <a href="https://youtube.com" target="_blank" rel="noreferrer" className={styles.socialMiniLink} aria-label="YouTube">
             <FaYoutube />

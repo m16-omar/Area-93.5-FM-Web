@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FiSearch, FiMenu, FiVolume2, FiVolumeX, FiMusic, FiX, FiRadio, FiUser, FiMic, FiFileText, FiTrendingUp } from 'react-icons/fi';
-import { FaTwitter, FaInstagram, FaFacebookF, FaYoutube, FaTiktok, FaPlay, FaPause } from 'react-icons/fa';
+import { FaInstagram, FaFacebookF, FaYoutube, FaTiktok, FaPlay, FaPause } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 import logoImg from '../../assets/area-logo.png';
 import topTracksData from '../../data/topTracksData.json';
@@ -190,7 +190,7 @@ export const Navbar = () => {
           <a href="#" className={styles.topSocialLink} aria-label="TikTok"><FaTiktok /></a>
           <a href="https://www.instagram.com/935areafm/" target="_blank" rel="noreferrer" className={styles.topSocialLink} aria-label="Instagram"><FaInstagram /></a>
           <a href="#" className={styles.topSocialLink} aria-label="Facebook"><FaFacebookF /></a>
-          <a href="https://x.com/935areafm" target="_blank" rel="noreferrer" className={styles.topSocialLink} aria-label="X (Twitter)"><FaTwitter /></a>
+          <a href="https://x.com/935areafm" target="_blank" rel="noreferrer" className={styles.topSocialLink} aria-label="X"><FaXTwitter /></a>
         </div>
       </div>
 
@@ -578,7 +578,7 @@ export const Navbar = () => {
                   <a href="#" aria-label="TikTok"><FaTiktok /></a>
                   <a href="https://www.instagram.com/935areafm/" target="_blank" rel="noreferrer" aria-label="Instagram"><FaInstagram /></a>
                   <a href="#" aria-label="Facebook"><FaFacebookF /></a>
-                  <a href="https://x.com/935areafm" target="_blank" rel="noreferrer" aria-label="X (Twitter)"><FaTwitter /></a>
+                  <a href="https://x.com/935areafm" target="_blank" rel="noreferrer" aria-label="X"><FaXTwitter /></a>
                 </div>
               </div>
             </div>

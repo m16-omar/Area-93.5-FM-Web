@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FiMail, FiPhone, FiTv } from 'react-icons/fi';
-import { FaInstagram, FaTwitter, FaSpotify, FaYoutube } from 'react-icons/fa';
+import { FaInstagram, FaSpotify, FaYoutube } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import { Navbar } from '../components/Navbar/Navbar';
 import { PageHeader } from '../components/PageHeader/PageHeader';
 import { Footer } from '../components/Footer/Footer';
@@ -82,7 +83,7 @@ export const TeamPage = () => {
 
                     <div style={{ display: 'flex', gap: '12px', fontSize: '1.1rem' }}>
                       {member.socials.instagram && <a href={member.socials.instagram} style={{ color: 'var(--primary-orange)' }} aria-label="Instagram"><FaInstagram /></a>}
-                      {member.socials.twitter && <a href={member.socials.twitter} style={{ color: 'var(--primary-orange)' }} aria-label="Twitter"><FaTwitter /></a>}
+                      {member.socials.twitter && <a href={member.socials.twitter} style={{ color: 'var(--primary-orange)' }} aria-label="X"><FaXTwitter /></a>}
                       {member.socials.spotify && <a href={member.socials.spotify} style={{ color: 'var(--primary-orange)' }} aria-label="Spotify"><FaSpotify /></a>}
                       {member.socials.youtube && <a href={member.socials.youtube} style={{ color: 'var(--primary-orange)' }} aria-label="YouTube"><FaYoutube /></a>}
                     </div>

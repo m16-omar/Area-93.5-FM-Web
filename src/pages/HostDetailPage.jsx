@@ -2,9 +2,10 @@ import React from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  FaInstagram, FaTwitter, FaYoutube, FaSpotify, FaTiktok,
+  FaInstagram, FaYoutube, FaSpotify, FaTiktok,
   FaMicrophone, FaEnvelope, FaArrowLeft, FaChevronDown
 } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
@@ -13,7 +14,7 @@ import styles from './HostDetailPage.module.css';
 
 const socialConfig = [
   { key: 'instagram', Icon: FaInstagram, label: 'Instagram' },
-  { key: 'twitter',   Icon: FaTwitter,   label: 'Twitter'   },
+  { key: 'twitter',   Icon: FaXTwitter,  label: 'X'         },
   { key: 'youtube',   Icon: FaYoutube,   label: 'YouTube'   },
   { key: 'spotify',   Icon: FaSpotify,   label: 'Spotify'   },
   { key: 'tiktok',    Icon: FaTiktok,    label: 'TikTok'    },
