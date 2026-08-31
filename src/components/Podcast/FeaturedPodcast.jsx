@@ -137,8 +137,8 @@ export const FeaturedPodcast = () => {
                 <span className={styles.hostRoleBadge}>Host</span>
                 <h3 className={styles.hostName}>Tobi Adebayo</h3>
                 <div className={styles.hostSocials}>
-                  <a href="https://www.instagram.com/935areafm/" target="_blank" rel="noopener noreferrer" className={styles.socialIconBtn} aria-label="Instagram" onClick={(e) => e.stopPropagation()}><FaInstagram /></a>
-                  <a href="https://x.com/935areafm" target="_blank" rel="noopener noreferrer" className={styles.socialIconBtn} aria-label="Twitter" onClick={(e) => e.stopPropagation()}><FaTwitter /></a>
+                  <a href="#" className={styles.socialIconBtn} aria-label="Instagram" onClick={(e) => e.stopPropagation()}><FaInstagram /></a>
+                  <a href="#" className={styles.socialIconBtn} aria-label="Twitter" onClick={(e) => e.stopPropagation()}><FaTwitter /></a>
                   <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className={styles.socialIconBtn} aria-label="YouTube" onClick={(e) => e.stopPropagation()}><FaYoutube /></a>
                   <a href="https://spotify.com" target="_blank" rel="noopener noreferrer" className={styles.socialIconBtn} aria-label="Spotify" onClick={(e) => e.stopPropagation()}><FaSpotify /></a>
                   <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className={styles.socialIconBtn} aria-label="TikTok" onClick={(e) => e.stopPropagation()}><FaTiktok /></a>
