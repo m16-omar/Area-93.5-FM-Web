@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { FiSearch, FiMenu, FiVolume2, FiVolumeX, FiMusic, FiX, FiRadio, FiUser, FiMic, FiFileText, FiTrendingUp } from 'react-icons/fi';
 import { FaInstagram, FaFacebookF, FaYoutube, FaTiktok, FaPlay, FaPause } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
