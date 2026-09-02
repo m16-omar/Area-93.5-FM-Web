@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { FaInstagram, FaYoutube, FaSpotify, FaTwitch, FaSoundcloud, FaPlay, FaPause, FaUser, FaTiktok } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { Navbar } from '../components/Navbar/Navbar';
