@@ -105,6 +105,28 @@ export const ContactPage = () => {
           >
             93.5 Area FM is Lagos’ premier urban radio powerhouse. We blend high-energy afrobeats, street culture, hard-hitting talk shows, and community empowerment into an electrifying broadcast experience on air and online.
           </motion.p>
+
+          {/* STUDIO SHOWCASE BANNER */}
+          <motion.div 
+            className={styles.studioShowcaseWrapper}
+            initial={{ opacity: 0, y: 25, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <div className={styles.studioImageContainer}>
+              <img 
+                src="/assets/studio.jpg" 
+                alt="93.5 Area FM Broadcast Studio" 
+                className={styles.studioImage} 
+                loading="eager"
+              />
+              <div className={styles.studioOverlayGradient} />
+              <div className={styles.studioBadge}>
+                <span className={styles.liveIndicatorDot} />
+                <span className={styles.studioBadgeText}>93.5 AREA FM BROADCAST SUITE • LAGOS</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
