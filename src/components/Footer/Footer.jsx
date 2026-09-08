@@ -10,6 +10,7 @@ export const Footer = () => {
 
   return (
     <footer className={styles.footerSection} id="contacts">
+      <div className={styles.footerOverlay} />
       {/* Background Watermark */}
       <div className={styles.watermarkText}>
         ONE VOICE,<br />
