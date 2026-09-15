@@ -20,6 +20,9 @@ import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import contactInfoData from '../data/contactInfoData.json';
 import teamData from '../data/teamData.json';
+import { SEO } from '../components/SEO/SEO';
+import { getRadioStationSchema, getBreadcrumbSchema } from '../utils/seoSchemas';
+import { SEO_KEYWORDS } from '../utils/seoKeywords';
 import styles from './ContactPage.module.css';
 
 export const ContactPage = () => {
@@ -64,8 +67,32 @@ export const ContactPage = () => {
     }
   ];
 
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      getRadioStationSchema(),
+      getBreadcrumbSchema([
+        { name: "Home", url: "/" },
+        { name: "About Us & Contact", url: "/contact" }
+      ])
+    ]
+  };
+
   return (
     <main className={styles.contactPageContainer}>
+      <SEO 
+        title="About Us & Contact Lagos Studio | Area 93.5 FM"
+        description="Connect with Area 93.5 FM Lagos. Visit our studio in Ikeja, send on-air song requests, submit radio inquiries, or partner with our broadcasting team."
+        keywords={[
+          ...SEO_KEYWORDS.primary,
+          ...SEO_KEYWORDS.local,
+          "Radio station Ikeja Lagos",
+          "Contact Area 93.5 FM",
+          "Area 93.5 FM phone number",
+          "Radio studio near me Lagos Mainland"
+        ]}
+        schemaJson={contactSchema}
+      />
       <Navbar />
 
       {/* 1. HERO BANNER SECTION (STUDIO BACKGROUND) */}

@@ -17,6 +17,9 @@ import {
   likeArticle, 
   shareArticle 
 } from '../services/newsApi';
+import { SEO } from '../components/SEO/SEO';
+import { getArticleSchema, getBreadcrumbSchema } from '../utils/seoSchemas';
+import { SEO_KEYWORDS } from '../utils/seoKeywords';
 import styles from './NewsDetailPage.module.css';
 
 // Fallback generator for custom article slug if backend is temporarily unreachable
@@ -172,8 +175,35 @@ export const NewsDetailPage = () => {
 
   const isHtml = (str) => /<[a-z][\s\S]*>/i.test(str || '');
 
+  const articleUrl = `https://area935fm.ng/news/${article.slug || slug}`;
+  const detailSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      getArticleSchema(article, articleUrl),
+      getBreadcrumbSchema([
+        { name: "Home", url: "/" },
+        { name: "News", url: "/news" },
+        { name: article.title || "Article", url: `/news/${article.slug || slug}` }
+      ])
+    ]
+  };
+
   return (
     <main className={styles.newsDetailPageWrapper}>
+      <SEO 
+        title={article.title}
+        description={article.excerpt || article.content?.substring(0, 160) || "Read the latest news update on Area 93.5 FM Lagos."}
+        image={article.heroImage || article.image}
+        canonicalUrl={articleUrl}
+        type="article"
+        keywords={[
+          ...(article.tags || []),
+          ...SEO_KEYWORDS.longTailNews,
+          article.category || "News",
+          "Area 93.5 FM news report"
+        ]}
+        schemaJson={detailSchema}
+      />
       <Navbar />
 
       {/* 1. HERO HEADER SECTION */}

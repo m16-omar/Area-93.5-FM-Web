@@ -7,6 +7,9 @@ import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import { fetchNewsArticles, fetchNewsCategories, likeArticle, shareArticle } from '../services/newsApi';
 import defaultNewsData from '../data/newsData.json';
+import { SEO } from '../components/SEO/SEO';
+import { getBreadcrumbSchema } from '../utils/seoSchemas';
+import { SEO_KEYWORDS } from '../utils/seoKeywords';
 import styles from './NewsPage.module.css';
 
 const mostListenedTracks = [
@@ -102,12 +105,16 @@ export const NewsPage = () => {
   const handleShare = async (e, item) => {
     e.stopPropagation();
     await shareArticle(item.id || item.slug);
+    const url = `${window.location.origin}/news/${getSlug(item)}`;
     if (navigator.share) {
       navigator.share({
         title: item.title,
         text: item.excerpt,
-        url: window.location.origin + `/news/${getSlug(item)}`
-      }).catch(() => { });
+        url: url
+      }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(url);
+      alert('Article link copied to clipboard!');
     }
   };
 
@@ -123,8 +130,25 @@ export const NewsPage = () => {
 
   const displayedArticles = filteredArticles.slice(0, visibleCount);
 
+  const newsBreadcrumbs = getBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Latest News & Blog", url: "/news" }
+  ]);
+
   return (
     <main className={styles.newsPageContainer}>
+      <SEO 
+        title="Latest Lagos News, Music & Entertainment | Area 93.5 FM"
+        description="Get breaking Lagos entertainment news, Afrobeats releases, street gist, traffic updates and trending stories from Area 93.5 FM Lagos."
+        keywords={[
+          ...SEO_KEYWORDS.longTailNews,
+          ...SEO_KEYWORDS.programs,
+          "Lagos breaking news today",
+          "Nigerian music news",
+          "Pidgin English news Lagos"
+        ]}
+        schemaJson={newsBreadcrumbs}
+      />
       <Navbar />
 
       {/* 1. HERO BANNER SECTION */}

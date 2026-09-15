@@ -8,6 +8,9 @@ import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import { useAudioPlayer } from '../context/AudioPlayerContext';
 import teamData from '../data/teamData.json';
+import { SEO } from '../components/SEO/SEO';
+import { getBreadcrumbSchema } from '../utils/seoSchemas';
+import { SEO_KEYWORDS } from '../utils/seoKeywords';
 import styles from './HostsPage.module.css';
 
 const featuredEpisodes = [
@@ -41,8 +44,25 @@ export const HostsPage = () => {
     setVisibleCount(prev => Math.min(prev + 3, teamData.length));
   };
 
+  const hostsBreadcrumbs = getBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "On-Air Hosts & DJs", url: "/hosts" }
+  ]);
+
   return (
     <main className={styles.hostsPageContainer}>
+      <SEO 
+        title="Meet Our On-Air Personalities, DJs & Radio Hosts | Area 93.5 FM"
+        description="Discover the voices behind Area 93.5 FM Lagos. Meet top Nigerian radio presenters, DJ resident tastemakers, and broadcast journalists."
+        keywords={[
+          ...SEO_KEYWORDS.primary,
+          "Radio presenters Lagos",
+          "On-air personalities Nigeria",
+          "Top radio DJs Lagos",
+          "Area 93.5 FM team"
+        ]}
+        schemaJson={hostsBreadcrumbs}
+      />
       <Navbar />
 
       {/* 1. HERO BANNER SECTION */}

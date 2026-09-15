@@ -76,7 +76,7 @@ export const Hero = () => {
       <div className={styles.heroImageContainer}>
         <img 
           src={heroPresenterImg} 
-          alt="Area 93.5 FM Presenter" 
+          alt="Area 93.5 FM Lagos Live Radio Studio Presenters - #1 Pidgin English Radio Station" 
           className={styles.heroDjImage} 
         />
       </div>
@@ -101,11 +101,15 @@ export const Hero = () => {
             EVERY AREA
           </h1>
 
+          <p className={styles.heroSeoTagline}>
+            Lagos' No.1 Radio Station • Area 93.5 FM Live Streaming
+          </p>
+
           <div className={styles.giantPlayWrapper}>
             <button 
               className={styles.giantPlayBtn} 
               onClick={handleLivePlay} 
-              aria-label="Play Live Radio"
+              aria-label="Play Live Radio Area 93.5 FM"
             >
               {isPlaying ? <FaPause size={24} /> : <FaPlay size={24} style={{ marginLeft: '4px' }} />}
             </button>

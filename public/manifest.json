@@ -1,0 +1,23 @@
+{
+  "short_name": "Area 93.5 FM",
+  "name": "Area 93.5 FM Lagos - #1 Pidgin English Radio Station",
+  "description": "Listen to Area 93.5 FM live - Lagos' best pidgin radio for news, entertainment, sports & morning shows. Stream online 24/7.",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "theme_color": "#006B8D",
+  "display": "standalone",
+  "orientation": "portrait",
+  "categories": ["music", "entertainment", "news"]
+}

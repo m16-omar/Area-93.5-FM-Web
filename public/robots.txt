@@ -1,0 +1,22 @@
+# Area 93.5 FM Lagos - Robots.txt for Google & Search Engine Crawlers
+User-agent: *
+Allow: /
+Allow: /shows
+Allow: /shows/*
+Allow: /podcasts
+Allow: /podcasts/*
+Allow: /news
+Allow: /news/*
+Allow: /charts
+Allow: /hosts
+Allow: /hosts/*
+Allow: /videos
+Allow: /promote
+Allow: /contact
+Allow: /about
+
+# Disallow transient popup player directly from index
+Disallow: /popup-player
+
+# Sitemaps
+Sitemap: https://area935fm.ng/sitemap.xml

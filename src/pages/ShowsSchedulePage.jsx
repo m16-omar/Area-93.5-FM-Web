@@ -10,6 +10,9 @@ import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import showsScheduleData from '../data/showsScheduleData.json';
 import { getCurrentDayKey, getShowsForDay, getShowSlug } from '../utils/scheduleHelper';
+import { SEO } from '../components/SEO/SEO';
+import { getBreadcrumbSchema } from '../utils/seoSchemas';
+import { SEO_KEYWORDS } from '../utils/seoKeywords';
 import styles from './ShowsSchedulePage.module.css';
 
 export const ShowsSchedulePage = () => {
@@ -22,8 +25,26 @@ export const ShowsSchedulePage = () => {
     navigate(`/shows/${getShowSlug(show.name || show.title)}`);
   };
 
+  const scheduleBreadcrumbs = getBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Radio Shows Schedule", url: "/shows" }
+  ]);
+
   return (
     <main className={styles.showsPageContainer}>
+      <SEO 
+        title="Lagos Radio Shows & Broadcast Schedule 24/7 | Area 93.5 FM"
+        description="Explore the daily radio schedule on Area 93.5 FM Lagos. Listen to morning breakfast shows, sports arena, midday vibes, drivetime cruise, and late night gbedu."
+        keywords={[
+          ...SEO_KEYWORDS.programs,
+          ...SEO_KEYWORDS.action,
+          "Lagos radio schedule today",
+          "Morning show radio Lagos",
+          "Drivetime radio Lagos live",
+          "Pidgin radio shows Lagos"
+        ]}
+        schemaJson={scheduleBreadcrumbs}
+      />
       <Navbar />
 
       {/* 1. HERO BANNER SECTION (WANT YOUR OWN SHOW?) */}

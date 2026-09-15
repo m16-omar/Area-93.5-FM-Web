@@ -12,6 +12,9 @@ import { NewsletterCTA } from '../components/NewsletterCTA/NewsletterCTA';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import podcastsFullData from '../data/podcastsFullData.json';
+import { SEO } from '../components/SEO/SEO';
+import { getBreadcrumbSchema } from '../utils/seoSchemas';
+import { SEO_KEYWORDS } from '../utils/seoKeywords';
 
 export const Podcasts = () => {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -20,8 +23,25 @@ export const Podcasts = () => {
     ? podcastsFullData.episodes
     : podcastsFullData.episodes.filter(ep => ep.category === activeCategory);
 
+  const podcastBreadcrumbs = getBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Podcasts & Audio Shows", url: "/podcasts" }
+  ]);
+
   return (
     <main style={{ position: 'relative', width: '100%', maxWidth: '100vw', overflowX: 'clip', background: 'var(--color-light-bg)' }}>
+      <SEO 
+        title="Podcasts & On-Demand Radio Shows | Area 93.5 FM Lagos"
+        description="Listen to top Lagos podcasts on Area 93.5 FM. Stream Afrobeats conversations, street culture deep dives, comedy, relationship gist, and music reviews."
+        keywords={[
+          ...SEO_KEYWORDS.programs,
+          "Lagos podcasts online",
+          "Afrobeats podcast Lagos",
+          "Nigerian radio podcasts",
+          "Pidgin English podcast Lagos"
+        ]}
+        schemaJson={podcastBreadcrumbs}
+      />
       <Navbar />
 
       {/* Hero Banner */}

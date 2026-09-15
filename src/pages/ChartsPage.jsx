@@ -7,6 +7,9 @@ import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import { useAudioPlayer } from '../context/AudioPlayerContext';
 import chartsData from '../data/chartsData.json';
+import { SEO } from '../components/SEO/SEO';
+import { getBreadcrumbSchema } from '../utils/seoSchemas';
+import { SEO_KEYWORDS } from '../utils/seoKeywords';
 import styles from './ChartsPage.module.css';
 
 const mostListenedTracks = [
@@ -139,8 +142,25 @@ export const ChartsPage = () => {
     setUserVotes(prev => ({ ...prev, [id]: 'down' }));
   };
 
+  const chartsBreadcrumbs = getBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Top Music Charts", url: "/charts" }
+  ]);
+
   return (
     <main className={styles.chartsPageContainer}>
+      <SEO 
+        title="Lagos Top Music Charts | #1 Afrobeats & Nigerian Hits | Area 93.5 FM"
+        description="Discover the weekly Top Music Charts on Area 93.5 FM Lagos. Vote live for your favorite Nigerian songs, trending Afrobeats, and chart-topping radio anthems."
+        keywords={[
+          ...SEO_KEYWORDS.programs,
+          "Lagos top music charts",
+          "Afrobeat music countdown Lagos",
+          "Top 10 songs Lagos radio",
+          "Vote Nigerian songs radio live"
+        ]}
+        schemaJson={chartsBreadcrumbs}
+      />
       <Navbar />
 
       <section className={styles.heroSection}>

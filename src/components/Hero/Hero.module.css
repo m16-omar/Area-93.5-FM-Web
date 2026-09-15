@@ -154,10 +154,20 @@
   white-space: pre-line;
 }
 
+.heroSeoTagline {
+  font-family: var(--font-heading, 'Bebas Neue', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #004E68;
+  text-transform: uppercase;
+  margin: 0;
+}
+
 .giantPlayWrapper {
   position: relative;
   z-index: 4;
-  margin-top: 14px;
+  margin-top: 10px;
 }
 
 .giantPlayBtn {

@@ -11,6 +11,9 @@ import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import { useAudioPlayer, LIVE_STREAM_URL } from '../context/AudioPlayerContext';
+import { SEO } from '../components/SEO/SEO';
+import { getShowSchema, getBreadcrumbSchema } from '../utils/seoSchemas';
+import { SEO_KEYWORDS } from '../utils/seoKeywords';
 import teamData from '../data/teamData.json';
 import scheduleData from '../data/scheduleData.json';
 import styles from './ShowDetailPage.module.css';
@@ -442,8 +445,36 @@ export const ShowDetailPage = () => {
     });
   };
 
+  const showUrl = `https://area935fm.ng/shows/${show.slug}`;
+  const showSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      getShowSchema(show, showUrl),
+      getBreadcrumbSchema([
+        { name: "Home", url: "/" },
+        { name: "Shows", url: "/shows" },
+        { name: show.title, url: `/shows/${show.slug}` }
+      ])
+    ]
+  };
+
   return (
     <main className={styles.showPageWrapper}>
+      <SEO 
+        title={`${show.title} with ${show.host} | Area 93.5 FM Lagos`}
+        description={show.description}
+        image={show.bannerPhoto || show.hostPhoto}
+        canonicalUrl={showUrl}
+        keywords={[
+          show.title,
+          `${show.title} Lagos radio`,
+          show.host,
+          `${show.host} radio presenter`,
+          ...SEO_KEYWORDS.programs,
+          ...SEO_KEYWORDS.primary
+        ]}
+        schemaJson={showSchema}
+      />
       <Navbar />
 
       {/* 1. HERO SECTION WITH WATERMARK BACKGROUND */}

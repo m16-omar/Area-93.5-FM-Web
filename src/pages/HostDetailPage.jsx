@@ -10,6 +10,9 @@ import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import teamData from '../data/teamData.json';
+import { SEO } from '../components/SEO/SEO';
+import { getHostSchema, getBreadcrumbSchema } from '../utils/seoSchemas';
+import { SEO_KEYWORDS } from '../utils/seoKeywords';
 import styles from './HostDetailPage.module.css';
 
 const socialConfig = [
@@ -43,9 +46,35 @@ export const HostDetailPage = () => {
 
   const heroBg = host.heroBg || host.photo;
   const heroStyle = { backgroundImage: `url('${heroBg}'), url('${host.photo}')` };
+  const hostUrl = `https://area935fm.ng/hosts/${host.slug}`;
+  const hostSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      getHostSchema(host, hostUrl),
+      getBreadcrumbSchema([
+        { name: "Home", url: "/" },
+        { name: "Hosts", url: "/hosts" },
+        { name: host.name, url: `/hosts/${host.slug}` }
+      ])
+    ]
+  };
 
   return (
     <main className={styles.pageWrapper}>
+      <SEO 
+        title={`${host.name} (${host.role}) | Area 93.5 FM Lagos`}
+        description={host.bio}
+        image={host.photo}
+        canonicalUrl={hostUrl}
+        type="profile"
+        keywords={[
+          host.name,
+          `${host.name} radio host`,
+          host.role,
+          ...SEO_KEYWORDS.primary
+        ]}
+        schemaJson={hostSchema}
+      />
       <Navbar />
 
       {/* ══════════════════════

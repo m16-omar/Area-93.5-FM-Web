@@ -6,6 +6,9 @@ import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import videosData from '../data/videosData.json';
+import { SEO } from '../components/SEO/SEO';
+import { getBreadcrumbSchema } from '../utils/seoSchemas';
+import { SEO_KEYWORDS } from '../utils/seoKeywords';
 import styles from './VideosPage.module.css';
 
 const categories = ["ALL VIDEOS", "LIVE SETS", "INTERVIEWS", "BEHIND THE SCENES", "RECAPS"];
@@ -20,8 +23,25 @@ export const VideosPage = () => {
     ? videosData
     : videosData.filter(v => v.category.toUpperCase() === activeCategory);
 
+  const videoBreadcrumbs = getBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Video Sessions & Live Interviews", url: "/videos" }
+  ]);
+
   return (
     <main className={styles.videosPageContainer}>
+      <SEO 
+        title="In-Studio DJ Sets, Artist Interviews & Live Sessions | Area 93.5 FM"
+        description="Watch exclusive in-studio DJ mixes, Lagos festival coverage, celebrity artist interviews, and live radio video broadcasts from Area 93.5 FM Lagos."
+        keywords={[
+          ...SEO_KEYWORDS.primary,
+          "Lagos radio video sessions",
+          "In-studio DJ sets Lagos",
+          "Nigerian celebrity interviews live",
+          "Area 93.5 FM YouTube sessions"
+        ]}
+        schemaJson={videoBreadcrumbs}
+      />
       <Navbar />
 
       {/* 1. HERO BANNER SECTION */}

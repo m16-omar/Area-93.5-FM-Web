@@ -6,6 +6,9 @@ import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import promoteData from '../data/promoteData.json';
+import { SEO } from '../components/SEO/SEO';
+import { getBreadcrumbSchema } from '../utils/seoSchemas';
+import { SEO_KEYWORDS } from '../utils/seoKeywords';
 import styles from './PromotePage.module.css';
 
 export const PromotePage = () => {
@@ -14,8 +17,26 @@ export const PromotePage = () => {
   const rateCardPdfUrl = "/assets/Area_935_FM_Rate_Card_2026.pdf";
   const programmePdfUrl = "/assets/Area_935_FM_Programme_Schedule_2026.pdf";
 
+  const promoteBreadcrumbs = getBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Advertise & Promote", url: "/promote" }
+  ]);
+
   return (
     <main className={styles.promotePageContainer}>
+      <SEO 
+        title="Advertise on Radio in Lagos | Rates & Sponsorship | Area 93.5 FM"
+        description="Amplify your brand to millions across Lagos on Area 93.5 FM. Download our 2026 radio rate card, program sponsorship packages, and on-air hype options."
+        keywords={[
+          ...SEO_KEYWORDS.action,
+          ...SEO_KEYWORDS.local,
+          "Advertise on radio Lagos",
+          "Radio advert rates Lagos Nigeria",
+          "Radio station jingles Lagos",
+          "Lagos radio advertising packages"
+        ]}
+        schemaJson={promoteBreadcrumbs}
+      />
       <Navbar />
 
       {/* 1. HERO BANNER SECTION */}
