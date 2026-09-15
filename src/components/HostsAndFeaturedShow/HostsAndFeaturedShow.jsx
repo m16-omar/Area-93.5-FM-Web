@@ -122,28 +122,28 @@ export default function HostsAndFeaturedShow() {
 
           <div 
             className={styles.featuredCard}
-            onClick={() => navigate('/shows/the-fan-zone')}
+            onClick={() => navigate('/shows/midday-vibes')}
             style={{ cursor: 'pointer' }}
           >
             <img
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
-              alt="The Fan Zone"
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80"
+              alt="Midday Vibes"
               className={styles.featuredImg}
             />
             <div className={styles.featuredOverlay}>
-              <span className={styles.catBadge}>TRENDS</span>
-              <h3 className={styles.featuredTitle}>The Fan Zone</h3>
+              <span className={styles.catBadge}>SOUNDS OF LAGOS</span>
+              <h3 className={styles.featuredTitle}>Midday Vibes</h3>
             </div>
             <button 
               className={styles.moreBtn} 
               aria-label="View Show Details"
-              onClick={(e) => { e.stopPropagation(); navigate('/shows/the-fan-zone'); }}
+              onClick={(e) => { e.stopPropagation(); navigate('/shows/midday-vibes'); }}
             >
               <FiMoreVertical />
             </button>
           </div>
 
-          <Link to="/shows/the-fan-zone" style={{ textDecoration: 'none' }}>
+          <Link to="/shows/midday-vibes" style={{ textDecoration: 'none' }}>
             <button className={styles.discoverBtn}>DISCOVER MORE</button>
           </Link>
         </div>

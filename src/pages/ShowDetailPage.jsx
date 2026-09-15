@@ -17,259 +17,122 @@ import styles from './ShowDetailPage.module.css';
 
 // Show details catalog mapping
 const showsCatalog = {
-  "pop-culture-replay": {
-    slug: "pop-culture-replay",
-    title: "Pop Culture Replay",
-    category: "TRENDS",
-    host: "Funke Akindele",
-    hostSlug: "funke-akindele",
-    hostRole: "Lead Host & Culture Critic",
-    hostPhoto: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
-    bannerPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80",
-    description: "Pop culture meets music in this high-energy, informative flagship show. We discuss everything from viral trends, new music videos, and the latest celebrity gossip to upcoming music releases. Tune in to stay up-to-date on the intersection of music, urban lifestyle, and African pop culture.",
-    timetable: [
-      { day: "MONDAY", start: "2:30 PM", end: "4:30 PM" },
-      { day: "TUESDAY", start: "10:00 AM", end: "01:00 PM" },
-      { day: "THURSDAY", start: "12:30 AM", end: "05:30 AM" },
-      { day: "SATURDAY", start: "09:00 PM", end: "12:00 AM" }
-    ],
-    crew: [
-      {
-        name: "Funke Akindele",
-        slug: "funke-akindele",
-        role: "HOST",
-        image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Simi Ogunleye",
-        slug: "simi-ogunleye",
-        role: "CO-HOST",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "DJ Tobi",
-        slug: "tobi-adebayo",
-        role: "RESIDENT DJ",
-        image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80"
-      }
-    ],
-    events: [
-      {
-        day: "23",
-        monthYear: "DEC 2027",
-        title: "Pop Culture Live Fest",
-        artists: "BURNA BOY, WIZKID, TIWA SAVAGE, REMA",
-        image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80"
-      }
-    ]
-  },
-  "the-fan-zone": {
-    slug: "the-fan-zone",
-    title: "The Fan Zone",
-    category: "TRENDS",
-    host: "Simi Ogunleye",
-    hostSlug: "simi-ogunleye",
-    hostRole: "Senior Sports & Lifestyle Broadcaster",
-    hostPhoto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
-    bannerPhoto: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80",
-    description: "The Fan Zone is 93.5 Area FM's midday home for sports banter, football fever, athlete phone-ins, and entertainment showdowns. Simi Ogunleye keeps listeners energized with breaking sports news, premier league debriefs, and exclusive artist gossip.",
-    timetable: [
-      { day: "MONDAY", start: "11:00 AM", end: "02:30 PM" },
-      { day: "WEDNESDAY", start: "11:00 AM", end: "02:30 PM" },
-      { day: "FRIDAY", start: "11:00 AM", end: "02:30 PM" },
-      { day: "SUNDAY", start: "01:00 PM", end: "05:00 PM" }
-    ],
-    crew: [
-      {
-        name: "Simi Ogunleye",
-        slug: "simi-ogunleye",
-        role: "HOST",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Olamide Okafor",
-        slug: "olamide-okafor",
-        role: "CO-HOST",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Babalola Alabi",
-        slug: "babalola-alabi",
-        role: "ANALYST",
-        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80"
-      }
-    ],
-    events: [
-      {
-        day: "15",
-        monthYear: "NOV 2026",
-        title: "Area FM Super Fan Cup Live",
-        artists: "LIVE MATCH STREAMING & FAN ZONE DERBY",
-        image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80"
-      }
-    ]
-  },
-  "hitmakers-live": {
-    slug: "hitmakers-live",
-    title: "Hitmakers Live",
-    category: "INTERVIEWS",
+  "the-early-momo-show-part-1": {
+    slug: "the-early-momo-show-part-1",
+    title: "The Early Momo Show (Part 1)",
+    category: "NEWS & TALK",
     host: "Olamide Okafor",
     hostSlug: "olamide-okafor",
-    hostRole: "Music Producer & Radio Host",
+    hostRole: "Senior Morning Anchor",
     hostPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
-    bannerPhoto: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
-    description: "Hitmakers Live brings you behind the scenes with Nigeria's hottest producers, songwriters, and chart-topping artists. Exclusive studio sessions, breakdown of hit records, acoustic live sets, and industry insights broadcast straight across the nation.",
+    bannerPhoto: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80",
+    description: "The Early Momo Show (Part 1) sets the pace for your weekday mornings from 5:00 AM to 7:00 AM. Featuring Rise and Shine morning mantras, High Voltage Gbedu playlist mixes, and First Alert breaking news bulletins to prepare you for the hustle of Lagos.",
     timetable: [
-      { day: "MONDAY", start: "11:00 AM", end: "01:00 PM" },
-      { day: "WEDNESDAY", start: "04:00 PM", end: "07:00 PM" },
-      { day: "FRIDAY", start: "02:00 PM", end: "06:00 PM" }
+      { day: "MONDAY", start: "05:00 AM", end: "07:00 AM" },
+      { day: "TUESDAY", start: "05:00 AM", end: "07:00 AM" },
+      { day: "WEDNESDAY", start: "05:00 AM", end: "07:00 AM" },
+      { day: "THURSDAY", start: "05:00 AM", end: "07:00 AM" },
+      { day: "FRIDAY", start: "05:00 AM", end: "07:00 AM" },
+      { day: "SATURDAY", start: "05:00 AM", end: "07:00 AM" },
+      { day: "SUNDAY", start: "05:00 AM", end: "07:00 AM" }
     ],
     crew: [
       {
         name: "Olamide Okafor",
         slug: "olamide-okafor",
         role: "HOST",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "DJ Tobi",
-        slug: "tobi-adebayo",
-        role: "CO-HOST / DJ",
-        image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Babalola Alabi",
-        slug: "babalola-alabi",
-        role: "MUSIC CURATOR",
-        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80"
-      }
-    ],
-    events: [
-      {
-        day: "28",
-        monthYear: "OCT 2026",
-        title: "Hitmakers Live Unplugged Session",
-        artists: "ASAKE, FIREBOY DML, AYRA STARR",
-        image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80"
-      }
-    ]
-  },
-  "after-hours-mix": {
-    slug: "after-hours-mix",
-    title: "After Hours Mix",
-    category: "CLUB MIX",
-    host: "Simi Ogunleye",
-    hostSlug: "simi-ogunleye",
-    hostRole: "Late Night Tastemaker",
-    hostPhoto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
-    bannerPhoto: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80",
-    description: "The After Hours Mix is your late-night sonic sanctuary. Packed with deep Afro-house grooves, chill Amapiano melodies, and smooth neo-soul mixes curated by our resident tastemakers for night owls, creatives, and late-night drivers.",
-    timetable: [
-      { day: "MONDAY", start: "01:00 PM", end: "04:00 PM" },
-      { day: "WEDNESDAY", start: "01:00 PM", end: "04:00 PM" },
-      { day: "SATURDAY", start: "10:00 PM", end: "02:00 AM" }
-    ],
-    crew: [
-      {
-        name: "Simi Ogunleye",
-        slug: "simi-ogunleye",
-        role: "HOST",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Kemi Adetiba",
-        slug: "kemi-adetiba",
-        role: "CO-HOST",
-        image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "DJ Tobi",
-        slug: "tobi-adebayo",
-        role: "MIX DJ",
-        image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80"
-      }
-    ],
-    events: [
-      {
-        day: "12",
-        monthYear: "DEC 2026",
-        title: "After Hours Rooftop Session",
-        artists: "SPECIAL GUEST AFRO-HOUSE DJS",
-        image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80"
-      }
-    ]
-  },
-  "throwback-jam": {
-    slug: "throwback-jam",
-    title: "Throwback Jam",
-    category: "RETRO HITS",
-    host: "Tobi Adebayo",
-    hostSlug: "tobi-adebayo",
-    hostRole: "Vintage Music Specialist",
-    hostPhoto: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
-    bannerPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80",
-    description: "Relive golden eras with classic highlife, 90s/2000s Afrobeats pioneers, old-school R&B, and hip-hop anthems. Nostalgic storytelling, vinyl appreciation, and listener requests guaranteed to bring back memories.",
-    timetable: [
-      { day: "MONDAY", start: "04:30 PM", end: "07:30 PM" },
-      { day: "WEDNESDAY", start: "10:00 AM", end: "01:00 PM" },
-      { day: "FRIDAY", start: "06:00 PM", end: "09:00 PM" }
-    ],
-    crew: [
-      {
-        name: "Tobi Adebayo",
-        slug: "tobi-adebayo",
-        role: "HOST",
-        image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Funke Akindele",
-        slug: "funke-akindele",
-        role: "CO-HOST",
-        image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80"
-      }
-    ],
-    events: [
-      {
-        day: "05",
-        monthYear: "NOV 2026",
-        title: "90s Retro Afrobeats Night",
-        artists: "PLANTASHUN BOIZ, REMEDIES, 2BABA TRIBUTES",
-        image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80"
-      }
-    ]
-  },
-  "vibe-check": {
-    slug: "vibe-check",
-    title: "Vibe Check",
-    category: "AFROBEATS",
-    host: "Kemi Adetiba",
-    hostSlug: "kemi-adetiba",
-    hostRole: "Drive Time Host",
-    hostPhoto: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
-    bannerPhoto: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
-    description: "Vibe Check takes the pulse of contemporary African music. From Lagos street anthems to continental chart-toppers, Kemi Adetiba brings you fresh releases, artist spotlight interviews, and infectious positive energy during evening prime time.",
-    timetable: [
-      { day: "MONDAY", start: "07:30 PM", end: "11:30 PM" },
-      { day: "THURSDAY", start: "08:00 PM", end: "11:00 PM" },
-      { day: "SATURDAY", start: "06:00 PM", end: "09:00 PM" }
-    ],
-    crew: [
-      {
-        name: "Kemi Adetiba",
-        slug: "kemi-adetiba",
-        role: "HOST",
-        image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Olamide Okafor",
-        slug: "olamide-okafor",
-        role: "CO-HOST",
         image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
       },
       {
         name: "DJ Tobi",
         slug: "tobi-adebayo",
         role: "RESIDENT DJ",
+        image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80"
+      }
+    ],
+    events: [
+      {
+        day: "10",
+        monthYear: "NOV 2026",
+        title: "Early Momo Sunrise Townhall",
+        artists: "COMMUNITY LEADERS & MORNING CITIZENS",
+        image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80"
+      }
+    ]
+  },
+  "the-early-momo-show-part-2": {
+    slug: "the-early-momo-show-part-2",
+    title: "The Early Momo Show (Part 2)",
+    category: "TALK & METRO",
+    host: "Funke Akindele",
+    hostSlug: "funke-akindele",
+    hostRole: "Lead Morning Broadcaster",
+    hostPhoto: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+    bannerPhoto: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80",
+    description: "The Early Momo Show (Part 2) from 7:00 AM to 9:00 AM delivers Lagos prime-time radio. Featuring As E Dey Hot!, Citizens' Parliament, Chakam! viral gossip, Who Talk True fact checks, Everyday Hero spotlight, and live street-by-street traffic coverage.",
+    timetable: [
+      { day: "MONDAY", start: "07:00 AM", end: "09:00 AM" },
+      { day: "TUESDAY", start: "07:00 AM", end: "09:00 AM" },
+      { day: "WEDNESDAY", start: "07:00 AM", end: "09:00 AM" },
+      { day: "THURSDAY", start: "07:00 AM", end: "09:00 AM" },
+      { day: "FRIDAY", start: "07:00 AM", end: "09:00 AM" },
+      { day: "SATURDAY", start: "07:00 AM", end: "09:00 AM" },
+      { day: "SUNDAY", start: "07:00 AM", end: "09:00 AM" }
+    ],
+    crew: [
+      {
+        name: "Funke Akindele",
+        slug: "funke-akindele",
+        role: "HOST",
+        image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        name: "Olamide Okafor",
+        slug: "olamide-okafor",
+        role: "CO-HOST",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
+      }
+    ],
+    events: [
+      {
+        day: "24",
+        monthYear: "NOV 2026",
+        title: "Citizens Parliament Live Debate",
+        artists: "LAGOS POLICY EXPERTS & ADVOCATES",
+        image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80"
+      }
+    ]
+  },
+  "midday-vibes": {
+    slug: "midday-vibes",
+    title: "Midday Vibes",
+    category: "SOUNDS OF LAGOS",
+    host: "Simi Ogunleye",
+    hostSlug: "simi-ogunleye",
+    hostRole: "Music Director & Broadcaster",
+    hostPhoto: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+    bannerPhoto: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
+    description: "Midday Vibes (10:00 AM - 02:00 PM) is your daytime power hub. Packed with Sounds of Lagos: Heavy Music Rotations, Hilarious Audio Bytes, Comedy Skits, Street Vox-Pops, and listener shoutouts across all areas.",
+    timetable: [
+      { day: "MONDAY", start: "10:00 AM", end: "02:00 PM" },
+      { day: "TUESDAY", start: "10:00 AM", end: "02:00 PM" },
+      { day: "WEDNESDAY", start: "10:00 AM", end: "02:00 PM" },
+      { day: "THURSDAY", start: "10:00 AM", end: "02:00 PM" },
+      { day: "FRIDAY", start: "10:00 AM", end: "02:00 PM" },
+      { day: "SATURDAY", start: "10:00 AM", end: "02:00 PM" },
+      { day: "SUNDAY", start: "10:00 AM", end: "02:00 PM" }
+    ],
+    crew: [
+      {
+        name: "Simi Ogunleye",
+        slug: "simi-ogunleye",
+        role: "HOST",
+        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
+      },
+      {
+        name: "DJ Tobi",
+        slug: "tobi-adebayo",
+        role: "DJ & PRODUCER",
         image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80"
       }
     ],
@@ -277,26 +140,30 @@ const showsCatalog = {
       {
         day: "18",
         monthYear: "DEC 2026",
-        title: "Vibe Check Festival Lagos",
-        artists: "RUGER, AYRA STARR, BNXN, ODUMODUBLVCK",
-        image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80"
+        title: "Midday Vibes Live Comedy Showcase",
+        artists: "TOP LAGOS COMEDIANS & AFROBEATS ICONS",
+        image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80"
       }
     ]
   },
-  "the-sound-session": {
-    slug: "the-sound-session",
-    title: "The Sound Session",
-    category: "CLUB MIX",
+  "area-workchop": {
+    slug: "area-workchop",
+    title: "Area Workchop",
+    category: "MIDDAY TO DRIVETIME",
     host: "DJ Tobi",
     hostSlug: "tobi-adebayo",
-    hostRole: "Official Head DJ",
+    hostRole: "Station DJ & On-Air Host",
     hostPhoto: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
-    bannerPhoto: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80",
-    description: "The Sound Session delivers raw, unfiltered club mixes, underground Afro-house rhythms, and party anthems directly to your speakers. Curated by DJ Tobi, this show turns your evening into an electric festival.",
+    bannerPhoto: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=1200&q=80",
+    description: "Area Workchop bridges midday to drivetime from 2:00 PM to 6:00 PM. High-energy street connection with Kedu Lagos! caller sessions, High Voltage Gbedu & live Freestyles, and unfiltered reactions in The Comment Section.",
     timetable: [
-      { day: "WEDNESDAY", start: "07:00 PM", end: "10:00 PM" },
-      { day: "FRIDAY", start: "04:00 PM", end: "08:00 PM" },
-      { day: "SATURDAY", start: "08:00 PM", end: "12:00 AM" }
+      { day: "MONDAY", start: "02:00 PM", end: "06:00 PM" },
+      { day: "TUESDAY", start: "02:00 PM", end: "06:00 PM" },
+      { day: "WEDNESDAY", start: "02:00 PM", end: "06:00 PM" },
+      { day: "THURSDAY", start: "02:00 PM", end: "06:00 PM" },
+      { day: "FRIDAY", start: "02:00 PM", end: "06:00 PM" },
+      { day: "SATURDAY", start: "02:00 PM", end: "06:00 PM" },
+      { day: "SUNDAY", start: "02:00 PM", end: "06:00 PM" }
     ],
     crew: [
       {
@@ -306,36 +173,40 @@ const showsCatalog = {
         image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80"
       },
       {
-        name: "Kemi Adetiba",
-        slug: "kemi-adetiba",
+        name: "Simi Ogunleye",
+        slug: "simi-ogunleye",
         role: "CO-HOST",
-        image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
+        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
       }
     ],
     events: [
       {
-        day: "04",
-        monthYear: "OCT 2026",
-        title: "All-Night Afrobeats Rave",
-        artists: "DJ TOBI, DJ SPINALL, DJ KHALID & GUESTS",
-        image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80"
+        day: "05",
+        monthYear: "DEC 2026",
+        title: "Area Workchop Freestyle Battle",
+        artists: "UNDERGROUND EMCEES & PRODUCERS",
+        image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80"
       }
     ]
   },
-  "pop-pulse": {
-    slug: "pop-pulse",
-    title: "Pop Pulse",
-    category: "MUSIC",
+  "area-drivetime-cruise-part-1": {
+    slug: "area-drivetime-cruise-part-1",
+    title: "Area Drivetime-Cruise (Part 1)",
+    category: "COMMUTE & TALK",
     host: "Funke Akindele",
     hostSlug: "funke-akindele",
-    hostRole: "Music Host",
-    hostPhoto: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
-    bannerPhoto: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80",
-    description: "Pop Pulse counts down the biggest records locally and globally. Listener voting, artist gossip, debut records, and live interviews with rising pop talents.",
+    hostRole: "Drivetime Anchor",
+    hostPhoto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+    bannerPhoto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80",
+    description: "Area Drivetime-Cruise (Part 1) from 6:00 PM to 8:00 PM is Lagos' official traffic survival show. Packed with Traffic Jam Traffic alerts, listener Confessions, Korope Konnect bus-stop stories, and grassroots Reporter Network dispatches.",
     timetable: [
-      { day: "TUESDAY", start: "02:00 PM", end: "05:00 PM" },
-      { day: "WEDNESDAY", start: "03:00 PM", end: "06:00 PM" },
-      { day: "SATURDAY", start: "02:00 PM", end: "05:00 PM" }
+      { day: "MONDAY", start: "06:00 PM", end: "08:00 PM" },
+      { day: "TUESDAY", start: "06:00 PM", end: "08:00 PM" },
+      { day: "WEDNESDAY", start: "06:00 PM", end: "08:00 PM" },
+      { day: "THURSDAY", start: "06:00 PM", end: "08:00 PM" },
+      { day: "FRIDAY", start: "06:00 PM", end: "08:00 PM" },
+      { day: "SATURDAY", start: "06:00 PM", end: "08:00 PM" },
+      { day: "SUNDAY", start: "06:00 PM", end: "08:00 PM" }
     ],
     crew: [
       {
@@ -345,144 +216,136 @@ const showsCatalog = {
         image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80"
       },
       {
-        name: "Simi Ogunleye",
-        slug: "simi-ogunleye",
-        role: "CO-HOST",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
-      }
-    ],
-    events: [
-      {
-        day: "20",
-        monthYear: "NOV 2026",
-        title: "Pop Pulse Top 40 Live Countdown",
-        artists: "TOP 10 NIGERIAN HITMAKERS LIVE",
-        image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80"
-      }
-    ]
-  },
-  "lagos-morning-rush": {
-    slug: "lagos-morning-rush",
-    title: "Lagos Morning Rush",
-    category: "INTERVIEWS & NEWS",
-    host: "Olamide Okafor",
-    hostSlug: "olamide-okafor",
-    hostRole: "Senior Morning Anchor",
-    hostPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
-    bannerPhoto: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80",
-    description: "Wake up with the pulse of Lagos! From 6:00 AM to 10:00 AM every weekday, Lagos Morning Rush delivers breaking traffic alerts, metro news, political debate, humor, and high-energy music to get commuters moving across the city.",
-    timetable: [
-      { day: "MONDAY", start: "06:00 AM", end: "10:00 AM" },
-      { day: "TUESDAY", start: "06:00 AM", end: "10:00 AM" },
-      { day: "WEDNESDAY", start: "06:00 AM", end: "10:00 AM" },
-      { day: "THURSDAY", start: "06:00 AM", end: "10:00 AM" },
-      { day: "FRIDAY", start: "06:00 AM", end: "10:00 AM" }
-    ],
-    crew: [
-      {
-        name: "Olamide Okafor",
-        slug: "olamide-okafor",
-        role: "HEAD ANCHOR",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Simi Ogunleye",
-        slug: "simi-ogunleye",
-        role: "CO-HOST & TRAFFIC",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
-      },
-      {
         name: "Babalola Alabi",
         slug: "babalola-alabi",
-        role: "SPORTS CORRESPONDENT",
+        role: "CO-HOST",
         image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80"
       }
     ],
     events: [
       {
-        day: "08",
-        monthYear: "OCT 2026",
-        title: "Lagos Morning Rush Town Hall",
-        artists: "LIVE CITIZENS FORUM & CIVIC LEADERS",
-        image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80"
+        day: "22",
+        monthYear: "NOV 2026",
+        title: "Korope Drivers Gala & Awards",
+        artists: "COMMUNITY COMMUTER ALLIANCE",
+        image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80"
       }
     ]
   },
-  "afrobeats-reloaded": {
-    slug: "afrobeats-reloaded",
-    title: "Afrobeats Reloaded",
-    category: "MUSIC",
-    host: "DJ Tobi",
-    hostSlug: "tobi-adebayo",
-    hostRole: "Music Specialist & DJ",
-    hostPhoto: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
-    bannerPhoto: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
-    description: "The official drive-time Afrobeats destination. Non-stop high-energy mixes of top African hits, exclusive world premieres, remix debuts, and street anthems to soundtrack your afternoon.",
+  "area-drivetime-cruise-part-2": {
+    slug: "area-drivetime-cruise-part-2",
+    title: "Area Drivetime-Cruise (Part 2)",
+    category: "SPORTS & BANTER",
+    host: "Babalola Alabi & DJ Tobi",
+    hostSlug: "babalola-alabi",
+    hostRole: "Sports Director & Host",
+    hostPhoto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+    bannerPhoto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80",
+    description: "Area Drivetime-Cruise (Part 2) from 8:00 PM to 10:00 PM brings the fiery sports arena to your radio. Area Sports banter, Sure Odds betting breakdown, heated Fan Wars, grassroots Local Champions highlights, and daily recap: Wetin Sup Today?",
     timetable: [
-      { day: "MONDAY", start: "04:00 PM", end: "08:00 PM" },
-      { day: "WEDNESDAY", start: "04:00 PM", end: "08:00 PM" },
-      { day: "FRIDAY", start: "04:00 PM", end: "08:00 PM" }
+      { day: "MONDAY", start: "08:00 PM", end: "10:00 PM" },
+      { day: "TUESDAY", start: "08:00 PM", end: "10:00 PM" },
+      { day: "WEDNESDAY", start: "08:00 PM", end: "10:00 PM" },
+      { day: "THURSDAY", start: "08:00 PM", end: "10:00 PM" },
+      { day: "FRIDAY", start: "08:00 PM", end: "10:00 PM" },
+      { day: "SATURDAY", start: "08:00 PM", end: "10:00 PM" },
+      { day: "SUNDAY", start: "08:00 PM", end: "10:00 PM" }
     ],
     crew: [
+      {
+        name: "Babalola Alabi",
+        slug: "babalola-alabi",
+        role: "LEAD SPORTS ANCHOR",
+        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80"
+      },
       {
         name: "DJ Tobi",
         slug: "tobi-adebayo",
-        role: "HOST & DJ",
+        role: "CO-HOST & DJ",
         image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Funke Akindele",
-        slug: "funke-akindele",
-        role: "CO-HOST",
-        image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80"
-      }
-    ],
-    events: [
-      {
-        day: "27",
-        monthYear: "NOV 2026",
-        title: "Afrobeats Reloaded Live Festival",
-        artists: "TOP 20 AFROBEATS ICONS LIVE ON STAGE",
-        image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80"
-      }
-    ]
-  },
-  "midnight-vibes": {
-    slug: "midnight-vibes",
-    title: "Midnight Vibes",
-    category: "R&B & SOUL",
-    host: "Kemi Adetiba",
-    hostSlug: "kemi-adetiba",
-    hostRole: "Late Night Host",
-    hostPhoto: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
-    bannerPhoto: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80",
-    description: "Wind down your night with soulful R&B, slow jams, acoustic Afrobeats, and intimate confessions. Kemi Adetiba hosts heartfelt discussions, late-night dedications, and mellow grooves.",
-    timetable: [
-      { day: "MONDAY", start: "11:00 PM", end: "02:00 AM" },
-      { day: "WEDNESDAY", start: "11:00 PM", end: "02:00 AM" },
-      { day: "FRIDAY", start: "11:00 PM", end: "03:00 AM" }
-    ],
-    crew: [
-      {
-        name: "Kemi Adetiba",
-        slug: "kemi-adetiba",
-        role: "HOST",
-        image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "Olamide Okafor",
-        slug: "olamide-okafor",
-        role: "CO-HOST",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
       }
     ],
     events: [
       {
         day: "14",
-        monthYear: "FEB 2027",
-        title: "Midnight Vibes Acoustic Love Special",
-        artists: "CHIKE, SIMI, JOHNNY DRILLE & SPECIAL GUESTS",
-        image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80"
+        monthYear: "NOV 2026",
+        title: "Area Sports Fan Wars Derby",
+        artists: "PREMIER LEAGUE & NPFL SUPER FANS",
+        image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80"
+      }
+    ]
+  },
+  "late-night-overnight-cruise": {
+    slug: "late-night-overnight-cruise",
+    title: "Late Night & Overnight Cruise",
+    category: "NIGHT GBEDU",
+    host: "Kemi Adetiba",
+    hostSlug: "kemi-adetiba",
+    hostRole: "Late Night Tastemaker",
+    hostPhoto: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+    bannerPhoto: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80",
+    description: "Late Night & Overnight Cruise (10:00 PM - 05:00 AM) is your nighttime soundtrack until dawn. Nonstop High Voltage Gbedu, soulful rhythms, and the signature Area Night Cruise 6-Day Mood Matrix for nocturnal Lagos.",
+    timetable: [
+      { day: "MONDAY", start: "10:00 PM", end: "05:00 AM" },
+      { day: "TUESDAY", start: "10:00 PM", end: "05:00 AM" },
+      { day: "WEDNESDAY", start: "10:00 PM", end: "05:00 AM" },
+      { day: "THURSDAY", start: "10:00 PM", end: "05:00 AM" },
+      { day: "FRIDAY", start: "10:00 PM", end: "05:00 AM" },
+      { day: "SATURDAY", start: "10:00 PM", end: "05:00 AM" },
+      { day: "SUNDAY", start: "10:00 PM", end: "05:00 AM" }
+    ],
+    crew: [
+      {
+        name: "Kemi Adetiba",
+        slug: "kemi-adetiba",
+        role: "HOST & DJ",
+        image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
+      }
+    ],
+    events: [
+      {
+        day: "31",
+        monthYear: "DEC 2026",
+        title: "Overnight Cruise All-Night Countdown",
+        artists: "DJ KEMI & GUEST AFRO-HOUSE PRODUCERS",
+        image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80"
+      }
+    ]
+  },
+  "late-night-and-overnight-cruise": {
+    slug: "late-night-and-overnight-cruise",
+    title: "Late Night & Overnight Cruise",
+    category: "NIGHT GBEDU",
+    host: "Kemi Adetiba",
+    hostSlug: "kemi-adetiba",
+    hostRole: "Late Night Tastemaker",
+    hostPhoto: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+    bannerPhoto: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80",
+    description: "Late Night & Overnight Cruise (10:00 PM - 05:00 AM) is your nighttime soundtrack until dawn. Nonstop High Voltage Gbedu, soulful rhythms, and the signature Area Night Cruise 6-Day Mood Matrix for nocturnal Lagos.",
+    timetable: [
+      { day: "MONDAY", start: "10:00 PM", end: "05:00 AM" },
+      { day: "TUESDAY", start: "10:00 PM", end: "05:00 AM" },
+      { day: "WEDNESDAY", start: "10:00 PM", end: "05:00 AM" },
+      { day: "THURSDAY", start: "10:00 PM", end: "05:00 AM" },
+      { day: "FRIDAY", start: "10:00 PM", end: "05:00 AM" },
+      { day: "SATURDAY", start: "10:00 PM", end: "05:00 AM" },
+      { day: "SUNDAY", start: "10:00 PM", end: "05:00 AM" }
+    ],
+    crew: [
+      {
+        name: "Kemi Adetiba",
+        slug: "kemi-adetiba",
+        role: "HOST & DJ",
+        image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
+      }
+    ],
+    events: [
+      {
+        day: "31",
+        monthYear: "DEC 2026",
+        title: "Overnight Cruise All-Night Countdown",
+        artists: "DJ KEMI & GUEST AFRO-HOUSE PRODUCERS",
+        image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80"
       }
     ]
   }
@@ -492,23 +355,24 @@ const showsCatalog = {
 const buildFallbackShow = (slug) => {
   const cleanTitle = slug
     ? slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
-    : "The Fan Zone";
+    : "Midday Vibes";
 
   return {
-    slug: slug || "the-fan-zone",
+    slug: slug || "midday-vibes",
     title: cleanTitle,
     category: "TALK & MUSIC",
     host: "Simi Ogunleye",
     hostSlug: "simi-ogunleye",
     hostRole: "Resident Broadcaster",
-    hostPhoto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+    hostPhoto: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
     bannerPhoto: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80",
     description: `${cleanTitle} delivers prime-time radio entertainment across 93.5 Area FM. Packed with urban music, local news updates, viral stories, listener phone-ins, and high energy.`,
     timetable: [
-      { day: "MONDAY", start: "11:00 AM", end: "02:30 PM" },
-      { day: "WEDNESDAY", start: "11:00 AM", end: "02:30 PM" },
-      { day: "FRIDAY", start: "11:00 AM", end: "02:30 PM" },
-      { day: "SATURDAY", start: "02:00 PM", end: "06:00 PM" }
+      { day: "MONDAY", start: "10:00 AM", end: "02:00 PM" },
+      { day: "TUESDAY", start: "10:00 AM", end: "02:00 PM" },
+      { day: "WEDNESDAY", start: "10:00 AM", end: "02:00 PM" },
+      { day: "THURSDAY", start: "10:00 AM", end: "02:00 PM" },
+      { day: "FRIDAY", start: "10:00 AM", end: "02:00 PM" }
     ],
     crew: [
       {

@@ -8,9 +8,9 @@ export const DEFAULT_LIVE_TRACK = {
   id: 'area_fm_live',
   title: '93.5 Area FM Live',
   artist: 'One Voice, Every Area',
-  showName: 'The Fan Zone',
+  showName: 'Midday Vibes',
   presenterName: 'Simi Ogunleye',
-  image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
+  image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
   audioUrl: LIVE_STREAM_URL,
   isLive: true
 };

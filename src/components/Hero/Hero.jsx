@@ -10,38 +10,65 @@ import styles from './Hero.module.css';
 const todayShows = [
   {
     id: "e1",
-    tag: "06:00 PM",
-    subtitle: "ELECTRO / AFRO",
-    title: "The Buzz Hour",
+    tag: "05:00 AM",
+    subtitle: "NEWS & INSPIRATION",
+    title: "The Early Momo Show (Part 1)",
     dj: "Olamide Okafor",
-    badge: "LIVE SHOW",
-    image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80"
+    badge: "RISE & SHINE",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
   },
   {
     id: "e2",
-    tag: "08:00 PM",
-    subtitle: "MUSIC & CULTURE",
-    title: "Vibe Makers Live",
-    dj: "Simi Ogunleye",
-    badge: "INTERVIEWS",
-    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80"
+    tag: "07:00 AM",
+    subtitle: "METRO & TRAFFIC",
+    title: "The Early Momo Show (Part 2)",
+    dj: "Funke Akindele",
+    badge: "AS E DEY HOT",
+    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80"
   },
   {
     id: "e3",
-    tag: "10:00 PM",
-    subtitle: "SPECIAL COUNTDOWN",
-    title: "Pop Picks Spotlight",
-    dj: "DJ Tobi",
-    badge: "POP PICKS",
-    image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80"
+    tag: "10:00 AM",
+    subtitle: "SOUNDS OF LAGOS",
+    title: "Midday Vibes",
+    dj: "Simi Ogunleye",
+    badge: "COMEDY & HITS",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
   },
   {
     id: "e4",
-    tag: "11:30 PM",
-    subtitle: "R&B SESSIONS",
-    title: "Midnight Vibes",
+    tag: "02:00 PM",
+    subtitle: "MIDDAY TO DRIVETIME",
+    title: "Area Workchop",
+    dj: "DJ Tobi",
+    badge: "KEDU LAGOS",
+    image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "e5",
+    tag: "06:00 PM",
+    subtitle: "LAGOS COMMUTE & TALK",
+    title: "Area Drivetime-Cruise (Part 1)",
+    dj: "Funke Akindele",
+    badge: "TRAFFIC JAM",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "e6",
+    tag: "08:00 PM",
+    subtitle: "AREA SPORTS & BANTER",
+    title: "Area Drivetime-Cruise (Part 2)",
+    dj: "Babalola Alabi & DJ Tobi",
+    badge: "SURE ODDS",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "e7",
+    tag: "10:00 PM",
+    subtitle: "GBEDU & MOOD MATRIX",
+    title: "Late Night & Overnight Cruise",
     dj: "Kemi Adetiba",
-    badge: "R&B",
+    badge: "NIGHT CRUISE",
     image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
   }
 ];
@@ -78,11 +105,11 @@ export const Hero = () => {
     } else {
       playTrack({
         id: "area_fm_live",
-        title: "The Fan Zone",
+        title: "Midday Vibes",
         artist: "Simi Ogunleye",
-        showName: "The Fan Zone",
+        showName: "Midday Vibes",
         presenterName: "Simi Ogunleye",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
         audioUrl: LIVE_STREAM_URL,
         isLive: true
       });
@@ -102,7 +129,7 @@ export const Hero = () => {
         style={{ cursor: 'pointer' }}
       >
         <span className={styles.topRightSongTitle}>
-          {currentTrack.showName || currentTrack.title || 'The Fan Zone'}
+          {currentTrack.showName || currentTrack.title || 'Midday Vibes'}
         </span>
         <span className={styles.topRightArtist}>
           {currentTrack.presenterName || currentTrack.artist || 'Simi Ogunleye'}

@@ -17,11 +17,11 @@ export const OnAirBanner = () => {
     } else {
       playTrack({
         id: "area_fm_live",
-        title: "The Fan Zone",
+        title: "Midday Vibes",
         artist: "Simi Ogunleye",
-        showName: "The Fan Zone",
+        showName: "Midday Vibes",
         presenterName: "Simi Ogunleye",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
         audioUrl: LIVE_STREAM_URL,
         isLive: true
       });
@@ -65,7 +65,7 @@ export const OnAirBanner = () => {
         >
           <div 
             className={styles.headerLabelWrap}
-            onClick={() => navigate('/shows/the-fan-zone')}
+            onClick={() => navigate('/shows/midday-vibes')}
             style={{ cursor: 'pointer' }}
           >
             <span className={styles.sectionBadge}>SHOW ON AIR</span>
@@ -74,26 +74,26 @@ export const OnAirBanner = () => {
 
           <div 
             className={styles.onAirCard}
-            onClick={() => navigate('/shows/the-fan-zone')}
+            onClick={() => navigate('/shows/midday-vibes')}
             style={{ cursor: 'pointer' }}
           >
             <img 
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" 
-              alt="The Fan Zone" 
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" 
+              alt="Midday Vibes" 
               className={styles.onAirImage} 
               loading="lazy" 
             />
             <div className={styles.onAirOverlay}>
               <div className={styles.badgeRow}>
-                <span className={styles.genreBadge}>INTERVIEWS</span>
+                <span className={styles.genreBadge}>SOUNDS OF LAGOS</span>
                 <span className={styles.livePill}>NOW ON AIR</span>
               </div>
 
-              <h3 className={styles.showTitleHighlight}>The Fan Zone</h3>
+              <h3 className={styles.showTitleHighlight}>Midday Vibes</h3>
               <p className={styles.presenterText}>Presented by Simi Ogunleye</p>
               <div className={styles.showTimeText}>
                 <FiClock size={13} />
-                <span>11:00 am - 02:30 pm</span>
+                <span>10:00 am - 02:00 pm</span>
               </div>
             </div>
           </div>
