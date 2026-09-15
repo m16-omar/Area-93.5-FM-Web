@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { FiSearch, FiX, FiRadio, FiUser, FiMic, FiFileText, FiTrendingUp } from 'react-icons/fi';
 import { FaPlay } from 'react-icons/fa';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
+import { fetchNewsArticles } from '../../services/newsApi';
 import scheduleData from '../../data/scheduleData.json';
 import teamData from '../../data/teamData.json';
 import podcastsData from '../../data/podcastsFullData.json';
-import newsData from '../../data/newsData.json';
+import defaultNewsData from '../../data/newsData.json';
 import styles from './SearchModal.module.css';
 
 const popularKeywords = [
@@ -23,9 +24,21 @@ const popularKeywords = [
 export const SearchModal = ({ isOpen, onClose }) => {
   const [query, setQuery] = useState('');
   const [activeTab, setActiveTab] = useState('ALL');
+  const [newsArticles, setNewsArticles] = useState([]);
   const inputRef = useRef(null);
   const navigate = useNavigate();
   const { playTrack } = useAudioPlayer();
+
+  useEffect(() => {
+    let isMounted = true;
+    fetchNewsArticles().then(list => {
+      if (isMounted && list && list.length > 0) {
+        setNewsArticles(list);
+      }
+    }).catch(() => {});
+
+    return () => { isMounted = false; };
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -52,8 +65,13 @@ export const SearchModal = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  const getSlug = (title) => {
-    return title ? title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : '';
+  const getSlug = (item) => {
+    if (!item) return '';
+    if (typeof item === 'string') {
+      return item.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    }
+    if (item.slug) return item.slug;
+    return item.title ? item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : '';
   };
 
   // Aggregate searchable items
@@ -63,10 +81,10 @@ export const SearchModal = ({ isOpen, onClose }) => {
 
   const allHosts = teamData || [];
   const allPodcasts = podcastsData || [];
-  const allNews = [
-    newsData.featuredBig,
-    newsData.featuredMedium,
-    ...(newsData.newsList || [])
+  const allNews = newsArticles.length > 0 ? newsArticles : [
+    defaultNewsData.featuredBig,
+    defaultNewsData.featuredMedium,
+    ...(defaultNewsData.newsList || [])
   ].filter(Boolean);
 
   const cleanQuery = query.toLowerCase().trim();
@@ -84,7 +102,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
   );
 
   const filteredNews = allNews.filter(n =>
-    !cleanQuery || n.title?.toLowerCase().includes(cleanQuery) || n.category?.toLowerCase().includes(cleanQuery)
+    !cleanQuery || n.title?.toLowerCase().includes(cleanQuery) || (n.category && String(n.category).toLowerCase().includes(cleanQuery))
   );
 
   const handleNavigate = (path) => {
@@ -312,7 +330,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
                             <div 
                               key={idx} 
                               className={styles.resultItem} 
-                              onClick={() => handleNavigate(`/news/${getSlug(item.title)}`)}
+                              onClick={() => handleNavigate(`/news/${getSlug(item)}`)}
                             >
                               <img src={item.image} alt={item.title} className={styles.itemThumb} />
                               <div className={styles.itemMeta}>

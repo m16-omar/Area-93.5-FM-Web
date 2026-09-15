@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
@@ -6,142 +6,21 @@ import {
   FaPinterest, FaLinkedinIn, FaWhatsapp, FaTelegramPlane, FaStar, FaShareAlt, FaHeart, FaComment
 } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
-import { FiSearch, FiCalendar, FiClock, FiArrowRight, FiMoreVertical, FiShoppingCart } from 'react-icons/fi';
+import { FiSearch, FiCalendar, FiClock, FiArrowRight, FiMoreVertical, FiShoppingCart, FiEye } from 'react-icons/fi';
 import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
-import { useAudioPlayer, LIVE_STREAM_URL } from '../context/AudioPlayerContext';
+import { 
+  fetchNewsDetail, 
+  fetchNewsArticles, 
+  trackArticleView, 
+  likeArticle, 
+  shareArticle 
+} from '../services/newsApi';
 import styles from './NewsDetailPage.module.css';
 
-// Rich articles catalog mapping by slug
-const articlesCatalog = {
-  "listeners-choice-awards-your-top-picks-for-this-years-music-icons": {
-    slug: "listeners-choice-awards-your-top-picks-for-this-years-music-icons",
-    category: "EVENTS",
-    title: "Listener’s Choice Awards: Your Top Picks for This Year’s Music Icons",
-    date: "January 8, 2026",
-    comments: 61,
-    likes: 142,
-    author: "Simi Ogunleye",
-    authorRole: "Senior Entertainment Editor",
-    heroImage: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80",
-    inArticleImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
-    tags: ["ARTISTS", "CHARTS", "DJ", "EVENTS", "HITS", "MUSIC", "POP", "REVIEWS", "AFROBEATS"],
-    intro: "As the heartbeat of the music world, we’re always tuned in to what’s trending, and this week is no exception! From chart-topping hits to the latest artist interviews, we’ve got everything you need to stay updated on the sounds that are shaping the future of music. Here’s what’s new and exciting in the world of commercial and African pop music right now.",
-    sections: [
-      {
-        heading: "Top Tracks You Can’t Miss",
-        content: "If you haven’t heard the latest tracks dominating the charts, now’s the time to tune in! This week, we’re all about the 'Hot List', featuring the biggest pop and Afrobeats anthems that everyone is talking about. From electrifying dance bangers to heartwarming ballads, these songs are taking over airwaves and streaming platforms alike. The question is, did your favorites make the cut?"
-      },
-      {
-        heading: "Exclusive Artist Interviews",
-        content: "We’re bringing you closer to the artists you love with our exclusive interviews! This week, we caught up with Kendal, the breakout star of the year. Known for their chart-topping single 'Formal', Kendal opened up about their journey to success, the inspiration behind their music, and what's next for their evolving career. Don't miss out on hearing the stories behind the songs that define our playlists."
-      },
-      {
-        heading: "Behind the Scenes: The Making of a Hit",
-        content: "Ever wonder what goes into crafting a pop anthem? In this week's 'Hit Makers' segment, we take a deep dive into the process of producing a smash hit. From the first studio session to the final polished track, discover the secrets behind creating a song that connects with millions of fans. This week, we’re breaking down the sound of 'Die With A Smile' — the track that’s currently taking the world by storm."
-      },
-      {
-        heading: "Trending on Social Media: The Songs You’re Talking About",
-        content: "We know you're always on your phone, scrolling through your social media feeds — and so are we! That's why we're keeping tabs on the latest music trends across platforms like TikTok, Instagram, and Twitter. This week, 'In the End' is the track everyone is obsessed with, sparking viral challenges and thousands of posts from fans. Tune in to find out what's driving the hype and how you can be a part of it!"
-      },
-      {
-        heading: "Fan Poll: Your Favorite Song of the Week",
-        content: "We love hearing from you, our listeners! Every week, we take a poll to find out which songs are making the biggest impact on our audience. This week, 'Changing Smiles' leads the pack, with fans voting it as their favorite track of the week! Will it stay on top, or will a new hit emerge to take the crown? Make sure to cast your vote for next week's Listener's Choice!"
-      },
-      {
-        heading: "Upcoming Events: Don’t Miss Out!",
-        content: "Exciting events are on the horizon, and we’re bringing you exclusive access! From live concerts to virtual listening parties, there’s always something happening in the world of pop music. This week, join us for the Pop Hits Live Show streaming this Saturday night, featuring performances from some of your favorite stars. Stay tuned for more details and ticket information."
-      }
-    ]
-  },
-  "from-viral-dance-challenges-to-radio-play-how-pop-songs-go-mainstream": {
-    slug: "from-viral-dance-challenges-to-radio-play-how-pop-songs-go-mainstream",
-    category: "TRENDS",
-    title: "From Viral Dance Challenges to Radio Play: How Pop Songs Go Mainstream",
-    date: "August 15, 2026",
-    comments: 48,
-    likes: 92,
-    author: "Funke Akindele",
-    authorRole: "Culture & Trends Editor",
-    heroImage: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80",
-    inArticleImage: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80",
-    tags: ["TRENDS", "TIKTOK", "AFROBEATS", "CHARTS", "VIRAL", "DANCE", "RADIO"],
-    intro: "Social media algorithms and dance creators in Lagos, London, and Atlanta have transformed how records break into mainstream global radio. Here is how a 15-second snippet becomes a stadium anthem.",
-    sections: [
-      {
-        heading: "The 15-Second Hook Phenomenon",
-        content: "Before a record hits FM transmitters, it often starts as an unreleased acoustic riff or high-tempo hook on creator feeds. Songs engineered with relatable dance routines spread faster than traditional PR campaigns."
-      },
-      {
-        heading: "Radio DJs as the Final Gatekeepers",
-        content: "While social media sparks initial virality, radio airplay provides cultural staying power. Stations like 93.5 Area FM validate internet buzz by adding grassroots hits into daily rotation."
-      },
-      {
-        heading: "Listener Feedback & Phone-Ins",
-        content: "The real test of any viral track comes when listeners call into the request lines. If real drivers and office workers ask for the song repeatedly, it secures a permanent slot on the weekly Top 40."
-      }
-    ]
-  },
-  "the-2026-pop-music-festival-you-cant-miss": {
-    slug: "the-2026-pop-music-festival-you-cant-miss",
-    category: "CONCERTS",
-    title: "The 2026 Pop Music Festival You Can’t Miss",
-    date: "January 8, 2026",
-    comments: 34,
-    likes: 110,
-    author: "Tobi Adebayo",
-    authorRole: "Events & Music Specialist",
-    heroImage: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80",
-    inArticleImage: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80",
-    tags: ["CONCERTS", "FESTIVAL", "LIVE", "STAGE", "ARTISTS", "LAGOS"],
-    intro: "Festival season is kicking into overdrive with multi-stage experiences, sound immersion tents, and all-star lineups heading to Lagos and Abuja.",
-    sections: [
-      {
-        heading: "Unmatched Lineup of Global & African Stars",
-        content: "Featuring headliners across Afrobeats, Amapiano, R&B, and international pop, this year's festival is primed to be the largest cultural gathering in West Africa."
-      },
-      {
-        heading: "Exclusive Backstage Access with 93.5 Area FM",
-        content: "Our broadcast crew will be on ground streaming live interviews, acoustic VIP tent sets, and instant festival updates across all our channels."
-      }
-    ]
-  },
-  "the-best-of-both-worlds-how-commercial-and-indie-music-are-coming-together": {
-    slug: "the-best-of-both-worlds-how-commercial-and-indie-music-are-coming-together",
-    category: "ARTISTS",
-    title: "The Best of Both Worlds: How Commercial and Indie Music Are Coming Together",
-    date: "January 8, 2026",
-    comments: 18,
-    likes: 76,
-    author: "Kemi Adetiba",
-    authorRole: "Music Journalist",
-    heroImage: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80",
-    inArticleImage: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
-    tags: ["ARTISTS", "INDIE", "COLLABORATIONS", "PRODUCTION", "SOUND"],
-    intro: "The line between underground indie creativity and commercial chart dominance is blurring faster than ever.",
-    sections: [
-      {
-        heading: "Genre-Bending Production Styles",
-        content: "Producers are fusing indie alternative guitars with heavy 808s and Afro-percussions, creating fresh textures that appeal to purists and club crowds alike."
-      },
-      {
-        heading: "Independent Distribution Power",
-        content: "Independent creators now command direct distribution tools, forcing major record labels to adapt and collaborate on artists' own terms."
-      }
-    ]
-  }
-};
-
-// Fallback generator for any custom article slug
+// Fallback generator for custom article slug if backend is temporarily unreachable
 const buildFallbackArticle = (slug) => {
-  const norm = (slug || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-  for (const item of Object.values(articlesCatalog)) {
-    if ((item.slug || '').toLowerCase().replace(/[^a-z0-9]/g, '') === norm) {
-      return item;
-    }
-  }
-
   let cleanTitle = slug
     ? slug
         .replace(/-s-/g, "’s ")
@@ -150,21 +29,24 @@ const buildFallbackArticle = (slug) => {
         .split('-')
         .map(w => w.charAt(0).toUpperCase() + w.slice(1))
         .join(' ')
-    : "Listener’s Choice Awards: Your Top Picks for This Year’s Music Icons";
+    : "Breaking Music & Culture News";
 
   return {
-    slug: slug || "listeners-choice-awards-your-top-picks-for-this-years-music-icons",
-    category: "MUSIC NEWS",
+    id: `fallback-${slug}`,
+    slug: slug || "breaking-music-and-culture-news",
+    category: "NEWS",
     title: cleanTitle,
-    date: "January 8, 2026",
-    comments: 42,
-    likes: 88,
+    date: "August 15, 2026",
+    comments: 18,
+    likes: 42,
+    views: 120,
     author: "93.5 Area FM Editorial Desk",
     authorRole: "Music & News Department",
     heroImage: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80",
     inArticleImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
-    tags: ["ARTISTS", "CHARTS", "DJ", "EVENTS", "HITS", "MUSIC", "POP", "REVIEWS"],
-    intro: "As the heartbeat of the music world, 93.5 Area FM brings you complete breaking coverage on trending music, festival announcements, and chart-topping songs.",
+    tags: ["ARTISTS", "CHARTS", "DJ", "EVENTS", "HITS", "MUSIC", "AFROBEATS", "LAGOS"],
+    excerpt: "As the heartbeat of the music world, 93.5 Area FM brings you complete breaking coverage on trending music, festival announcements, and chart-topping songs.",
+    content: "Stay up to date with the latest breaking stories, Afrobeats releases, music industry analyses, and culture news straight from 93.5 Area FM.",
     sections: [
       {
         heading: "Top Tracks You Can’t Miss",
@@ -178,43 +60,102 @@ const buildFallbackArticle = (slug) => {
   };
 };
 
+const mostListenedTracks = [
+  { rank: 1, title: "Die With A Smile", artist: "Lady Gaga & Bruno Mars", cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=120&q=80" },
+  { rank: 2, title: "Higher", artist: "Burna Boy", cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=120&q=80" },
+  { rank: 3, title: "Calm Down", artist: "Rema", cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=120&q=80" }
+];
+
 export const NewsDetailPage = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
+  const [article, setArticle] = useState(() => buildFallbackArticle(slug));
+  const [similarPosts, setSimilarPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [rating, setRating] = useState(5);
   const [hoverRating, setHoverRating] = useState(0);
   const [sidebarSearch, setSidebarSearch] = useState('');
+  const [liked, setLiked] = useState(false);
 
-  // Resolve article by exact key or normalized slug
-  const normSlug = (slug || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-  const matchedCatalogArticle = articlesCatalog[slug] || Object.values(articlesCatalog).find(
-    a => (a.slug || '').toLowerCase().replace(/[^a-z0-9]/g, '') === normSlug
-  );
-  const article = matchedCatalogArticle || buildFallbackArticle(slug);
+  useEffect(() => {
+    let isMounted = true;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  const similarPosts = [
-    {
-      slug: "the-2026-pop-music-festival-you-cant-miss",
-      title: "The 2026 Pop Music Festival You Can’t Miss",
-      category: "CONCERTS",
-      date: "January 8, 2026",
-      comments: 34,
-      image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-      slug: "the-best-of-both-worlds-how-commercial-and-indie-music-are-coming-together",
-      title: "The Best of Both Worlds: How Commercial and Indie Music Are Coming Together",
-      category: "ARTISTS",
-      date: "January 8, 2026",
-      comments: 18,
-      image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80"
+    const loadArticle = async () => {
+      setLoading(true);
+      try {
+        // Fetch article detail and all articles for similar suggestions in parallel
+        const [fetchedArticle, allArticles] = await Promise.all([
+          fetchNewsDetail(slug),
+          fetchNewsArticles()
+        ]);
+
+        if (isMounted) {
+          if (fetchedArticle) {
+            setArticle(fetchedArticle);
+            // Track view count on backend
+            trackArticleView(fetchedArticle.id || slug);
+          } else {
+            setArticle(buildFallbackArticle(slug));
+          }
+
+          if (allArticles && allArticles.length > 0) {
+            const cleanSlug = String(slug || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+            const others = allArticles.filter(a => {
+              const aSlug = String(a.slug || a.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+              return aSlug !== cleanSlug && a.id !== (fetchedArticle?.id);
+            });
+            setSimilarPosts(others.slice(0, 2));
+          }
+        }
+      } catch (err) {
+        console.warn('Error fetching article detail:', err);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+
+    loadArticle();
+    return () => { isMounted = false; };
+  }, [slug]);
+
+  const handleLike = async () => {
+    const newLikes = await likeArticle(article.id || slug);
+    if (newLikes !== null) {
+      setArticle(prev => ({ ...prev, likes: newLikes }));
+      setLiked(true);
+    } else {
+      setArticle(prev => ({ ...prev, likes: (prev.likes || 0) + (liked ? -1 : 1) }));
+      setLiked(!liked);
     }
-  ];
+  };
 
-  const mostListened = [
-    { rank: 1, title: "Die With A Smile", artist: "Lady Gaga & Bruno Mars", cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=120&q=80" },
-    { rank: 2, title: "Sweater Weather", artist: "The Neighbourhood", cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=120&q=80" }
-  ];
+  const handleShare = async (platform = 'native') => {
+    await shareArticle(article.id || slug);
+    const url = window.location.href;
+    const title = article.title || '93.5 Area FM News';
+
+    if (platform === 'native') {
+      if (navigator.share) {
+        navigator.share({ title, text: article.excerpt, url }).catch(() => {});
+        return;
+      }
+      platform = 'tw';
+    }
+
+    const shareUrls = {
+      fb: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+      tw: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
+      wa: `https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' ' + url)}`,
+      in: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+      tg: `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
+      pin: `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&description=${encodeURIComponent(title)}`
+    };
+
+    if (shareUrls[platform]) {
+      window.open(shareUrls[platform], '_blank', 'noopener,noreferrer,width=600,height=500');
+    }
+  };
 
   const handleSidebarSearchSubmit = (e) => {
     e.preventDefault();
@@ -223,6 +164,14 @@ export const NewsDetailPage = () => {
     }
   };
 
+  const getSlug = (item) => {
+    if (!item) return '';
+    if (item.slug) return item.slug;
+    return item.title ? item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : '';
+  };
+
+  const isHtml = (str) => /<[a-z][\s\S]*>/i.test(str || '');
+
   return (
     <main className={styles.newsDetailPageWrapper}>
       <Navbar />
@@ -230,7 +179,7 @@ export const NewsDetailPage = () => {
       {/* 1. HERO HEADER SECTION */}
       <section className={styles.heroSection}>
         <div className={styles.watermarkBgWrap}>
-          <img src={article.heroImage} alt={article.title} className={styles.watermarkImage} />
+          <img src={article.heroImage || article.image} alt={article.title} className={styles.watermarkImage} />
           <div className={styles.watermarkFadeOverlay} />
         </div>
 
@@ -241,20 +190,20 @@ export const NewsDetailPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className={styles.categoryBadge}>{article.category}</span>
+            <span className={styles.categoryBadge}>{article.category || 'NEWS'}</span>
             <h1 className={styles.articleMainTitle}>{article.title}</h1>
 
             <div className={styles.metaRow}>
               <span className={styles.metaItem}>
-                <FiCalendar size={13} /> {article.date}
+                <FiCalendar size={13} /> {article.date || 'Recent'}
               </span>
               <span className={styles.metaDivider}>•</span>
               <span className={styles.metaItem}>
-                <FaComment size={12} /> {article.comments}
+                <FiEye size={13} /> {article.views || 0} views
               </span>
               <span className={styles.metaDivider}>•</span>
-              <span className={styles.metaItem}>
-                <FaHeart size={12} className={styles.heartIcon} /> {article.likes}
+              <span className={styles.metaItem} onClick={handleLike} style={{ cursor: 'pointer' }}>
+                <FaHeart size={12} className={styles.heartIcon} style={{ color: liked ? '#E50914' : undefined }} /> {article.likes || 0}
               </span>
             </div>
           </motion.div>
@@ -275,17 +224,42 @@ export const NewsDetailPage = () => {
           <div className={styles.mainArticleCol}>
             {/* Featured Image */}
             <div className={styles.featuredImageWrap}>
-              <img src={article.heroImage} alt={article.title} className={styles.featuredImage} />
+              <img src={article.heroImage || article.image} alt={article.title} className={styles.featuredImage} />
             </div>
 
-            {/* Introductory text */}
-            <p className={styles.introParagraph}>{article.intro}</p>
+            {/* Introductory excerpt */}
+            {article.excerpt && (
+              <p className={styles.introParagraph}>{article.excerpt}</p>
+            )}
 
-            {/* Dynamic Article Sections */}
-            {article.sections && article.sections.map((sec, idx) => (
+            {/* Full Story Content */}
+            {article.content && (
+              <div className={styles.articleSectionBlock}>
+                {isHtml(article.content) ? (
+                  <div 
+                    className={styles.sectionParagraph}
+                    dangerouslySetInnerHTML={{ __html: article.content }} 
+                  />
+                ) : (
+                  article.content.split('\n\n').map((para, pIdx) => (
+                    <p key={pIdx} className={styles.sectionParagraph}>{para}</p>
+                  ))
+                )}
+              </div>
+            )}
+
+            {/* Dynamic Article Sections if any */}
+            {article.sections && article.sections.length > 0 && article.sections.map((sec, idx) => (
               <div key={idx} className={styles.articleSectionBlock}>
-                <h2 className={styles.sectionHeading}>{sec.heading}</h2>
-                <p className={styles.sectionParagraph}>{sec.content}</p>
+                {sec.heading && <h2 className={styles.sectionHeading}>{sec.heading}</h2>}
+                {isHtml(sec.content) ? (
+                  <div 
+                    className={styles.sectionParagraph}
+                    dangerouslySetInnerHTML={{ __html: sec.content }} 
+                  />
+                ) : (
+                  <p className={styles.sectionParagraph}>{sec.content}</p>
+                )}
                 
                 {/* Mid-article showcase portrait image after 4th section */}
                 {idx === 4 && article.inArticleImage && (
@@ -298,13 +272,13 @@ export const NewsDetailPage = () => {
 
             <div className={styles.authorCreditBlock}>
               <p className={styles.authorText}>
-                Written by: <strong className={styles.authorName}>{article.author}</strong> ({article.authorRole})
+                Written by: <strong className={styles.authorName}>{article.author || '93.5 Area FM Editorial Desk'}</strong> ({article.authorRole || 'Music & News Department'})
               </p>
             </div>
 
             {/* Tag Cloud */}
             <div className={styles.tagCloudRow}>
-              {article.tags.map((tag, idx) => (
+              {(article.tags || ["NEWS", "AFROBEATS", "CHARTS", "LAGOS"]).map((tag, idx) => (
                 <span key={idx} className={styles.tagPill}>
                   {tag}
                 </span>
@@ -314,12 +288,12 @@ export const NewsDetailPage = () => {
             {/* Social Share & Star Rating Bar */}
             <div className={styles.shareRatingBar}>
               <div className={styles.shareButtonsGroup}>
-                <button className={`${styles.shareBtn} ${styles.pinBtn}`} aria-label="Pinterest"><FaPinterest /></button>
-                <button className={`${styles.shareBtn} ${styles.fbBtn}`} aria-label="Facebook"><FaFacebookF /></button>
-                <button className={`${styles.shareBtn} ${styles.twBtn}`} aria-label="X"><FaXTwitter /></button>
-                <button className={`${styles.shareBtn} ${styles.inBtn}`} aria-label="LinkedIn"><FaLinkedinIn /></button>
-                <button className={`${styles.shareBtn} ${styles.waBtn}`} aria-label="WhatsApp"><FaWhatsapp /></button>
-                <button className={`${styles.shareBtn} ${styles.tgBtn}`} aria-label="Telegram"><FaTelegramPlane /></button>
+                <button className={`${styles.shareBtn} ${styles.pinBtn}`} aria-label="Pinterest" onClick={() => handleShare('pin')}><FaPinterest /></button>
+                <button className={`${styles.shareBtn} ${styles.fbBtn}`} aria-label="Facebook" onClick={() => handleShare('fb')}><FaFacebookF /></button>
+                <button className={`${styles.shareBtn} ${styles.twBtn}`} aria-label="X" onClick={() => handleShare('tw')}><FaXTwitter /></button>
+                <button className={`${styles.shareBtn} ${styles.inBtn}`} aria-label="LinkedIn" onClick={() => handleShare('in')}><FaLinkedinIn /></button>
+                <button className={`${styles.shareBtn} ${styles.waBtn}`} aria-label="WhatsApp" onClick={() => handleShare('wa')}><FaWhatsapp /></button>
+                <button className={`${styles.shareBtn} ${styles.tgBtn}`} aria-label="Telegram" onClick={() => handleShare('tg')}><FaTelegramPlane /></button>
               </div>
 
               <div className={styles.starRatingWidget}>
@@ -340,35 +314,37 @@ export const NewsDetailPage = () => {
             </div>
 
             {/* SIMILAR POSTS */}
-            <div className={styles.similarPostsWrapper}>
-              <div className={styles.similarHeader}>
-                <span className={styles.similarLabel}>SIMILAR POSTS</span>
-                <span className={styles.similarAccentLine} />
-              </div>
+            {similarPosts.length > 0 && (
+              <div className={styles.similarPostsWrapper}>
+                <div className={styles.similarHeader}>
+                  <span className={styles.similarLabel}>SIMILAR POSTS</span>
+                  <span className={styles.similarAccentLine} />
+                </div>
 
-              <div className={styles.similarGrid}>
-                {similarPosts.map((post, idx) => (
-                  <div 
-                    key={idx} 
-                    className={styles.similarCard}
-                    onClick={() => navigate(`/news/${post.slug}`)}
-                  >
-                    <div className={styles.similarImageWrap}>
-                      <img src={post.image} alt={post.title} className={styles.similarImage} />
-                      <span className={styles.similarCategoryBadge}>{post.category}</span>
-                    </div>
+                <div className={styles.similarGrid}>
+                  {similarPosts.map((post, idx) => (
+                    <div 
+                      key={idx} 
+                      className={styles.similarCard}
+                      onClick={() => navigate(`/news/${getSlug(post)}`)}
+                    >
+                      <div className={styles.similarImageWrap}>
+                        <img src={post.image} alt={post.title} className={styles.similarImage} />
+                        <span className={styles.similarCategoryBadge}>{post.category || 'NEWS'}</span>
+                      </div>
 
-                    <div className={styles.similarMetaContent}>
-                      <h3 className={styles.similarPostTitle}>{post.title}</h3>
-                      <div className={styles.similarCardFooter}>
-                        <span className={styles.similarDate}><FiCalendar size={11} /> {post.date}</span>
-                        <span className={styles.similarComments}><FaComment size={11} /> {post.comments}</span>
+                      <div className={styles.similarMetaContent}>
+                        <h3 className={styles.similarPostTitle}>{post.title}</h3>
+                        <div className={styles.similarCardFooter}>
+                          <span className={styles.similarDate}><FiCalendar size={11} /> {post.date}</span>
+                          <span className={styles.similarComments}><FiEye size={11} /> {post.views || 0} views</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* RIGHT: SIDEBAR WIDGETS */}
@@ -404,18 +380,19 @@ export const NewsDetailPage = () => {
 
               <div 
                 className={styles.nowOnAirCard}
-                onClick={() => navigate('/shows/pop-pulse')}
+                onClick={() => navigate('/shows/the-fan-zone')}
+                style={{ cursor: 'pointer' }}
               >
                 <img 
-                  src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" 
-                  alt="Pop Pulse" 
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" 
+                  alt="The Fan Zone" 
                   className={styles.nowOnAirBg} 
                 />
                 <div className={styles.nowOnAirOverlay}>
                   <span className={styles.nowOnAirPill}>LIVE SHOW</span>
                   <div className={styles.nowOnAirInfo}>
-                    <h4 className={styles.nowOnAirTitle}>Pop Pulse</h4>
-                    <p className={styles.nowOnAirTime}>03:00 pm - 06:00 pm • Funke Akindele</p>
+                    <h4 className={styles.nowOnAirTitle}>The Fan Zone</h4>
+                    <p className={styles.nowOnAirTime}>11:00 am - 02:30 pm • Area FM</p>
                   </div>
                   <button className={styles.nowOnAirMoreBtn} aria-label="Show Details">
                     <FiMoreVertical />
@@ -432,7 +409,7 @@ export const NewsDetailPage = () => {
               </div>
 
               <div className={styles.mostListenedStack}>
-                {mostListened.map((track, idx) => (
+                {mostListenedTracks.map((track, idx) => (
                   <div key={idx} className={styles.trackItemCard}>
                     <div className={styles.trackRank}>{track.rank}</div>
                     <img src={track.cover} alt={track.title} className={styles.trackCover} />
@@ -442,7 +419,11 @@ export const NewsDetailPage = () => {
                       <p className={styles.trackArtist}>{track.artist}</p>
                     </div>
 
-                    <button className={styles.trackCartBtn} aria-label="Track Action">
+                    <button 
+                      className={styles.trackCartBtn} 
+                      aria-label="Track Action"
+                      onClick={() => navigate('/charts')}
+                    >
                       <FiShoppingCart size={13} />
                     </button>
                   </div>
@@ -462,7 +443,7 @@ export const NewsDetailPage = () => {
       </section>
 
       {/* Floating Share Button */}
-      <button className={styles.floatingShareBtn} aria-label="Share Article">
+      <button className={styles.floatingShareBtn} aria-label="Share Article" onClick={() => handleShare('native')}>
         <FaShareAlt size={16} />
       </button>
 

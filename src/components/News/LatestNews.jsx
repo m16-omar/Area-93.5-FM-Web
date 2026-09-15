@@ -1,30 +1,98 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiEye, FiHeart, FiShare2, FiCalendar } from 'react-icons/fi';
-import newsData from '../../data/newsData.json';
+import { fetchNewsArticles, fetchNewsCategories, likeArticle, shareArticle } from '../../services/newsApi';
+import defaultNewsData from '../../data/newsData.json';
 import styles from './LatestNews.module.css';
 
 export const LatestNews = () => {
   const [activeCategory, setActiveCategory] = useState('ALL');
+  const [categories, setCategories] = useState(() => defaultNewsData.categories || ['ALL', 'CONCERTS', 'TRENDS', 'ARTISTS']);
+  const [articles, setArticles] = useState([]);
   const [pageIndex, setPageIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const getSlug = (title) => {
-    return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadData = async () => {
+      try {
+        const [newsList, catsList] = await Promise.all([
+          fetchNewsArticles(),
+          fetchNewsCategories()
+        ]);
+        if (isMounted) {
+          if (newsList && newsList.length > 0) {
+            setArticles(newsList);
+          }
+          if (catsList && catsList.length > 0) {
+            setCategories(catsList);
+          }
+        }
+      } catch (err) {
+        console.warn('Failed to load news from backend:', err);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+
+    loadData();
+    return () => { isMounted = false; };
+  }, []);
+
+  const getSlug = (item) => {
+    if (!item) return '';
+    if (item.slug) return item.slug;
+    return item.title ? item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : '';
   };
 
-  const handleArticleClick = (title) => {
-    navigate(`/news/${getSlug(title)}`);
+  const handleArticleClick = (item) => {
+    if (!item) return;
+    navigate(`/news/${getSlug(item)}`);
   };
+
+  const handleLike = async (e, item) => {
+    e.stopPropagation();
+    const newLikes = await likeArticle(item.id || item.slug);
+    if (newLikes !== null) {
+      setArticles(prev => prev.map(a => (a.id === item.id || a.slug === item.slug) ? { ...a, likes: newLikes } : a));
+    }
+  };
+
+  const handleShare = async (e, item) => {
+    e.stopPropagation();
+    await shareArticle(item.id || item.slug);
+    if (navigator.share) {
+      navigator.share({
+        title: item.title,
+        text: item.excerpt,
+        url: window.location.origin + `/news/${getSlug(item)}`
+      }).catch(() => {});
+    }
+  };
+
+  // Derive active items
+  const rawList = articles.length > 0 ? articles : [
+    defaultNewsData.featuredBig,
+    defaultNewsData.featuredMedium,
+    ...(defaultNewsData.newsList || [])
+  ];
+
+  const filteredList = activeCategory === 'ALL'
+    ? rawList
+    : rawList.filter(n => (n.category || '').toUpperCase() === activeCategory.toUpperCase());
+
+  const displayList = filteredList.length > 0 ? filteredList : rawList;
+
+  const featuredBig = displayList[0] || defaultNewsData.featuredBig;
+  const featuredMedium = displayList[1] || rawList[1] || defaultNewsData.featuredMedium;
+  const streamList = displayList.length > 2 ? displayList.slice(2) : (rawList.length > 2 ? rawList.slice(2) : rawList);
 
   const itemsPerPage = 3;
-  const filteredList = activeCategory === 'ALL' 
-    ? newsData.newsList 
-    : newsData.newsList.filter(n => n.category?.toUpperCase() === activeCategory);
-
-  const totalPages = Math.max(1, Math.ceil(filteredList.length / itemsPerPage));
-  const currentItems = filteredList.slice(pageIndex * itemsPerPage, (pageIndex + 1) * itemsPerPage);
+  const totalPages = Math.max(1, Math.ceil(streamList.length / itemsPerPage));
+  const currentItems = streamList.slice(pageIndex * itemsPerPage, (pageIndex + 1) * itemsPerPage);
 
   const handlePrev = () => {
     setPageIndex((prev) => (prev > 0 ? prev - 1 : totalPages - 1));
@@ -41,7 +109,7 @@ export const LatestNews = () => {
       {/* Top Bar with Categories & Sponsors */}
       <div className={styles.topControls}>
         <div className={styles.categoriesBar}>
-          {newsData.categories.map((cat) => (
+          {categories.map((cat) => (
             <button
               key={cat}
               className={`${styles.catBtn} ${activeCategory === cat ? styles.activeCat : ''}`}
@@ -68,63 +136,71 @@ export const LatestNews = () => {
       {/* News Grid */}
       <div className={styles.newsGrid}>
         {/* Big Main Featured Card */}
-        <motion.div 
-          className={styles.bigCard}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          onClick={() => handleArticleClick(newsData.featuredBig.title)}
-          style={{ cursor: 'pointer' }}
-        >
-          <div className={styles.bigImageWrapper}>
-            <img 
-              src={newsData.featuredBig.image} 
-              alt={newsData.featuredBig.title} 
-              className={styles.bigImage} 
-              loading="lazy" 
-            />
-          </div>
-          <div className={styles.bigContent}>
-            <span className="badge-outline">{newsData.featuredBig.category.toLowerCase()}</span>
-            <h3 className={styles.bigTitle}>{newsData.featuredBig.title}</h3>
-            <div className={styles.metaRow}>
-              <span><FiCalendar size={13} /> {newsData.featuredBig.date}</span>
-              <span><FiEye size={13} /> {newsData.featuredBig.views}</span>
-              <span><FiHeart size={13} /> {newsData.featuredBig.likes}</span>
-              <FiShare2 size={13} style={{ cursor: 'pointer' }} onClick={(e) => e.stopPropagation()} />
+        {featuredBig && (
+          <motion.div 
+            className={styles.bigCard}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            onClick={() => handleArticleClick(featuredBig)}
+            style={{ cursor: 'pointer' }}
+          >
+            <div className={styles.bigImageWrapper}>
+              <img 
+                src={featuredBig.image} 
+                alt={featuredBig.title} 
+                className={styles.bigImage} 
+                loading="lazy" 
+              />
             </div>
-          </div>
-        </motion.div>
+            <div className={styles.bigContent}>
+              <span className="badge-outline">{(featuredBig.category || 'NEWS').toLowerCase()}</span>
+              <h3 className={styles.bigTitle}>{featuredBig.title}</h3>
+              <div className={styles.metaRow}>
+                <span><FiCalendar size={13} /> {featuredBig.date || 'Recent'}</span>
+                <span><FiEye size={13} /> {featuredBig.views || 0}</span>
+                <span onClick={(e) => handleLike(e, featuredBig)} style={{ cursor: 'pointer' }}>
+                  <FiHeart size={13} /> {featuredBig.likes || 0}
+                </span>
+                <FiShare2 size={13} style={{ cursor: 'pointer' }} onClick={(e) => handleShare(e, featuredBig)} />
+              </div>
+            </div>
+          </motion.div>
+        )}
 
         {/* Medium Featured Card */}
-        <motion.div 
-          className={styles.mediumCard}
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          onClick={() => handleArticleClick(newsData.featuredMedium.title)}
-          style={{ cursor: 'pointer' }}
-        >
-          <img 
-            src={newsData.featuredMedium.image} 
-            alt={newsData.featuredMedium.title} 
-            className={styles.mediumImage} 
-            loading="lazy" 
-          />
-          <div className={styles.mediumOverlay}>
-            <span className="badge-neon" style={{ background: 'var(--color-primary)', color: '#000' }}>
-              {newsData.featuredMedium.badge}
-            </span>
-            <h3 className={styles.mediumTitle}>{newsData.featuredMedium.title}</h3>
-            <div className={styles.metaRow} style={{ color: '#ffffff' }}>
-              <span><FiCalendar size={13} /> {newsData.featuredMedium.date}</span>
-              <span><FiEye size={13} /> {newsData.featuredMedium.views}</span>
-              <span><FiHeart size={13} /> {newsData.featuredMedium.likes}</span>
+        {featuredMedium && (
+          <motion.div 
+            className={styles.mediumCard}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            onClick={() => handleArticleClick(featuredMedium)}
+            style={{ cursor: 'pointer' }}
+          >
+            <img 
+              src={featuredMedium.image} 
+              alt={featuredMedium.title} 
+              className={styles.mediumImage} 
+              loading="lazy" 
+            />
+            <div className={styles.mediumOverlay}>
+              <span className="badge-neon" style={{ background: 'var(--color-primary)', color: '#000' }}>
+                {featuredMedium.category || 'TOP PICK'}
+              </span>
+              <h3 className={styles.mediumTitle}>{featuredMedium.title}</h3>
+              <div className={styles.metaRow} style={{ color: '#ffffff' }}>
+                <span><FiCalendar size={13} /> {featuredMedium.date || 'Recent'}</span>
+                <span><FiEye size={13} /> {featuredMedium.views || 0}</span>
+                <span onClick={(e) => handleLike(e, featuredMedium)} style={{ cursor: 'pointer' }}>
+                  <FiHeart size={13} /> {featuredMedium.likes || 0}
+                </span>
+              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        )}
 
         {/* Small List & Navigation */}
         <motion.div 
@@ -134,24 +210,29 @@ export const LatestNews = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          {(currentItems.length > 0 ? currentItems : newsData.newsList.slice(0, 3)).map((item) => (
+          {currentItems.map((item) => (
             <div 
               key={item.id} 
               className={styles.smallItem}
-              onClick={() => handleArticleClick(item.title)}
+              onClick={() => handleArticleClick(item)}
               style={{ cursor: 'pointer' }}
             >
               <img src={item.image} alt={item.title} className={styles.smallThumb} loading="lazy" />
               <div>
+                <span style={{ fontSize: '0.7rem', color: 'var(--color-primary)', fontWeight: '700', textTransform: 'uppercase' }}>
+                  {item.category || 'NEWS'}
+                </span>
                 <h4 className={styles.smallTitle}>{item.title}</h4>
               </div>
             </div>
           ))}
 
-          <div className={styles.navRow}>
-            <button className={styles.navBtn} onClick={handlePrev} aria-label="Previous News">PREV</button>
-            <button className={styles.navBtn} onClick={handleNext} aria-label="Next News">NEXT</button>
-          </div>
+          {totalPages > 1 && (
+            <div className={styles.navRow}>
+              <button className={styles.navBtn} onClick={handlePrev} aria-label="Previous News">PREV</button>
+              <button className={styles.navBtn} onClick={handleNext} aria-label="Next News">NEXT</button>
+            </div>
+          )}
         </motion.div>
       </div>
     </section>
