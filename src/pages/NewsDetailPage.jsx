@@ -135,8 +135,21 @@ const articlesCatalog = {
 
 // Fallback generator for any custom article slug
 const buildFallbackArticle = (slug) => {
-  const cleanTitle = slug
-    ? slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+  const norm = (slug || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  for (const item of Object.values(articlesCatalog)) {
+    if ((item.slug || '').toLowerCase().replace(/[^a-z0-9]/g, '') === norm) {
+      return item;
+    }
+  }
+
+  let cleanTitle = slug
+    ? slug
+        .replace(/-s-/g, "’s ")
+        .replace(/-s$/g, "’s")
+        .replace(/-t-/g, "’t ")
+        .split('-')
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(' ')
     : "Listener’s Choice Awards: Your Top Picks for This Year’s Music Icons";
 
   return {
@@ -172,8 +185,12 @@ export const NewsDetailPage = () => {
   const [hoverRating, setHoverRating] = useState(0);
   const [sidebarSearch, setSidebarSearch] = useState('');
 
-  // Resolve article
-  const article = articlesCatalog[slug] || buildFallbackArticle(slug);
+  // Resolve article by exact key or normalized slug
+  const normSlug = (slug || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const matchedCatalogArticle = articlesCatalog[slug] || Object.values(articlesCatalog).find(
+    a => (a.slug || '').toLowerCase().replace(/[^a-z0-9]/g, '') === normSlug
+  );
+  const article = matchedCatalogArticle || buildFallbackArticle(slug);
 
   const similarPosts = [
     {
