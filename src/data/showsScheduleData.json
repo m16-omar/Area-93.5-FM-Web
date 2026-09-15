@@ -30,7 +30,7 @@
         "genre": "SOUNDS OF LAGOS",
         "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
         "segments": "Sounds of Lagos: Music Heavy, Audio Bytes & Comedy",
-        "nowPlaying": true
+        "nowPlaying": false
       },
       {
         "id": "s_m4",
@@ -102,7 +102,7 @@
         "genre": "SOUNDS OF LAGOS",
         "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
         "segments": "Sounds of Lagos: Music Heavy, Audio Bytes & Comedy",
-        "nowPlaying": true
+        "nowPlaying": false
       },
       {
         "id": "s_t4",
@@ -174,7 +174,7 @@
         "genre": "SOUNDS OF LAGOS",
         "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
         "segments": "Sounds of Lagos: Music Heavy, Audio Bytes & Comedy",
-        "nowPlaying": true
+        "nowPlaying": false
       },
       {
         "id": "s_w4",
@@ -246,7 +246,7 @@
         "genre": "SOUNDS OF LAGOS",
         "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
         "segments": "Sounds of Lagos: Music Heavy, Audio Bytes & Comedy",
-        "nowPlaying": true
+        "nowPlaying": false
       },
       {
         "id": "s_th4",
@@ -318,7 +318,7 @@
         "genre": "SOUNDS OF LAGOS",
         "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
         "segments": "Sounds of Lagos: Music Heavy, Audio Bytes & Comedy",
-        "nowPlaying": true
+        "nowPlaying": false
       },
       {
         "id": "s_f4",
@@ -355,133 +355,153 @@
         "name": "Late Night & Overnight Cruise",
         "dj": "Kemi Adetiba",
         "time": "10:00 pm - 05:00 am",
-        "genre": "FRIDAY NIGHT GBEDU",
+        "genre": "NIGHT GBEDU",
         "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
-        "segments": "High Voltage Gbedu • Area Night Cruise Weekend Mood Matrix",
+        "segments": "High Voltage Gbedu • Area Night Cruise 6-Day Mood Matrix",
         "nowPlaying": false
       }
     ],
     "SATURDAY": [
       {
         "id": "s_sa1",
-        "name": "The Early Momo Show (Weekend Rise)",
+        "name": "The Early Momo Show (Part 1)",
         "dj": "Olamide Okafor",
         "time": "05:00 am - 07:00 am",
-        "genre": "WEEKEND WAKE UP",
+        "genre": "NEWS & TALK",
         "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
         "segments": "Rise and Shine • High Voltage Gbedu • First Alert",
         "nowPlaying": false
       },
       {
         "id": "s_sa2",
-        "name": "Saturday Sports Special (Sure Odds & Fan Wars)",
-        "dj": "Babalola Alabi",
-        "time": "07:00 am - 10:00 am",
-        "genre": "SPORTS & PREVIEWS",
-        "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
-        "segments": "Sure Odds • Fan Wars • Premier League Banter • Local Champions",
+        "name": "The Early Momo Show (Part 2)",
+        "dj": "Funke Akindele",
+        "time": "07:00 am - 09:00 am",
+        "genre": "TALK & METRO",
+        "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
+        "segments": "As E Dey Hot! • Parliament • Chakam! • Who Talk True • Hero • Traffic",
         "nowPlaying": false
       },
       {
         "id": "s_sa3",
-        "name": "Midday Vibes (Top 10 Naija Countdown)",
+        "name": "Midday Vibes",
         "dj": "Simi Ogunleye",
         "time": "10:00 am - 02:00 pm",
         "genre": "SOUNDS OF LAGOS",
         "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
-        "segments": "Official Area Top 10 Countdown • New Music Saturday • Comedy Bytes",
-        "nowPlaying": true
+        "segments": "Sounds of Lagos: Music Heavy, Audio Bytes & Comedy",
+        "nowPlaying": false
       },
       {
         "id": "s_sa4",
-        "name": "Area Workchop (Weekend Street Fiesta)",
+        "name": "Area Workchop",
         "dj": "DJ Tobi",
         "time": "02:00 pm - 06:00 pm",
-        "genre": "STREET PARTY",
+        "genre": "MIDDAY TO DRIVETIME",
         "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80",
-        "segments": "Kedu Lagos! • Live DJ Mixes • Freestyle Showdown • The Comment Section",
+        "segments": "Kedu Lagos! • High Voltage Gbedu & Freestyle • The Comment Section",
         "nowPlaying": false
       },
       {
         "id": "s_sa5",
-        "name": "Area Drivetime-Cruise (Party Connect)",
+        "name": "Area Drivetime-Cruise (Part 1)",
         "dj": "Funke Akindele",
-        "time": "06:00 pm - 10:00 pm",
-        "genre": "WEEKEND CRUISE",
-        "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
-        "segments": "Lagos Weekend Vibe • Confessions • Korope Konnect • Event Guide",
+        "time": "06:00 pm - 08:00 pm",
+        "genre": "COMMUTE & TALK",
+        "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+        "segments": "Traffic Jam Traffic • Confessions • Korope Konnect • Reporter Network",
         "nowPlaying": false
       },
       {
         "id": "s_sa6",
+        "name": "Area Drivetime-Cruise (Part 2)",
+        "dj": "Babalola Alabi & DJ Tobi",
+        "time": "08:00 pm - 10:00 pm",
+        "genre": "SPORTS & BANTER",
+        "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
+        "segments": "Area Sports: Sure Odds, Fan Wars, Local Champions • Wetin Sup Today?",
+        "nowPlaying": false
+      },
+      {
+        "id": "s_sa7",
         "name": "Late Night & Overnight Cruise",
         "dj": "Kemi Adetiba",
         "time": "10:00 pm - 05:00 am",
-        "genre": "SATURDAY NIGHT GBEDU",
+        "genre": "NIGHT GBEDU",
         "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
-        "segments": "Non-Stop Club Gbedu • Midnight Soul Matrix • 24/7 Energy",
+        "segments": "High Voltage Gbedu • Area Night Cruise 6-Day Mood Matrix",
         "nowPlaying": false
       }
     ],
     "SUNDAY": [
       {
         "id": "s_su1",
-        "name": "The Early Momo Show (Sunday Praise & Reflection)",
+        "name": "The Early Momo Show (Part 1)",
         "dj": "Olamide Okafor",
-        "time": "05:00 am - 08:00 am",
-        "genre": "INSPIRATION & WORSHIP",
+        "time": "05:00 am - 07:00 am",
+        "genre": "NEWS & TALK",
         "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
-        "segments": "Rise and Shine • High Voltage Praise • First Alert",
+        "segments": "Rise and Shine • High Voltage Gbedu • First Alert",
         "nowPlaying": false
       },
       {
         "id": "s_su2",
-        "name": "Sunday Gospel & High Voltage Worship",
-        "dj": "Simi Ogunleye",
-        "time": "08:00 am - 12:00 pm",
-        "genre": "GOSPEL GBEDU",
-        "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
-        "segments": "Uplifting Gospel Anthems • Live Sunday Requests • Inspirational Bytes",
+        "name": "The Early Momo Show (Part 2)",
+        "dj": "Funke Akindele",
+        "time": "07:00 am - 09:00 am",
+        "genre": "TALK & METRO",
+        "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
+        "segments": "As E Dey Hot! • Parliament • Chakam! • Who Talk True • Hero • Traffic",
         "nowPlaying": false
       },
       {
         "id": "s_su3",
-        "name": "Midday Vibes (Sounds of Lagos Classic Anthems)",
-        "dj": "Funke Akindele",
-        "time": "12:00 pm - 04:00 pm",
-        "genre": "CLASSIC SOUNDS",
-        "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
-        "segments": "Classic Afrobeats • Old School Highlife & Juju • Family Special",
-        "nowPlaying": true
+        "name": "Midday Vibes",
+        "dj": "Simi Ogunleye",
+        "time": "10:00 am - 02:00 pm",
+        "genre": "SOUNDS OF LAGOS",
+        "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+        "segments": "Sounds of Lagos: Music Heavy, Audio Bytes & Comedy",
+        "nowPlaying": false
       },
       {
         "id": "s_su4",
-        "name": "Area Workchop (Sunday Chill & Family Hour)",
+        "name": "Area Workchop",
         "dj": "DJ Tobi",
-        "time": "04:00 pm - 07:00 pm",
-        "genre": "LIFESTYLE & CHILL",
+        "time": "02:00 pm - 06:00 pm",
+        "genre": "MIDDAY TO DRIVETIME",
         "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80",
-        "segments": "Kedu Lagos! • Smooth Gbedu • Family Comment Section",
+        "segments": "Kedu Lagos! • High Voltage Gbedu & Freestyle • The Comment Section",
         "nowPlaying": false
       },
       {
         "id": "s_su5",
-        "name": "Area Drivetime-Cruise (Sunday Sports Roundup)",
-        "dj": "Babalola Alabi",
-        "time": "07:00 pm - 10:00 pm",
-        "genre": "SPORTS & RECAP",
-        "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
-        "segments": "Weekend Match Analysis • Sure Odds Results • Wetin Sup This Week",
+        "name": "Area Drivetime-Cruise (Part 1)",
+        "dj": "Funke Akindele",
+        "time": "06:00 pm - 08:00 pm",
+        "genre": "COMMUTE & TALK",
+        "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
+        "segments": "Traffic Jam Traffic • Confessions • Korope Konnect • Reporter Network",
         "nowPlaying": false
       },
       {
         "id": "s_su6",
+        "name": "Area Drivetime-Cruise (Part 2)",
+        "dj": "Babalola Alabi & DJ Tobi",
+        "time": "08:00 pm - 10:00 pm",
+        "genre": "SPORTS & BANTER",
+        "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
+        "segments": "Area Sports: Sure Odds, Fan Wars, Local Champions • Wetin Sup Today?",
+        "nowPlaying": false
+      },
+      {
+        "id": "s_su7",
         "name": "Late Night & Overnight Cruise",
         "dj": "Kemi Adetiba",
         "time": "10:00 pm - 05:00 am",
-        "genre": "SUNDAY MIDNIGHT CRUISE",
+        "genre": "NIGHT GBEDU",
         "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
-        "segments": "Slow Jams • Midnight Confessions • High Voltage Overnight Gbedu",
+        "segments": "High Voltage Gbedu • Area Night Cruise 6-Day Mood Matrix",
         "nowPlaying": false
       }
     ]

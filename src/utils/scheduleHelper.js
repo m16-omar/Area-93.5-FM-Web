@@ -48,23 +48,28 @@ export const isShowActiveNow = (timeRange) => {
 };
 
 /**
- * Gets shows for a specific day with dynamically updated `nowPlaying` status
+ * Gets shows for a specific day, chronologically arranged by time
+ * with dynamically calculated `nowPlaying` status
  */
 export const getShowsForDay = (dayKey = getCurrentDayKey()) => {
   const uppercaseDay = dayKey.toUpperCase();
   const rawShows = showsScheduleData.schedule[uppercaseDay] || showsScheduleData.schedule["MONDAY"] || [];
   const isToday = uppercaseDay === getCurrentDayKey();
 
-  let hasFoundActive = false;
-
-  return rawShows.map((show) => {
+  const mappedShows = rawShows.map((show) => {
     const isActive = isToday && isShowActiveNow(show.time);
-    if (isActive) hasFoundActive = true;
     return {
       ...show,
       nowPlaying: isActive,
       day: uppercaseDay
     };
+  });
+
+  // Chronologically sort by start time (5:00 AM -> 10:00 PM)
+  return mappedShows.sort((a, b) => {
+    const timeA = a.time ? parseTimeToMinutes(a.time.split('-')[0]) : 0;
+    const timeB = b.time ? parseTimeToMinutes(b.time.split('-')[0]) : 0;
+    return timeA - timeB;
   });
 };
 
@@ -78,7 +83,7 @@ export const getCurrentOnAirShow = () => {
   const activeShow = todayShows.find((s) => s.nowPlaying);
   if (activeShow) return activeShow;
 
-  // If between shows, pick the first show of today or fallback
+  // If currently between show slots, pick the closest active show or default
   return todayShows[0] || {
     id: "default_on_air",
     name: "Midday Vibes",
