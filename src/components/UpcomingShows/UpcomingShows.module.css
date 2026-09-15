@@ -165,12 +165,14 @@
 }
 
 .showTime {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--primary-orange, #E50914);
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  letter-spacing: 0.02em;
 }
 
 .moreBtn {
