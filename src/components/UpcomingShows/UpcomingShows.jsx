@@ -1,23 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiMoreVertical } from 'react-icons/fi';
-import showsScheduleData from '../../data/showsScheduleData.json';
+import { getCurrentDayKey, getShowsForDay, getShowSlug } from '../../utils/scheduleHelper';
 import styles from './UpcomingShows.module.css';
 
 export const UpcomingShows = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
 
-  // Today's shows list
-  const todaysShows = showsScheduleData.schedule["MONDAY"] || [];
+  const currentDayKey = useMemo(() => getCurrentDayKey(), []);
+  const todaysShows = useMemo(() => getShowsForDay(currentDayKey), [currentDayKey]);
   const maxIndex = Math.max(0, todaysShows.length - 2);
 
-  const getSlug = (title) => {
-    return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-  };
-
   const handleNavigateDetail = (show) => {
-    navigate(`/shows/${getSlug(show.name || show.title)}`);
+    navigate(`/shows/${getShowSlug(show.name || show.title)}`);
   };
 
   // Continuous auto-sliding effect (never stops on hover)

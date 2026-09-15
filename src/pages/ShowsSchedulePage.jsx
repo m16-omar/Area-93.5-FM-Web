@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMoreVertical } from 'react-icons/fi';
@@ -9,20 +9,17 @@ import HostsAndFeaturedShow from '../components/HostsAndFeaturedShow/HostsAndFea
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import showsScheduleData from '../data/showsScheduleData.json';
+import { getCurrentDayKey, getShowsForDay, getShowSlug } from '../utils/scheduleHelper';
 import styles from './ShowsSchedulePage.module.css';
 
 export const ShowsSchedulePage = () => {
-  const [activeDay, setActiveDay] = useState('MONDAY');
+  const [activeDay, setActiveDay] = useState(() => getCurrentDayKey());
   const navigate = useNavigate();
 
-  const currentSchedule = showsScheduleData.schedule[activeDay] || [];
-
-  const getSlug = (title) => {
-    return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-  };
+  const currentSchedule = useMemo(() => getShowsForDay(activeDay), [activeDay]);
 
   const handleNavigateDetail = (show) => {
-    navigate(`/shows/${getSlug(show.name || show.title)}`);
+    navigate(`/shows/${getShowSlug(show.name || show.title)}`);
   };
 
   return (

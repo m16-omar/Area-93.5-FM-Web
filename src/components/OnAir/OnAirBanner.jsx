@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { FiMoreHorizontal, FiClock } from 'react-icons/fi';
 import { useAudioPlayer, LIVE_STREAM_URL } from '../../context/AudioPlayerContext';
+import { getCurrentOnAirShow, getShowSlug } from '../../utils/scheduleHelper';
 import playlistData from '../../data/playlistData.json';
 import styles from './OnAirBanner.module.css';
 
@@ -11,17 +12,20 @@ export const OnAirBanner = () => {
   const { playTrack, currentTrack, isPlaying, togglePlayPause } = useAudioPlayer();
   const navigate = useNavigate();
 
+  const activeShow = useMemo(() => getCurrentOnAirShow(), []);
+  const showSlug = getShowSlug(activeShow.name || activeShow.title);
+
   const handleLivePlay = () => {
     if (currentTrack?.audioUrl === LIVE_STREAM_URL) {
       togglePlayPause();
     } else {
       playTrack({
         id: "area_fm_live",
-        title: "Midday Vibes",
-        artist: "Simi Ogunleye",
-        showName: "Midday Vibes",
-        presenterName: "Simi Ogunleye",
-        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+        title: activeShow.name || activeShow.title || "Midday Vibes",
+        artist: activeShow.dj || "Simi Ogunleye",
+        showName: activeShow.name || activeShow.title || "Midday Vibes",
+        presenterName: activeShow.dj || "Simi Ogunleye",
+        image: activeShow.image || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
         audioUrl: LIVE_STREAM_URL,
         isLive: true
       });
@@ -65,7 +69,7 @@ export const OnAirBanner = () => {
         >
           <div 
             className={styles.headerLabelWrap}
-            onClick={() => navigate('/shows/midday-vibes')}
+            onClick={() => navigate(`/shows/${showSlug}`)}
             style={{ cursor: 'pointer' }}
           >
             <span className={styles.sectionBadge}>SHOW ON AIR</span>
@@ -74,26 +78,26 @@ export const OnAirBanner = () => {
 
           <div 
             className={styles.onAirCard}
-            onClick={() => navigate('/shows/midday-vibes')}
+            onClick={() => navigate(`/shows/${showSlug}`)}
             style={{ cursor: 'pointer' }}
           >
             <img 
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" 
-              alt="Midday Vibes" 
+              src={activeShow.image} 
+              alt={activeShow.name || activeShow.title} 
               className={styles.onAirImage} 
               loading="lazy" 
             />
             <div className={styles.onAirOverlay}>
               <div className={styles.badgeRow}>
-                <span className={styles.genreBadge}>SOUNDS OF LAGOS</span>
+                <span className={styles.genreBadge}>{activeShow.genre || 'SOUNDS OF LAGOS'}</span>
                 <span className={styles.livePill}>NOW ON AIR</span>
               </div>
 
-              <h3 className={styles.showTitleHighlight}>Midday Vibes</h3>
-              <p className={styles.presenterText}>Presented by Simi Ogunleye</p>
+              <h3 className={styles.showTitleHighlight}>{activeShow.name || activeShow.title}</h3>
+              <p className={styles.presenterText}>Presented by {activeShow.dj}</p>
               <div className={styles.showTimeText}>
                 <FiClock size={13} />
-                <span>10:00 am - 02:00 pm</span>
+                <span>{activeShow.time}</span>
               </div>
             </div>
           </div>

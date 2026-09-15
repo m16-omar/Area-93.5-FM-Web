@@ -1,21 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMoreVertical } from 'react-icons/fi';
 import scheduleData from '../../data/scheduleData.json';
+import { getCurrentDayKey, getShowsForDay, getShowSlug } from '../../utils/scheduleHelper';
 import styles from './WeeklySchedule.module.css';
 
 export const WeeklySchedule = () => {
-  const [selectedDay, setSelectedDay] = useState('MONDAY');
+  const [selectedDay, setSelectedDay] = useState(() => getCurrentDayKey());
   const navigate = useNavigate();
-  const shows = scheduleData.shows[selectedDay] || [];
-
-  const getSlug = (title) => {
-    return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-  };
+  const shows = useMemo(() => getShowsForDay(selectedDay), [selectedDay]);
 
   const handleShowDetails = (show) => {
-    navigate(`/shows/${getSlug(show.title)}`);
+    navigate(`/shows/${getShowSlug(show.name || show.title)}`);
   };
 
   return (
@@ -64,7 +61,7 @@ export const WeeklySchedule = () => {
             >
               <img 
                 src={show.image} 
-                alt={show.title} 
+                alt={show.name || show.title} 
                 className={styles.showImage} 
                 loading="lazy" 
               />
@@ -79,7 +76,7 @@ export const WeeklySchedule = () => {
                         NOW STREAMING
                       </span>
                     ) : (
-                      <span className={styles.genrePill}>{show.category}</span>
+                      <span className={styles.genrePill}>{show.genre || show.category || 'GBEDU'}</span>
                     )}
                   </div>
                 </div>
@@ -87,7 +84,7 @@ export const WeeklySchedule = () => {
                 {/* Bottom Row: Title, Meta and 3-dots */}
                 <div className={styles.showDetails}>
                   <div className={styles.showTextInfo}>
-                    <h3 className={styles.showTitle}>{show.title}</h3>
+                    <h3 className={styles.showTitle}>{show.name || show.title}</h3>
                     <p className={styles.showTime}>{show.time} • {show.dj}</p>
                   </div>
 

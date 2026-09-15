@@ -1,86 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { FiRadio } from 'react-icons/fi';
 import { useAudioPlayer, LIVE_STREAM_URL } from '../../context/AudioPlayerContext';
+import { getCurrentDayKey, getShowsForDay, getCurrentOnAirShow, getShowSlug } from '../../utils/scheduleHelper';
 import heroPresenterImg from '../../assets/Here Presenters.png';
 import styles from './Hero.module.css';
-
-const todayShows = [
-  {
-    id: "e1",
-    tag: "05:00 AM",
-    subtitle: "NEWS & INSPIRATION",
-    title: "The Early Momo Show (Part 1)",
-    dj: "Olamide Okafor",
-    badge: "RISE & SHINE",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    id: "e2",
-    tag: "07:00 AM",
-    subtitle: "METRO & TRAFFIC",
-    title: "The Early Momo Show (Part 2)",
-    dj: "Funke Akindele",
-    badge: "AS E DEY HOT",
-    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    id: "e3",
-    tag: "10:00 AM",
-    subtitle: "SOUNDS OF LAGOS",
-    title: "Midday Vibes",
-    dj: "Simi Ogunleye",
-    badge: "COMEDY & HITS",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    id: "e4",
-    tag: "02:00 PM",
-    subtitle: "MIDDAY TO DRIVETIME",
-    title: "Area Workchop",
-    dj: "DJ Tobi",
-    badge: "KEDU LAGOS",
-    image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    id: "e5",
-    tag: "06:00 PM",
-    subtitle: "LAGOS COMMUTE & TALK",
-    title: "Area Drivetime-Cruise (Part 1)",
-    dj: "Funke Akindele",
-    badge: "TRAFFIC JAM",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    id: "e6",
-    tag: "08:00 PM",
-    subtitle: "AREA SPORTS & BANTER",
-    title: "Area Drivetime-Cruise (Part 2)",
-    dj: "Babalola Alabi & DJ Tobi",
-    badge: "SURE ODDS",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80"
-  },
-  {
-    id: "e7",
-    tag: "10:00 PM",
-    subtitle: "GBEDU & MOOD MATRIX",
-    title: "Late Night & Overnight Cruise",
-    dj: "Kemi Adetiba",
-    badge: "NIGHT CRUISE",
-    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
-  }
-];
 
 export const Hero = () => {
   const { isPlaying, togglePlayPause, currentTrack, playTrack } = useAudioPlayer();
   const [slideIndex, setSlideIndex] = useState(0);
   const navigate = useNavigate();
 
+  const currentDayKey = useMemo(() => getCurrentDayKey(), []);
+  const todayShows = useMemo(() => getShowsForDay(currentDayKey), [currentDayKey]);
+  const activeShow = useMemo(() => getCurrentOnAirShow(), []);
+
   const maxIndex = Math.max(0, todayShows.length - 3);
 
-  // Format today's date (e.g., "19.08.2026")
+  // Format today's date (e.g., "15.09.2026")
   const today = new Date();
   const formattedDate = today.toLocaleDateString('en-GB', {
     day: '2-digit',
@@ -89,15 +28,12 @@ export const Hero = () => {
   }).replace(/\//g, '.');
 
   useEffect(() => {
+    if (maxIndex === 0) return;
     const interval = setInterval(() => {
       setSlideIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
     }, 4000);
     return () => clearInterval(interval);
   }, [maxIndex]);
-
-  const getSlug = (title) => {
-    return title ? title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : '';
-  };
 
   const handleLivePlay = () => {
     if (currentTrack?.audioUrl === LIVE_STREAM_URL) {
@@ -105,11 +41,11 @@ export const Hero = () => {
     } else {
       playTrack({
         id: "area_fm_live",
-        title: "Midday Vibes",
-        artist: "Simi Ogunleye",
-        showName: "Midday Vibes",
-        presenterName: "Simi Ogunleye",
-        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+        title: activeShow.name || activeShow.title || "Midday Vibes",
+        artist: activeShow.dj || "Simi Ogunleye",
+        showName: activeShow.name || activeShow.title || "Midday Vibes",
+        presenterName: activeShow.dj || "Simi Ogunleye",
+        image: activeShow.image || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
         audioUrl: LIVE_STREAM_URL,
         isLive: true
       });
@@ -125,14 +61,14 @@ export const Hero = () => {
       {/* Top Right Current Track Text */}
       <div 
         className={styles.topRightTrackInfo}
-        onClick={() => navigate('/shows')}
+        onClick={() => navigate(`/shows/${getShowSlug(activeShow.name || activeShow.title)}`)}
         style={{ cursor: 'pointer' }}
       >
         <span className={styles.topRightSongTitle}>
-          {currentTrack.showName || currentTrack.title || 'Midday Vibes'}
+          {currentTrack.showName || currentTrack.title || activeShow.name || activeShow.title || 'Midday Vibes'}
         </span>
         <span className={styles.topRightArtist}>
-          {currentTrack.presenterName || currentTrack.artist || 'Simi Ogunleye'}
+          {currentTrack.presenterName || currentTrack.artist || activeShow.dj || 'Simi Ogunleye'}
         </span>
       </div>
 
@@ -198,42 +134,48 @@ export const Hero = () => {
               animate={{ x: `calc(-${slideIndex} * (33.333% + 4.66px))` }}
               transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
             >
-              {todayShows.map((evt) => (
-                <div key={evt.id} className={styles.eventCardItem}>
-                  <div 
-                    className={styles.eventCard}
-                    onClick={() => navigate(`/shows/${getSlug(evt.title)}`)}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    <img 
-                      src={evt.image} 
-                      alt={evt.title} 
-                      className={styles.eventImage} 
-                      loading="lazy" 
-                    />
-                    
-                    {/* Top Right Radio Icon Badge */}
-                    <div className={styles.cardTopIcon}>
-                      <FiRadio size={11} />
-                    </div>
-
-                    <div className={styles.eventOverlay}>
-                      {/* Top Tag / Subtitle */}
-                      <div className={styles.cardTopMeta}>
-                        <span className={styles.cardTag}>{evt.tag}</span>
-                        <span className={styles.cardSubtitle}>{evt.subtitle}</span>
+              {todayShows.map((evt) => {
+                const showTitle = evt.name || evt.title;
+                const startTime = evt.time ? evt.time.split('-')[0].trim().toUpperCase() : '';
+                return (
+                  <div key={evt.id} className={styles.eventCardItem}>
+                    <div 
+                      className={styles.eventCard}
+                      onClick={() => navigate(`/shows/${getShowSlug(showTitle)}`)}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <img 
+                        src={evt.image} 
+                        alt={showTitle} 
+                        className={styles.eventImage} 
+                        loading="lazy" 
+                      />
+                      
+                      {/* Top Right Radio Icon Badge */}
+                      <div className={styles.cardTopIcon}>
+                        <FiRadio size={11} />
                       </div>
 
-                      {/* Bottom Info */}
-                      <div className={styles.cardBottomInfo}>
-                        <span className={styles.genreBadge}>{evt.badge}</span>
-                        <h3 className={styles.eventTitle}>{evt.title}</h3>
-                        <p className={styles.eventDj}>{evt.dj}</p>
+                      <div className={styles.eventOverlay}>
+                        {/* Top Tag / Subtitle */}
+                        <div className={styles.cardTopMeta}>
+                          <span className={styles.cardTag}>{startTime}</span>
+                          <span className={styles.cardSubtitle}>{evt.genre || 'GBEDU'}</span>
+                        </div>
+
+                        {/* Bottom Info */}
+                        <div className={styles.cardBottomInfo}>
+                          <span className={styles.genreBadge}>
+                            {evt.nowPlaying ? 'NOW STREAMING' : (evt.genre || 'SHOW')}
+                          </span>
+                          <h3 className={styles.eventTitle}>{showTitle}</h3>
+                          <p className={styles.eventDj}>{evt.dj}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </motion.div>
           </div>
         </motion.div>
