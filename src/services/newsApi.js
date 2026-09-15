@@ -48,53 +48,31 @@ const fetchFromCandidates = async (endpointPath, options = {}) => {
   throw lastError || new Error(`Failed to fetch ${endpointPath} from all API candidates`);
 };
 
+export const DEFAULT_FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80';
+
 /**
- * Ensures image URLs from Django media or Cloudinary are valid, fully accessible URLs
+ * Ensures image URLs from Django backend are valid, fully accessible URLs
  */
 export const getFullImageUrl = (imagePath) => {
-  if (!imagePath) {
-    return 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80';
+  if (!imagePath || typeof imagePath !== 'string') {
+    return DEFAULT_FALLBACK_IMAGE;
   }
 
-  // Already a Cloudinary URL or complete web URL
-  if (typeof imagePath === 'string' && (imagePath.startsWith('https://res.cloudinary.com') || imagePath.startsWith('https://images.unsplash.com'))) {
-    return imagePath;
+  const trimmed = imagePath.trim();
+  if (!trimmed) {
+    return DEFAULT_FALLBACK_IMAGE;
   }
 
-  // Specific known Cloudinary media IDs from city backend database
-  if (imagePath.includes('1_qgonoh')) {
-    return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/media/news/1_qgonoh`;
-  }
-  if (imagePath.includes('Omah_Lay_eizghq')) {
-    return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/media/news/Omah_Lay_eizghq`;
-  }
-  if (imagePath.includes('Apostle_ebqvvx')) {
-    return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/media/news/Apostle_ebqvvx`;
+  // Already a full absolute HTTP/HTTPS URL (e.g. https://city1051fm.cloud/media/... or Cloudinary/Unsplash)
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+    return trimmed;
   }
 
-  // Generic Cloudinary public ID stored as media/news/<hash>
-  const match = String(imagePath).match(/media\/news\/([a-zA-Z0-9_-]+)/);
-  if (match) {
-    const filename = match[1];
-    if (!filename.includes('.')) {
-      return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/media/news/${filename}`;
-    }
-  }
-
-  if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
-    // If backend returned a localhost media URL that is actually a Cloudinary hash without extension
-    if (imagePath.includes('/media/media/news/') || imagePath.includes('/media/news/')) {
-      const parts = imagePath.split('/news/');
-      if (parts[1] && !parts[1].includes('.')) {
-        return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/media/news/${parts[1]}`;
-      }
-    }
-    return imagePath;
-  }
-
-  const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
-  return `${API_BASE_URL}${cleanPath}`;
+  // If path starts with media/ or /media/
+  const cleanPath = trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+  return `${API_BASE_URL.replace(/\/+$/, '')}${cleanPath}`;
 };
+
 
 /**
  * Normalizes a raw backend news item into the format expected by UI components

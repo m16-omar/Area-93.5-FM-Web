@@ -224,7 +224,15 @@ export const NewsDetailPage = () => {
           <div className={styles.mainArticleCol}>
             {/* Featured Image */}
             <div className={styles.featuredImageWrap}>
-              <img src={article.heroImage || article.image} alt={article.title} className={styles.featuredImage} />
+              <img 
+                src={article.heroImage || article.image} 
+                alt={article.title} 
+                className={styles.featuredImage} 
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80';
+                }}
+              />
             </div>
 
             {/* Introductory excerpt */}
@@ -329,7 +337,16 @@ export const NewsDetailPage = () => {
                       onClick={() => navigate(`/news/${getSlug(post)}`)}
                     >
                       <div className={styles.similarImageWrap}>
-                        <img src={post.image} alt={post.title} className={styles.similarImage} />
+                        <img 
+                          src={post.image} 
+                          alt={post.title} 
+                          className={styles.similarImage} 
+                          loading="lazy" 
+                          onError={(e) => {
+                            e.currentTarget.onerror = null;
+                            e.currentTarget.src = 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80';
+                          }}
+                        />
                         <span className={styles.similarCategoryBadge}>{post.category || 'NEWS'}</span>
                       </div>
 

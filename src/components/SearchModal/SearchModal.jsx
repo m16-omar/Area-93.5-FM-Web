@@ -332,7 +332,15 @@ export const SearchModal = ({ isOpen, onClose }) => {
                               className={styles.resultItem} 
                               onClick={() => handleNavigate(`/news/${getSlug(item)}`)}
                             >
-                              <img src={item.image} alt={item.title} className={styles.itemThumb} />
+                              <img 
+                                src={item.image} 
+                                alt={item.title} 
+                                className={styles.itemThumb} 
+                                onError={(e) => {
+                                  e.currentTarget.onerror = null;
+                                  e.currentTarget.src = 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=400&q=80';
+                                }}
+                              />
                               <div className={styles.itemMeta}>
                                 <span className={styles.itemBadge}>{item.category || 'NEWS'}</span>
                                 <h5 className={styles.itemTitle}>{item.title}</h5>

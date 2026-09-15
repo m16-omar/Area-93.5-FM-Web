@@ -152,6 +152,10 @@ export const LatestNews = () => {
                 alt={featuredBig.title} 
                 className={styles.bigImage} 
                 loading="lazy" 
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80';
+                }}
               />
             </div>
             <div className={styles.bigContent}>
@@ -185,6 +189,10 @@ export const LatestNews = () => {
               alt={featuredMedium.title} 
               className={styles.mediumImage} 
               loading="lazy" 
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80';
+              }}
             />
             <div className={styles.mediumOverlay}>
               <span className="badge-neon" style={{ background: 'var(--color-primary)', color: '#000' }}>
@@ -217,7 +225,16 @@ export const LatestNews = () => {
               onClick={() => handleArticleClick(item)}
               style={{ cursor: 'pointer' }}
             >
-              <img src={item.image} alt={item.title} className={styles.smallThumb} loading="lazy" />
+              <img 
+                src={item.image} 
+                alt={item.title} 
+                className={styles.smallThumb} 
+                loading="lazy" 
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=400&q=80';
+                }}
+              />
               <div>
                 <span style={{ fontSize: '0.7rem', color: 'var(--color-primary)', fontWeight: '700', textTransform: 'uppercase' }}>
                   {item.category || 'NEWS'}

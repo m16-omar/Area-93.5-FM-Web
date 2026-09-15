@@ -183,7 +183,16 @@ export const NewsPage = () => {
                 style={{ cursor: 'pointer' }}
               >
                 <div className={styles.cardImgWrapper}>
-                  <img src={post.image} alt={post.title} className={styles.cardImg} loading="lazy" />
+                  <img 
+                    src={post.image} 
+                    alt={post.title} 
+                    className={styles.cardImg} 
+                    loading="lazy" 
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1000&q=80';
+                    }}
+                  />
                   <div
                     className={styles.actionIconCircle}
                     title="Share Article"
