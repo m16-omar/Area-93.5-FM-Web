@@ -1,17 +1,89 @@
 import defaultNewsData from '../data/newsData.json';
 
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
+const CLOUDINARY_CLOUD_NAME = 'dgjzsen3g';
 
 /**
- * Ensures image URLs from Django media are fully qualified URLs
+ * Base API URL candidate list to handle direct 127.0.0.1, localhost, and proxy seamlessly
+ */
+const getApiCandidates = () => {
+  const list = [API_BASE_URL, 'http://127.0.0.1:8000', 'http://localhost:8000', ''];
+  return [...new Set(list.filter(item => item !== undefined))];
+};
+
+/**
+ * Helper to perform fetch against candidates until one responds with ok
+ */
+const fetchFromCandidates = async (endpointPath, options = {}) => {
+  const candidates = getApiCandidates();
+  let lastError = null;
+
+  for (const base of candidates) {
+    const cleanBase = base ? base.replace(/\/+$/, '') : '';
+    const cleanPath = endpointPath.startsWith('/') ? endpointPath : `/${endpointPath}`;
+    const fullUrl = `${cleanBase}${cleanPath}`;
+
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 4000);
+      const res = await fetch(fullUrl, { ...options, signal: controller.signal });
+      clearTimeout(timeoutId);
+
+      if (res.ok) {
+        return res;
+      }
+    } catch (err) {
+      lastError = err;
+    }
+  }
+
+  throw lastError || new Error(`Failed to fetch ${endpointPath} from all API candidates`);
+};
+
+/**
+ * Ensures image URLs from Django media or Cloudinary are valid, fully accessible URLs
  */
 export const getFullImageUrl = (imagePath) => {
   if (!imagePath) {
     return 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80';
   }
-  if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+
+  // Already a Cloudinary URL or complete web URL
+  if (typeof imagePath === 'string' && (imagePath.startsWith('https://res.cloudinary.com') || imagePath.startsWith('https://images.unsplash.com'))) {
     return imagePath;
   }
+
+  // Specific known Cloudinary media IDs from city backend database
+  if (imagePath.includes('1_qgonoh')) {
+    return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/media/news/1_qgonoh`;
+  }
+  if (imagePath.includes('Omah_Lay_eizghq')) {
+    return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/media/news/Omah_Lay_eizghq`;
+  }
+  if (imagePath.includes('Apostle_ebqvvx')) {
+    return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/media/news/Apostle_ebqvvx`;
+  }
+
+  // Generic Cloudinary public ID stored as media/news/<hash>
+  const match = String(imagePath).match(/media\/news\/([a-zA-Z0-9_-]+)/);
+  if (match) {
+    const filename = match[1];
+    if (!filename.includes('.')) {
+      return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/media/news/${filename}`;
+    }
+  }
+
+  if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+    // If backend returned a localhost media URL that is actually a Cloudinary hash without extension
+    if (imagePath.includes('/media/media/news/') || imagePath.includes('/media/news/')) {
+      const parts = imagePath.split('/news/');
+      if (parts[1] && !parts[1].includes('.')) {
+        return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/media/news/${parts[1]}`;
+      }
+    }
+    return imagePath;
+  }
+
   const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
   return `${API_BASE_URL}${cleanPath}`;
 };
@@ -22,7 +94,7 @@ export const getFullImageUrl = (imagePath) => {
 export const formatNewsArticle = (item) => {
   if (!item) return null;
 
-  const rawDate = item.formatted_date || item.created_at || item.date || 'January 8, 2026';
+  const rawDate = item.formatted_date || item.created_at || item.date || 'April 29, 2026';
   let displayDate = rawDate;
   if (item.created_at && !item.formatted_date) {
     try {
@@ -40,6 +112,8 @@ export const formatNewsArticle = (item) => {
     ? (item.category.name || 'NEWS')
     : (item.category || 'NEWS');
 
+  const formattedImage = getFullImageUrl(item.image);
+
   return {
     id: item.id || `news-${Date.now()}`,
     title: item.title || 'Breaking Music & Culture News',
@@ -47,18 +121,18 @@ export const formatNewsArticle = (item) => {
     category: String(categoryName).toUpperCase(),
     excerpt: item.excerpt || (item.content ? item.content.replace(/<[^>]*>/g, '').slice(0, 160) + '...' : ''),
     content: item.content || '',
-    author: item.author || (item.author_details?.name) || '93.5 Area FM Editorial Desk',
-    authorRole: item.author_details?.role || 'Music & News Department',
-    image: getFullImageUrl(item.image),
-    heroImage: getFullImageUrl(item.image),
-    inArticleImage: getFullImageUrl(item.image),
+    author: item.author || (item.author_details?.name) || 'City FM / Area 93.5 FM News',
+    authorRole: item.author_details?.role || 'Senior Entertainment Editor',
+    image: formattedImage,
+    heroImage: formattedImage,
+    inArticleImage: formattedImage,
     views: item.views || 0,
     likes: item.likes || 0,
     shares: item.shares || 0,
-    comments: item.comments || Math.floor((item.views || 10) / 4) || 8,
+    comments: item.comments || Math.floor((item.views || 10) / 3) || 4,
     date: displayDate,
     createdAt: item.created_at || null,
-    tags: ["NEWS", "AFROBEATS", "CHARTS", "LAGOS", "MUSIC", "ENTERTAINMENT"],
+    tags: ["NEWS", "AFROBEATS", "CHARTS", "LAGOS", "MUSIC", "POLITICS", "ENTERTAINMENT"],
     sections: item.content ? [
       {
         heading: "Full Story",
@@ -73,15 +147,14 @@ export const formatNewsArticle = (item) => {
  */
 export const fetchNewsCategories = async () => {
   try {
-    const res = await fetch(`${API_BASE_URL}/api/news-categories/`);
-    if (!res.ok) throw new Error(`Categories API returned ${res.status}`);
+    const res = await fetchFromCandidates('/api/news-categories/');
     const data = await res.json();
     const categoriesList = Array.isArray(data) ? data : data.results || [];
-    const catNames = categoriesList.map(c => c.name.toUpperCase());
+    const catNames = categoriesList.map(c => (c.name || '').toUpperCase()).filter(Boolean);
     return ['ALL', ...new Set(catNames)];
   } catch (err) {
-    console.warn('Backend categories unavailable, using local default:', err.message);
-    return defaultNewsData.categories || ['ALL', 'CONCERTS', 'TRENDS', 'ARTISTS', 'POLITICS'];
+    console.warn('Backend categories fetch failed, using fallback categories:', err.message);
+    return ['ALL', 'MUSIC', 'ENTERTAINMENT', 'POLITICS', 'TRENDS', 'CONCERTS'];
   }
 };
 
@@ -90,8 +163,7 @@ export const fetchNewsCategories = async () => {
  */
 export const fetchNewsArticles = async () => {
   try {
-    const res = await fetch(`${API_BASE_URL}/api/news/`);
-    if (!res.ok) throw new Error(`News API returned ${res.status}`);
+    const res = await fetchFromCandidates('/api/news/');
     const data = await res.json();
     const articles = Array.isArray(data) ? data : data.results || [];
 
@@ -114,13 +186,11 @@ export const fetchNewsDetail = async (slugOrId) => {
 
   try {
     // 1. Direct lookup by ID or slug endpoint
-    const res = await fetch(`${API_BASE_URL}/api/news/${encodeURIComponent(slugOrId)}/`);
-    if (res.ok) {
-      const data = await res.json();
-      return formatNewsArticle(data);
-    }
+    const res = await fetchFromCandidates(`/api/news/${encodeURIComponent(slugOrId)}/`);
+    const data = await res.json();
+    return formatNewsArticle(data);
   } catch {
-    // Fall through to list search
+    // Fall through to list query
   }
 
   // 2. Query all news and search for matching slug or ID
@@ -147,7 +217,7 @@ export const fetchNewsDetail = async (slugOrId) => {
 export const trackArticleView = async (idOrSlug) => {
   if (!idOrSlug) return;
   try {
-    await fetch(`${API_BASE_URL}/api/news/${encodeURIComponent(idOrSlug)}/view/`, {
+    await fetchFromCandidates(`/api/news/${encodeURIComponent(idOrSlug)}/view/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
     });
@@ -162,14 +232,12 @@ export const trackArticleView = async (idOrSlug) => {
 export const likeArticle = async (idOrSlug) => {
   if (!idOrSlug) return null;
   try {
-    const res = await fetch(`${API_BASE_URL}/api/news/${encodeURIComponent(idOrSlug)}/like/`, {
+    const res = await fetchFromCandidates(`/api/news/${encodeURIComponent(idOrSlug)}/like/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
     });
-    if (res.ok) {
-      const data = await res.json();
-      return data.likes;
-    }
+    const data = await res.json();
+    return data.likes;
   } catch (err) {
     console.warn('Like request failed:', err.message);
   }
@@ -182,14 +250,12 @@ export const likeArticle = async (idOrSlug) => {
 export const shareArticle = async (idOrSlug) => {
   if (!idOrSlug) return null;
   try {
-    const res = await fetch(`${API_BASE_URL}/api/news/${encodeURIComponent(idOrSlug)}/share/`, {
+    const res = await fetchFromCandidates(`/api/news/${encodeURIComponent(idOrSlug)}/share/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
     });
-    if (res.ok) {
-      const data = await res.json();
-      return data.shares;
-    }
+    const data = await res.json();
+    return data.shares;
   } catch {
     // Silent fail
   }
@@ -227,3 +293,4 @@ const getLocalFallbackNews = () => {
     sections: []
   }));
 };
+

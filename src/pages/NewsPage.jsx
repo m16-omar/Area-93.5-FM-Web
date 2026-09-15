@@ -34,7 +34,7 @@ export const NewsPage = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const initialQuery = searchParams.get('q') || '';
-  
+
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [selectedCategory, setSelectedCategory] = useState('ALL');
   const [categories, setCategories] = useState(['ALL']);
@@ -107,15 +107,15 @@ export const NewsPage = () => {
         title: item.title,
         text: item.excerpt,
         url: window.location.origin + `/news/${getSlug(item)}`
-      }).catch(() => {});
+      }).catch(() => { });
     }
   };
 
   const cleanQuery = searchQuery.toLowerCase().trim();
   const filteredArticles = articles.filter(post => {
     const matchesCat = selectedCategory === 'ALL' || (post.category || '').toUpperCase() === selectedCategory.toUpperCase();
-    const matchesSearch = !cleanQuery || 
-      post.title?.toLowerCase().includes(cleanQuery) || 
+    const matchesSearch = !cleanQuery ||
+      post.title?.toLowerCase().includes(cleanQuery) ||
       post.excerpt?.toLowerCase().includes(cleanQuery) ||
       post.category?.toLowerCase().includes(cleanQuery);
     return matchesCat && matchesSearch;
@@ -137,7 +137,7 @@ export const NewsPage = () => {
         </div>
 
         <div className={styles.heroContent}>
-          <motion.h1 
+          <motion.h1
             className={styles.mainTitle}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -162,8 +162,8 @@ export const NewsPage = () => {
                 {loading ? 'Loading news from 93.5 Area FM...' : `No articles found matching "${searchQuery}"`}
               </p>
               {searchQuery && (
-                <button 
-                  className={styles.loadMoreBtn} 
+                <button
+                  className={styles.loadMoreBtn}
                   onClick={() => { setSearchQuery(''); setSearchParams({}); setSelectedCategory('ALL'); }}
                 >
                   CLEAR SEARCH
@@ -172,7 +172,7 @@ export const NewsPage = () => {
             </div>
           ) : (
             displayedArticles.map((post, idx) => (
-              <motion.article 
+              <motion.article
                 key={post.id || idx}
                 className={styles.blogCard}
                 initial={{ opacity: 0, y: 30 }}
@@ -184,8 +184,8 @@ export const NewsPage = () => {
               >
                 <div className={styles.cardImgWrapper}>
                   <img src={post.image} alt={post.title} className={styles.cardImg} loading="lazy" />
-                  <div 
-                    className={styles.actionIconCircle} 
+                  <div
+                    className={styles.actionIconCircle}
                     title="Share Article"
                     onClick={(e) => handleShare(e, post)}
                   >
@@ -205,15 +205,15 @@ export const NewsPage = () => {
                   <div className={styles.cardMetaRow}>
                     <span className={styles.metaItem}>📅 {post.date}</span>
                     <span className={styles.metaItem}><FiEye /> {post.views || 0}</span>
-                    <button 
-                      className={styles.iconBtn} 
+                    <button
+                      className={styles.iconBtn}
                       onClick={(e) => handleLike(e, post)}
                       aria-label="Like article"
                     >
                       <FiHeart /> {post.likes || 0}
                     </button>
-                    <button 
-                      className={styles.iconBtn} 
+                    <button
+                      className={styles.iconBtn}
                       onClick={(e) => handleShare(e, post)}
                       aria-label="Share article"
                     >
@@ -228,7 +228,7 @@ export const NewsPage = () => {
           {/* Centered LOAD MORE Button */}
           {visibleCount < filteredArticles.length && (
             <div className={styles.loadMoreWrapper}>
-              <button 
+              <button
                 className={styles.loadMoreBtn}
                 onClick={() => setVisibleCount(prev => prev + 4)}
               >
@@ -300,15 +300,15 @@ export const NewsPage = () => {
               <div className={styles.widgetLine} />
             </div>
 
-            <div 
+            <div
               className={styles.nowOnAirCard}
               onClick={() => navigate('/shows/the-fan-zone')}
               style={{ cursor: 'pointer' }}
             >
-              <img 
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" 
-                alt="The Fan Zone Show" 
-                className={styles.nowOnAirImg} 
+              <img
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
+                alt="The Fan Zone Show"
+                className={styles.nowOnAirImg}
               />
               <div className={styles.nowOnAirOverlay}>
                 <span className={styles.nowOnAirCat}>TRENDS</span>
