@@ -248,7 +248,7 @@
 
 .catBadge {
   align-self: flex-start;
-  background: var(--primary-blue);
+  background: var(--primary-orange);
   color: #ffffff;
   font-family: var(--font-heading);
   font-weight: 800;
