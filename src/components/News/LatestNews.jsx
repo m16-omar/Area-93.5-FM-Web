@@ -195,7 +195,7 @@ export const LatestNews = () => {
               }}
             />
             <div className={styles.mediumOverlay}>
-              <span className="badge-neon" style={{ background: 'var(--color-primary)', color: '#000' }}>
+              <span className="badge-neon">
                 {featuredMedium.category || 'TOP PICK'}
               </span>
               <h3 className={styles.mediumTitle}>{featuredMedium.title}</h3>
@@ -236,7 +236,7 @@ export const LatestNews = () => {
                 }}
               />
               <div>
-                <span style={{ fontSize: '0.7rem', color: 'var(--color-primary)', fontWeight: '700', textTransform: 'uppercase' }}>
+                <span className={styles.smallCategory}>
                   {item.category || 'NEWS'}
                 </span>
                 <h4 className={styles.smallTitle}>{item.title}</h4>

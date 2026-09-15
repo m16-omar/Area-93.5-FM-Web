@@ -221,6 +221,17 @@
   object-fit: cover;
 }
 
+.smallCategory {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--primary-orange);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
 .smallTitle {
   font-family: var(--font-heading);
   font-weight: 800;
