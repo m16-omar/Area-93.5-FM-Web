@@ -121,7 +121,7 @@ export const LatestNews = () => {
         </div>
 
         <div className={styles.sponsorsBox} onClick={() => navigate('/promote')} style={{ cursor: 'pointer' }}>
-          <span className="section-label">SPONSORED BY AREA 93.5 FM</span>
+          <span className="section-label">SPONSORED BY 93.5 AREA FM</span>
         </div>
       </div>
 
