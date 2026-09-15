@@ -351,50 +351,67 @@ const showsCatalog = {
   }
 };
 
-// Helper to construct fallback show dynamically
+// Helper to construct fallback show dynamically from schedule data
 const buildFallbackShow = (slug) => {
-  const cleanTitle = slug
+  let foundShow = null;
+  let foundDay = 'MONDAY';
+
+  if (slug) {
+    for (const [day, shows] of Object.entries(scheduleData.shows || {})) {
+      const match = shows.find(s => {
+        const sSlug = s.title ? s.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : '';
+        return sSlug === slug || sSlug.includes(slug) || slug.includes(sSlug);
+      });
+      if (match) {
+        foundShow = match;
+        foundDay = day;
+        break;
+      }
+    }
+  }
+
+  const cleanTitle = foundShow?.title || (slug
     ? slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
-    : "Midday Vibes";
+    : "Midday Vibes");
+
+  const hostName = foundShow?.dj || "Simi Ogunleye";
+  const hostSlug = hostName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  const image = foundShow?.image || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80";
+  const time = foundShow?.time || "10:00 am - 02:00 pm";
+  const category = foundShow?.category || "TALK & MUSIC";
+
+  const timeParts = time.split('-');
+  const startTime = timeParts[0] ? timeParts[0].trim().toUpperCase() : "10:00 AM";
+  const endTime = timeParts[1] ? timeParts[1].trim().toUpperCase() : "02:00 PM";
 
   return {
     slug: slug || "midday-vibes",
     title: cleanTitle,
-    category: "TALK & MUSIC",
-    host: "Simi Ogunleye",
-    hostSlug: "simi-ogunleye",
-    hostRole: "Resident Broadcaster",
-    hostPhoto: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
-    bannerPhoto: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80",
-    description: `${cleanTitle} delivers prime-time radio entertainment across 93.5 Area FM. Packed with urban music, local news updates, viral stories, listener phone-ins, and high energy.`,
+    category: category,
+    host: hostName,
+    hostSlug: hostSlug,
+    hostRole: "On-Air Host & Broadcaster",
+    hostPhoto: image,
+    bannerPhoto: image,
+    description: `${cleanTitle} is broadcast on 93.5 Area FM on ${foundDay} from ${time}. ${foundShow?.segments ? `Featuring: ${foundShow.segments}.` : 'Packed with authentic Lagos urban music, real-time traffic updates, listener phone-ins, and high-energy radio entertainment.'}`,
     timetable: [
-      { day: "MONDAY", start: "10:00 AM", end: "02:00 PM" },
-      { day: "TUESDAY", start: "10:00 AM", end: "02:00 PM" },
-      { day: "WEDNESDAY", start: "10:00 AM", end: "02:00 PM" },
-      { day: "THURSDAY", start: "10:00 AM", end: "02:00 PM" },
-      { day: "FRIDAY", start: "10:00 AM", end: "02:00 PM" }
+      { day: foundDay, start: startTime, end: endTime }
     ],
     crew: [
       {
-        name: "Simi Ogunleye",
-        slug: "simi-ogunleye",
+        name: hostName,
+        slug: hostSlug,
         role: "HOST",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
-      },
-      {
-        name: "DJ Tobi",
-        slug: "tobi-adebayo",
-        role: "RESIDENT DJ",
-        image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80"
+        image: image
       }
     ],
     events: [
       {
-        day: "15",
+        day: "20",
         monthYear: "NOV 2026",
-        title: `${cleanTitle} Live Concert`,
-        artists: "LIVE MUSIC & SPECIAL GUESTS",
-        image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80"
+        title: `${cleanTitle} Special Live Broadcast`,
+        artists: `${hostName.toUpperCase()} & SPECIAL GUESTS`,
+        image: image
       }
     ]
   };

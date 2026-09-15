@@ -54,16 +54,16 @@ export const UpcomingShows = () => {
                 <span className={styles.nowPlayingTag}>NOW STREAMING</span>
               )}
               
-              <img src={item.image} alt={item.name} className={styles.cardImg} />
+              <img src={item.image} alt={item.name || item.title} className={styles.cardImg} />
               
               <div className={styles.cardOverlay}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-                  <span className={styles.catBadge}>{item.genre}</span>
+                  <span className={styles.catBadge}>{item.genre || item.category || 'SHOW'}</span>
                 </div>
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', width: '100%' }}>
                   <div style={{ cursor: 'pointer', flex: 1, minWidth: 0 }}>
-                    <h3 className={styles.showTitle}>{item.name}</h3>
+                    <h3 className={styles.showTitle}>{item.name || item.title}</h3>
                     <p className={styles.showTime}>{item.time} • {item.dj}</p>
                   </div>
 
