@@ -1,15 +1,23 @@
 import defaultNewsData from '../data/newsData.json';
 
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://city1051fm.cloud';
+const LIVE_BACKEND_URL = 'https://city1051fm.cloud';
 const CLOUDINARY_CLOUD_NAME = 'dgjzsen3g';
 
 /**
- * Base API URL candidate list to handle direct 127.0.0.1, localhost, and proxy seamlessly
+ * Base API URL candidate list to handle live cloud backend, local proxy, and local fallback seamlessly
  */
 const getApiCandidates = () => {
-  const list = [API_BASE_URL, 'http://127.0.0.1:8000', 'http://localhost:8000', ''];
-  return [...new Set(list.filter(item => item !== undefined))];
+  const list = [
+    API_BASE_URL,
+    LIVE_BACKEND_URL,
+    '',
+    'http://127.0.0.1:8000',
+    'http://localhost:8000'
+  ];
+  return [...new Set(list.filter(item => typeof item === 'string'))];
 };
+
 
 /**
  * Helper to perform fetch against candidates until one responds with ok
