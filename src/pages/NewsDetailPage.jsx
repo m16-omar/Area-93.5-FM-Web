@@ -287,26 +287,28 @@ export const NewsDetailPage = () => {
             )}
 
             {/* Dynamic Article Sections if any */}
-            {article.sections && article.sections.length > 0 && article.sections.map((sec, idx) => (
-              <div key={idx} className={styles.articleSectionBlock}>
-                {sec.heading && <h2 className={styles.sectionHeading}>{sec.heading}</h2>}
-                {isHtml(sec.content) ? (
-                  <div 
-                    className={styles.sectionParagraph}
-                    dangerouslySetInnerHTML={{ __html: sec.content }} 
-                  />
-                ) : (
-                  <p className={styles.sectionParagraph}>{sec.content}</p>
-                )}
-                
-                {/* Mid-article showcase portrait image after 4th section */}
-                {idx === 4 && article.inArticleImage && (
-                  <div className={styles.inArticleImageWrap}>
-                    <img src={article.inArticleImage} alt="Featured Artist" className={styles.inArticleImage} />
-                  </div>
-                )}
-              </div>
-            ))}
+            {article.sections && article.sections.length > 0 && article.sections
+              .filter(sec => sec && sec.content && sec.content !== article.content && sec.heading?.toLowerCase() !== 'full story')
+              .map((sec, idx) => (
+                <div key={idx} className={styles.articleSectionBlock}>
+                  {sec.heading && <h2 className={styles.sectionHeading}>{sec.heading}</h2>}
+                  {isHtml(sec.content) ? (
+                    <div 
+                      className={styles.sectionParagraph}
+                      dangerouslySetInnerHTML={{ __html: sec.content }} 
+                    />
+                  ) : (
+                    <p className={styles.sectionParagraph}>{sec.content}</p>
+                  )}
+                  
+                  {/* Mid-article showcase portrait image after 4th section */}
+                  {idx === 4 && article.inArticleImage && (
+                    <div className={styles.inArticleImageWrap}>
+                      <img src={article.inArticleImage} alt="Featured Artist" className={styles.inArticleImage} />
+                    </div>
+                  )}
+                </div>
+              ))}
 
             <div className={styles.authorCreditBlock}>
               <p className={styles.authorText}>

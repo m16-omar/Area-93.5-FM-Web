@@ -119,12 +119,7 @@ export const formatNewsArticle = (item) => {
     date: displayDate,
     createdAt: item.created_at || null,
     tags: ["NEWS", "AFROBEATS", "CHARTS", "LAGOS", "MUSIC", "POLITICS", "ENTERTAINMENT"],
-    sections: item.content ? [
-      {
-        heading: "Full Story",
-        content: item.content
-      }
-    ] : []
+    sections: Array.isArray(item.sections) ? item.sections : []
   };
 };
 
