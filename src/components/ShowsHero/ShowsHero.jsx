@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
+import { FiClock } from 'react-icons/fi';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
 import { LIVE_STREAM_URL } from '../../constants/audio';
 import styles from './ShowsHero.module.css';
