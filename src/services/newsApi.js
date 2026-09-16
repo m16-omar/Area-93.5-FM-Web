@@ -1,5 +1,3 @@
-import defaultNewsData from '../data/newsData.json';
-
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://city1051fm.cloud';
 const LIVE_BACKEND_URL = 'https://city1051fm.cloud';
 const CLOUDINARY_CLOUD_NAME = 'dgjzsen3g';
@@ -80,7 +78,7 @@ export const getFullImageUrl = (imagePath) => {
 export const formatNewsArticle = (item) => {
   if (!item) return null;
 
-  const rawDate = item.formatted_date || item.created_at || item.date || 'April 29, 2026';
+  const rawDate = item.formatted_date || item.created_at || item.date;
   let displayDate = rawDate;
   if (item.created_at && !item.formatted_date) {
     try {
@@ -90,8 +88,10 @@ export const formatNewsArticle = (item) => {
         year: 'numeric'
       });
     } catch {
-      displayDate = rawDate;
+      displayDate = rawDate || 'Recent';
     }
+  } else if (!displayDate) {
+    displayDate = 'Recent';
   }
 
   const categoryName = typeof item.category === 'object' && item.category !== null
@@ -102,23 +102,23 @@ export const formatNewsArticle = (item) => {
 
   return {
     id: item.id || `news-${Date.now()}`,
-    title: item.title || 'Breaking Music & Culture News',
+    title: item.title || '',
     slug: item.slug || (item.title ? item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : ''),
     category: String(categoryName).toUpperCase(),
     excerpt: item.excerpt || (item.content ? item.content.replace(/<[^>]*>/g, '').slice(0, 160) + '...' : ''),
     content: item.content || '',
-    author: item.author || (item.author_details?.name) || 'City FM / Area 93.5 FM News',
-    authorRole: item.author_details?.role || 'Senior Entertainment Editor',
+    author: item.author || (item.author_details?.name) || '93.5 Area FM News',
+    authorRole: item.author_details?.role || 'Editorial Desk',
     image: formattedImage,
     heroImage: formattedImage,
     inArticleImage: formattedImage,
     views: item.views || 0,
     likes: item.likes || 0,
     shares: item.shares || 0,
-    comments: item.comments || Math.floor((item.views || 10) / 3) || 4,
+    comments: item.comments || 0,
     date: displayDate,
     createdAt: item.created_at || null,
-    tags: ["NEWS", "AFROBEATS", "CHARTS", "LAGOS", "MUSIC", "POLITICS", "ENTERTAINMENT"],
+    tags: ["NEWS", "AFROBEATS", "CHARTS", "LAGOS", "MUSIC", "ENTERTAINMENT"],
     sections: Array.isArray(item.sections) ? item.sections : []
   };
 };
@@ -134,8 +134,8 @@ export const fetchNewsCategories = async () => {
     const catNames = categoriesList.map(c => (c.name || '').toUpperCase()).filter(Boolean);
     return ['ALL', ...new Set(catNames)];
   } catch (err) {
-    console.warn('Backend categories fetch failed, using fallback categories:', err.message);
-    return ['ALL', 'MUSIC', 'ENTERTAINMENT', 'POLITICS', 'TRENDS', 'CONCERTS'];
+    console.warn('Backend categories fetch failed:', err.message);
+    return ['ALL'];
   }
 };
 
@@ -147,15 +147,10 @@ export const fetchNewsArticles = async () => {
     const res = await fetchFromCandidates('/api/news/');
     const data = await res.json();
     const articles = Array.isArray(data) ? data : data.results || [];
-
-    if (articles.length === 0) {
-      return getLocalFallbackNews();
-    }
-
-    return articles.map(formatNewsArticle);
+    return articles.map(formatNewsArticle).filter(Boolean);
   } catch (err) {
-    console.warn('Backend news unavailable, using fallback data:', err.message);
-    return getLocalFallbackNews();
+    console.warn('Backend news fetch error:', err.message);
+    return [];
   }
 };
 
@@ -169,7 +164,9 @@ export const fetchNewsDetail = async (slugOrId) => {
     // 1. Direct lookup by ID or slug endpoint
     const res = await fetchFromCandidates(`/api/news/${encodeURIComponent(slugOrId)}/`);
     const data = await res.json();
-    return formatNewsArticle(data);
+    if (data && (data.title || data.slug || data.id)) {
+      return formatNewsArticle(data);
+    }
   } catch {
     // Fall through to list query
   }
@@ -186,7 +183,7 @@ export const fetchNewsDetail = async (slugOrId) => {
 
     if (found) return found;
   } catch {
-    // Fallback
+    // ignore
   }
 
   return null;
@@ -241,37 +238,5 @@ export const shareArticle = async (idOrSlug) => {
     // Silent fail
   }
   return null;
-};
-
-/**
- * Fallback data provider if backend is offline
- */
-const getLocalFallbackNews = () => {
-  const list = [
-    defaultNewsData.featuredBig,
-    defaultNewsData.featuredMedium,
-    ...(defaultNewsData.newsList || [])
-  ].filter(Boolean);
-
-  return list.map((item, idx) => ({
-    id: item.id || `local-${idx}`,
-    title: item.title,
-    slug: item.title ? item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : `news-${idx}`,
-    category: (item.category || 'NEWS').toUpperCase(),
-    excerpt: "Stay up to date with the latest breaking stories, Afrobeats releases, music industry analyses, and culture news straight from 93.5 Area FM.",
-    content: "Stay up to date with the latest breaking stories, Afrobeats releases, music industry analyses, and culture news straight from 93.5 Area FM.",
-    author: "93.5 Area FM Editorial Desk",
-    authorRole: "Music & News Department",
-    image: item.image,
-    heroImage: item.image,
-    inArticleImage: item.image,
-    views: item.views || 45,
-    likes: item.likes || 12,
-    shares: 4,
-    comments: 6,
-    date: item.date || "August 15, 2026",
-    tags: ["NEWS", "AFROBEATS", "CHARTS", "LAGOS"],
-    sections: []
-  }));
 };
 

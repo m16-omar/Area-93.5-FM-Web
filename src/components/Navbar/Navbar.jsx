@@ -4,12 +4,12 @@ import { FiSearch, FiMenu, FiVolume2, FiVolumeX, FiMusic, FiX, FiRadio, FiUser, 
 import { FaInstagram, FaFacebookF, FaYoutube, FaTiktok, FaPlay, FaPause } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { useAudioPlayer } from '../../context/AudioPlayerContext';
+import { fetchNewsArticles } from '../../services/newsApi';
 import logoImg from '../../assets/area-logo.png';
 import topTracksData from '../../data/topTracksData.json';
 import scheduleData from '../../data/scheduleData.json';
 import teamData from '../../data/teamData.json';
 import podcastsData from '../../data/podcastsFullData.json';
-import newsData from '../../data/newsData.json';
 import styles from './Navbar.module.css';
 
 const popularKeywords = [
@@ -32,7 +32,19 @@ export const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('ALL');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [newsArticles, setNewsArticles] = useState([]);
   const searchInputRef = useRef(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    fetchNewsArticles().then(list => {
+      if (isMounted && list && list.length > 0) {
+        setNewsArticles(list);
+      }
+    }).catch(() => {});
+
+    return () => { isMounted = false; };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -96,11 +108,7 @@ export const Navbar = () => {
     ...(podcastsData.latestEpisodes || [])
   ].filter(Boolean);
 
-  const allNews = [
-    newsData.featuredBig,
-    newsData.featuredMedium,
-    ...(newsData.newsList || [])
-  ].filter(Boolean);
+  const allNews = newsArticles;
 
   const cleanQuery = searchQuery.toLowerCase().trim();
 

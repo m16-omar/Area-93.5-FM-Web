@@ -6,7 +6,6 @@ import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import { fetchNewsArticles, fetchNewsCategories, likeArticle, shareArticle } from '../services/newsApi';
-import defaultNewsData from '../data/newsData.json';
 import { SEO } from '../components/SEO/SEO';
 import { getBreadcrumbSchema } from '../utils/seoSchemas';
 import { SEO_KEYWORDS } from '../utils/seoKeywords';

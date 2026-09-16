@@ -3,12 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiEye, FiHeart, FiShare2, FiCalendar } from 'react-icons/fi';
 import { fetchNewsArticles, fetchNewsCategories, likeArticle, shareArticle } from '../../services/newsApi';
-import defaultNewsData from '../../data/newsData.json';
 import styles from './LatestNews.module.css';
 
 export const LatestNews = () => {
   const [activeCategory, setActiveCategory] = useState('ALL');
-  const [categories, setCategories] = useState(() => defaultNewsData.categories || ['ALL', 'CONCERTS', 'TRENDS', 'ARTISTS']);
+  const [categories, setCategories] = useState(['ALL']);
   const [articles, setArticles] = useState([]);
   const [pageIndex, setPageIndex] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -73,22 +72,16 @@ export const LatestNews = () => {
     }
   };
 
-  // Derive active items
-  const rawList = articles.length > 0 ? articles : [
-    defaultNewsData.featuredBig,
-    defaultNewsData.featuredMedium,
-    ...(defaultNewsData.newsList || [])
-  ];
-
+  // Derive active items purely from backend articles
   const filteredList = activeCategory === 'ALL'
-    ? rawList
-    : rawList.filter(n => (n.category || '').toUpperCase() === activeCategory.toUpperCase());
+    ? articles
+    : articles.filter(n => (n.category || '').toUpperCase() === activeCategory.toUpperCase());
 
-  const displayList = filteredList.length > 0 ? filteredList : rawList;
+  const displayList = filteredList.length > 0 ? filteredList : articles;
 
-  const featuredBig = displayList[0] || defaultNewsData.featuredBig;
-  const featuredMedium = displayList[1] || rawList[1] || defaultNewsData.featuredMedium;
-  const streamList = displayList.length > 2 ? displayList.slice(2) : (rawList.length > 2 ? rawList.slice(2) : rawList);
+  const featuredBig = displayList[0] || null;
+  const featuredMedium = displayList[1] || null;
+  const streamList = displayList.length > 2 ? displayList.slice(2) : [];
 
   const itemsPerPage = 3;
   const totalPages = Math.max(1, Math.ceil(streamList.length / itemsPerPage));

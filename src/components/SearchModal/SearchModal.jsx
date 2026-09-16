@@ -7,7 +7,6 @@ import { fetchNewsArticles } from '../../services/newsApi';
 import scheduleData from '../../data/scheduleData.json';
 import teamData from '../../data/teamData.json';
 import podcastsData from '../../data/podcastsFullData.json';
-import defaultNewsData from '../../data/newsData.json';
 import styles from './SearchModal.module.css';
 
 const popularKeywords = [
@@ -81,11 +80,7 @@ export const SearchModal = ({ isOpen, onClose }) => {
 
   const allHosts = teamData || [];
   const allPodcasts = podcastsData || [];
-  const allNews = newsArticles.length > 0 ? newsArticles : [
-    defaultNewsData.featuredBig,
-    defaultNewsData.featuredMedium,
-    ...(defaultNewsData.newsList || [])
-  ].filter(Boolean);
+  const allNews = newsArticles;
 
   const cleanQuery = query.toLowerCase().trim();
 

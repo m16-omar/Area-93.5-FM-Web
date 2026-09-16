@@ -22,57 +22,10 @@ import { getArticleSchema, getBreadcrumbSchema } from '../utils/seoSchemas';
 import { SEO_KEYWORDS } from '../utils/seoKeywords';
 import styles from './NewsDetailPage.module.css';
 
-// Fallback generator for custom article slug if backend is temporarily unreachable
-const buildFallbackArticle = (slug) => {
-  let cleanTitle = slug
-    ? slug
-        .replace(/-s-/g, "’s ")
-        .replace(/-s$/g, "’s")
-        .replace(/-t-/g, "’t ")
-        .split('-')
-        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-        .join(' ')
-    : "Breaking Music & Culture News";
-
-  return {
-    id: `fallback-${slug}`,
-    slug: slug || "breaking-music-and-culture-news",
-    category: "NEWS",
-    title: cleanTitle,
-    date: "August 15, 2026",
-    comments: 18,
-    likes: 42,
-    views: 120,
-    author: "93.5 Area FM Editorial Desk",
-    authorRole: "Music & News Department",
-    heroImage: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80",
-    inArticleImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
-    tags: ["ARTISTS", "CHARTS", "DJ", "EVENTS", "HITS", "MUSIC", "AFROBEATS", "LAGOS"],
-    excerpt: "As the heartbeat of the music world, 93.5 Area FM brings you complete breaking coverage on trending music, festival announcements, and chart-topping songs.",
-    content: "Stay up to date with the latest breaking stories, Afrobeats releases, music industry analyses, and culture news straight from 93.5 Area FM.",
-    sections: [
-      {
-        heading: "Top Tracks You Can’t Miss",
-        content: "If you haven’t heard the latest tracks dominating the charts, now’s the time to tune in! We bring you the full rundown of songs taking over airwaves and streaming playlists."
-      },
-      {
-        heading: "Exclusive Artist Insights",
-        content: "We sit down with top talents to understand their musical journey, studio habits, and the creative vision behind their latest records."
-      }
-    ]
-  };
-};
-
-const mostListenedTracks = [
-  { rank: 1, title: "Die With A Smile", artist: "Lady Gaga & Bruno Mars", cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=120&q=80" },
-  { rank: 2, title: "Higher", artist: "Burna Boy", cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=120&q=80" },
-  { rank: 3, title: "Calm Down", artist: "Rema", cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=120&q=80" }
-];
-
 export const NewsDetailPage = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const [article, setArticle] = useState(() => buildFallbackArticle(slug));
+  const [article, setArticle] = useState(null);
   const [similarPosts, setSimilarPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [rating, setRating] = useState(5);
@@ -99,7 +52,7 @@ export const NewsDetailPage = () => {
             // Track view count on backend
             trackArticleView(fetchedArticle.id || slug);
           } else {
-            setArticle(buildFallbackArticle(slug));
+            setArticle(null);
           }
 
           if (allArticles && allArticles.length > 0) {
@@ -108,11 +61,12 @@ export const NewsDetailPage = () => {
               const aSlug = String(a.slug || a.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
               return aSlug !== cleanSlug && a.id !== (fetchedArticle?.id);
             });
-            setSimilarPosts(others.slice(0, 2));
+            setSimilarPosts(others.slice(0, 4));
           }
         }
       } catch (err) {
         console.warn('Error fetching article detail:', err);
+        if (isMounted) setArticle(null);
       } finally {
         if (isMounted) setLoading(false);
       }
@@ -123,6 +77,7 @@ export const NewsDetailPage = () => {
   }, [slug]);
 
   const handleLike = async () => {
+    if (!article) return;
     const newLikes = await likeArticle(article.id || slug);
     if (newLikes !== null) {
       setArticle(prev => ({ ...prev, likes: newLikes }));
@@ -134,6 +89,7 @@ export const NewsDetailPage = () => {
   };
 
   const handleShare = async (platform = 'native') => {
+    if (!article) return;
     await shareArticle(article.id || slug);
     const url = window.location.href;
     const title = article.title || '93.5 Area FM News';
@@ -174,6 +130,81 @@ export const NewsDetailPage = () => {
   };
 
   const isHtml = (str) => /<[a-z][\s\S]*>/i.test(str || '');
+
+  // Loading State
+  if (loading) {
+    return (
+      <main className={styles.newsDetailPageWrapper}>
+        <Navbar />
+        <div className={styles.loadingSkeletonContainer}>
+          <div className={styles.skeletonLine} style={{ width: '30%', margin: '0 auto 20px' }} />
+          <div className={styles.skeletonLine} style={{ height: '36px', width: '80%', margin: '0 auto 20px' }} />
+          <div className={styles.skeletonLine} style={{ width: '40%', margin: '0 auto 40px' }} />
+          <div className={styles.skeletonLine} style={{ height: '320px', width: '100%', borderRadius: '8px' }} />
+          <div className={styles.skeletonLine} style={{ width: '100%', marginTop: '30px' }} />
+          <div className={styles.skeletonLine} style={{ width: '90%' }} />
+          <div className={styles.skeletonLine} style={{ width: '95%' }} />
+        </div>
+        <Footer />
+        <LivePlayer />
+      </main>
+    );
+  }
+
+  // Not Found State
+  if (!article) {
+    return (
+      <main className={styles.newsDetailPageWrapper}>
+        <Navbar />
+        <div className={styles.notFoundContainer}>
+          <h1 className={styles.notFoundTitle}>ARTICLE NOT FOUND</h1>
+          <p className={styles.notFoundText}>
+            The requested article could not be found or has been moved. Explore the latest verified news from 93.5 Area FM below.
+          </p>
+          <button className={styles.notFoundBtn} onClick={() => navigate('/news')}>
+            <FiArrowLeft /> BROWSE ALL NEWS
+          </button>
+
+          {similarPosts.length > 0 && (
+            <div className={styles.similarPostsWrapper} style={{ marginTop: '48px', textAlign: 'left' }}>
+              <div className={styles.similarHeader}>
+                <span className={styles.similarLabel}>LATEST STORIES</span>
+                <span className={styles.similarAccentLine} />
+              </div>
+              <div className={styles.similarGrid}>
+                {similarPosts.slice(0, 2).map((post, idx) => (
+                  <div 
+                    key={idx} 
+                    className={styles.similarCard}
+                    onClick={() => navigate(`/news/${getSlug(post)}`)}
+                  >
+                    <div className={styles.similarImageWrap}>
+                      <img 
+                        src={post.image} 
+                        alt={post.title} 
+                        className={styles.similarImage} 
+                        loading="lazy" 
+                      />
+                      <span className={styles.similarCategoryBadge}>{post.category || 'NEWS'}</span>
+                    </div>
+                    <div className={styles.similarMetaContent}>
+                      <h3 className={styles.similarPostTitle}>{post.title}</h3>
+                      <div className={styles.similarCardFooter}>
+                        <span className={styles.similarDate}><FiCalendar size={11} /> {post.date}</span>
+                        <span className={styles.similarComments}><FiEye size={11} /> {post.views || 0} views</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+        <Footer />
+        <LivePlayer />
+      </main>
+    );
+  }
 
   const articleUrl = `https://area935fm.ng/news/${article.slug || slug}`;
   const detailSchema = {
