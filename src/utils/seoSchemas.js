@@ -76,6 +76,19 @@ export const getWebSiteSchema = () => ({
   }
 });
 
+export const safeISODate = (dateVal) => {
+  if (!dateVal) return new Date().toISOString();
+  try {
+    const d = new Date(dateVal);
+    if (!isNaN(d.getTime())) {
+      return d.toISOString();
+    }
+  } catch {
+    // ignore
+  }
+  return new Date().toISOString();
+};
+
 export const getBreadcrumbSchema = (crumbs = []) => ({
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -95,11 +108,11 @@ export const getArticleSchema = (article, pageUrl) => ({
     "@id": pageUrl || DEFAULT_SITE_URL
   },
   "headline": article?.title || "Lagos News & Radio Update",
-  "description": article?.excerpt || article?.content?.substring(0, 160) || "Breaking entertainment, music, and city news from Area 93.5 FM Lagos.",
+  "description": article?.excerpt || (typeof article?.content === 'string' ? article.content.substring(0, 160) : "") || "Breaking entertainment, music, and city news from Area 93.5 FM Lagos.",
   "image": [
     article?.heroImage || article?.image || DEFAULT_OG_IMAGE
   ],
-  "datePublished": article?.date ? new Date(article.date).toISOString() : new Date().toISOString(),
+  "datePublished": safeISODate(article?.date || article?.created_at),
   "dateModified": new Date().toISOString(),
   "author": {
     "@type": "Person",
