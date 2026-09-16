@@ -342,6 +342,9 @@ export const NewsDetailPage = () => {
               />
             </div>
 
+            {/* Article Headline / Title */}
+            <h2 className={styles.bodyArticleTitle}>{article.title}</h2>
+
             {/* Introductory excerpt if distinct from first paragraph */}
             {article.excerpt && !article.content?.startsWith(article.excerpt.replace(/\.\.\.$/, '').trim()) && (
               <p className={styles.introParagraph}>{article.excerpt}</p>

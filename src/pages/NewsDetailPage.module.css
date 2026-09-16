@@ -183,6 +183,16 @@
   object-fit: cover;
 }
 
+.bodyArticleTitle {
+  font-family: var(--font-sans, 'Outfit', sans-serif);
+  font-size: clamp(1.65rem, 2.8vw, 2.25rem);
+  font-weight: 800;
+  color: #004E68;
+  line-height: 1.28;
+  margin: 14px 0 6px 0;
+  letter-spacing: -0.015em;
+}
+
 .introParagraph {
   font-size: 1.12rem;
   line-height: 1.8;
