@@ -6,7 +6,7 @@ import {
   FaPinterest, FaLinkedinIn, FaWhatsapp, FaTelegramPlane, FaStar, FaShareAlt, FaHeart, FaComment
 } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
-import { FiSearch, FiCalendar, FiClock, FiArrowRight, FiMoreVertical, FiShoppingCart, FiEye } from 'react-icons/fi';
+import { FiSearch, FiCalendar, FiClock, FiArrowRight, FiArrowLeft, FiMoreVertical, FiShoppingCart, FiEye } from 'react-icons/fi';
 import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
@@ -20,7 +20,10 @@ import {
 import { SEO } from '../components/SEO/SEO';
 import { getArticleSchema, getBreadcrumbSchema } from '../utils/seoSchemas';
 import { SEO_KEYWORDS } from '../utils/seoKeywords';
+import topTracksData from '../data/topTracksData.json';
 import styles from './NewsDetailPage.module.css';
+
+const mostListenedTracks = (topTracksData?.tracks || []).slice(0, 3);
 
 export const NewsDetailPage = () => {
   const { slug } = useParams();
@@ -494,8 +497,8 @@ export const NewsDetailPage = () => {
               <div className={styles.mostListenedStack}>
                 {mostListenedTracks.map((track, idx) => (
                   <div key={idx} className={styles.trackItemCard}>
-                    <div className={styles.trackRank}>{track.rank}</div>
-                    <img src={track.cover} alt={track.title} className={styles.trackCover} />
+                    <div className={styles.trackRank}>{track.rank || idx + 1}</div>
+                    <img src={track.image || track.cover} alt={track.title} className={styles.trackCover} />
                     
                     <div className={styles.trackMeta}>
                       <h4 className={styles.trackTitle}>{track.title}</h4>
