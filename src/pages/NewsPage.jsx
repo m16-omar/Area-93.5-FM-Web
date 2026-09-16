@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { FiSearch, FiEye, FiHeart, FiShare2, FiLink, FiMousePointer, FiMusic } from 'react-icons/fi';
@@ -9,6 +9,7 @@ import { fetchNewsArticles, fetchNewsCategories, likeArticle, shareArticle } fro
 import { SEO } from '../components/SEO/SEO';
 import { getBreadcrumbSchema } from '../utils/seoSchemas';
 import { SEO_KEYWORDS } from '../utils/seoKeywords';
+import { getCurrentOnAirShow, getShowSlug } from '../utils/scheduleHelper';
 import styles from './NewsPage.module.css';
 
 const mostListenedTracks = [
@@ -43,6 +44,8 @@ export const NewsPage = () => {
   const [articles, setArticles] = useState([]);
   const [visibleCount, setVisibleCount] = useState(5);
   const [loading, setLoading] = useState(true);
+
+  const activeOnAirShow = useMemo(() => getCurrentOnAirShow(), []);
 
   useEffect(() => {
     let isMounted = true;
@@ -334,18 +337,18 @@ export const NewsPage = () => {
 
             <div
               className={styles.nowOnAirCard}
-              onClick={() => navigate('/shows/the-fan-zone')}
+              onClick={() => navigate(`/shows/${getShowSlug(activeOnAirShow.name || activeOnAirShow.title)}`)}
               style={{ cursor: 'pointer' }}
             >
               <img
-                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
-                alt="The Fan Zone Show"
+                src={activeOnAirShow.image}
+                alt={activeOnAirShow.name || activeOnAirShow.title}
                 className={styles.nowOnAirImg}
               />
               <div className={styles.nowOnAirOverlay}>
-                <span className={styles.nowOnAirCat}>TRENDS</span>
-                <h3 className={styles.nowOnAirTitle}>The Fan Zone</h3>
-                <p className={styles.nowOnAirTime}>11:00 am - 02:30 pm</p>
+                <span className={styles.nowOnAirCat}>{activeOnAirShow.genre || 'LIVE SHOW'}</span>
+                <h3 className={styles.nowOnAirTitle}>{activeOnAirShow.name || activeOnAirShow.title}</h3>
+                <p className={styles.nowOnAirTime}>{activeOnAirShow.time}</p>
               </div>
             </div>
           </div>

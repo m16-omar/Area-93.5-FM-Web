@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
@@ -20,6 +20,7 @@ import {
 import { SEO } from '../components/SEO/SEO';
 import { getArticleSchema, getBreadcrumbSchema } from '../utils/seoSchemas';
 import { SEO_KEYWORDS } from '../utils/seoKeywords';
+import { getCurrentOnAirShow, getShowSlug } from '../utils/scheduleHelper';
 import topTracksData from '../data/topTracksData.json';
 import styles from './NewsDetailPage.module.css';
 
@@ -35,6 +36,8 @@ export const NewsDetailPage = () => {
   const [hoverRating, setHoverRating] = useState(0);
   const [sidebarSearch, setSidebarSearch] = useState('');
   const [liked, setLiked] = useState(false);
+
+  const activeOnAirShow = useMemo(() => getCurrentOnAirShow(), []);
 
   useEffect(() => {
     let isMounted = true;
@@ -493,19 +496,19 @@ export const NewsDetailPage = () => {
 
               <div 
                 className={styles.nowOnAirCard}
-                onClick={() => navigate('/shows/the-fan-zone')}
+                onClick={() => navigate(`/shows/${getShowSlug(activeOnAirShow.name || activeOnAirShow.title)}`)}
                 style={{ cursor: 'pointer' }}
               >
                 <img 
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" 
-                  alt="The Fan Zone" 
+                  src={activeOnAirShow.image} 
+                  alt={activeOnAirShow.name || activeOnAirShow.title} 
                   className={styles.nowOnAirBg} 
                 />
                 <div className={styles.nowOnAirOverlay}>
-                  <span className={styles.nowOnAirPill}>LIVE SHOW</span>
+                  <span className={styles.nowOnAirPill}>{activeOnAirShow.genre || 'LIVE SHOW'}</span>
                   <div className={styles.nowOnAirInfo}>
-                    <h4 className={styles.nowOnAirTitle}>The Fan Zone</h4>
-                    <p className={styles.nowOnAirTime}>11:00 am - 02:30 pm • Area FM</p>
+                    <h4 className={styles.nowOnAirTitle}>{activeOnAirShow.name || activeOnAirShow.title}</h4>
+                    <p className={styles.nowOnAirTime}>{activeOnAirShow.time} • {activeOnAirShow.dj || 'Area FM'}</p>
                   </div>
                   <button className={styles.nowOnAirMoreBtn} aria-label="Show Details">
                     <FiMoreVertical />

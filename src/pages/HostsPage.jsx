@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaInstagram, FaYoutube, FaSpotify, FaTwitch, FaSoundcloud, FaPlay, FaPause, FaUser, FaTiktok } from 'react-icons/fa';
@@ -7,38 +7,35 @@ import { Navbar } from '../components/Navbar/Navbar';
 import { Footer } from '../components/Footer/Footer';
 import { LivePlayer } from '../components/LivePlayer/LivePlayer';
 import { useAudioPlayer } from '../context/AudioPlayerContext';
+import { LIVE_STREAM_URL } from '../constants/audio';
+import { getCurrentDayKey, getShowsForDay, getShowSlug } from '../utils/scheduleHelper';
 import teamData from '../data/teamData.json';
 import { SEO } from '../components/SEO/SEO';
 import { getBreadcrumbSchema } from '../utils/seoSchemas';
 import { SEO_KEYWORDS } from '../utils/seoKeywords';
 import styles from './HostsPage.module.css';
 
-const featuredEpisodes = [
-  {
-    id: "ep1",
-    tag: "Vibe Check",
-    title: "Naija Vibe Check #4",
-    artist: "Simi Ogunleye",
-    date: "March 4, 2026",
-    image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=400&q=80",
-    audioUrl: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
-  },
-  {
-    id: "ep2",
-    tag: "Vibe Check",
-    title: "Naija Vibe Check #3",
-    artist: "Simi Ogunleye",
-    date: "March 4, 2026",
-    image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=400&q=80",
-    audioUrl: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
-  }
-];
-
 export const HostsPage = () => {
   const navigate = useNavigate();
   const { playTrack, currentTrack, isPlaying } = useAudioPlayer();
   const [visibleCount, setVisibleCount] = useState(6);
+  const [showPageIndex, setShowPageIndex] = useState(0);
+
+  const currentDayKey = useMemo(() => getCurrentDayKey(), []);
+  const todayShows = useMemo(() => getShowsForDay(currentDayKey), [currentDayKey]);
   const featuredHost = teamData.find(t => t.name === "Simi Ogunleye") || teamData[0];
+
+  const pageSize = 2;
+  const maxPage = Math.max(0, Math.ceil(todayShows.length / pageSize) - 1);
+  const currentIncomingShows = todayShows.slice(showPageIndex * pageSize, (showPageIndex + 1) * pageSize);
+
+  const handlePrevShow = () => {
+    setShowPageIndex(prev => (prev > 0 ? prev - 1 : maxPage));
+  };
+
+  const handleNextShow = () => {
+    setShowPageIndex(prev => (prev < maxPage ? prev + 1 : 0));
+  };
 
   const handleViewMore = () => {
     setVisibleCount(prev => Math.min(prev + 3, teamData.length));
@@ -200,33 +197,53 @@ export const HostsPage = () => {
 
             <div 
               className={styles.listenOnHeader}
-              onClick={() => navigate('/podcasts')}
+              onClick={() => navigate('/shows')}
               style={{ cursor: 'pointer' }}
             >
-              <span className={styles.listenOnTag}>LISTEN ON</span>
+              <span className={styles.listenOnTag}>INCOMING SHOWS</span>
               <div className={styles.listenOnLine} />
             </div>
 
             <div className={styles.episodesList}>
-              {featuredEpisodes.map(ep => {
-                const isSelected = currentTrack?.id === ep.id && isPlaying;
+              {currentIncomingShows.map(show => {
+                const isSelected = (currentTrack?.title === (show.name || show.title) || currentTrack?.id === show.id) && isPlaying;
                 return (
                   <div 
-                    key={ep.id} 
+                    key={show.id} 
                     className={styles.episodeCard}
-                    onClick={() => playTrack(ep)}
+                    onClick={() => navigate(`/shows/${getShowSlug(show.name || show.title)}`)}
                     style={{ cursor: 'pointer' }}
                   >
                     <div className={styles.episodeThumbWrapper}>
-                      <img src={ep.image} alt={ep.title} className={styles.episodeThumb} />
-                      <div className={styles.episodePlayOverlay}>
+                      <img src={show.image} alt={show.name || show.title} className={styles.episodeThumb} />
+                      <div 
+                        className={styles.episodePlayOverlay}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          playTrack({
+                            id: show.id,
+                            title: show.name || show.title,
+                            artist: show.dj,
+                            showName: show.name || show.title,
+                            presenterName: show.dj,
+                            image: show.image,
+                            audioUrl: LIVE_STREAM_URL,
+                            isLive: true
+                          });
+                        }}
+                      >
                         {isSelected ? <FaPause size={10} /> : <FaPlay size={10} style={{ marginLeft: '1px' }} />}
                       </div>
                     </div>
                     <div className={styles.episodeInfo}>
-                      <span className={styles.episodePillOutline}>{ep.tag}</span>
-                      <h4 className={styles.episodeTitle}>{ep.title}</h4>
-                      <p className={styles.episodeDate}>{ep.date}</p>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <span className={styles.episodePillOutline}>{show.genre || 'SHOW'}</span>
+                        {show.nowPlaying && (
+                          <span style={{ fontSize: '0.68rem', fontWeight: 800, color: '#E50914', letterSpacing: '0.05em' }}>• LIVE</span>
+                        )}
+                      </div>
+                      <h4 className={styles.episodeTitle}>{show.name || show.title}</h4>
+                      <p className={styles.episodeDate}>{show.time} • {show.dj}</p>
                     </div>
                   </div>
                 );
@@ -234,8 +251,8 @@ export const HostsPage = () => {
             </div>
 
             <div className={styles.paginationRow}>
-              <button className={styles.pagBtn} onClick={() => navigate('/podcasts')}>PREV</button>
-              <button className={`${styles.pagBtn} ${styles.pagBtnActive}`} onClick={() => navigate('/podcasts')}>NEXT</button>
+              <button className={styles.pagBtn} onClick={handlePrevShow} aria-label="Previous Shows">PREV</button>
+              <button className={`${styles.pagBtn} ${styles.pagBtnActive}`} onClick={handleNextShow} aria-label="Next Shows">NEXT</button>
             </div>
           </motion.div>
         </div>
