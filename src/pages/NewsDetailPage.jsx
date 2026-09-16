@@ -137,6 +137,56 @@ export const NewsDetailPage = () => {
 
   const isHtml = (str) => /<[a-z][\s\S]*>/i.test(str || '');
 
+  const renderFormattedParagraphs = (rawContent) => {
+    if (!rawContent) return null;
+
+    if (isHtml(rawContent)) {
+      return (
+        <div 
+          className={styles.sectionParagraph}
+          dangerouslySetInnerHTML={{ __html: rawContent }} 
+        />
+      );
+    }
+
+    const paragraphs = rawContent
+      .replace(/\r\n/g, '\n')
+      .replace(/\r/g, '\n')
+      .split(/\n\s*\n/)
+      .map(p => p.trim())
+      .filter(Boolean);
+
+    return paragraphs.map((para, idx) => {
+      // Standalone URL / Tweet link
+      if (para.startsWith('http://') || para.startsWith('https://')) {
+        return (
+          <div key={idx} className={styles.articleLinkBlock}>
+            <a href={para} target="_blank" rel="noopener noreferrer" className={styles.articleLinkText}>
+              🔗 {para}
+            </a>
+          </div>
+        );
+      }
+
+      // Check if this line is an editorial subheading
+      const isSubheading = para.length < 90 && !para.endsWith('.') && !para.endsWith('!') && !para.endsWith('?') && !para.includes('\n');
+      if (isSubheading) {
+        return (
+          <h3 key={idx} className={styles.articleSubheading}>
+            {para}
+          </h3>
+        );
+      }
+
+      // Regular paragraph
+      return (
+        <p key={idx} className={styles.sectionParagraph}>
+          {para}
+        </p>
+      );
+    });
+  };
+
   // Loading State
   if (loading) {
     return (
@@ -302,24 +352,15 @@ export const NewsDetailPage = () => {
               />
             </div>
 
-            {/* Introductory excerpt */}
-            {article.excerpt && (
+            {/* Introductory excerpt if distinct from first paragraph */}
+            {article.excerpt && !article.content?.startsWith(article.excerpt.replace(/\.\.\.$/, '').trim()) && (
               <p className={styles.introParagraph}>{article.excerpt}</p>
             )}
 
             {/* Full Story Content */}
             {article.content && (
               <div className={styles.articleSectionBlock}>
-                {isHtml(article.content) ? (
-                  <div 
-                    className={styles.sectionParagraph}
-                    dangerouslySetInnerHTML={{ __html: article.content }} 
-                  />
-                ) : (
-                  article.content.split('\n\n').map((para, pIdx) => (
-                    <p key={pIdx} className={styles.sectionParagraph}>{para}</p>
-                  ))
-                )}
+                {renderFormattedParagraphs(article.content)}
               </div>
             )}
 
@@ -329,14 +370,7 @@ export const NewsDetailPage = () => {
               .map((sec, idx) => (
                 <div key={idx} className={styles.articleSectionBlock}>
                   {sec.heading && <h2 className={styles.sectionHeading}>{sec.heading}</h2>}
-                  {isHtml(sec.content) ? (
-                    <div 
-                      className={styles.sectionParagraph}
-                      dangerouslySetInnerHTML={{ __html: sec.content }} 
-                    />
-                  ) : (
-                    <p className={styles.sectionParagraph}>{sec.content}</p>
-                  )}
+                  {renderFormattedParagraphs(sec.content)}
                   
                   {/* Mid-article showcase portrait image after 4th section */}
                   {idx === 4 && article.inArticleImage && (
