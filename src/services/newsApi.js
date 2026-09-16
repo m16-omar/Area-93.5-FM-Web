@@ -1,24 +1,52 @@
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://city1051fm.cloud';
 const LIVE_BACKEND_URL = 'https://city1051fm.cloud';
-const CLOUDINARY_CLOUD_NAME = 'dgjzsen3g';
+
+// In-memory cache for instant client transitions
+let inMemoryArticlesCache = [];
+
+const getCachedArticles = () => {
+  if (inMemoryArticlesCache.length > 0) return inMemoryArticlesCache;
+  if (typeof window !== 'undefined' && window.sessionStorage) {
+    try {
+      const saved = sessionStorage.getItem('area_fm_news_cache');
+      if (saved) {
+        inMemoryArticlesCache = JSON.parse(saved);
+        return inMemoryArticlesCache;
+      }
+    } catch {
+      // ignore
+    }
+  }
+  return [];
+};
+
+const setCachedArticles = (articles) => {
+  if (Array.isArray(articles) && articles.length > 0) {
+    inMemoryArticlesCache = articles;
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      try {
+        sessionStorage.setItem('area_fm_news_cache', JSON.stringify(articles.slice(0, 50)));
+      } catch {
+        // ignore
+      }
+    }
+  }
+};
 
 /**
- * Base API URL candidate list to handle live cloud backend, local proxy, and local fallback seamlessly
+ * Base API URL candidate list
  */
 const getApiCandidates = () => {
   const list = [
     API_BASE_URL,
     LIVE_BACKEND_URL,
-    '',
-    'http://127.0.0.1:8000',
-    'http://localhost:8000'
+    ''
   ];
   return [...new Set(list.filter(item => typeof item === 'string'))];
 };
 
-
 /**
- * Helper to perform fetch against candidates until one responds with ok
+ * Resilient fetch against backend with safe timeout
  */
 const fetchFromCandidates = async (endpointPath, options = {}) => {
   const candidates = getApiCandidates();
@@ -31,11 +59,15 @@ const fetchFromCandidates = async (endpointPath, options = {}) => {
 
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 4000);
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
       const res = await fetch(fullUrl, { ...options, signal: controller.signal });
       clearTimeout(timeoutId);
 
       if (res.ok) {
+        return res;
+      }
+      if (res.status === 404) {
+        // Stop retrying other candidates if server affirmatively returned 404
         return res;
       }
     } catch (err) {
@@ -43,7 +75,7 @@ const fetchFromCandidates = async (endpointPath, options = {}) => {
     }
   }
 
-  throw lastError || new Error(`Failed to fetch ${endpointPath} from all API candidates`);
+  throw lastError || new Error(`Failed to fetch ${endpointPath}`);
 };
 
 export const DEFAULT_FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80';
@@ -61,16 +93,13 @@ export const getFullImageUrl = (imagePath) => {
     return DEFAULT_FALLBACK_IMAGE;
   }
 
-  // Already a full absolute HTTP/HTTPS URL (e.g. https://city1051fm.cloud/media/... or Cloudinary/Unsplash)
   if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
     return trimmed;
   }
 
-  // If path starts with media/ or /media/
   const cleanPath = trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
   return `${API_BASE_URL.replace(/\/+$/, '')}${cleanPath}`;
 };
-
 
 /**
  * Normalizes a raw backend news item into the format expected by UI components
@@ -129,14 +158,16 @@ export const formatNewsArticle = (item) => {
 export const fetchNewsCategories = async () => {
   try {
     const res = await fetchFromCandidates('/api/news-categories/');
-    const data = await res.json();
-    const categoriesList = Array.isArray(data) ? data : data.results || [];
-    const catNames = categoriesList.map(c => (c.name || '').toUpperCase()).filter(Boolean);
-    return ['ALL', ...new Set(catNames)];
+    if (res.ok) {
+      const data = await res.json();
+      const categoriesList = Array.isArray(data) ? data : data.results || [];
+      const catNames = categoriesList.map(c => (c.name || '').toUpperCase()).filter(Boolean);
+      return ['ALL', ...new Set(catNames)];
+    }
   } catch (err) {
     console.warn('Backend categories fetch failed:', err.message);
-    return ['ALL'];
   }
+  return ['ALL'];
 };
 
 /**
@@ -145,36 +176,53 @@ export const fetchNewsCategories = async () => {
 export const fetchNewsArticles = async () => {
   try {
     const res = await fetchFromCandidates('/api/news/');
-    const data = await res.json();
-    const articles = Array.isArray(data) ? data : data.results || [];
-    return articles.map(formatNewsArticle).filter(Boolean);
+    if (res.ok) {
+      const data = await res.json();
+      const rawList = Array.isArray(data) ? data : data.results || [];
+      const articles = rawList.map(formatNewsArticle).filter(Boolean);
+      if (articles.length > 0) {
+        setCachedArticles(articles);
+      }
+      return articles;
+    }
   } catch (err) {
     console.warn('Backend news fetch error:', err.message);
-    return [];
   }
+  return getCachedArticles();
 };
 
 /**
- * Fetches single news article by slug or ID
+ * Fetches single news article by slug or ID with cache fallback
  */
 export const fetchNewsDetail = async (slugOrId) => {
   if (!slugOrId) return null;
 
+  const cleanLookup = String(slugOrId).toLowerCase().replace(/[^a-z0-9]/g, '');
+
+  // 1. Check local cache first for instant response
+  const cached = getCachedArticles();
+  const cachedMatch = cached.find(a => {
+    const aSlug = String(a.slug || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    const aTitle = String(a.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    return aSlug === cleanLookup || aTitle === cleanLookup || String(a.id) === String(slugOrId);
+  });
+
   try {
-    // 1. Direct lookup by ID or slug endpoint
+    // 2. Direct lookup endpoint on backend
     const res = await fetchFromCandidates(`/api/news/${encodeURIComponent(slugOrId)}/`);
-    const data = await res.json();
-    if (data && (data.title || data.slug || data.id)) {
-      return formatNewsArticle(data);
+    if (res.ok) {
+      const data = await res.json();
+      if (data && (data.title || data.slug || data.id)) {
+        return formatNewsArticle(data);
+      }
     }
   } catch {
-    // Fall through to list query
+    // Fall through
   }
 
-  // 2. Query all news and search for matching slug or ID
+  // 3. If direct endpoint returned 404 or failed, fetch full list to find matching item
   try {
     const allArticles = await fetchNewsArticles();
-    const cleanLookup = String(slugOrId).toLowerCase().replace(/[^a-z0-9]/g, '');
     const found = allArticles.find(a => {
       const aSlug = String(a.slug || '').toLowerCase().replace(/[^a-z0-9]/g, '');
       const aTitle = String(a.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -186,7 +234,7 @@ export const fetchNewsDetail = async (slugOrId) => {
     // ignore
   }
 
-  return null;
+  return cachedMatch || null;
 };
 
 /**

@@ -40,35 +40,38 @@ export const NewsDetailPage = () => {
     const loadArticle = async () => {
       setLoading(true);
       try {
-        // Fetch article detail and all articles for similar suggestions in parallel
-        const [fetchedArticle, allArticles] = await Promise.all([
-          fetchNewsDetail(slug),
-          fetchNewsArticles()
-        ]);
+        // 1. Fetch main article first for fastest paint
+        const fetchedArticle = await fetchNewsDetail(slug);
 
         if (isMounted) {
           if (fetchedArticle) {
             setArticle(fetchedArticle);
-            // Track view count on backend
+            setLoading(false);
             trackArticleView(fetchedArticle.id || slug);
           } else {
             setArticle(null);
+            setLoading(false);
           }
+        }
 
-          if (allArticles && allArticles.length > 0) {
+        // 2. Concurrently load suggestions in background
+        fetchNewsArticles().then((allArticles) => {
+          if (isMounted && allArticles && allArticles.length > 0) {
             const cleanSlug = String(slug || '').toLowerCase().replace(/[^a-z0-9]/g, '');
             const others = allArticles.filter(a => {
               const aSlug = String(a.slug || a.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-              return aSlug !== cleanSlug && a.id !== (fetchedArticle?.id);
+              return aSlug !== cleanSlug && String(a.id) !== String(fetchedArticle?.id);
             });
             setSimilarPosts(others.slice(0, 4));
           }
-        }
+        }).catch(() => {});
+
       } catch (err) {
         console.warn('Error fetching article detail:', err);
-        if (isMounted) setArticle(null);
-      } finally {
-        if (isMounted) setLoading(false);
+        if (isMounted) {
+          setArticle(null);
+          setLoading(false);
+        }
       }
     };
 
