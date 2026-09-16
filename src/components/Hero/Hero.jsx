@@ -101,10 +101,6 @@ export const Hero = () => {
             EVERY AREA
           </h1>
 
-          <p className={styles.heroSeoTagline}>
-            Lagos' No.1 Radio Station • Area 93.5 FM Live Streaming
-          </p>
-
           <div className={styles.giantPlayWrapper}>
             <button 
               className={styles.giantPlayBtn} 
