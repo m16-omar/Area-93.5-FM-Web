@@ -11,11 +11,21 @@ export default defineConfig({
         target: 'https://city1051fm.cloud',
         changeOrigin: true,
         secure: false,
+        configure: (proxy) => {
+          proxy.on('error', (err, _req, _res) => {
+            // Suppress noisy network ENOTFOUND logs in local dev terminal
+          });
+        }
       },
       '/media': {
         target: 'https://city1051fm.cloud',
         changeOrigin: true,
         secure: false,
+        configure: (proxy) => {
+          proxy.on('error', (err, _req, _res) => {
+            // Suppress noisy network ENOTFOUND logs in local dev terminal
+          });
+        }
       }
     }
   }
