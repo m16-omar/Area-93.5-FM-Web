@@ -168,16 +168,6 @@ export const NewsDetailPage = () => {
         );
       }
 
-      // Check if this line is an editorial subheading
-      const isSubheading = para.length < 90 && !para.endsWith('.') && !para.endsWith('!') && !para.endsWith('?') && !para.includes('\n');
-      if (isSubheading) {
-        return (
-          <h3 key={idx} className={styles.articleSubheading}>
-            {para}
-          </h3>
-        );
-      }
-
       // Regular paragraph
       return (
         <p key={idx} className={styles.sectionParagraph}>
