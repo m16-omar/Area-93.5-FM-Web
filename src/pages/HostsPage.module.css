@@ -167,6 +167,10 @@
   letter-spacing: -0.02em;
 }
 
+.redHighlight {
+  color: var(--primary-orange, #E50914);
+}
+
 .popularDesc {
   font-size: 0.92rem;
   color: #4B5563;

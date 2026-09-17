@@ -126,7 +126,7 @@ export const HostsPage = () => {
               onClick={() => navigate(`/hosts/${featuredHost.slug}`)}
               style={{ cursor: 'pointer' }}
             >
-              TEAM LEAD<br />PRESENTERS
+              TEAM LEAD<br /><span className={styles.redHighlight}>PRESENTERS</span>
             </h2>
             <p className={styles.popularDesc}>
               {featuredHost.bio || "Hosting the prime time morning slot on Area 93.5 FM. Bringing high energy beats, live listener interaction, and breaking music news."}
