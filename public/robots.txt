@@ -19,4 +19,4 @@ Allow: /about
 Disallow: /popup-player
 
 # Sitemaps
-Sitemap: https://area935fm.ng/sitemap.xml
+Sitemap: https://935areafm.com/sitemap.xml
