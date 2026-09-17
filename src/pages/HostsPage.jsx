@@ -48,7 +48,7 @@ export const HostsPage = () => {
 
   return (
     <main className={styles.hostsPageContainer}>
-      <SEO 
+      <SEO
         title="Meet Our On-Air Personalities, DJs & Radio Hosts | Area 93.5 FM"
         description="Discover the voices behind Area 93.5 FM Lagos. Meet top Nigerian radio presenters, DJ resident tastemakers, and broadcast journalists."
         keywords={[
@@ -77,7 +77,7 @@ export const HostsPage = () => {
 
           {/* Right Column: Meet Our Hosts Header */}
           <div className={styles.heroContentCol}>
-            <motion.h1 
+            <motion.h1
               className={styles.heroTitle}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -86,7 +86,7 @@ export const HostsPage = () => {
               MEET OUR HOSTS
             </motion.h1>
 
-            <motion.p 
+            <motion.p
               className={styles.heroDesc}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -95,7 +95,7 @@ export const HostsPage = () => {
               Discover the hitmakers, creators, and DJs behind Area 93.5 FM. Delivering daily live radio sessions, exclusive pop culture interviews, and urban hit countdowns.
             </motion.p>
 
-            <motion.a 
+            <motion.a
               href="mailto:careers@935areafm.com"
               className={styles.joinBtn}
               initial={{ opacity: 0, y: 15 }}
@@ -114,29 +114,29 @@ export const HostsPage = () => {
 
         <div className={styles.popularGrid}>
           {/* Left Col: Info & Socials */}
-          <motion.div 
+          <motion.div
             className={styles.popularLeftCol}
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 
+            <h2
               className={styles.popularTitle}
               onClick={() => navigate(`/hosts/${featuredHost.slug}`)}
               style={{ cursor: 'pointer' }}
             >
-              POPULAR HOST
+              TEAM LEAD<br />PRESENTERS
             </h2>
             <p className={styles.popularDesc}>
               Hosting the prime time morning slot on Area 93.5 FM. Bringing high energy beats, live listener interaction, and breaking music news.
             </p>
 
-            <button 
+            <button
               className={styles.discoverBtn}
               onClick={() => navigate(`/hosts/${featuredHost.slug}`)}
             >
-              DISCOVER MORE
+              VIEW MORE
             </button>
 
             <div className={styles.followOnHeader}>
@@ -153,20 +153,20 @@ export const HostsPage = () => {
           </motion.div>
 
           {/* Middle Col: Featured Host Portrait */}
-          <motion.div 
+          <motion.div
             className={styles.popularMiddleCol}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <div 
+            <div
               className={styles.featuredHostCard}
               onClick={() => navigate(`/hosts/${featuredHost.slug}`)}
               style={{ cursor: 'pointer' }}
             >
               <img src={featuredHost.photo} alt={featuredHost.name} className={styles.featuredHostImg} />
-              
+
               <div className={styles.avatarBadge}>
                 <FaUser />
               </div>
@@ -186,7 +186,7 @@ export const HostsPage = () => {
           </motion.div>
 
           {/* Right Col: Episodes & Listen On */}
-          <motion.div 
+          <motion.div
             className={styles.popularRightCol}
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -195,7 +195,7 @@ export const HostsPage = () => {
           >
             <div className={styles.bgCircleRightEpisodes} />
 
-            <div 
+            <div
               className={styles.listenOnHeader}
               onClick={() => navigate('/shows')}
               style={{ cursor: 'pointer' }}
@@ -208,15 +208,15 @@ export const HostsPage = () => {
               {currentIncomingShows.map(show => {
                 const isSelected = (currentTrack?.title === (show.name || show.title) || currentTrack?.id === show.id) && isPlaying;
                 return (
-                  <div 
-                    key={show.id} 
+                  <div
+                    key={show.id}
                     className={styles.episodeCard}
                     onClick={() => navigate(`/shows/${getShowSlug(show.name || show.title)}`)}
                     style={{ cursor: 'pointer' }}
                   >
                     <div className={styles.episodeThumbWrapper}>
                       <img src={show.image} alt={show.name || show.title} className={styles.episodeThumb} />
-                      <div 
+                      <div
                         className={styles.episodePlayOverlay}
                         onClick={(e) => {
                           e.stopPropagation();
@@ -278,7 +278,7 @@ export const HostsPage = () => {
             >
               <Link to={`/hosts/${member.slug}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
                 <img src={member.photo} alt={member.name} className={styles.memberImg} />
-                
+
                 <div className={styles.memberAvatarIcon}>
                   <FaUser />
                 </div>
@@ -286,7 +286,7 @@ export const HostsPage = () => {
                 <div className={styles.memberOverlayFooter}>
                   <div className={styles.memberBadgeBox}>{member.badge || "DJ"}</div>
                   <h3 className={styles.memberName}>{member.name}</h3>
-                  
+
                   <div className={styles.memberSocialsRow}>
                     <span className={styles.memberSocialCircle} aria-label="Instagram"><FaInstagram /></span>
                     <span className={styles.memberSocialCircle} aria-label="X"><FaXTwitter /></span>
