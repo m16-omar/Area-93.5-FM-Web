@@ -73,6 +73,10 @@
   text-shadow: 0 2px 20px rgba(0, 107, 141, 0.05);
 }
 
+.redWatermark {
+  color: var(--primary-orange, #E50914);
+}
+
 .heroContentCol {
   display: flex;
   flex-direction: column;

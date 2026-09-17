@@ -71,7 +71,7 @@ export const HostsPage = () => {
           {/* Left Column: Stacked Watermark Text */}
           <div className={styles.heroWatermarkCol}>
             <div className={styles.heroWatermarkText}>
-              TEAM<br />MEMBERS
+              TEAM<br /><span className={styles.redWatermark}>MEMBERS</span>
             </div>
           </div>
 
