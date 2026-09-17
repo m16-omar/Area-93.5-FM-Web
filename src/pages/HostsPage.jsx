@@ -172,7 +172,7 @@ export const HostsPage = () => {
               </div>
 
               <div className={styles.featuredHostFooter}>
-                <div className={styles.djBadgeBox}>{featuredHost.role || featuredHost.badge || "Presenter"}</div>
+                <div className={styles.djBadgeBox}>{featuredHost.badge || "PRESENTER"}</div>
                 <h3 className={styles.featuredHostName}>{featuredHost.name}</h3>
                 <div className={styles.featuredHostSocials}>
                   <a href="#" className={styles.miniSocialCircle} aria-label="Instagram" onClick={(e) => e.stopPropagation()}><FaInstagram /></a>
@@ -284,7 +284,7 @@ export const HostsPage = () => {
                 </div>
 
                 <div className={styles.memberOverlayFooter}>
-                  <div className={styles.memberBadgeBox}>{member.role || member.badge || "Presenter"}</div>
+                  <div className={styles.memberBadgeBox}>{member.badge || "PRESENTER"}</div>
                   <h3 className={styles.memberName}>{member.name}</h3>
 
                   <div className={styles.memberSocialsRow}>
