@@ -39,7 +39,7 @@ export const CategoriesGrid = () => {
     <section className={styles.categoriesSection}>
       <div className={styles.innerContainer}>
         <div className={styles.headerBadge}>
-          <span className={styles.categoryLabel}>PARTNERS</span>
+          <span className={styles.categoryLabel}>TOP PARTNERS</span>
           <span className={styles.accentLine} />
         </div>
 
