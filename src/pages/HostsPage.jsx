@@ -129,7 +129,7 @@ export const HostsPage = () => {
               TEAM LEAD<br />PRESENTERS
             </h2>
             <p className={styles.popularDesc}>
-              Hosting the prime time morning slot on Area 93.5 FM. Bringing high energy beats, live listener interaction, and breaking music news.
+              {featuredHost.bio || "Hosting the prime time morning slot on Area 93.5 FM. Bringing high energy beats, live listener interaction, and breaking music news."}
             </p>
 
             <button
